@@ -1,0 +1,146 @@
+\input{preamble}
+
+\title{Math 213A, Problem Set 8}
+\author{Arpon Raksit}
+\date{29 Oct 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+Let $u$ be defined on $U \supset \oline\Delta$ open in $\C$. Since $u$
+is harmonic there exists $h : U \to \C$ holomorphic such that $u =
+\Re(h)$. Let $f \coloneqq e^h : U \to \C$. Then $f$ is holomorphic and
+clearly vanishes nowhere on $U$, so the Poisson-Jensen formula gives
+that, for $z \in \Delta$,
+\[
+\log(|f(z)|) = \frac{1}{2\pi} \int_0^{2\pi} \Re\left( \frac{e^{i\phi}
+  + z}{e^{i\phi} - z} \right) \log(|f(e^{i\phi})|) \,d\phi.
+\]
+Note that $\log(|f(z)|) = \Re(h(z)) = u(z)$ for $z \in U$. Now for $0
+< r \le 1$ and $0 \le \theta < 2\pi$,
+\begin{align*}
+  2\Re\left( \frac{e^{i\phi} + re^{i\theta}}{e^{i\phi} - re^{i\theta}}
+  \right) &= \frac{e^{i\phi} + re^{i\theta}}{e^{i\phi} - re^{i\theta}}
+  + \frac{e^{-i\phi} + re^{-i\theta}}{e^{-i\phi} - re^{-i\theta}} =
+  \frac{1 + re^{i(\theta-\phi)}}{1 - re^{i(\theta-\phi)}} + \frac{1 +
+    re^{-i(\theta-\phi)}}{1 - re^{-i(\theta-\phi)}} \\ &=
+  \frac{2(1-r^2)}{1 - 2r\cos(\theta-\phi) + r^2}.
+\end{align*}
+Combining the above gives that
+\[
+u(re^{i\theta}) = \frac{1}{2\pi} \int_0^{2\pi} u(e^{i\phi})
+\frac{1-r^2}{1 - 2r\cos(\theta-\phi) + r^2} \,d\phi,
+\]
+as desired. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+\subprob{a}
+
+We will use tildes to denote the relevant quantities for $f(z^2)$. For
+sufficiently large $r$ and all $\epsilon > 0$ we have
+\[
+\tilde M(r) = M(r^2) \le \exp((r^2)^{\lambda + \epsilon}) =
+\exp(r^{2\lambda + 2\epsilon}),
+\]
+implying $\tilde\lambda \le 2\lambda$. Conversely,
+\[
+M(r) = \tilde M(r^{1/2}) \le \exp((r^{1/2})^{\tilde\lambda +
+  \epsilon}) = \exp(r^{\tilde\lambda/2 + \epsilon/2}),
+\]
+so $\lambda \le \tilde\lambda / 2$. Thus in fact $\tilde\lambda =
+2\lambda$.
+
+Now, writing $f$ as its product expansion we have
+\[
+f(z^2) = e^{p(z^2)} z^{2m} \prod_{k=1}^\infty \left(\left( 1 -
+\frac{z^2}{z_k} \right) \exp\left( \sum_{i=1}^h \frac{1}{i} \left(
+\frac{z^2}{z_k} \right)^i \right) \right),
+\]
+where $p(z)$ is a polynomial of degree $d$ and the genus of $f$ is $g
+= \max(d, h)$. Now factor $(1 - z^2/z_k)$ as $(1 - z/\sqrt{z_k})(1 +
+z/\sqrt{z_k})$ and observe
+\[
+\sum_{i=1}^h \frac{1}{i} \left( \frac{z^2}{z_k} \right)^i =
+\sum_{i=1}^{2h+1} \frac{1}{i} \left( \left(\frac{z}{\sqrt{z_k}}\right)^i
++ \left(\frac{z}{-\sqrt{z_k}}\right)^i \right).
+\]
+Next note that
+\[
+\sum_{k=1}^\infty \left( |\sqrt{z_k}|^{-2h-2} +
+|{-\sqrt{z_k}}|^{-2h-2} \right) = 2 \sum_{k=1}^\infty |z_k|^{-h-1},
+\]
+so the left-hand side converges if and only if the right-hand side
+does. Finally since $p(z^2)$ of course has degree $2d$, it follows
+that $\tilde g \in \{2g, 2g+1\}$. By Hadamard's theorem we have that
+\[
+g \le \lambda \le g + 1, \quad \tilde g \le \tilde \lambda = 2\lambda
+\le \tilde g + 1.
+\]
+We thus have the following possibilities.
+\begin{enumerate}
+\item If $g \le \lambda < g + 1/2$ then $\tilde g = 2g$.
+\item If $g + 1/2 = \lambda$ then $\tilde g \in \{2g, 2g+1\}$.
+\item If $g + 1/2 < \lambda \le g + 1$ then $\tilde g = 2g+1$. \win
+\end{enumerate}
+
+\subprob{b}
+
+It's clear from the product expansion that $\cos(z)$ has genus
+$1$. And from $\cos(z) = (e^{iz} - e^{-iz})/2$ it's clear it has order
+at most $1$; by Hadamard's theorem it must have order precisely $1$
+then. The above gives then that $\cos(\sqrt{z})$ has order $1/2$ and
+genus $0$.
+
+The same analysis shows that $\sin(z)$ has genus and order $1$. The
+above gives then that $\sin(z^2)$ has genus and order $2$.
+
+Finally, since squaring a product expansion does not change the degree
+of the polynomial in the exponent and simply has the effect of
+doubling each zero, it's clear that $\sin^2(z)$ has genus equal to
+that of $\sin(z)$, that is, $1$. And since
+\[
+\log(\log(M_{\sin^2}(r))) = \log(\log(M_{\sin}(r)^2)) =
+\log(\log(M_{\sin}(r))) + \log(2),
+\]
+it's clear that $\sin^2(z)$ has order equal to $\sin(z)$, that is,
+$1$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+Let $f : \C \to \C$ entire of genus $0$ or $1$. Then by definition we
+can write
+\[
+f(z) = e^{az+b} z^m \prod_{k=1}^\infty \left(\left( 1 - \frac{z}{z_k}
+\right) e^{\epsilon z/z_k}\right),
+\]
+where $\epsilon \in \{0,1\}$. If $f$ has zeros only on the real line
+then of course we have $z_k \in \R$ for $k \in \N$. If furthermore $f$
+is real-valued on the real line, it follows immediately that $a \in
+\R$.
+
+Now let $z \notin \R$. Then $f(z) \ne 0$ so
+\[
+\frac{f'(z)}{f(z)} = a + \frac{m}{z} + \sum_{k=1}^\infty
+\left(\frac{1}{z-z_k} + \frac{\epsilon}{z_k}\right)
+\]
+Observe that for $t \in \R$ we have $\Im(1/(z-t)) =
+-\Im(z)/|z-t|^2$. It follows immediately that
+\[
+\Im\left(\frac{f'(z)}{f(z)}\right) = m\Im\left(\frac{1}{z}\right) +
+\sum_{k=1}^\infty \Im\left(\frac{1}{z-z_k}\right) = - q \Im(z)
+\]
+for some $q > 0$. This of course implies $f'(z) \ne 0$. \win
+
+\end{document}

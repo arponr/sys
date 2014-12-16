@@ -1,0 +1,19 @@
+\documentclass[11pt]{amsart}
+\usepackage{baskervald}
+\usepackage[margin=1.45in]{geometry}
+\usepackage{titlesec}
+
+\titleformat{\section}{\centering\bfseries}{\S\thesection.}{4pt}{}
+\titleformat{\subsection}[runin]{\bfseries}{\S\thesubsection.}{4pt}{}[.] 
+
+\title{Hotel}
+\author{Arpon Raksit}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+\end{document}

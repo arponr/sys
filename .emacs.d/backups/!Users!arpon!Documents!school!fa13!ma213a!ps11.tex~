@@ -1,0 +1,182 @@
+\input{preamble}
+
+\title{Math 213A, Problem Set 9}
+\author{Arpon Raksit}
+\date{05 Nov 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+\subprob{a}
+
+Let $f \in C(\R/2\pi\Z)$. Let $\theta \in [0,2\pi]$. Let $\epsilon >
+0$. By continuity of $f$, choose $\delta > 0$ such that $|f(\theta) -
+f(\theta-\phi) | < \epsilon$ when $|\phi| < \delta$. By axiom (iii) of
+an approximate identity, choose $r_0 \in [0,1]$ such that $|h_r(\phi)|
+< \epsilon$ when $r \ge r_0$ and $|\phi| \ge \delta$. Then we have by
+axiom (ii) that
+\begin{align*}
+  \left| f(\theta) - \frac{1}{2\pi}\int_0^{2\pi}
+  h_r(\phi)f(\theta-\phi) \,d\phi \right| &= \left|
+  \frac{1}{2\pi}\int_0^{2\pi} h_r(\phi)(f(\theta)-f(\theta-\phi))
+  \,d\phi \right| \\ &\le \frac{1}{2\pi}\int_0^{2\pi}
+  |h_r(\phi)||f(\theta)-f(\theta-\phi)| \,d\phi.
+\end{align*}
+By axioms (i) and (ii) and the choice of $\delta$ we have
+\[
+\frac{1}{2\pi}\int_0^\delta |h_r(\phi)||f(\theta)-f(\theta-\phi)|
+\,d\phi \le \frac{\delta}{2\pi} \int_0^{2\pi} h_r(\phi)\,d\phi =
+\frac{\delta}{2\pi}
+\]
+Now let $M \coloneqq \sup_{\phi \in \R/2\pi z} |f(\phi)|$, which is
+finite by compactness and continuity. Then for $r \ge r_0$, by choice
+of $r_0$ we have
+\[
+\frac{1}{2\pi}\int_\delta^{2\pi} |h_r(\phi)||f(\theta)-f(\theta-\phi)|
+\,d\phi \le 2\epsilon M.
+\]
+The above two inequalities prove that
+\[
+\left| f(\theta) - \frac{1}{2\pi}\int_0^{2\pi} h_r(\phi)f(\theta-\phi)
+\,d\phi \right| \to 0
+\]
+as $r \to 1$, as desired. Note too that the choice of $r_0$ and both
+bounds are independent of $\theta$ (since $f$ must be
+\textit{uniformly} continuous on the compact space $\R/2\pi\Z \simeq
+S^1$), and hence the convergence is uniform in $\theta$. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subprob{b}
+
+First, observe that
+\[
+1 + r^2 - 2r\cos(\theta) = (1 - re^{i\theta})(1 - re^{-i\theta}) = |1
+- re^{i\theta}|^2.
+\]
+It follows that the numerator and denominator of $P_r(\theta)$ are
+nonnegative for all $r, \theta$, giving axiom (i). Suppose we are
+given $\delta > 0$. Then
+\[
+1 - r^2 \to 0 \quad\text{and}\quad |1 - re^{i\theta}|^2 \to |1 -
+e^{i\theta}|^2 \ge |1 - e^{i\delta}|^2 > 0
+\]
+as $r \to 1$ for all $|\theta| \ge \delta$, which clearly implies
+axiom (iii). Finally the identity
+\[
+\frac{1}{2\pi}\int_0^{2\pi} \frac{1 - r^2}{1 + r^2 - 2r\cos(\theta)}
+\,d\theta = 1
+\]
+for $r \in (0,1)$ is immediate from Poisson's formula for the harmonic
+(constant) function $u \coloneqq 1$, giving axiom (ii). \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subprob{c}
+
+First observe convolution is commutative: by a change of variables
+$\phi \mapsto \theta-\phi$ and periodicity, for all $r,\theta$ we have
+\[
+\int_0^{2\pi} f(\theta-\phi)P_r(\phi)\,d\phi =
+\int_{\theta-2\pi}^{\theta} f(\phi)\,P_r(\theta-\phi)\,d\phi =
+\int_0^{2\pi} f(\phi)P_r(\theta-\phi) d\phi.
+\]
+Then evidently $P_r(\theta)$ is $C^1$ on $\Delta$, so by commuting
+differentiation and integration, to show $u$ is harmonic on $\Delta$
+it suffices to show $P_r(\theta)$ is harmonic on $\Delta$. But writing
+\[
+\frac{1 - r^2}{1 + r^2 - 2r\cos(\theta)} = \frac{1 - x^2 - y^2}{1 +
+  x^2 + y^2 - 2x},
+\]
+this follows simply by expanding the quantity $\del^2/\del x^2 +
+\del^2/\del y^2$, which I'll omit here for concision.
+
+Now, to finish it suffices to show that if we set $u(e^{i\theta})
+\coloneqq f(\theta)$ for $\theta \in [0,2\pi]$, then $u$ is continuous
+on $\oline\Delta$. Fix $\theta \in [0,2\pi]$ and let $\epsilon >
+0$. By continuity of $f$ we can choose $\delta > 0$ such that
+$|f(\phi) - f(\theta)| < \epsilon/2$ for $|\phi-\theta| < \delta$. By
+(a), in particular the remark about uniformity, and (b) we can choose
+$r_0 \in (0,1)$ such that $|u(re^{i\phi}) - f(\phi)| < \epsilon/2$ for
+$r \ge r_0$ and $\phi \in [0,2\pi]$. It follows that on the open set
+\[
+\{z = re^{i\phi} \in \oline\Delta \mid r > r_0, |\phi - \theta| <
+\delta\},
+\]
+we have, by the triangle inequality,
+\[
+|u(z) - u(e^{i\theta})| = |u(re^{i\phi} - f(\theta)| \le
+|u(re^{i\phi}) - f(\phi)| + |f(\phi) - f(\theta)| < \epsilon.
+\]
+Thus, the extension of $u$ is indeed continuous on
+$\oline\Delta$. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subprob{d}
+
+Recall that the $n$-th Fourier coefficient of convolution of functions
+is just the product of the $n$-th Fourier coefficients of the
+functions. Thus it suffices to show that for $r \in (0,1)$ the $n$-th
+Fourier coefficient of $P_r(\theta)$ is $r^{|n|}$ for $n \in \Z$. To
+do this, recall from the previous problem set that
+\[
+P_r(\theta) = \frac{1-r^2}{1+r^2-2r\cos(\theta)} = \Re\left(
+\frac{1+re^{i\theta}}{1-re^{i\theta}} \right) = \Re\left(
+\frac{1}{1-re^{i\theta}} \right) + \Re\left(
+\frac{re^{i\theta}}{1-re^{i\theta}} \right).
+\]
+Now, $(1 - re^{i\theta})^{-1} = \sum_{n=0}^\infty r^ne^{in\theta}$. It
+follows that
+\begin{align*}
+  2 \Re\left( \frac{1}{1-re^{i\theta}} \right) &= \sum_{n=0}^\infty
+  r^ne^{in\theta} + \sum_{n=0}^\infty r^ne^{-in\theta} = 1 + \sum_{n
+    \in \Z} r^{|n|} e^{in\theta}, \\ 2 \Re\left(
+  \frac{re^{i\theta}}{1-re^{i\theta}} \right) &= \sum_{n=1}^\infty
+  r^ne^{in\theta} + \sum_{n=1}^\infty r^ne^{-in\theta} = -1 + \sum_{n
+    \in \Z} r^{|n|} e^{in\theta}.
+\end{align*}
+From this we get immediately that $P_r(\theta) = \sum_{n \in \Z}
+r^{|n|} e^{in\theta}$, which implies the desired result. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+\renewcommand{\F}{\mathcal{F}}
+
+Let $z \in U$ and $r > 0$ such that $\oline\Delta(z,r) \subseteq
+U$. Then Cauchy's integral formula implies for any $f \in \F$ that
+\begin{equation}
+  \label{estimate} \tag{$\dagger$}
+  |f(z)|^2 = |f^2(z)| = \left| \int_{\oline\Delta(z,r)}
+  \frac{f^2(\zeta)}{\zeta - z}\,d\zeta \right| \le \left|
+  \int_0^{2\pi} f^2(\zeta) \cdot i\, d\theta \right| \le \int_0^{2\pi}
+  |f(\zeta)|^2 \,d\theta.
+\end{equation}
+By the theorem in lecture it suffices to show $\F$ is uniformly
+bounded on compact sets $K \subseteq U$. By compactness we can cover
+any such $K$ by finitely many open disks $D$ such that the disk $D'$
+with equal centre but doubled radius still lies in $U$. Thus, it
+suffices to show $\F$ is uniformly bounded on such a disk $D \subseteq
+\oline D' \subseteq U$ of radius $R_0$. Let $z \in D$. Since $D'
+\subseteq U$ we can choose $R \ge R_0$ such that $\oline\Delta(z,R)
+\subseteq U$. Then we have by our hypothesis and the estimate
+$(\dagger)$ that
+\begin{align*}
+C(D') &\ge \int_{D'} |f(\zeta)|^2\,dx\,dy \ge \int_{\oline\Delta(z,r)}
+|f(\zeta)|^2\,dx\,dy = \int_0^R r \int_0^{2\pi}
+|f(\zeta)|^2\,d\theta\,dr \\ &\ge |f(z)|^2 \int_0^R r\,dr =
+\frac{|f(z)|^2 R^2}2 \ge \frac{|f(z)|^2 R_0^2}2
+\end{align*}
+for any $f \in \F$. It follows that $\F$ is uniformly bounded on $D$,
+so we win. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

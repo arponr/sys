@@ -1,0 +1,37 @@
+---
+layout: page
+section: notes
+title: Notes
+notes:
+- title: Vector fields and the J-homomorphism
+  url: vfields.pdf
+  update: May 2014
+  desc: How an answer to the question concerning vector fields on
+        spheres arose from Adams's work on the image of J
+- title: Defining the cotangent complex
+  url: cotangent.pdf
+  update: April 2014
+  desc: Quillen's point of view on homology as a derived functor and
+        its application to defining a homology theory for algebras
+- title: The Dold-Kan correspondence
+  url: doldkan.pdf
+  update: May 2014
+  desc: A proof and a quick application
+- title: Completion of metric spaces
+  url: completion.pdf
+  update: May 2014
+  desc: A proof of the existence and universal property of the
+        completion of a metric space
+---
+
+<ul class="stream">
+  {% for entry in page.notes %}
+  <li>
+    <div class="desc">
+      {{ entry.desc }}
+    </div>
+    <a href="/writing/{{ entry.url }}">{{ entry.title }}</a>
+    <time class="date notes">last updated {{ entry.update }}</time>
+  </li>
+  {% endfor %}
+</ul>

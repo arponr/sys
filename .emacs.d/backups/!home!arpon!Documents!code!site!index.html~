@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+  <head>
+    <title>arpon</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="//use.typekit.net/cen6cew.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+      <header class="head">
+        <h1>arpon raksit</h1>
+      </header>
+
+      <section class="front_sec">
+        <div class="label">about</div>
+        <div class="content">
+          undergraduate at harvard. learning math.<br>
+          distracted by music, t.v., tennis, and running.
+        </div>
+      </section>
+
+      <section class="front_sec">
+        <div class="label">email</div>
+        <div class="content">
+            <a href="mailto:araksit@college.harvard.edu">araksit@college.harvard.edu</a>
+        </div>
+      </section>
+
+      <section class="front_sec">
+        <div class="label">notes</div>
+        <ul class="content">
+          <li>
+            <a href="/vfields.pdf">
+              vector fields and the j-homomorphism
+            </a>
+            <div class="desc">
+              how an answer to the question concerning vector fields
+              on spheres arose from adams's work on the image of j.
+              last updated <time>may 2014</time>.
+            </div>
+          </li>
+
+          <li>
+            <a href="/cotangent.pdf">
+              defining the cotangent complex
+            </a>
+            <div class="desc">
+              quillen's point of view on homology as a derived functor
+              and its application to defining a homology theory for
+              algebras.
+              last updated <time>april 2014</time>.
+            </div>
+          </li>
+
+          <li>
+            <a href="/doldkan.pdf">
+              the dold-kan correspondence
+            </a>
+            <div class="desc">
+              a proof and a quick application.
+              last updated <time>may 2014</time>.
+            </div>
+          </li>
+
+          <li>
+            <a href="/completion.pdf">
+              completion of metric spaces
+            </a>
+            <div class="desc">
+              a proof of the existence and universal property of the
+              completion of a metric space.
+              last updated <time>may 2014</time>.
+            </div>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </body>
+</html>
+

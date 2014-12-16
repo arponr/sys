@@ -1,0 +1,114 @@
+\input{preamble}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\titleset{1}{February 28, 2014}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+Let $\pi \c E \to B$ be a real vector bundle with $B$ paracompact. Let
+$\{U_i\}$ be a cover of $B$ consisting of open sets over which $\pi$
+is trivial. Since $B$ is paracompact we can without loss of generality
+take the cover to be locally finite, and we can choose a partition of
+unity $\{\phi_i\}$ subordinate to the cover. Let
+\[
+q_i \c \pi^{-1}(U_i) \simeq U_i \times \R^{n_i} \to \R
+\]
+be the standard Euclidean metric on the trivial bundle $\pi \c
+\pi^{-1}(U_i) \to U_i$. Then we can define
+\[
+\textstyle{q \c E \to \R, \quad e \mapsto \sum \phi_i(\pi(e)) \cdot
+  q_i(e)}.
+\]
+Note $q$ is well-defined by local finiteness, and is continuous since
+$q_i,\phi_i,\pi$ and addition and multiplication are. Since each $q_i$
+is positive-definite quadratic on fibres, so is $q$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+\subprob{a}
+
+If $n$ is odd we can identify $\R^{n+1} \simeq \C^m$, where $m \ce
+(n+1)/2$. Then $v \c S^n \to \C^m$ defined by $x \mapsto ix$ clearly
+gives a nowhere zero tangent vector field on $S^n$.
+
+\subprob{b}
+
+Assume we have a nowhere zero vector field $v \c S^n \to
+\R^{n+1}$. Then
+\[
+S^n \times [0,1] \to S^n, \quad (x,t) \mapsto \cos(\pi t)x + \sin(\pi
+t)v(x)/|v(x)|
+\]
+evidently defines a homotopy from $\id_{S^n}$ to $-\id_{S^n}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+To show $-\id_{S^n}$ is homotopic to $r$ it suffices to show any
+double reflection
+\[
+(x_1,\ldots,x_i,x_{i+1},\ldots,x_n) \mapsto
+(x_1,\ldots,-x_i,-x_{i+1},\ldots,x_n)
+\]
+is homotopic to $\id_{S^n}$. But this is evident from the homotopy
+\[
+(x_i,x_{i+1}) \mapsto (\cos(\pi t)x_i + \sin(\pi t)x_{i+1},\cos(\pi
+t)x_{i+1} - \sin(\pi t)x_i).
+\]
+Therefore $\deg(-\id_{S^n}) = \deg(r) = -1$.
+
+If $TS^n \to S^n$ were trivial, it would admit a nowhere zero section,
+that is, a nowhere zero vector field. By Problem 2, then we would have
+$-\id_{S^n} \sim \id_{S^n} \implies \deg(-\id_{S^n}) = 1$,
+contradiction.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{4}
+
+\subprob{a}
+
+Let $u \ce (x_0,y_0,z_0) \in S^2$ and $(f,g,h) \in P \subset R^3$.By
+definition of $P$ and $S^2 \subset \R^3$ we have
+\[
+fx + gy + hz \in (x^2+y^2+z^2-1) \implies f(u)x_0 + g(u)y_0 + h(u)z_0
+= 0.
+\]
+Thus since polynomials are continuous, the assignment $u \mapsto
+(f(u),g(u),h(u))$ defines a vector field $S^2 \to \R^3$.
+
+\subprob{b}
+
+I'm confused...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{5}
+
+\newcommand{\T}{\mathrm{T}}
+
+\subprob{a}
+
+Suppose there is an immersion $f \c M \to \R^{n+1}$. Let $V$ be the
+orthogonal complement of $f_*(\T_*M) \subset \T_*\R^{n+1}$. Then
+$\dim(V) = 1$ and $\T_*M \oplus V$ is trivial so the product formula
+implies that $w(1+w_1(V)) = 1$. In particular $w_1(V) + w_1 = 0
+\implies w_1(V) = w_1$. So in fact $w(1+w_1) = 1$.
+
+\subprob{b}
+
+Suppose there is an immersion $f \c M \to \R^{n+2}$. Let $V$ be the
+orthogonal complement of $f_*(\T_*M) \subset \T_*\R^{n+1}$. Then
+$\dim(V) = 2$ and $\T_*M \oplus V$ is trivial so the product formula
+implies that $w(1+w_1(V)+w_2(V)) = 1$. As in (a) we have $w_1(V) =
+w_1$. Moreover $w_2(V) + w_1(V)w_1 + w_2 = 0 \implies w_2(V) = w_1^2 +
+w_2$. So in fact $w(1+w_1+w_1^2+w_2) = 1$.
+
+\end{document}

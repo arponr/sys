@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+  <head>
+    <title>Arpon Raksit</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="j.js"></script>
+    <script type="text/javascript"
+    src="//use.typekit.net/cen6cew.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+      <header class="head">
+        Arpon Raksit
+        <nav class="subhead">
+          <ul>
+            <li id="nav_notes">notes</li>
+            <li id="nav_about">about</li>
+          </ul>
+        </nav>
+      </header>
+
+      <div id="about" class="text">
+        <blockquote>
+          It always turned out that<br> understanding was all<br> that
+          mattered<br> &mdash; A. Grothendieck
+        </blockquote>
+
+        <p>Hi. I want to understand (certain) things. Writing notes
+          seems like the best way for me to attempt to do that. This
+          is a place for me to keep these attempts.</p>
+
+        <p>These days I'm an undergraduate at Harvard, for the most
+          part trying to understand (parts of) math. So most of my
+          notes will be about that. But I'm also interested in
+          computer science (when there's enough math&hellip;), and I'm
+          nearly always distracted by music, fiction, design, tennis,
+          and running. So maybe there will be some random notes about
+          those things, too.</p>
+
+        <p>If you are actually reading this and want to contact me,
+          that's crazy, but you can email me at
+          arpon.raksit@gmail.com</p>
+      </div>
+
+      <ul id="notes">
+        <li>
+          <div class="desc">
+            Final paper for a reading course on simplicial homotopy
+            theory and model categories, in which I discuss Quillen's
+            point of view on homology as a derived functor, and its
+            application to defining a homology theory for algebras
+          </div>
+          <a href="/cotangent.pdf">
+            Defining the cotangent complex
+            <time>2013-12-17</time>
+          </a>
+        </li>
+
+        <li>
+          <div class="desc">
+            Finally sitting down and learning about abelian categories
+            and exact functors
+          </div>
+          <a href="/exact.pdf">
+            Exactness of functors
+            <time>2013-11-17</time>
+          </a>
+        </li>
+
+        <li>
+          <div class="desc">
+            Realising (again) how dope the Yoneda lemma is, in
+            particular it's ability to reduce things to the category
+            of sets
+          </div>
+          <a href="/yoneda.pdf">
+            The Yoneda lemma
+            <time>2013-11-06</time>
+          </a>
+        </li>
+
+        <li>
+          <div class="desc">
+            Notes for a talk at a reading group on
+            infinity-categories, proving the correspondence and giving
+            a quick application
+          </div>
+          <a href="/doldkan.pdf">
+            The Dold-Kan correspondence
+            <time>2013-10-26</time>
+          </a>
+        </li>
+
+        <li>
+          <div class="desc">
+            Notes for my fourth section for Math 131, proving the
+            existence and universal property of the completion of a
+            metric space
+          </div>
+          <a href="/completion.pdf">
+            Completion of metric spaces
+            <time>2013-10-03</time>
+          </a>
+        </li>
+
+        <li>
+          <div class="desc">
+            Notes for my second section for Math 131, giving an
+            example illustrating the inadequacy of sequences for
+            expressing concepts in general topology
+          </div>
+          <a href="/sequences.pdf">
+            Inadequacy of sequences
+            <time>2013-09-17</time>
+          </a>
+        </li>
+
+        <li>
+          <div class="desc">
+            Notes for my first section for Math 131, motivating the
+            definitions of general topology by comparing them with
+            the more familiar equivalent notions on metric spaces
+          </div>
+          <a href="/metric.pdf">
+            Metric topology
+            <time>2013-09-10</time>
+          </a>
+        </li>
+
+        <li>
+          <div class="desc">
+            Reflection on a day during my internship at Google
+          </div>
+          <a href="/google.html">
+            Numbers at Google
+            <time>2013-08-06</time>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </body>
+</html>
+

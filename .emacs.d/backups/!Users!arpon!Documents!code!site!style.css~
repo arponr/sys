@@ -1,0 +1,137 @@
+/* normalise */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: 0px none transparent;
+}
+
+/* general */
+
+body {
+    font-family: "botanika-mono-web", sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    color: #1d1f35;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    color: #5d5f75;
+}
+
+a:hover {
+    color: #2d2f45;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+}
+
+.wrapper {
+    width: 480px;
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
+.clear {
+    clear: both;
+}
+
+.head {
+    float: right;
+    text-align: right;
+    margin-bottom: 40px;
+}
+
+.text {
+    font-family: "jaf-bernino-sans", sans-serif;
+    font-weight: 300;
+    line-height: 1.4em;
+}
+
+.text strong {
+    font-weight: 400;
+}
+
+/* home */
+
+#name {
+    cursor: pointer;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #ffffff;
+}
+
+#name:hover {
+    border-color: #2d2f45;
+}
+
+#about {
+    display: none;
+}
+
+#about blockquote {
+    margin-bottom: 20px;
+    text-align: right;
+    font-style: italic;
+}
+
+#posts li {
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.date {
+    font-size: 11px;
+    float: left;
+    position: relative;
+    top: 2px;
+}
+
+/* post */
+
+.foot {
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 13px;
+}
+
+.text h2 {
+    margin-bottom: 5px;
+}
+
+.text * + h2 {
+    margin-top: 40px;
+}
+
+.text ul, ol {
+    margin: 10px 0 10px 35px;
+}
+
+.text ul li {
+    text-indent: -14px;
+    margin-bottom: 5px;
+}
+
+.text ul li:before {
+    content: "\2014";
+    position: relative;
+    left: -10px;
+}
+
+.topfig {
+    margin-bottom: 60px;
+}
+
+.banner {
+    width: 100%;
+}

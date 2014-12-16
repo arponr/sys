@@ -1,0 +1,23 @@
+\documentclass[10pt]{amsart}
+
+\usepackage[top=1.25in,bottom=1.25in,right=1.75in,left=1.75in]{geometry}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\usepackage{mathspec}
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont{Adobe Garamond Pro}
+\setmathfont(Digits,Latin,Greek){Adobe Garamond Pro}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\medskip\small\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\begin{document}
+
+hi
+\end{document}

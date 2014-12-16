@@ -1,0 +1,17 @@
+jQuery ->
+    items = [
+        {nav: $("#nav_about"), content: $("#about")}
+        {nav: $("#nav_blog"),  content: $("#blog")}
+        {nav: $("#nav_notes"), content: $("#notes")}
+    ]
+    v = 0
+    for _, i in items
+        do (i) ->
+            items[i].nav.click ->
+                if i != v
+                    for x in [items[i], items[v]]
+                        x.content.slideToggle 300
+                        x.nav.toggleClass("active")
+                    v = i
+                return
+    return

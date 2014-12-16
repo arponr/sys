@@ -1,0 +1,10 @@
+{{define "content"}}
+<div class="pane">
+  <nav id="controls">
+    <span id="notify" class="icon">&#9679;</span>
+    <span id="settings" class="icon">&#9776;</span>
+    <span id="addthread" class="icon">&#9998;</span>
+  </nav>
+  {{template "pane" .}}
+</div>
+{{end}}

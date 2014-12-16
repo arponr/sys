@@ -1,0 +1,88 @@
+\input{preamble}
+
+\title{Math 213A, Problem Set 5}
+\author{Arpon Raksit}
+\date{8 Oct 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+We showed in lecture that
+\[
+\pi z \cot(\pi z) = 1 + \sum_{n=1}^\infty \frac{2z^2}{z^2-n^2} = 1 -
+2\sum_{n=1}^\infty \frac{z^2}{n^2}\frac{1}{1-z^2/n^2}.
+\]
+Then for $|z| < 1$ we have
+\[
+\frac{1}{1-z^2/n^2} = \sum_{k=0}^\infty \frac{z^{2k}}{n^{2k}} \implies
+\pi z \cot(\pi z) = 1 - 2\sum_{n=1}^\infty \sum_{k=1}^\infty
+\frac{z^{2k}}{n^{2k}} = 1 - 2\sum_{k=1}^\infty z^{2k} \sum_{n=1}^\infty
+n^{-2k}.
+\]
+We also have directly from the generating function for the Bernoulli
+numbers that
+\[
+\pi z \cot(\pi z) = \pi i z \frac{e^{\pi i z} + e^{-\pi i z}}{e^{\pi i
+    z} - e^{-\pi i z}} = \pi i z + \frac{2 \pi i z}{e^{2\pi i z} - 1}
+= \pi i z + \sum_{k=0}^\infty \frac{B_k}{k!} (2 \pi i z)^k.
+\]
+By uniqueness of the Laurent series it follows that for $k \in \N$,
+\[
+-2\sum_{n=1}^\infty n^{-2k} = \frac{(-1)^k(2\pi)^{2k}B_{2k}}{(2k)!}.
+\]
+With $k = 1,2,3$ we then get
+\[
+\zeta(2) = \frac{4\pi^2 \cdot 1/6}{4} = \frac{\pi^2}{6}, \quad
+\zeta(4) = \frac{-16\pi^4 \cdot -1/30}{48} = \frac{\pi^4}{90}, \quad
+\zeta(6) = \frac{64\pi^2 \cdot 1/42}{1440} = \frac{\pi^6}{945}.
+\]
+\ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+First, note that
+\[
+\frac{\pi}{\sin(\pi z)} = \sum_{n=-\infty}^\infty \frac{(-1)^n}{z-n}.
+\]
+This follows easily from the series expansion for $\pi \cot(\pi z)$,
+and is done, e.g., on p. 190 of Ahlfors. Second, let $\omega :=
+e^{2\pi i/3}$ and note that for $n \in \Z$.
+\[
+\frac{1}{z-n} + \frac{\omega^2}{\omega^2z-n} + \frac{\omega}{\omega z
+  -n} = \frac{1}{z-n} + \frac{1}{z-\omega n} + \frac{1}{z-\omega^2n} =
+\frac{3z^2}{z^3-n^3}.
+\]
+It follows then that
+\begin{align*}
+  \sum_{n=-\infty}^\infty \frac{(-1)^n}{z^3-n^3} &=
+  \frac{1}{3z^2}\sum_{n=-\infty}^\infty \frac{(-1)^n}{z-n} +
+  \frac{\omega^2(-1)^n}{\omega^2z-n} + \frac{\omega(-1)^n}{\omega z
+    -n} \\ &= \frac{1}{3z^2}\left(\frac{\pi}{\sin(\pi z)} +
+  \frac{\omega^2\pi}{\sin(\omega^2\pi z)} +
+  \frac{\omega\pi}{\sin(\omega\pi z)}\right).
+\end{align*}
+\ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+We have
+\begin{align*}
+\frac{1}{\pi z^2} + \frac{2}{\pi} \sum_{n=1}^\infty (-1)^n
+\frac{\cos(n)}{z^2-n^2} &= \frac{1}{\pi z}\left(\frac{1}{z} +
+\sum_{n=1}^\infty (-1)^n \frac{2z\cos(n)}{z^2-n^2}\right) =
+\frac{1}{\pi z}\sum_{n=-\infty}^\infty (-1)^n \frac{\cos(n)}{z-n},
+\end{align*}
+which evidently has the same principal parts as
+\[
+\frac{\cos(z)}{z \sin(\pi z)}.
+\]
+
+\end{document}

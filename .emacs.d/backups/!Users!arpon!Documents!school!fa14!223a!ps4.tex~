@@ -1,0 +1,232 @@
+\input{preamble}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\titleset{3}{1 October 2014}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\abs}[1]{\l|{#1}\r|}
+
+\prob{1}
+
+\subprob{a}
+
+Let $S = \sum_{k=1}^\infty a_k$ be a convergent series in $\Q_p$. Let
+$\sigma \c \N \to \N$ be a bijection. Fix $\epsilon > 0$. We must have
+$a_k \to 0$ as $k \to \infty$, so we may choose some $m \in \N$ such
+that $\abs{a_k} < \epsilon$ for $k \ge m$. Since $\sigma$ is a
+bijection we may choose $n \in \N$ such that $\sigma(k) \ge m$ for
+$k \ge n$. Then $\abs{a_{\sigma(k)}} < \epsilon$ for $k \ge
+n$. Hence $a_{\sigma(k)} \to 0$ as $k \to \infty$. By Problem Set 2,
+Problem 4d this implies $\sum_{k=1}^\infty a_{\sigma(k)}$ converges.
+
+Now to show $\sum_{k=1}^\infty a_{\sigma(k)} = \sum_{k=1}^\infty a_k$
+it suffices to show $d_n \ce \sum_{k=1}^n a_k - \sum_{k=1}^n
+a_{\sigma(k)} \to 0$ as $n \to \infty$. We have $d_n = \sum_{k \in
+  K_n} a_k - \sum_{k \in K'_n} a_k$ where
+\[
+K_n \ce \{k \in \N : k \le n, \sigma(k) > n\}, \quad
+K'_n \ce \{k \in \N : k > n, \sigma(k) \le n\}.
+\]
+Then $\abs{d_n} \le \max\{\abs{a_k} : k \in K_n \cup K'_n\}$. Since
+$a_k \to 0$ and $a_{\sigma(k)} \to 0$ as $k \to \infty$, it follows
+that $d_n \to 0$ as well.
+
+\subprob{b}
+
+This follows from the same argument given for $\exp_p$ in
+lecture. Namely, it suffices to show $\limsup \abs{a_n}_p^{1/n} \le
+p^{1/(p-1)}$ for $a_{2n} = (-1)^n/((2n)!)$ or $a_{2n+1} =
+(-1)^n/((2n+1)!)$, and this is immediate from
+\[
+v_p(n!) = \sum_{i=1}^\infty \l\lfloor\f{n}{p^i}\r\rfloor \le
+\sum_{i=1}^\infty \f{n}{p^i} = \f{n}{p-1}.
+\]
+
+\subprob{c}
+
+Consider the polynomial $f(t) \ce t^2 + 1$. If $p \equiv 1 \pmod 4$
+then we know that $f$ has a root $\o x$ in $\F_p$. We may lift $\o x$
+to an $x \in \Z_p$, and since $f'(x) = 2x$ and $2$ is invertible in
+$\F_p$, by Hensel's lemma we can find a root $i \in \Z_p$ of $f$, so
+that $i^2 = -1$.
+
+Note then that $\abs{i}^2_p = \abs{-1}_p = 1 \implies \abs{i}_p =
+1$. In particular $\exp_p(ix)$ converges for $x \in D_p$. Then the
+identity $\exp_p(x) = \cos_p(x) + i \sin_p(x)$ for $x \in D_p$ is
+immediate from the identity holding as power series.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+\renewcommand{\O}{\mathcal{O}}
+
+\subprob{a}
+
+Let $\lambda \ce \abs{f(x_1)/f'(x_1)^2} < 1$. We first show
+inductively for $n \in \N$ that we can find $x_n \in \O$ such that
+\begin{enumerate}
+\item $\abs{f'(x_n)} = \abs{f'(x_1)}$,
+\item $\abs{f(x_n)/f'(x_1)^2} \le \lambda^{2^{n-1}}$,
+\item $\abs{x_{n+1} - x_n} \le \lambda^{2^{n-1}} \abs{f'(x_1)}$.
+\end{enumerate}
+We are given $x_1$, so we just need the inductive step:
+\begin{itemize}
+\item By (1) and the hypothesis $f'(x_1) \ne 0$ we know $f'(x_n) \ne
+  0$. So we may define $x_{n+1} \ce x_n - f(x_n)/f'(x_n)$.
+\item By (1) and (2) we have $\abs{f(x_n)/f'(x_n)} \le
+  \lambda^{2^{n-1}} \abs{f'(x_1)}$, proving (3), and since $\lambda <
+  1$ it follows that $\abs{x_{n+1} - x_n} \le 1$, implying $x_{n+1}
+  \in \O$.
+\item If $f'(x) = \sum a_ix^i$ then
+  \[
+  f'(x) - f'(y) = \sum a_i(x^i - y^i) = (x-y)g(x,y)
+  \]
+  with $g \in \O[x,y]$, so for $x,y \in \O$ we have $\abs{f'(x)-f'(y)}
+  \le \abs{x-y}$. In particular
+  \[
+  \abs{f'(x_{n+1}) - f'(x_n)} \le \abs{x_{n+1} - x_n} < \abs{f'(x_1)}
+  = \abs{f'(x_n)},
+  \]
+  with the last inequality shown in the previous step, implying that
+  $\abs{f'(x_{n+1})} = \abs{f'(x_n)} = \abs{f'(x_1)}$, proving (1).
+\item Finally we have for some $a \in \O$
+\[
+f(x_{n+1}) = f(x_n) + f'(x_n) \f{-f(x_n)}{f'(x_n)} +
+a\f{f(x_n)^2}{f'(x_n)^2} \implies \abs{f(x_{n+1})} \le
+\abs{\f{f(x_n)^2}{f'(x_1)^2}}
+\]
+This gives (2) inductively.
+\end{itemize}
+
+By (3) and Problem Set 2, Problem 4b, the sequence $(x_n)$ is
+cauchy. Since $K$ is complete we can define $x \ce \lim x_n$. By (2)
+and continuity of $f$ we see that $f(x) = 0$. By (3) we see that
+$\abs{x - x_1} \le \abs{x_2 - x_1} = \abs{f(x_1)/f'(x_1)}$.
+
+Suppose we had another $y \in \O$ such that $f(y) = 0$ and $\abs{y -
+  x_1} \le \abs{f(x_1)/f'(x_1)}$. Let $z \ce x - y$. Then we also have
+$\abs{x} \le \abs{f(x_1)/f'(x_1)}$, and hence for some $a \in \O$,
+\[
+f(y) = f(x+z) = f(x) + f'(x)z + az^2 \implies 0 = f'(x)z + az^2.
+\]
+If $z \ne 0$ then this implies
+\[
+f'(x) = -az \implies \abs{f'(x)} \le \abs{z} \le \abs{f(x_1)/f'(x_1)},
+\]
+contradicting our hypothesis. So $z = 0$, i.e. $x = y$, and hence $x$
+is unique.
+
+\subprob{b}
+
+Assume $K$ is discretely valued for convenience, and let $\pi \in \O$
+be a uniformiser. We first inductively find for $n \in \N$ polynomials
+$g_n,h_n \in \O[t]$ such that
+\begin{enumerate}
+\item $g_n$ is monic,
+\item $f \equiv g_nh_n \pmod{\pi^n}$,
+\item $g_{n+1} \equiv g_n \pmod{\pi^n}$ and $h_{n+1} \equiv h_n
+  \pmod{\pi^n}$,
+\item $\deg(g_n) \le \deg(g_1)$ and $\deg(h_n) \le \deg(f) - \deg(g_1)$.
+\end{enumerate}
+Note we only care about $h_1 \pmod \pi$ so we may assume $h_1$ has
+leading coefficient not divisible by $\pi$. Since $g_1$ is monic this
+means we can assume the given $g_1,h_1$ satisfy (4). Thus we are given
+$g_1,h_1$ so we just need the inductive step.
+
+We want to choose some $u,v \in \O[t]$ and define $g_{n+1} \ce g_n +
+\pi^nu$ and $h_{n+1} \ce h_n + \pi^nv$. Then
+\[
+f \equiv g_{n+1}h_{n+1} \pmod{\pi^{n+1}} \iff f - g_nh_n \equiv
+\pi^n(g_nv + h_nu) \pmod{\pi^{n+1}}.
+\]
+By the inductive hypothesis we can write $f - g_nh_n = \pi^ni_n$ for
+some $i_n \in \O[t]$, and then the previous condition is equivalent to
+\[
+i_n \equiv g_nv + h_nu \equiv g_1u + h_1v \pmod \pi.
+\]
+
+Since $g_1,h_1$ are relatively prime mod $\pi$, we may choose $a,b \in
+\O[t]$ such that $ag_1 + bh_1 \equiv 1 \pmod \pi$. Since $g_1$ is
+monic we can write $bi_n = wg_1 + u$ with $\deg(u) < \deg(g_1)$. Then
+we have
+\[
+i_n \equiv (ag_1 + bh_1)i_n \equiv g_1(ai_n + h_1w) + h_1u \pmod \pi
+\]
+Observe (applying our inductive hypothesis (4)) that
+\[
+\deg(i_n) \le \max\{\deg(f), \deg(g_nh_n)\} \le \deg(f).
+\]
+This together with
+\[
+\deg(h_1u) \le \deg(h_1) + \deg(u) < \deg(h_1) + \deg(g) \le \deg(f)
+\]
+implies that we can choose $v \equiv ai_n + h_1w \pmod \pi$ with
+$\deg(v) \le \deg(f) - \deg(g_1)$. Then $i_n \equiv g_1v + h_1u \pmod
+\pi$, so if we define $g_{n+1} \ce g_n + \pi^nu$ and $h_{n+1} \ce h_n
++ \pi^nv$, (2) and (3) are satisfied by the argument above. And (1)
+and (4) are satisfied because we have chosen $u,v$ with small enough
+degree.
+
+Now by (3) the coefficients of the sequeneces $(g_n),(h_n)$ are
+cauchy, and by (4) the sequences have bounded degree, so by
+completeness we can define $g \ce \lim g_n$ and $h \ce \lim h_n$. By
+(3) again we know $g \equiv g_1 \pmod \pi$ and $h \equiv h_1 \pmod
+\pi$. By (1) $g$ must be monic, and by (2) we have $f = gh
+\pmod{\pi^n}$ for all $n \in \N$, and hence $f = gh$.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+Let $f(x) \ce x^3 - 3x + 4$, so $f'(x) = 3x^2 - 3$.
+
+\begin{itemize}
+\item Evaluating $f$ at each element of $\F_7$ shows that $-3$ is the
+  unique root of $f$ mod $7$. We have $f'(-3) \not\equiv 0 \pmod 7$ so
+  by Hensel's lemma there is a unique root of $f$ in $\Z_p$ which is
+  $-3$ mod $7$, and hence is the unique root of $f$ in $\Z_p$.
+\item If $f$ had a root in $\Z_5$ then $f$ would have a root in
+  $\F_5$. Evaluating $f$ at each element of $\F_5$ shows this is
+  false.
+\item If $f$ had a root in $\Z_5$ then $f$ would have a root in
+  $\F_9$, which would reduce to a root in $\F_3$. For $x \in \F_3$ we
+  have $f(x) = x + 1$, so the only root mod $3$ is $-1$. Hence only
+  $2,5,8$ are possible roots in $\F_9$, and evaluating $f$ at each
+  shows they are not.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{4}
+
+\subprob{a}
+
+Let $x \in \Q_p^\times$. If $x^{p-1} = y^n$ then $(p-1) \cdot v_p(x) =
+n \cdot v_p(y)$. Since $v_p(x) \in \Z$, if this is true for infinitely
+many $n \in \N$ we must have $v_p(x) = 0$, i.e. $x \in
+\Z_p^\times$. Conversely, suppose $x \in \Z_p^\times$. Let $\o x \in
+\F_p$ be its reduction mod $p$. Then $\o x \ne 0$ so $\o x^{p-1} =
+1$. Thus, for any $n \in \N$, the polynomial $t^n - x^{p-1}$ has a
+root mod $p$; since its derivative $nt$ will not vanish for $(n,p) =
+1$, since then $n$ is invertible in $\F_p$, it follows from Hensel's
+lemma that $x^{p-1}$ has an $n$-th root for infinitely many $n$.
+
+\subprob{b}
+
+Let $\phi \c \Q_p \to \Q_p$ be a field automorphism. It's clear that
+$\phi|_\Q = \id|_\Q$ since $\phi(1) = 1$. Since $\Q$ is dense in
+$\Q_p$, we will be done if we can show $\phi$ must be continuous. If
+$x \in \Q_p$ has an $n$-th root $y$, then $x = y^n \implies \phi(x) =
+\phi(y)^n$. So it follows from (a) that $\phi(\Z_p^\times) \subseteq
+\Z_p^\times$, and hence $\phi(p^n\Z_p^\times) \subseteq
+\phi(p^n\Z_p^\times)$ for $n \in \Z$. This implies $\phi$ is
+continuous at $0$, and hence continuous.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

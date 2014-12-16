@@ -1,0 +1,127 @@
+\input{preamble}
+
+\title{Math 213A, Problem Set 7}
+\author{Arpon Raksit}
+\date{22 Oct 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+\subprob{a}
+
+Since $\Re(z) > 0$, integrating by parts gives that
+\[
+\int_0^\infty e^{-tz}t\,dt = \left(-z^{-1}e^{-tz}t\right)_0^\infty +
+\int_0^\infty z^{-1}e^{-tz}\,dt = \left(-z^{-2}e^{-tz}\right)_0^\infty
+= z^{-2}.
+\]
+Then linearity of integration and summing a geometric series gives
+that
+\[
+\sum_{k=0}^{n-1} (z+k)^{-2} = \sum_{k=0}^{n-1} \int_0^\infty
+e^{-t(z+k)}t\,dt = \int_0^\infty e^{-tz}t \left(\sum_{k=0}^{n-1}
+e^{-tk}\right)\,dt = \int_0^\infty e^{-tz}t
+\frac{1-e^{-nt}}{1-e^{-t}}\,dt.
+\]
+
+\subprob{b}
+
+By the identity stated in the problem and (a) we have
+\[
+\d{}{z} \frac{\Gamma'(z)}{\Gamma(z)} = \lim_{n \to \infty}
+\sum_{k=0}^{n-1} (z+k)^{-2} = \lim_{n \to \infty} \int_0^\infty e^{-tz}t
+\frac{1-e^{-nt}}{1-e^{-t}}\,dt.
+\]
+Now note that $1 - e^{-nt} \to 1$ monotonely as $n \to \infty$; and
+since $e^{-tz}t/(1-e^{-t}) \le 2e^{-tz}t$, by (a) we have
+$e^{-tz}t/(1-e^{-t})$ is integrable on $\R_{\ge 0}$. It follows by
+dominated (or simply monotone) convergence that
+\[
+\d{}{z} \frac{\Gamma'(z)}{\Gamma(z)} = \int_0^\infty
+\frac{e^{-tz}t}{1-e^{-t}}\,dt.
+\]
+
+\subprob{c}
+
+Recall from the Weierstrass product formula for $\Gamma$ that
+\[
+-\frac{\Gamma'(z)}{\Gamma(z)} = \frac{1}{z} + \gamma +
+\sum_{k=0}^\infty \left(\frac{1}{z+k} - \frac{1}{k}\right).
+\]
+Since $\Gamma(1) = 1$ it immediately follows that $\Gamma'(1) =
+-\gamma$.
+
+\subprob{d}
+
+Suppose $z \in \R_{> 0}$. Then
+\[
+\frac{\Gamma'(z)}{\Gamma(z)} = \frac{\Gamma'(1)}{\Gamma(1)} + \int_1^z
+\d{}{\zeta} \frac{\Gamma'(\zeta)}{\Gamma(\zeta)}\,d\zeta.
+\]
+By (b), (c), and Fubini this is equal to
+\[
+-\gamma + \int_1^z \int_0^\infty
+\frac{e^{-t\zeta}t}{1-e^{-t}}\,dt\,d\zeta = -\gamma + \int_0^\infty
+\frac{1}{1-e^{-t}} \int_1^z te^{-t\zeta}\,d\zeta = -\gamma +
+\int_0^\infty \frac{e^{-t} - e^{-tz}}{1 - e^{-t}}\,dt.
+\]
+Since the two sides of the identity are holomorphic it follows that
+the identity must hold for all $z \in \C$ with $\Re z > 0$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+On last week's problem set we proved the identity
+\[
+\int_0^\infty e^{it}t^{z-1}\,dt = e^{i\pi z/2}\Gamma(z)
+\]
+for $0 < \Re z < 1$. Now if $a > 1$ we can let $z \coloneqq 1/a$, and
+observe that with $u \coloneqq t^{1/a}$ we get
+\[
+e^{i\pi/(2a)}\Gamma(1/a) = \int_0^\infty e^{it}t^{(1-a)/a}\,dt =
+a\int_0^\infty e^{iu^a}\,du.
+\]
+It follows that
+\begin{align*}
+  \int_0^\infty \cos(t^a)\,dt &= \Re \int_0^\infty e^{it^a}\,dt =
+  \frac{1}{a} \cos(\pi/(2a)) \Gamma(1/a) \\
+  \int_0^\infty \sin(t^a)\,dt &= \Im \int_0^\infty e^{it^a}\,dt =
+  \frac{1}{a} \sin(\pi/(2a)) \Gamma(1/a).
+\end{align*}
+\ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+Let
+\[
+P(z) \coloneqq e^{\pi z \cot(\pi a)} \sin(\pi a) \prod_{n \in \Z}
+\left(1 - \frac{z}{n-a}\right) e^{z/(n-a)}.
+\]
+Certainly $P$ is a convergent product (which makes sense if $a \notin
+\Z$), which vanishes precisely when $\sin(\pi(z+a))$
+vanishes. Moreover $P$ has logarithmic derivative given by
+\[
+\pi \cot(\pi a) + \sum_{n \in \Z} \left(\frac{1}{z + a - n} +
+\frac{1}{n-a}\right).
+\]
+Now from the Mittag-Leffler expansion for $\pi \cot (\pi z)$ this is
+equal to
+\[
+\frac{1}{a} + \sum_{n \ne 0} \left( \frac{1}{a-n} + \frac{1}{n}
+\right) + \sum_{n \in \Z} \left(\frac{1}{z + a - n} +
+\frac{1}{n-a}\right) = \frac{1}{z+a} + \sum_{n \ne 0} \left(
+\frac{1}{z+a-n} + \frac{1}{n} \right),
+\]
+which is precisely the expansion of $\pi \cot (\pi(z+a))$, which is
+the logarithmic derivative of $\pi \sin(\pi(z+a))$. Sin $P(0) =
+\sin(\pi a)$, it follows that $P(z) = \sin(\pi(z+a))$.
+
+\end{document}

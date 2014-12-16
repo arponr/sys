@@ -1,0 +1,6 @@
+@book {goerssjardine,
+    author    = "Paul G. Goerss and John F. Jardine",
+    title     = "{Simplicial Homotopy Theory}",
+    year      = "1999",
+    publisher = "Birkh\u{a}user Verlag"
+}

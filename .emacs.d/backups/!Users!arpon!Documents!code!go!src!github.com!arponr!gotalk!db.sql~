@@ -1,0 +1,30 @@
+CREATE TABLE users (
+       user_id      serial PRIMARY KEY,
+       username     text UNIQUE NOT NULL,
+       passhash     bytea NOT NULL
+);
+
+CREATE TABLE threads (
+       thread_id    serial PRIMARY KEY,
+       thread_name  text NOT NULL,
+       time         timestamp DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE messages (
+       message_id   serial PRIMARY KEY,
+       thread_id    int REFERENCES threads NOT NULL,
+       username     text REFERENCES users (username) NOT NULL,
+       raw_body     text,
+       fmt_body     text,
+       markdown     boolean,
+       tex          boolean,
+       time         timestamp DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX ind_message_thread ON messages (thread_id);
+
+CREATE TABLE user_threads (
+       user_id      int REFERENCES users NOT NULL,
+       thread_id    int REFERENCES threads NOT NULL,
+       CONSTRAINT pk_user_thread PRIMARY KEY (user_id, thread_id)
+);
+CREATE INDEX ind_thread_user ON user_threads (thread_id);

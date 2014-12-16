@@ -1,0 +1,15 @@
+#toolbar {
+    width: 100%;
+    background: $grey-dark;
+    color: $grey-medium;
+
+    .icon {
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+    }
+}

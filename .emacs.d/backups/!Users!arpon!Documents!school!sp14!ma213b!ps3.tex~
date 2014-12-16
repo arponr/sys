@@ -1,0 +1,254 @@
+\input{preamble}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\titleset{3}{February 18, 2014}{
+  Rahul Dalal, Allen Yuan (and the CA Bao Le Hung for the last part of
+  problem 8)
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+Let $\alpha \ce \sqrt{-d} \in \C$. Let $\Lambda \ce
+\Z[\alpha] \subseteq \C$. Let $X \ce \C/\Lambda$. Since
+$\alpha\Lambda \subseteq \Lambda$, we have a holomorphic map $f \colon
+X \to X$ induced by the map $\C \to \C$ sending $z \mapsto \alpha
+z$. As discussed in lecture, $f$ has degree $|\alpha|^2 = d$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+Suppose $f \colon \Delta \to \C$ is a proper holomorphic map. For $R >
+0$ let $D_R \ce \{z \in \C \colon |z| \le R\}$; since $f$ is
+proper, we have $f^{-1}(D_R) \subseteq D_r$ for some $0 < r < 1$. This
+implies $\lim_{z \to a} |f(z)| = \infty$ for every $a \in S^1 =
+\del\Delta$. Since $f$ is proper it has finite degree, and hence has
+finitely many zeros $z_1,\ldots,z_k \in \Delta$, say of orders
+$n_1,\ldots,n_k \in \N$. Consider $g \colon \Delta \to \C$ defined by
+\[
+g(z) \ce \frac{\prod_{i=1}^k (z-z_i)^{n_i}}{f(z)}.
+\]
+Then clearly $\lim_{z \to a} g(z) = 0$ for $a \in S^1$, so $g$ extends
+continuous to $\oline\Delta$, vanishing on the boundary. But then
+since $g$ is not identically zero, $g$ must achieve its maximum on
+$\Delta$, contradicting the maximum principle.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+Define
+\begin{align*}
+  A &\ce \{(x,y) \in \C^2 \mid y^2 = (x^2-2)(x^4-1)\},\\ B
+  &\ce \{(x,y) \in \C^2 \mid y^2 = (x-2)(x^2-1)\}.
+\end{align*}
+The completions of $A$ and $B$ are compact Riemann surfaces $X$ and
+$Y$ of genus $2$ and $1$, respectively. We have an evident nonconstant
+holomorphic map $A \to B$ given by $(x,y) \mapsto (x^2,y)$, which
+completes to the desired map $X \to Y$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{4}
+
+\newcommand{\mult}{\operatorname{mult}}
+
+Suppose $G \ce \Aut(X/Y) \simeq \Z/3$ and $x \in X$ has
+$\mult(f,x) = 2$. Let $y \ce f(x)$. Since $\deg(f) = 3$ and $X$
+and $Y$ are compact (so $f$ is proper), we must have $F \ce
+f^{-1}(y) = \{x,x'\}$ where $\mult(f,x') = 1$. Since $|G| = 3$ and
+$|F| = 2$, it must be that $x,x'$ are fixed by $G$. But then $G$ could
+not send a small open neighbourhood of $x'$ to a neighbourhood of $x$,
+hence could not act transitively on $X^*$, and hence we could not have
+$G \simeq \Z/3$, contradiction.
+
+The converse is false. To prove this we use the following fact.
+
+\begin{lemma}
+  \label{cover-pullback}
+  Let $p \colon E \to B$ and $f \colon B' \to B$ be maps of
+  spaces. Let $E' \ce E \times_B B'$ be the pullback and $p' :
+  E' \to B'$ the projection. Then:
+  \begin{enumerate}
+  \item if $p$ is a covering then $p'$ is;
+  \item if moreover $f$ is a retraction then $\Aut(E/B) \simeq
+    \Aut(E'/B')$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}[leftmargin=*]
+  \item  Assume $p$ is a covering. Let $b \in B'$ and let $U \ni
+    f(b)$ be an open neighbourhood such that $p^{-1}(U) = \coprod_{i
+      \in I} V_i$ where $p : V_i \to U$ is a homeomorphism for $i \in
+    I$. Let $U' \ce f^{-1}(U)$ and $q \colon E' \to E$ the
+    projection. Then
+    \[
+    \textstyle{p'^{-1}(U') = q^{-1}(\coprod_{i \in I} V_i) =
+      \coprod_{i \in I} q^{-1}(V_i)}
+    \]
+    Now $V'_i \ce q^{-1}(V_i) \simeq V_i \times_U U'$, so since
+    isomorphisms are stable under pullback, $q : V'_i \to U'$ is a
+    homeomorphism for $i \in I$. This proves $p'$ is a covering.
+
+  \item Assume there is a map $g : B \to B'$ such that $fg =
+    \id_B$. Let $h \ce gp \colon E \to B'$. Then we have the
+    retract diagram
+    \[
+    \begin{tikzcd}[column sep = large]
+      E \rar{\id_E \times h} \dar{p} & E' \dar{p'} \rar{q} & E \dar{p}
+      \\ B \rar{g} & B' \rar{f} & B.
+    \end{tikzcd}
+    \]
+    Suppose we have $\phi \in \Aut(E'/B')$. We claim $\phi$ restricts
+    via $\id_E \times h : E \to E'$ to an element of $\Aut(E/B)$. Let
+    $(e,b') \in E'$. Suppose $b' = g(b)$. Then
+    \[
+    p(e) = f(b') = f(g(b)) = b \implies (e,b') = (e, h(e)),
+    \]
+    and hence $\im(\id_E \times h) = p'^{-1}(\im(g))$. It follows that
+    $\phi(\im(\id_E \times h)) \subseteq \im(\id_E \times h)$.
+    Moreover,
+    \[
+    pq\phi(\id_E \times h) = fp'\phi(\id_E \times h) = fp'(\id_E
+    \times h) = fgp = p.
+    \]
+    Thus we get a morphism
+    \[
+    \alpha \colon \Aut(E'/B') \to \Aut(E/B), \quad \phi \mapsto
+    q\phi(\id_E \times h).
+    \]
+    Conversely, we have a morphism
+    \[
+    \beta \colon \Aut(E/B) \to \Aut(E'/B'), \quad \psi \mapsto \psi
+    \times \id_{B'}.
+    \]
+    We evidently have $\alpha\beta = \id$, so $\alpha$ is
+    surjective. And $\alpha$ is injective since $p'$ is a covering by
+    (1), and hence an element of $\Aut(E'/B')$ is determined uniquely
+    by the image of any point. \qedhere
+  \end{enumerate}
+\end{proof}
+
+We apply Lemma \ref{cover-pullback} with $B \ce S^1 \vee S^1$
+and $B'$ the connected sum of two tori. There are obvious projection
+and inclusion maps $B \to B' \to B$ which exhibit $B$ as a retract of
+$B'$. Now, there is an irregular cover $p : E \to B$ of degree
+$3$. E.g., we can take the subcover of the Cayley graph of $S^3$
+described in problem set $1$ corresponding to the non-normal subgroup
+$\Z/2 \inj S^3$. Then by the lemma the pullback $p' : E' \to B'$ is an
+irregular (unbranched) covering of degree $3$. Since $B'$ is a compact
+Riemann surface, $E'$ automatically inherits a unique complex
+structure such that $p'$ is holmorphic. This evidently contradicts the
+converse.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{5}
+
+We know $p$ must have critical points at $0$, $1$, and $u > 1$, with
+multiplicities $3$, $2$, and $2$ respectively. Therefore $p'(z) =
+\lambda z^2(z-1)(z-u)$ for some $\lambda \in \C^*$, whence
+\[
+p(z) = \lambda\l( \frac{z^5}{5} - \frac{(u+1)z^4}{4} + \frac{uz^3}{3}
+\r).
+\]
+Now we must have $p(u) = 0$ so we get
+\[
+0 = \lambda\l(\frac{u^5}{5} - \frac{u^5}{4} - \frac{u^4}{4} +
+\frac{u^4}{3}\r) \implies u = \frac{5}{3}.
+\]
+Then the condition $p(1) = 1$ gives $\lambda = 45/4$, so finally
+\[
+p(z) = \frac{9z^5}{4} - \frac{15z^4}{2} + \frac{15z^3}{4}.
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{6}
+
+In last week's homework and in lecture we saw that the quotient $f : X
+\to \P^1$ by rotation of the fundamental square of $X$ is a Beyli map.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{7}
+
+Let $G$ be a finite group and $k \ce |G|$. Let $B$ be the wedge
+sum of $k$ circles as illustrated below.
+\[
+\begin{tikzpicture}
+  \pgfmathsetmacro{\w}{.4}
+  \foreach \x in {-2, -1, 1, 2} {
+    \draw (2 * \x * \w, 0) circle (\w);
+  }
+  \draw (0,0) node {$\cdots$};
+\end{tikzpicture}
+\]
+Observe $B$ is a deformation retract of the $n$-times punctured plane,
+so $\pi_1(B) \simeq F_k$. The tautological surjection $F_k \to G$
+determines a regular covering $p : E \to B$ with $\Aut(E/B) \simeq
+G$. Now, similar to problem 4, let $B'$ be the connected sum of $k$
+tori so that there is an evident retraction $B \to B' \to B$. By Lemma
+\ref{cover-pullback}, the pullback $p' : E' \to B'$ gives the desired
+regular covering of compact Riemann surfaces.
+
+Now consider $G \simeq (\Z/2)^n$. If $Y$ is a compact Riemann surface
+of genus $k$, then $Y$ is homeomorphic to the connected sum of $k$
+tori so
+\[
+\pi_1(Y) \simeq \langle a_1, b_1, \ldots, a_k, b_k \mid
+a_1b_1a_1^{-1}b_1^{-1} \cdots a_kb_ka_kb_k^{-1}\rangle.
+\]
+There is a regular covering $X \to Y$ with $\Aut(X/Y) \simeq G$ if and
+only if there is a surjection $\pi_1(Y) \to G$. Since $G$ is abelian,
+this is equivalent to the requirement that there be a surjection of
+$F_{2k} \to G$. Since $G$ is minimally generated by $n$ elements, the
+minimal genus $k$ is $\lceil n/2 \rceil$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{8}
+
+By a change of basis we without loss of generality assume $L = \{(x,y)
+\in \C^2 \mid xy = 0\}$. Then $\C^2 - L = \C^* \times \C^*$. Since
+$\pi_1(\C^*) \simeq \Z$ and $\pi_1$ preserves products we have
+$\pi_1(\C^2 - L) \simeq \Z^2$. We define the two-sheeted covering $Y
+\to \C^2$ branched over $L$ as follows. Let $Y^* \to \C^2 - L$ be the
+unique (up to isomorphism) connected unbranched covering corresponding
+to the surjection $\Z^2 \to \Z/2$ sending each generator to $1$. As a
+set we define $Y \ce Y^* \amalg L$, and we give it the weakest
+topology such that the obvious map $Y \to \C^2$ is continuous and
+restricts to the covering $Y^* \to \C^2 - L$.
+
+Let $Q \ce \{(x,y,z) \in \C^3 \mid z^2 = xy\}$ be the quadric. We
+claim $Y$ and $Q$ are homeomorphic. Let $p : Q \to \C^2$ be the
+projection $(x,y,z) \mapsto (x,y)$. It is clear that $p^{-1}(L) \simeq
+L$ and letting $Q^* \ce Q - p^{-1}(L)$, the restriction $p \colon Q^*
+\to \C^2 - L$ is a connected unbranched two-sheeted
+covering. Moreover, since $Q$ is symmetric under the automorphism
+$(x,y,z) \mapsto (y,x,z)$, this covering must correspond to a
+surjection $\Z^2 \to \Z/2$ which is symmetric in the two
+generators. Hence the only possibility is that each generator is sent
+to $1$. Thus $Q^* \simeq Y^*$. So
+\[
+Q = Q^* \amalg p^{-1}(L) \simeq Y^* \amalg L = Y
+\]
+as sets, and it only remains to be shown that the topology on $Q$
+induced from $\C^3$ is the weakest such the conditions stated above
+are satisfied. But this follows from the evident fact that any open $U
+\subseteq Q$ can be written as a union of opens in $Q^* \simeq Y^*$
+(around points of $U \cap Q^*$) and opens of the form $p^{-1}(V)$ for
+an open $V \subseteq \C^2$ (around points of $U \cap p^{-1}(L)$).
+
+Now suppose $Q$ were homeomorphic to a manifold. Then as discussed in
+section, the real points $Q(\R)$ would be a manifold, as the subspace
+fixed under the conjugation involution of $\C^3$. But this is a
+contradiction because $Q(\R) - \{(0,0,0)\}$ is clearly disconnected,
+which cannot be since $Q(\R)$ could not be one-dimensional. x$x$
+
+\end{document}

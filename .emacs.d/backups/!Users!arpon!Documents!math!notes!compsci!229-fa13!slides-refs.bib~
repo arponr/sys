@@ -1,0 +1,59 @@
+@article{alon1995derandomized,
+  title={Derandomized graph products},
+  author={Alon, Noga and Feige, Uriel and Wigderson, Avi and Zuckerman, David},
+  journal={Computational Complexity},
+  volume={5},
+  number={1},
+  pages={60--75},
+  year={1995},
+  publisher={Springer}
+}
+
+@inproceedings{ajtai1987deterministic,
+  title={Deterministic simulation in LOGSPACE},
+  author={Ajtai, Mikl{\'o}s and Koml{\'o}s, J{\'a}nos and Szemer{\'e}di, Endre},
+  booktitle={Proceedings of the nineteenth annual ACM symposium on Theory of computing},
+  pages={132--140},
+  year={1987},
+  organization={ACM}
+}
+
+@article{lubotzky1988ramanujan,
+  title={Ramanujan graphs},
+  author={Lubotzky, Alexander and Phillips, Ralph and Sarnak, Peter},
+  journal={Combinatorica},
+  volume={8},
+  number={3},
+  pages={261--277},
+  year={1988},
+  publisher={Springer}
+}
+
+@article{morgenstern1994existence,
+  title={Existence and Explicit Constructions of< i> q</i>+ 1 Regular Ramanujan Graphs for Every Prime Power< i> q</i>},
+  author={Morgenstern, Moshe},
+  journal={Journal of Combinatorial Theory, Series B},
+  volume={62},
+  number={1},
+  pages={44--62},
+  year={1994},
+  publisher={Elsevier}
+}
+
+@incollection{kane2011almost,
+  title={Almost optimal explicit Johnson-Lindenstrauss families},
+  author={Kane, Daniel and Meka, Raghu and Nelson, Jelani},
+  booktitle={Approximation, Randomization, and Combinatorial Optimization. Algorithms and Techniques},
+  pages={628--639},
+  year={2011},
+  publisher={Springer}
+}
+
+@inproceedings{clarkson2009numerical,
+  title={Numerical linear algebra in the streaming model},
+  author={Clarkson, Kenneth L and Woodruff, David P},
+  booktitle={Proceedings of the 41st annual ACM symposium on Theory of computing},
+  pages={205--214},
+  year={2009},
+  organization={ACM}
+}

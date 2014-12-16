@@ -1,0 +1,13 @@
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	t, _ := time.Now().MarshalJSON()
+	u, _ := time.Now().UTC().MarshalJSON()
+	fmt.Println(string(t))
+	fmt.Println(string(u))
+}

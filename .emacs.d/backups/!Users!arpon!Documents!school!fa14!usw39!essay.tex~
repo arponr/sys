@@ -1,0 +1,62 @@
+\documentclass[12pt]{amsart}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage[hyphens]{url}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{titlesec}
+
+
+\usepackage{newtxtext}
+
+\frenchspacing
+
+\pagestyle{empty}
+
+\renewcommand{\title}[1]{\newcommand{\thetitle}{#1}}
+\renewcommand{\author}[1]{\newcommand{\theauthor}{#1}}
+\renewcommand{\date}[1]{\newcommand{\thedate}{#1}}
+
+\renewcommand{\maketitle}{%
+  \thispagestyle{empty}
+  \begin{center}
+    $if(title)$
+      {\bfseries \MakeUppercase{$title$}} \\
+      \medskip
+    $endif$
+    {\footnotesize
+    $if(course)$
+      \MakeUppercase{$course$} $$\cdot$$
+    $endif$
+    $if(assignment)$
+      \MakeUppercase{$assignment$} $$\cdot$$
+    $endif$
+    $if(date)$
+      \MakeUppercase{$date$}
+    $else$
+      \MakeUppercase{\today}
+    $endif$\\
+    \bigskip
+    \MakeUppercase{Arpon Raksit} (60833389)
+    }
+  \end{center}
+  \bigskip
+}
+
+\titleformat{\section}[block]{\normalfont\scshape\centering}{}{0pt}{}
+\titleformat{\subsection}[block]{\normalfont\bfseries}{}{0pt}{}
+
+\renewcommand{\labelitemi}{$$\vcenter{\hbox{\footnotesize$$\bullet$$}}$$}
+\renewcommand{\labelitemii}{--}
+
+\begin{document}
+\maketitle
+
+\doublespacing
+
+$body$
+
+\end{document}

@@ -1,0 +1,26 @@
+package main
+
+import (
+	"database/sql"
+	// "fmt"
+	"log"
+
+	_ "github.com/lib/pq"
+)
+
+func main() {
+	url := "postgres://localhost:5432/testdb?sslmode=disable"
+	db, err := sql.Open("postgres", url)
+
+	_, err = db.Exec("INSERT INTO a_b VALUES (1, 1, 'c1d1')")
+	if err != nil {
+		log.Fatal(err)
+	}
+	// for rows.Next() {
+	// 	var name string
+	// 	if err := rows.Scan(&name); err != nil {
+	// 		log.Fatal(err)
+	// 	}
+	// 	fmt.Printf("%s\n", name)
+	// }
+}

@@ -1,0 +1,203 @@
+\input{preamble}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\titleset{11}{April 22, 2014}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+Let $\iota \c \P^1 \to \P^{g-1}$ be the inclusion of the rational
+normal curve. Then we know from our computation of the basis of
+$\Omega(X)$ for $X$ hyperelliptic that the two compositions
+$\iota \circ \phi_i$ for $i \in \{1,2\}$ both give the canonical
+map. Hence there is an automorphism $\psi \c \P^{g-1} \to \P^{g-1}$
+such that the following diagram of solid arrows commutes:
+\[
+\begin{tikzcd}[column sep = small]
+  \ & X \ar{dl}[swap]{\phi_1} \ar{dr}{\phi_2} & \ \\
+  \P^1 \ar{d}[swap]{\iota} \ar[dashed]{rr}{A} & \
+  & \P^1 \ar{d}{\iota} \\
+  \P^{g-1} \ar{rr}{\psi} & \ & \P^{g-1}.
+\end{tikzcd}
+\]
+We can fill in the dashed arrow $A$ because $\iota$ is an embedding
+and
+\[
+\im(\psi \circ \iota) = \im(\psi \circ \iota \circ \phi_1)
+= \im(\iota \circ \phi_2) = \im(\iota),
+\]
+so it makes sense to define
+$A \ce \iota^{-1} \circ \psi \circ \iota$. And by the same reasoning,
+since $\psi$ is an automorphism, so is $A$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+\subprob{i}
+
+Let $\zeta$ be a primitive $7$-th root of unity, and define $f$ by
+taking
+\[
+\alpha = \zeta, \quad \beta = \zeta^4, \quad \gamma = \zeta^2,
+\]
+which is well-defined since
+\[
+\zeta^7X^3Y + \zeta^{14}Y^3Z + \zeta^7Z^3X = X^3Y+Y^3Z + Z^3Y.
+\]
+Certainly $f$ has order at most $7$ since $\zeta^7 = 1$. On the other
+hand if $f^n = \id_Q$ then we must have $\gamma^n = \alpha^n \implies
+1 = (\gamma/\alpha)^n = \zeta^n \implies n \ge 7$. So indeed $f$ has
+order exactly $7$.
+
+\subprob{ii}
+
+Since $\alpha,\beta,\gamma$ are all distinct, $P = [X:Y:Z] \in Q$ is
+fixed by $f$ precisely when two of $X,Y,Z$ vanish (and hence the third
+is $1$ without loss of generality). We show that $P \ce [1:0:0]$ is a
+Weierstrass point, and the others will follow by symmetry. Consider
+the hyperplane $H \subset \P^2$ defined by $Y = 0$. Then $Q \cap H
+\simeq V(Z^3X) \subset \P^1$. But $V(Z^3X) = V(Z^3) \cup V(X) =
+3P+P'$. So $H \cap X$ has multiplicity $g=3$ at $P$, proving $P$ is
+Weierstrass.
+
+\subprob{iii}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{4}
+
+\subprob{i}
+
+Let $D$ be an effective divisor of degree $d$. Riemann-Roch gives us
+that
+\[
+\h^0(D) = 1 - g + d + \h^0(K-D).
+\]
+If $d \le g - 1$ then this implies $\h^0(K-D) \ge \h^0(D) > 0$ since
+$D$ is effective, so $D$ is special. On the other hand if $d > 2g-2$
+then $\deg(K-D) < 0 \implies \h^0(K-D) = 0$, so $D$ cannot be special.
+
+\subprob{ii}
+
+Let $D$ be a special (effective) divisor of degree $d$. Riemann-Roch
+gives
+\[
+\h^0(D) = 1 - g + d + \h^0(K-D).
+\]
+First, since $\h^0(K-D) > 0$ we see that $\h^0(D) - 1 > d -
+g$. Second, by Problem 3 we have
+\[
+\h^0(D) - 1 \le \h^0(K) - \h^0(K-D) = g - (\h^0(D) - 1 + g - d),
+\]
+implying $2(\h^0(D)-1) \le d$. So finally we have the inequalities
+\[
+d - g < \h^0(D) - 1 \le d/2.
+\]
+\ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{5}
+
+From lecture we know there must exist an irreducible quadric $Q
+\subset \P^3$ and irreducible cubic $C \subset \P^3$ such that $X = Q
+\cap C$. Let $H \subset \P^3$ be a hyperplane containing the line $L$,
+where $P_1,P_2,P_3 \in X \cap L$. Consider $H \cap Q$: it is a degree
+$2$ hypersurface in $H \simeq \P^2$ containing $3$ distinct points on
+the line $L \simeq \P^1 \subset \P^2$. But then by Bezout's theorem,
+$Q \cap H$ cannot be irreducible, and is hence the union of $L$ and
+another line $L' \subset H$ (where perhaps $L = L'$).
+
+Now, since $H \cap X$ is a hyperplane divisor on $X$, it consists of
+precisely $6$ points (with multiplicity). Observe
+\begin{align*}
+  H \cap X &= (H \cap Q) \cap C = (L \cup L') \cap C = (L \cap C) \cup
+  (L' \cap C),
+\end{align*}
+and $L \cap C = L \cap (C \cap H)$, where $C \cap H$ is a cubic
+hypersurface in $H \simeq \P^2$. We see that $|L \cap C| < \infty$,
+and hence by Bezout $|L \cap C| = 3 \implies L \cap C =
+\{P_1,P_2,P_3\}$. But then $L' \supset L' \cap C$ must contain the
+other $3$ points of $H \cap X$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{6}
+
+Since $X$ is hyperelliptic it is defined by an equation $y^2 = p(x)$
+with $p$ irreducible of degree $2g+2$, and $\Omega(X)$ has a basis
+$\{\omega_i \ce x^i\,dx/y \mid 0 \le i \le g-1\}$. Of course then
+$\{\omega_i \otimes \omega_j\}$ gives a basis for $\Omega(X) \otimes
+\Omega(X)$. Let $\phi \c \Omega(X) \otimes \Omega(X) \to Q(X)$ be the
+natural map. We have $\phi(\omega_i \otimes \omega_j) =
+x^{i+j}\,dx^2/y$, so since $p$ is irreducible we have
+\[
+\sum a_{i,j} \omega_i \otimes \omega_j \in \ker(\phi) \iff (\forall 0
+\le n \le 2g-2) \sum_{i+j=n} a_{i,j} = 0
+\]
+It follows easily that $\ker(\phi)$ has basis $\{\omega_i \otimes
+\omega_j - \omega_{i'} \otimes \omega_{j'} \mid i + j = i' +
+j'\}$. Counting then gives us that
+\[
+\dim \ker(\phi) = \binom{g}{2} + 2\sum_{i=1}^{g-1} \binom{i}{2} =
+\frac{2g^3 - 3g^2 +g}{6},
+\]
+and hence by rank-nullity
+\[
+\dim \im(\phi) = \dim \Omega(X) \otimes \Omega(X) - \dim \ker(\phi) =
+\frac{9g^2 - 2g^3 - g}{6}.
+\]
+Finally, $\phi$ is surjective iff $\dim \im(\phi) \ge \dim Q(X) =
+3g-3$, and solving the inequality gives that $\phi$ is surjective iff
+$g=2$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{7}
+
+Let $Y$ be the branched cover of $\P^1$ determined by the equation
+$u^3 = v^3 - 1$. Note that $Y \simeq V(a^3-b^3+c^3) \subset \P^2$
+since $a^3-b^3+c^3$ is clearly smooth. By setting $c = 0$ we see that
+$u,v \c Y \to \P^1$ have three distinct poles. Now, since $X$ is
+defined by $y^3 = x^6 - 1$ there is a map $f \c X \to Y$ determined by
+$(x,y) \mapsto (u,v) \ce (x^2,y)$. By definition, the affine part of
+$X$ is mapped to the affine part of $Y$, so since $u,v$ have three
+distinct poles and $f$ must be surjective, we see that $x,y$ must have
+three distinct poles.
+
+Thus, $x \c X \to \P^1$ is a degree $3$ cover, branched precisely at
+the $6$ zeros of $x^6 - 1$, each with multiplicity $2$. So by
+Riemann-Hurwitz, if $X$ has genus $g$ then we must have
+\[
+2 - 2g = 3 \cdot 2 - 6 \cdot 2 \implies g = 4.
+\]
+
+To compute the canonical embedding we compute a basis of
+$\Omega(X)$. We have the following table of orders, computed as usual:
+\[
+\begin{tabu}{|c|c|c|c|}
+  \hline
+  & x & dx & y \\ \hline
+  \infty & -1 & -2 & -2 \\ \hline
+  B & 0 & 2 & 1 \\ \hline
+\end{tabu}
+\]
+It follows that the forms $dx/y^2 \cdot \{1, x, x^2, y\}$ are
+holomorphic. Since $y^3 - x^6 + 1$ is irreducible, these are clearly
+linearly independent, and thus the canonical embedding $\phi \c X \to
+\P^3$ can be given in coordinates as $[1 : x : x^2 : y]$. Writing the
+coordinates of $\P^3$ as $[z_0 : z_1 : z_2 : z_3]$, it is then clear
+that $X$ is contained in the irreducible quadric and cubic given by
+\[
+Q \ce V(z_1^2 - z_0z_3), \quad C \ce V(z_4^3 - z_3^3 + z_0^3).
+\]
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

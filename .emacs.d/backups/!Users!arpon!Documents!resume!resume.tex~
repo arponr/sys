@@ -1,0 +1,161 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage[margin=1in]{geometry}
+\usepackage{ifthen}
+
+\usepackage{mathspec}
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont{Calendas Plus}
+
+\urlstyle{same}
+
+\frenchspacing
+\setlength{\parindent}{0pt}
+
+%--------------------------------------------------------------------%
+
+\setlist{leftmargin=15pt}
+\setlist[1]{itemsep=3pt, topsep=2pt}
+\setlist[2]{itemsep=1pt, topsep=1pt}
+\setlist[itemize, 1]{label={\raisebox{.3ex}{\scriptsize$\bullet$}}}
+
+
+\newenvironment{sect}[1]{
+  \vspace{20pt}
+  \begin{minipage}[t]{0.1\linewidth}
+    \raisebox{.2ex}{\textsc{\MakeLowercase{#1}}}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.88\linewidth}
+}{\end{minipage}}
+
+\newenvironment{subsect}[2]{
+  \textbf{#1}%
+  \ifthenelse{\equal{#2}{}}{}{, #2}
+  \begin{itemize}
+}{\end{itemize}}
+
+\newenvironment{subsect-sp}[2]{\begin{subsect}{#1}{#2}}%
+  {\end{subsect}\vspace{5pt}}
+
+%--------------------------------------------------------------------%
+
+\begin{document}
+\thispagestyle{empty}
+
+{\LARGE Arpon Raksit} \\[2pt]
+{\it \url{arpon.raksit@gmail.com}} \\
+{\it \url{www.arponr.com}}
+
+%--------------------------------------------------------------------%
+
+\begin{sect}{Education}
+  \begin{subsect-sp}{Harvard College}{2011--2015}  
+  \item Expecting B.A. in mathematics with secondary in computer
+    science, current GPA: 3.9/4.0
+  \item
+    Selected courses:\\[2pt]
+    \emph{Math}
+    \begin{minipage}[t]{0.36\linewidth}
+      \begin{itemize}[label=, leftmargin=2pt, itemsep=1pt]
+      \item 55: Honors algebra \& analysis
+      \item 231: Algebraic topology
+      \item 233: Theory of schemes
+      \end{itemize}
+    \end{minipage}
+    \emph{Computer Science}
+    \begin{minipage}[t]{0.5\linewidth}
+      \begin{itemize}[label=, leftmargin=2pt, itemsep=1pt]
+      \item 121: Theory of computation
+      \item 124: Algorithms \& data structures
+      \item 229: Big data algorithms
+      \end{itemize}
+    \end{minipage}
+  \end{subsect-sp}
+  
+  \begin{subsect}{Commack High School}{2007--2011}
+  \item International Baccalaureate (IB) Diploma, GPA: 104.4/100
+  \end{subsect}
+\end{sect}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{sect}{Honors}
+  \begin{minipage}[t]{.5\linewidth}
+    \begin{itemize}[leftmargin=*]
+    \item Putnam Comptetion Top 200, 2012--2013
+    \item Detur Prize (Harvard), 2012
+    \item John Harvard Scholar, 2012
+    \end{itemize}
+  \end{minipage}
+  \begin{minipage}[t]{.5\linewidth}
+    \begin{itemize}[leftmargin=*]
+    \item Intel Science Talent Search Semifinalist, 2011
+    \item Siemens Competition Semifinalist, 2010
+    \item USACO Gold Division, 2009--2011
+    \end{itemize}
+  \end{minipage}
+\end{sect}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{sect}{Experience}
+  \begin{subsect-sp}{Independent study, Harvard University}{Summer
+      2012--present}
+  \item Stable homotopy theory, Summer 2014. Supervised by Jacob
+    Lurie. Funded by Harvard College Research Program (HCRP).
+  \item Simplicial homotopy theory, Fall 2013. Supervised by Emily
+    Riehl.
+  \item Reading group on higher categories, Fall 2013. Organized by
+    Hiro Tanaka. Gave talk on the Dold-Kan correspondence.
+  \item Representation theory of Lie groups and Lie algebras, Summer
+    2012. Supervised by Joe Harris. Funded by Harvard College Program
+    for Research in Science and Engineering (PRISE).
+  \end{subsect-sp}
+
+  \begin{subsect-sp}{Teaching, Harvard University}{Fall 2013--present}
+  \item Math department course assistant:
+    \begin{itemize}[leftmargin=13pt]
+    \item Math 131 (Topology), Fall 2013. Certificate of distinction
+      in teaching.
+    \item Math 123 (Algebra II), Spring 2014.
+    \end{itemize}
+  \item Math Circle (for 6--10 year-olds) instructor: Fall 2013, Spring
+    2014, Fall 2014.
+  \end{subsect-sp}
+
+  \begin{subsect-sp}{Software Engineering Intern, Google}{Summer 2013}
+  \item Data analytics for the Google Play team in Mountain View, CA.
+  \item Implemented MapReduces in C++ and Go to analyze data logs, and
+    data visualization scripts in Python.
+  \end{subsect-sp}
+
+  \begin{subsect}{Computational modeling research, Stony Brook
+      University}{Summer 2009--Summer 2011}
+  \item With Prof. Dilip Gersappe, Dept. of Materials Science and
+    Engineering.
+  \item Derived and implemented parallel models of material
+    phenomena. Extended the C++ library \textit{Palabos}, which
+    implements a fluid simulation technique called the lattice
+    Boltzmann method.
+  \item Work presented at APS March Meetings 2010--2012.
+  \end{subsect}
+\end{sect}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{sect}{Other}
+  \begin{subsect-sp}{Programming}{}
+  \item C, C++, Python, Go, HTML, \LaTeX, CSS/Sass,
+    Javascript/Coffeescript, Bash, Git.
+  \end{subsect-sp}
+
+  \begin{subsect}{Tennis}{}
+  \item Harvard Club Tennis, Fall 2011--present.
+  \end{subsect}
+\end{sect}
+
+\end{document}

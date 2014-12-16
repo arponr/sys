@@ -1,0 +1,277 @@
+\documentclass{amsart}
+
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage[margin = 1.5in]{geometry}
+
+\title{Developing a formal definition of the integral}
+\author{Arpon Raksit}
+\date{}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{remark}{Remark}
+\newtheorem*{example}{Example}
+
+\begin{document}
+
+\begin{abstract}
+In order to gain a better understanding of the integral, two complete formulations of the integral are developed: the Riemann integral and the Darboux integral. Generalisations of these integrals are furthermore derived, known as the Riemann-Stieltjes and Darboux-Stieltjes integrals. While the two formulations seem, in a sense, to be different, they are shown to be equivalent definitions of the integral, finalising our formal derivation of the definite integral.
+\end{abstract}
+
+\maketitle
+
+\section*{Research question} 
+How exactly can we develop and formalise the definition of the integral, and to what extent can this defintion be reasonably generalised without an extensive knowledge of more advanced mathematics?
+
+\section*{Introduction} 
+The integral is one of the fundamental concepts of calculus, and thus understanding its definition is of great significance. In standard high school calculus classes, the development of the integral is taught in terms of left-hand, right-hand and middle Riemann sums. While this basic understanding and definition of the integral suffices for many applications, it is in fact incomplete. It is especially unsatisfactory when one delves into a study of more theoretical, rigourous calculus and analysis. This leads to the research question of this paper, as stated above. The two defintions of the integral explored here turn out to be equivalent, as will be proved later on. Because of this, most references motivate the integral in terms of only one of these definitions---although some do show the connection of the two definitions as a consequence of the one focused on. Answering this research question is therefore useful and instructive in understanding why the two definitions are equivalent and why they are both correct formulations of the concept of the integral, even if they are not considered consequences of each other. 
+
+\section{Preliminaries}
+We first define some useful concepts and notations that will help us throughout this paper. While eventually we will define a slightly more general integral, we begin by studying the definite integral of a function $f: [a, b] \rightarrow \mathbb{R}$ as the value that represents the area under the curve $y = f(x)$ on the interval $[a, b]$, notated by
+\[ \int_a^b f \textrm{ or } \int_a^b f(x)\,dx. \]
+
+A formulation of this exact area results by first considering the approximations of the area by subdividing $[a, b]$ into smaller subintervals. Any collection of these subintervals is known as a partition \cite{spivak, trench}.
+
+\begin{definition}
+A partition $\mathscr{P}$ of an interval $[a, b]$ is a finite set of points, $x_i$, $0 \le i \le n$, such that
+\[ a = x_0 < x_1 < \cdots < x_n = b, \]
+where the $i$-th subinterval of $\mathscr{P}$, for $1 \le i \le n$, is given by $[x_{i-1}, x_i]$. We define the norm of the partition, $||\mathscr{P}||$, as 
+\[ ||\mathscr{P}|| = \max\,(x_i - x_{i-1}),\ \  1 \le i \le n. \]
+\end{definition}
+
+So, we can approximate $\int_a^b f$ by taking any partition $\mathscr{P}$ of $[a, b]$, and summing for each subinterval $[x_{i-1}, x_i]$ the area of the rectangle with width equal to $x_i - x_{i-1}$ and height equal to any $f(t_i)$, where $t_i \in [x_{i-1}, x_i]$. That is, for any partition $\mathscr{P}$,
+\[ \int_a^b f \approx \sum_{i=1}^n f(t_i)(x_i - x_{i-1}). \]
+\begin{remark}
+The right-hand side of this approximation is known as a Riemann sum. This differs slightly from the Riemann sums introduced in the standard high school calculus class in two ways. Firstly, the subintervals are not necessarily equally spaced, i.e. $(x_i - x_{i-1})$ is not necessarily equal for all $1 \le i \le n$. Secondly, the point in each subinterval $[x_{i-1}, x_i]$ at which we form the height of the rectangle is not restricted to $x_{i-1}$, $x_i$ or $(x_{i-1} + x_i)/2$---the left-hand, right-hand and middle Riemann sums, respectively. The Riemann sum defined here is much more general, and in fact, this generality is necessary for the appropriate definition of the integral. The shortcomings of the restricted sums dealt with in class will not be elaborated on here, but one example is that considering these specific sums leads to the integrability of functions that should not be integrable.
+\end{remark}
+
+This provides a rough basis for formulating definitions of the integral. But first we extend our definition of a partition with a few more useful concepts \cite{rudin}.
+
+\begin{definition}
+A tagged partition $(\mathscr{P}, T)$ is a partition $\mathscr{P}$ of an interval $[a, b]$ along with a finite sequence of points, $t_i \in T$, such that for all $1 \le i < n$,
+\[ x_i \le t_i \le x_{i+1} \]
+So, $T$ is a sequence of points, each falling in a distinct subinterval of $\mathscr{P}$.
+\end{definition}
+
+\begin{definition}
+A refinement $\mathscr{Q}$ of a partition $\mathscr{P}$ of an interval $[a, b]$ is another partition on $[a, b]$ such that 
+$\mathscr{P} \subset \mathscr{Q}$. That is, all points in $\mathscr{P}$ are also in $\mathscr{Q}$. $\mathscr{Q}$ is said to \textit{refine} $\mathscr{P}$.
+
+Similarly, a refinement $(\mathscr{Q}, S)$ of a tagged partition $(\mathscr{P}, T)$ is defined as a partition $\mathscr{Q}$ that is a refinement of $\mathscr{P}$, and a sequence of tags $s_i \in S$, such that $T \subset S$. That is, all tags of the original partition are also in the refinement.
+\end{definition}
+
+\begin{definition}
+A common refinement $\mathscr{Q}$ of any two partitions $\mathscr{P}_1$ and $\mathscr{P}_2$ is a partition that refines $\mathscr{P}_1$ and $\mathscr{P}_2$. For all $\mathscr{P}_1$ and $\mathscr{P}_2$, a common refinement $\mathscr{Q}$ exists, namely  $\mathscr{P}_1 \cup \mathscr{P}_2$, i.e. the partition that contains all points in $\mathscr{P}_1$ and $\mathscr{P}_2$.
+\end{definition}
+
+In addition to these concepts related to partitions, the concepts of the least upper bounds and greatest lower bounds of sets will become useful later on. The least upper bound property of the real numbers says that for any set $A$, $A \ne \emptyset$ and $A$ bounded above, of real numbers, there is a least upper bound $\alpha$ of $A$, such that for all $a \in A$ and upper bounds $b$ of $A$, $\alpha \ge a$ and $\alpha \le b$ \cite{spivak}. We can then shown that an analagous concept exists for lower bounds.
+
+\begin{theorem}[Classical]
+For any set $A$, $A \ne \emptyset$ and $A$ bounded below, of real numbers, there is a greatest lower bound $\beta$ of $A$, such that for all $a \in A$ and lower bounds $b$ of $A$, $\beta \le a$ and $\beta \ge b$.
+
+\begin{proof}
+Let $B$ be the set of all lower bounds on $A$. Since $A$ is bounded below, there is some $b$ such that for all $a \in A$,
+\[ b \le a. \]
+So, $b \in B$ and $B \ne \emptyset$. We also know that $B$ must be bounded above, namely by any $a \in A$ (since $A \ne \emptyset$). By the least upper bound property, $B$ has a least upper bound $\beta$, such that for all $b \in B$,
+\[ \beta \ge b. \]
+We also know that, since every $a \in A$ is an upper bound on $B$, that
+\[ \beta \le a. \]
+It follows, by definition, that $\beta$ is the greatest lower bound of $A$.
+\end{proof}
+\end{theorem}
+
+We call the least upper bound and greatest lower bound of a set $A$ the \textit{supremum} and \textit{infimum} of $A$, respectively, denoted
+\[ \sup A \textrm{ and } \inf A. \]
+
+\section{The Riemann-Stieltjes integral}
+The first thing we must note is that it is quite clear that in order to derive a formulation of the exact integral from our Riemann sum approximations, we must take some sort of limit. The first way in which we do this is by taking the limit as 
+\[ ||\mathscr{P}|| \rightarrow 0, \]
+where $\mathscr{P}$ is any partition on the relevant interval. Intuitively, it seems that if we sum the areas of narrower and narrower rectangles on the interval, then the approximated area should become more and more accurate with respect to the exact area. The definition of the Riemann integral is a precise statement of exactly this limit \cite{trench}. 
+
+\begin{definition}
+If for a function $f : [a, b] \rightarrow \mathbb{R}$ there is a value $I$ such that for every $\epsilon > 0$ and tagged partition $(\mathscr{P}, T)$ of $[a, b]$ there exists a $\delta > 0$ such that
+\[ \textrm{if } ||\mathscr{P}|| < \delta \textrm{, then } \left|\sum_{i=1}^n f(t_i)(x_i - x_{i-1}) - I\right| < \epsilon, \]
+then we say $f$ is Riemann integrable on $[a, b]$. Moreover, $I$ is the Riemann integral of $f$ over $[a, b]$, or
+\[ \int_a^b f = I. \]
+\end{definition}
+
+\begin{remark}
+This definition is based on the $\epsilon$-$\delta$ definition of limits \cite{spivak}. These two variables are used to say, in this definition, that any Riemann sum for $f$ on $[a, b]$ can be made arbitrarily close to $\int_a^b f$ (the difference between the two values can be made less than any positive real number, $\epsilon$) given a partition with sufficiently narrow subintervals (as long as the maximum length of the subintervals is less than some positive real number, $\delta$).
+\end{remark}
+
+Now, this is a sufficient formalisation of the integral taught in the high school calculus class, but our definition of the integral can be further generalised without much difficulty. This generalisation, known as the Riemann-Stieltjes integral, is immensely important in its applications to a further study of analysis \cite{hildenbrandt}. Rather than only considering the integral of a function with respect to $x$, we can consider the integral with respect to any monotonically increasing function $\alpha$. This is best explained by stating the precise definition of the Riemann-Stieltjes integral \cite{rudin, trench}, and then discussing this definition.
+
+\begin{definition}
+If for a function $f : [a, b] \rightarrow \mathbb{R}$ and a monotonically increasing function $\alpha : [a, b] \rightarrow \mathbb{R}$ there is a value $I$ such that for every $\epsilon > 0$ and tagged partition $(\mathscr{P}, T)$ of $[a, b]$ there exists a $\delta > 0$ such that
+\[ \textrm{if } ||\mathscr{P}|| < \delta \textrm{, then } \left|\sum_{i=1}^n f(t_i)(\alpha(x_i) - \alpha(x_{i-1})) - I\right| < \epsilon, \]
+then we say $f$ is Riemann-Stieltjes integrable on $[a, b]$. Moreover, $I$ is the Riemann-Stieltjes integral of $f$ over $[a, b]$ with respect to $\alpha$, or
+\[ \int_a^b f\,d\alpha = \int_a^b f(x)\,d\alpha(x) = I. \]
+\end{definition}
+
+Now that we see the definition, which is clearly only a small modification to our original Riemann integral, it is tempting to say that the Riemann-Stieltjes integral is nothing more than a Riemann integral. Namely, based on the change-of-variables formula (or substitution technique) learned in class, it seems that 
+\[ \int_a^b f(x)\,d\alpha(x) = \int_a^b f(x)\alpha'(x)\,dx, \]
+where the right hand side of the equation is just a Riemann integral of the function $f\alpha'$. We assumed in this simplification, however, that $\alpha'$ is Riemann-integrable. If this were not the case, then the right hand side of the equality does not exist. Thus, the Riemann-Stieltjes integral truly allows us to integrate a much wider range of functions \cite{rudin}. After accepting this, it is clear that this is a more general version of the Riemann integral, in that the original Riemann integral is the specific Riemann-Stieltjes integral where $\alpha(x) = x$. 
+
+\section{The Darboux-Stieltjes integral}
+Now, let us begin as we did in the previous section: how can we use a limit of Riemann sum approximations to formulate the integral? In this section we consider a different limit, the limit as we compute the Riemann sums of finer and finer partitions of the interval. We want to show that as we add more and more points to our partition, that the Riemann sum converges to some value, namely the integral. This is somewhat comparable to the limit used in class, but again, we will not assume equally spaced intervals, and because of this, the way in which we formalise and express the limit will be quite different. We do this by considering two specific Riemann sums.
+
+\begin{remark}
+Rather than beginning with the integral of functions with respect to $x$ and generalising afterwards---as done in the previous chapter---we will just formulate this integral for a function with respect to another monotonically increasing function, as we did in the defining the Riemann-Stieltjes integral at the end of the previous section. Thus, we will derive a general Darboux-Stieltjes integral, from which one can infer the specific Darboux integral.
+\end{remark}
+
+\begin{definition}
+Suppose we have a bounded function $f : [a, b] \rightarrow \mathbb{R}$ and a monotonically increasing function $\alpha : [a, b] \rightarrow \mathbb{R}$. For any partition of $[a, b]$, $\mathscr{P}$, let
+\[ m_i = \inf\ \{f(c_i): x_{i-1} \le c_i \le x_i\}, \]
+\[ M_i = \sup\ \{f(c_i): x_{i-1} \le c_i \le x_i\}, \]
+for $1 \le i \le n$. Note that the infimum and supremum of this set exist since $f$ is defined and bounded (above and below) on each subinterval of $[a, b]$. 
+
+We then define the lower sum,
+\[ L(f, \mathscr{P}, \alpha) = \sum_i^n m_i(\alpha(x_i) - \alpha(x_{i-1})), \]
+and the upper sum,
+\[ U(f, \mathscr{P}, \alpha) = \sum_i^n M_i(\alpha(x_i) - \alpha(x_{i-1})). \]
+\end{definition}
+
+It is clear that $L(f, \mathscr{P}, \alpha) \le U(f, \mathscr{P}, \alpha)$  for all $\mathscr{P}$, since $m_i \le M_i$ for all $1 \le i \le n$. The next theorem \cite{spivak} relates the lower and upper sums of partitions and their refinements, which will allows us to define the Darboux-Stieltjes integral.
+
+\begin{theorem} \label{refinesum}
+For a bounded function $f : [a, b] \rightarrow \mathbb{R}$, a monotonically increasing function $\alpha : [a, b] \rightarrow \mathbb{R}$ and any refinement $\mathscr{Q}$ of a partition $\mathscr{P}$ of $[a, b]$, 
+\begin{equation} \label{lower} L(f, \mathscr{Q}, \alpha) \ge L(f, \mathscr{P}, \alpha), \end{equation}
+\begin{equation} \label{upper} U(f, \mathscr{Q}, \alpha) \le U(f, \mathscr{P}, \alpha). \end{equation}
+
+\begin{proof}
+Say that $\mathscr{Q}$ has exactly one more point that $\mathscr{P}$. That is, the only difference between $\mathscr{P}$ and $\mathscr{Q}$ is that for some $1 \le i \le n$, the $i$-th subinterval of $\mathscr{P}$, $[x_{i-1}, x_i]$, is divided into two subintervals in $\mathscr{Q}$, $[x_{i-1}, u]$ and $[u, x_i]$. Let
+\[ m' = \inf\ \{f(c): x_{i-1} \le c \le u\}, m'' = \inf\ \{f(c): u \le c \le x_i\}, \]
+\[ M' = \sup\ \{f(c): x_{i-1} \le c \le u\}, M'' = \sup\ \{f(c): u \le c \le x_i\}, \]
+Since all other subintervals of $\mathscr{P}$ and $\mathscr{Q}$ are the same, all we must show for (\ref{lower}) is that
+\[ m'(\alpha(u - x_{i-1})) + m''(\alpha(x_i) - \alpha(u)) \ge m_i(\alpha(x_i) - \alpha(x_{i-1})), \]
+which can be rewritten as
+\begin{equation} \label{lshow}
+m'(\alpha(u - x_{i-1})) + m''(\alpha(x_i) - \alpha(u)) \ge m_i(\alpha(u) - \alpha(x_{i-1})) + m_i(\alpha(x_i) - \alpha(u));
+\end{equation}
+and to show (\ref{upper}),
+\[ M'(\alpha(u - x_{i-1})) + M''(\alpha(x_i) - \alpha(u)) \le M_i(\alpha(x_i) - \alpha(x_{i-1})), \]
+which can be rewritten as
+\begin{equation} \label{ushow}
+M'(\alpha(u - x_{i-1})) + M''(\alpha(x_i) - \alpha(u)) \le M_i(\alpha(u) - \alpha(x_{i-1})) + M_i(\alpha(x_i) - \alpha(u)). 
+\end{equation}
+To show that these inequalities are true, we realise that the set $\{f(c): x_{i-1} \le c \le x_i\}$ contains all values in $\{f(c): x_{i-1} \le c \le u\}$ and possible other values that may be either less than or greater than all of the values in the second set; the same holds for $\{f(c): x_{i-1} \le c \le x_i\}$ and $\{f(c): u \le c \le x_i\}$. This implies that
+\[ m_i \le m',\ m_i \le m'', \]
+\[ M_i \ge M',\ M_i \ge M''. \]
+The previous two inequalities prove (\ref{lshow}) and (\ref{ushow}).
+
+We have proved the theorem only for the specific case examined so far. To generalise for any refinement $\mathscr{Q}$ of $\mathscr{P}$, we notice that we can form a sequence of partitions,
+\[ \mathscr{P}, \mathscr{Q}_0, \mathscr{Q}_1, \ldots , \mathscr{Q}_k, \mathscr{Q} \]
+such that each partition in the sequence has exactly one more point than the previous. Thus,
+\[ L(f, \mathscr{P}, \alpha) \le L(f, \mathscr{Q}_0, \alpha) \le L(f, \mathscr{Q}_1, \alpha) \le \ldots \le L(f, \mathscr{Q}_k, \alpha) \le L(f, \mathscr{Q}, \alpha), \]
+\[ U(f, \mathscr{P}, \alpha) \ge U(f, \mathscr{Q}_0, \alpha) \ge U(f, \mathscr{Q}_1, \alpha) \ge \ldots \ge U(f, \mathscr{Q}_k, \alpha) \ge U(f, \mathscr{Q}, \alpha). \]
+The theorem follows.
+\end{proof}
+\end{theorem}
+
+Now, for a bounded function $f : [a, b] \rightarrow \mathbb{R}$ and a monotonically increasing function $\alpha : [a, b] \rightarrow \mathbb{R}$, consider the sets
+\[ L_{f, \alpha} = \{L(f, \mathscr{P}', \alpha): \mathscr{P}' \textrm{ a partition of } [a, b]\}, \]
+\[ U_{f, \alpha} = \{U(f, \mathscr{P}', \alpha): \mathscr{P}' \textrm{ a partition of } [a, b]\}, \]
+We define the lower integral,
+\[ \underline{\int_a^b} f\,d\alpha = \sup L_{f,\alpha}, \]
+and the upper integral, 
+\[ \overline{\int_a^b} f\,d\alpha = \inf U_{f,\alpha}. \]
+We know that these sets have a supremum and infimum because $f$ is bounded, i.e.
+\[ m \le f(x) \le M \]
+on the interval $[a, b]$. It follows that for all partitions $\mathscr{P}$,
+\[ m(\alpha(b) - \alpha(a)) \le L(f, \mathscr{P}, \alpha) \le U(f, \mathscr{P}, \alpha) \le M(\alpha(b) - \alpha(a)) \]
+\cite{rudin}.
+
+As a consequence Theorem \ref{refinesum}, we can say that as we add more and more points to a partition $\mathscr{P}$, 
+\[ L(f, \mathscr{P}, \alpha) \rightarrow \underline{\int_a^b} f\,d\alpha, \]
+\[ U(f, \mathscr{P}, \alpha) \rightarrow \overline{\int_a^b} f\,d\alpha. \]
+Thus, in order for their to be some common limiting value for both the lower and upper sums as we consider finer and finer partitions, we want the lower and upper integral to be equal. This leads to our definition of the Darboux-Stieltjes integral. 
+
+\begin{definition}
+We say a function $f : [a, b] \rightarrow \mathbb{R}$ is Darboux-Stieltjes integrable with respect to a monotonically increasing function $\alpha : [a, b] \rightarrow \mathbb{R}$ if
+\[ \underline{\int_a^b} f\,d\alpha\ = \overline{\int_a^b} f\,d\alpha. \]
+This common value is the Darboux-Stieltjes integral of $f$ on $[a, b]$,
+\[ \int_a^b f\,d\alpha = \underline{\int_a^b} f\,d\alpha\ = \overline{\int_a^b} f\,d\alpha. \]
+\end{definition}
+
+\section{The equivalence of the Riemann and Darboux integrals}
+At first glance, the Darboux formulation of the Stieltjes integral almost seems to be a specific case of the Riemann formulation; we are only considering two specific types of Riemann sums in the Darboux formulation, but considering all Riemann sums in the Riemann formulation. But in fact, the two defintions of the integral turn out to be equivalent statements, which is best explained by examining the limits we took in the derivations.
+
+Taking two types of limits on our Riemann sum approximation of the integral resulted in two definitions of the integral. The first limit was defined such that the width of the subintervals of any partition tended to zero, and the second limit was defined such that the number of points in each partition tended to infinity. So we can call the first a \textit{norm-limit} and the second a \textit{partition-limit} \cite{hildenbrandt}. If we think about this a bit geometrically however, these two really should converge to the same type of limit; as we increase the number of points in our partition, the width of the subintervals should intuitively tend to become smaller and smaller. This idea hints at the fact that the two integrals should result in having the same value and the same requirements for integrability. 
+
+To prove the equivalency of the two formulations, we need the following theorem, whose proof is omitted here, but can be found in \cite{kurtzetal}.
+
+\begin{theorem} \label{deldar}
+A function $f: [a, b] \rightarrow \mathbb{R}$ is Darboux-Stieltjes integrable with respect to a monotonically increasing function $\alpha: [a, b] \rightarrow \mathbb{R}$ if and only if for every $\epsilon > 0$ there exists a $\delta > 0$ such that 
+\[ \textrm{if } ||\mathscr{P}|| < \delta \textrm{, then } U(f, \mathscr{P}, \alpha) - L(f, \mathscr{P}, \alpha) < \epsilon. \]
+\end{theorem}
+
+This condition connects the $\epsilon$-$\delta$ limit concept with Darboux-Stieltjes integrability, for which the definition has no mention of $\epsilon$ or $\delta$, which allows us to prove the equivalence of the Riemann-Stieltjes and Darboux-Stieltjes integrals. This equivalence is stated precisely in the following theorem.
+
+\begin{theorem}
+The bounded function $f : [a, b] \rightarrow \mathbb{R}$ is Riemann-Stieltjes integrable with respect to a monotonically increasing function $\alpha : [a, b] \rightarrow \mathbb{R}$ if and only if $f$ is Darboux-Stieltjes integrable with respect to $\alpha$. Furthermore, the values of the two integrals are equal. 
+
+\begin{proof}
+Suppose $f$ is Darboux-Stieltjes integrable with respect to $\alpha$. Then, by definition,
+\[ \int_a^b f\,d\alpha = \underline{\int_a^b} f\,d\alpha = \overline{\int_a^b} f\,d\alpha, \]
+and by Theorem \ref{deldar}, for every $\epsilon > 0$, there exists a $\delta > 0$ such that 
+\[ \textrm{if } ||\mathscr{P}|| < \delta \textrm{, then } U(f, \mathscr{P}, \alpha) - L(f, \mathscr{P}, \alpha) < \epsilon. \]
+It follows that
+\[ U(f, \mathscr{P}, \alpha) - \int_a^b f\,d\alpha < \epsilon, \]
+\[ \int_a^b f\,d\alpha - L(f, \mathscr{P}, \alpha) < \epsilon, \]
+which implies that 
+\[ U(f, \mathscr{P}, \alpha) - \epsilon < \int_a^b f\,d\alpha < L(f, \mathscr{P}, \alpha) + \epsilon. \]
+We also know, by the definition of the lower and upper sums, that for any tagged partition $(\mathscr{P}, T)$,
+\[ L(f, \mathscr{P}, \alpha) \le \sum_{i=1}^n f(t_i)(\alpha(x_i) - \alpha(x_{i-1})) \le U(f, \mathscr{P}, \alpha). \]
+It follows that 
+\[ \sum_{i=1}^n f(t_i)(\alpha(x_i) - \alpha(x_{i-1})) - \epsilon < \int_a^b f\,d\alpha < \sum_{i=1}^n f(t_i)(\alpha(x_i) - \alpha(x_{i-1})) + \epsilon, \]
+or equivalently that
+\[ \left|\sum_{i=1}^n f(t_i)(\alpha(x_i) - \alpha(x_{i-1})) - \int_a^b f\,d\alpha\right| < \epsilon. \]
+This shows that Darboux-Stieltjes integrability implies Riemann-Stieltjes integrability, and that the Riemann-Stieltjes integral is exactly equal to the Darboux-Stieltjes integral. 
+
+Now we prove the converse \cite{kurtzetal}. By the definition of Riemann-Stieltjes integrability, we can say that for every $\epsilon > 0$, there exists a $\delta > 0$ such that if, for a tagged partition $(\mathscr{P}, T)$, $||\mathscr{P}|| < \delta$,
+\begin{equation} \label{ri}
+ \left| \sum_{i=1}^n f(t_i)(\alpha(x_i) - \alpha(x_{i-1})) - \int_a^b f\,d\alpha \right| < \frac{\epsilon}{4}. 
+\end{equation}
+We can then say, by the definitions of suprema and infima, that there exists sets of tags $T$ and $S$ such that 
+\[ M_i < f(t_i) + \frac{\epsilon}{4(\alpha(b) - \alpha(a))} \Rightarrow f(t_i) > M_i - \frac{\epsilon}{4(\alpha(b)-\alpha(a))} \]
+and
+\[ m_i > f(s_i) - \frac{\epsilon}{4(\alpha(b) - \alpha(a))} \Rightarrow f(s_i) < m_i + \frac{\epsilon}{\alpha(b)-\alpha(a)}, \]
+where $M_i$ and $m_i$ come from the definitions of the upper and lower sums. It follows then that
+\[ \sum_{i=1}^n f(t_i)(\alpha(x_i) - \alpha(x_{i-1})) > \sum_{i=1}^n (M_i - \frac{\epsilon}{4(\alpha(b) - \alpha(a))})(\alpha(x_i) - \alpha(x_{i-1})) = \]
+\[ \sum_{i=1}^n M_i(\alpha(x_i) - \alpha(x_{i-1})) - \sum_{i=1}^n \frac{\epsilon (\alpha(x_i) - \alpha(x_{i-1}))}{4(\alpha(b) - \alpha(a))} = U(f, \mathscr{P}, \alpha) - \frac{\epsilon(\alpha(b) - \alpha(a))}{4(\alpha(b) - \alpha(a))}, \]
+or that
+\[ U(f, \mathscr{P}, \alpha) - \sum_{i=1}^n f(t_i)(\alpha(x_i) - \alpha(x_{i-1})) < \frac{\epsilon}{4}. \]
+Replacing our relationship between $t_i$ and $M_i$ with the relationship between $s_i$ and $m_i$ gives us that 
+\[ \sum_{i=1}^n f(s_i)(\alpha(x_i) - \alpha(x_{i-1})) < \sum_{i=1}^n (m_i + \frac{\epsilon}{4(\alpha(b) - \alpha(a))})(\alpha(x_i) - \alpha(x_{i-1})) = \]
+\[ \sum_{i=1}^n m_i(\alpha(x_i) - \alpha(x_{i-1})) + \sum_{i=1}^n \frac{\epsilon (\alpha(x_i) - \alpha(x_{i-1}))}{4(\alpha(b) - \alpha(a))} = L(f, \mathscr{P}, \alpha) + \frac{\epsilon(\alpha(b) - \alpha(a))}{4(\alpha(b) - \alpha(a))}, \]
+or that
+\[ \sum_{i=1}^n f(t_i)(\alpha(x_i) - \alpha(x_{i-1})) - L(f, \mathscr{P}, \alpha) < \frac{\epsilon}{4}. \]
+It then follows from the fact that
+\[ L(f, \mathscr{P}, \alpha) \le \int_a^b f\,d\alpha \le U(f, \mathscr{P}, \alpha), \]
+and from (\ref{ri}) that
+\[ U(f, \mathscr{P}, \alpha) - \int_a^b f\,d\alpha < \frac{\epsilon}{2}, \]
+\[ \int_a^b f\,d\alpha - L(f, \mathscr{P}, \alpha) < \frac{\epsilon}{2}. \]
+Finally, we have that
+\[ U(f, \mathscr{P}, \alpha) - L(f, \mathscr{P}, \alpha) < \epsilon, \]
+which by Theorem \ref{deldar}, implies Darboux-Stieltjes integrability.
+\end{proof}
+\end{theorem}
+
+\section*{Conclusion}
+In this paper, taking two types of limits on Riemann sums---the limit as the width of the subintervals tended to zero and the limit as the number of subintervals tended to infinity---resulted in two defintitions of the integral. By treating these limits in a formal and rigourous manner---using tools such as the $\epsilon$-$\delta$ definition of limits and the least upper bounds and greatest lower bounds of sets---sufficiently complete and general definitions were derived. Moreover, these definitions were generalised to the integral of functions with respect to any monotonically increasing function (rather than with respect to just $x$). This generalisation widens the range of functions that we can integrate without introducing much complexity. Finally, to formalise the fact that the two different limits taken seem to be deeply related, it was shown that the two (seemingly different) definitions of the integral presented here provide equivalent conditions for integrability as well as the same value for the integral.
+
+This research does lead to a much larger proposition, however, which is to study and explore even more formulations of the integral. For example, the Lebesgue integral is an extremely important generalisation of and advancement from the Riemann-Darboux integrals, allowing the integration of an even greater range of functions as well as integration in more abstract settings. Continuing this study in that particular direction however requires quite a bit more of mathematics, e.g. point-set topology and measure theory. Learning these areas of mathematics would allow a much deeper study of integration theory than presented here. 
+
+\bibliographystyle{amsplain}
+\bibliography{biblio}
+
+\end{document}

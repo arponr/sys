@@ -1,0 +1,123 @@
+.single {
+    header, .input, .prevPane, .options {
+        left: 0;
+        right: 0;
+        position: absolute;
+    }
+
+    header {
+        padding-top: 8px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $border-light;
+
+        font-family: $sans;
+        color: $color-light;
+
+        h1 {
+            font-size: $size-huge;
+            font-weight: 300;
+        }
+
+        h2 {
+            font-size: $size-small;
+            font-weight: 400;
+        }
+    }
+
+    .input, .options, .prevPane {
+        border-width: 1px 0 0 0;
+        border-style: solid;
+        border-color: $border-light;
+    }
+
+    .input, .prevPane {
+        height: 90px;
+        bottom: 30px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .input, .prevPane {
+        font-family: $serif;
+    }
+
+    .prevPane {
+        overflow: auto;
+    }
+
+    .down {
+        position: absolute;
+        bottom: 140px;
+        left: -30px;
+        padding: 10px;
+
+        font-size: 40px;
+
+        display: none;
+    }
+
+    .options {
+        height: 30px;
+        bottom: 0;
+
+        font-family: $sans;
+        font-size: $size-small;
+
+        color: $color-light;
+
+        input[type="button"] {
+            padding: 0 20px;
+            height: 100%;
+            float: left;
+
+            &:hover {
+                color: $color-base;
+                background: $light-highlight;
+            }
+
+            &:active {
+                @include inset-shadow(6px, rgba(0,0,0,0.1));
+            }
+        }
+    }
+
+    .check {
+        position: relative;
+        margin: 8px 20px 0 0;
+        float: right;
+
+        cursor: pointer;
+
+        input {
+            visibility: hidden;
+        }
+
+        &:hover {
+            color: $color-base;
+        }
+
+        &:hover .checklabel:before, input:checked + .checklabel:before {
+            border-color: $border-dark;
+        }
+
+        input:checked + .checklabel:after {
+            content: "\2713";
+            position: absolute;
+            left: -2px;
+        }
+    }
+
+    .checklabel {
+        @extend .noselect;
+
+        &:before {
+            content: "";
+            position: absolute;
+            left: -3px;
+            bottom: 1px;
+            padding: 5px;
+
+            border: 1px solid $border-light;
+        }
+    }
+}

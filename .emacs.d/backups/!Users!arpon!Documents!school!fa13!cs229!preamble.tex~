@@ -1,0 +1,67 @@
+\documentclass[10pt]{amsart}
+\usepackage[tmargin=1.3in, bmargin=1.3in,
+            lmargin=1.7in, rmargin=1.7in]{geometry}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{eucal}
+\usepackage{url}
+
+\frenchspacing
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead{}
+\fancyfoot[C]{\ \\\small\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\oline}{\overline}
+\newcommand{\uline}{\underline}
+\newcommand{\win}{\hfill$\qed$}
+
+\newcommand{\del}{\partial}
+\newcommand{\p}[2]{\frac{\del #1}{\del #2}}
+
+\renewcommand{\H}{\operatorname{H}}
+\newcommand{\E}{\operatorname*{E}}
+\newcommand{\Var}{\operatorname*{Var}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\polylog}{\operatorname{polylog}}
+\newcommand{\poly}{\operatorname{poly}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\rk}{\operatorname{rk}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+\newtheorem*{lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{notation}{Notation}
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{
+  \par\pushQED{\qed}
+  \normalfont
+  \topsep6\p@\@plus6\p@\relax
+  \trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces
+}{\popQED\endtrivlist\@endpefalse}
+\makeatother
+
+
+\renewcommand{\labelitemi}{---}
+\renewcommand{\labelitemii}{--}
+
+\newenvironment{prob}[1]{\begin{proof}[#1]}{\end{proof}}

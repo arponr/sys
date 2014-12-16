@@ -1,0 +1,13 @@
+#me {
+    img {
+        width: 100%;
+    }
+
+    figcaption {
+        font-family: $sans;
+        font-size: $size-small;
+        color: $color-light;
+        margin-top: 100px;
+        text-align: center;
+    }
+}

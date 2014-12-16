@@ -1,0 +1,28 @@
+---
+layout: text
+math: true
+section: blog
+title: "Bundles II: classification"
+permalink: /bundles-ii-classification
+desc: Principal bundles and structure groups of fibre bundles, placed
+      in the more general context of sheaves and torsors.
+preamble:
+- [c, 0, "\\colon"]
+- [ce, 0, "\\mathrel{:=}"]
+- [u, 1, '\underline{#1}']
+- [id, 0, '\opname{id}']
+- [hom, 0, '\opname{hom}']
+- [aut, 0, '\opname{aut}']
+- [saut, 0, '\mathcal{A}\!\opname{ut}']
+- [Top, 0, '\mathrm{Top}']
+- [E, 0, '\mathcal{E}']
+- [F, 0, '\mathcal{F}']
+- [G, 0, '\mathcal{G}']
+- [H, 0, '\mathcal{H}']
+---
+
+We continue the [previous post][prev] on bundles
+
+----------------------------------------------------------------------
+
+[prev]: /bundles-i-definitions

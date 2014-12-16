@@ -1,0 +1,72 @@
+\include{preamble}
+
+\title{Locally free implies projective}
+\author{Arpon Raksit}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+I wanted to write down two proofs of the fact that locally free
+modules are projective, something I ended up thinking about for a few
+hours while learning the tiniest bit of commutative algebra this
+summer\footnote{from some really fun notes and problems from a course
+  taught by Dennis Gaitsgory last year}. It's a nice fact in that it
+made me think about how to use locally free, finitely presented, and
+projective modules, and what these adjectives actually mean. Formally,
+I'm going to prove the following.
+
+\begin{theorem}
+  Let $A$ be a (commutative, unital) ring and $M$ a locally free
+  module over $A$. Then any short exact sequence $0 \to N \to M' \to M
+  \to 0$ of $A$-modules splits.
+\end{theorem}
+
+\noindent But first let's review some definitions.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Preliminaries}
+
+\begin{definition}
+  Let $A$ a ring. An $A$-module $M$ is \textit{finitely}
+  \begin{itemize}
+  \item \textit{generated} if there is a surjection $A^{\oplus n} \equivto
+    M$ for some $n \in \N$,
+  \item \textit{presented} if there is a furthermore an exact sequence
+    $A^{\oplus m} \to A^{\oplus n} \to M \to 0$ for some $m,n \in \N$.
+  \end{itemize}
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{A sort of explicit proof}
+
+By definition of locally free we can choose $f_1, \ldots, f_n \in A$
+such that $(f_1, \ldots, f_n) = (1)$ and $M_{f_i}$ a free
+$A_{f_i}$-module.
+
+\begin{lemma}
+  Locally free modules are finitely presented.
+\end{lemma}
+
+\begin{lemma}
+  Let $M, M'$ modules over $A$ with $M$ finitely presented and
+  $S \subset A$ a multiplicative subset. Then the map
+  \[
+  \hom_A(M,M')_S \to \hom_{A_S}(M_S, M'_S)
+  \]
+  sending $\phi/s$ to the map $m/r \mapsto \phi(m)/(rs)$ is
+  an isomorphism.
+\end{lemma}
+
+Ok fix $1 \le i \le n$. By exactness of localisation we have an exact
+sequence $0 \to N_{f_i} \to M'_{f_i} \to M_{f_i} \to 0$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

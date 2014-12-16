@@ -1,0 +1,17 @@
+\input{../../preamble}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle \thispagestyle{empty}
+
+The tree method is an algorithm developed by Robert Lang which designs
+an origami base with a collection of flaps which are arranged so that
+their projection to the ground is a specified metric tree. These flaps
+can then be molded to transform the base into something more
+artistic. The example here is a base with nine flaps whose projection
+is a star graph, designed by the tree method. I've kept it simple and
+unartistic because origami is hard for me. But that's not my fault:
+the origami design problem solved by the tree method is NP-hard!
+
+\end{document}

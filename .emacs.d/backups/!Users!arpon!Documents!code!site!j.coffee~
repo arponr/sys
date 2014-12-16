@@ -1,0 +1,24 @@
+jQuery ->
+    items = [
+        {nav: $("#nav_notes"), content: $("#notes")}
+        {nav: $("#nav_about"), content: $("#about")}
+    ]
+    bar = $("#bar")
+
+    width = items[0].nav.width()
+    trans = 400
+    v = 0
+
+    for _, i in items
+        if i != v
+            items[i].nav.addClass "hover"
+        do (i) ->
+            items[i].nav.click ->
+                if i != v
+                    for x in [items[i], items[v]]
+                        x.nav.toggleClass "hover"
+                        x.content.slideToggle trans
+                    bar.animate right: "#{width * i}px", trans
+                    v = i
+                return
+    return

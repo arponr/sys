@@ -1,0 +1,104 @@
+\input{preamble}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\titleset{4}{February 25, 2014}{
+  ---
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+\subsection*{Sheaf}
+
+The identity axiom is obvious since the nontrivial restriction maps
+are injective, so we just need to verify the gluing axiom. Let
+$\{U_i\}_{i \in I}$ be a collection of open sets in $P$, and write
+$U_i = P - Q_i$. Then $\bigcup U_i = P - \bigcap Q_i$. Suppose we are
+given $f_i \in \F(U_i)$ for $i \in I$ which are consistent on
+intersections. Then by definition of the restriction maps we must have
+\[
+\textstyle{f_i = f \in \bigcap \Z[\{1/q\}_{q \in Q_i}] = \Z[\{1/q\}_{q
+    \in \bigcap Q_i}] \subseteq \Q}
+\]
+for all $i \in I$. Then $f \in \F(\bigcup U_i)$ gives the necessary
+section which restricts to $f_i$ on each $U_i$.
+
+\subsection*{Stalk}
+
+The stalk $\F_p$ is the localisation of $\Z$ at $(p)$:
+\[
+\F_p \simeq \colim_{U \ni p} \F(U) \simeq \colim_{Q \not\ni p}
+\Z[\{1/q\}_{q \in Q}] \simeq \Z[\{1/q\}_{q \ne p}] \simeq \Z_{(p)}.
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{4}
+
+\subsection*{Connectedness}
+
+We claim $|\F|$ is indeed path-connected. Let $\phi,\psi \in |\F|$ be
+any two points, say over $x,y \in \R$ respectively. As stated in
+[Forster, Ch. 1, 7.1--7.2], giving a path from $\phi$ to $\psi$ is
+equivalent to giving a path $u : [0,1] \to \R$ from $x$ to $y$ along
+with $0 = t_0 < t_1 < \cdots < t_{n-1} < t_n = 1$ and $f_i \in
+\F(U_i)$ with $u([t_{i-1},t_i]) \subseteq U_i$ for $1 \le i \le n$
+such that:
+\begin{enumerate}
+\item $(f_1)_x = \phi$ and $(f_n)_y = \psi$;
+\item $f_i|_{V_i} = f_{i+1}|_{V_i}$ where $V_i$ is the connected
+  component of $U_i \cap U_{i+1}$ containing $u(t_i)$.
+\end{enumerate}
+We can construct $U_i \ce (a_i,b_i)$ and $f_i \in \F(U_i)$ as
+follows. Choose $(a_1,b_1) \ni x$ and $(a_4,b_4) \ni y$ such that
+there exist $f_1 \in \F(U_1)$ and $f_4 \in \F(U_4)$ for which $(f_1)_x
+= \phi$ and $(f_4)_y = \psi$. Let $a_2 \in (a_1, b_1)$, $a_3 \in (a_4,
+b_4)$ and $b_2 = b_3 > \max(b_1, b_6) + 1$. Let $f_2 \in \F(U_2)$
+agree with $f_1$ on $(a_2,b_1)$, linear from $f_1(b_1)$ to $(f_1(b_1)
++ f_4(b_4))/2$ on $[b_1,b_2-1]$ and constant on
+$[b_2-1,b_2)$. Similarly define $f_3 \in \F(U_3)$ with respect to
+$f_4$. This clearly gives us the necessary data. A picture
+illustrating the construction is to the side.
+
+\subsection*{Countability}
+
+We claim $|\F|$ is not second-countable. If it were, then there would
+be a countable set of opens $\{[U_i,f_i]\}_{i \in \N}$ such that any
+open $[U,f]$ contains some $[U_i,f_i]$. Note $[U,f] \supseteq [V,g]$
+if and only if $U \supseteq V$ and $f|_V = g$. But the functions
+$x^\epsilon$ for $\epsilon \in (0,1)$ all have different germs at
+$0$. Since $(0,1)$ is uncountable it cannot be true for all $\epsilon
+\in (0,1)$ that $[(-1,1), x^\epsilon] \supseteq [U_i,f_i]$ for some $i
+\in \N$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{5}
+
+Let $t$ be the complex coordinate on $U$. Let $p \ce \chi(t)$, so that
+$t - p \in \ker(\chi)$. We must have $p \in U$, or else $t - p$ would
+be a unit in $\O(U)$ and hence could not be in $\ker(\chi)$. For any
+$f \in \O(U)$ we can write $f = f(p) + (t-p)g$ with $g \in
+\O(U)$. (Away from $p$ we can define $g \ce (f-f(p))/(t-p)$, and $g$
+is defined on a neighbourhood of $p$ via the power series expansion of
+$f$ at $p$.) Then clearly $\chi(f) = f(p)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{6}
+
+The claim is true. For $i \in \{1,2\}$ let $(X_i,f_i)$ be an extension
+of $(X_0,f_0)$ given by an embedding $j_i : X_0 \to X_i$. Then we can
+form the pushout $(X_3,f_3) \ce (X_1 \amalg_{X_0} X_2, f_1
+\amalg_{f_0} f_2)$ extending both $f_1$ and $f_2$. The fact that we
+can take the pushout in the category of Riemann surfaces is clear from
+the point of view of locally ringed spaces, simply by gluing structure
+sheaves. I.e., we define $\O_3 \ce \O_1 \times_{\O_0} \O_2$, where
+$\O_i$ is the structure sheaf of $X_i$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

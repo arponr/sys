@@ -1,0 +1,7 @@
+@book{gortzwedhorn,
+  title        = {Algebraic Geometry {I}: Schemes with Examples and
+                  Exercises},
+  author       = {G{\"o}rtz, Ulrich and Wedhorn, Torsten},
+  year         = {2010},
+  publisher    = {Springer},
+}

@@ -1,0 +1,9 @@
+CREATE TABLE a (
+       a_id   serial PRIMARY_KEY
+       a_name varchar(80) NOT NULL
+)
+
+CREATE TABLE b (
+       b_id   serial PRIMARY_KEY
+       b_name varchar(80) NOT NULL
+)

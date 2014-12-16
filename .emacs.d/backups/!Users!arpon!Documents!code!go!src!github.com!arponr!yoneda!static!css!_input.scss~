@@ -1,0 +1,45 @@
+$message-options-height: $input-height + 2 * $view-vpad;
+
+.message-input {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+
+    .live {
+        font-family: $font-serif;
+        font-size: 14px;
+        padding: $input-pad;
+        @include rounded($grey-light);
+        overflow: auto;
+    }
+
+    .area {
+        font-family: $font-mono;
+        bottom: $message-options-height;
+        overflow: auto;
+
+        textarea {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    }
+
+    .options {
+        height: $message-options-height;
+        bottom: 0;
+        padding: $view-vpad 0;
+
+        .input.active, .send:hover {
+            border-color: $green;
+        }
+
+        .send {
+            margin-right: 10px;
+        }
+
+        .md {
+            margin-left: 10px;
+        }
+    }
+}

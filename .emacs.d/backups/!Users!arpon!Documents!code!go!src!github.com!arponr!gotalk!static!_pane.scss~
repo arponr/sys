@@ -1,0 +1,21 @@
+.pane {
+    width: 400px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+$control-height: 30px;
+
+#controls {
+    height: $control-height;
+
+    border-bottom: 1px solid $border-light;
+
+    .icon {
+        margin-left: 15px;
+        float: right;
+        font-size: 30px;
+    }
+}
+

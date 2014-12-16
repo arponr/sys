@@ -1,0 +1,372 @@
+\input{../../preamble}
+\input{preamble}
+
+\title{Enriched Categories}
+\author{Arpon Raksit}
+\thanks{These notes are me digesting material presented by Hiro Lee
+  Tanaka and Sitan Chen on September 18 and 25 in a reading group on
+  infinity categories held at Harvard in Fall 2013.}
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\C}{\mathcal{C}}
+
+\section{Motivation}
+
+Recall that in a category $\C$ we have a \textit{hom-set}
+$\Hom_\C(X,Y)$ for any two objects $X,Y \in \Ob \C$. But sometimes we
+really want $\Hom_\C(X,Y)$ to be more than just a set, i.e. have the
+structure of an object in some category. Our primary motivation is the
+idea that some categories should have \textit{hom-spaces}.
+
+\begin{example}
+  Consider $\C = \Top$ the category of spaces. (Actually we'll need to
+  restrict our class of spaces, but let's leave the details for a
+  couple of pages.) We'll see that $\Hom_\C(X,Y)$ has a natural
+  topology, which gives us a mapping \textit{space} $\Map(X,Y)$. An
+  important property this satisfies---an incarnation of the
+  ``hom-tensor adjunction''---is that there is a natural isomorphism
+  \begin{equation}
+    \label{homtensor}\tag{$\ast$}
+    \Map(X \times Y, Z) \simeq \Map(X, \Map(Y, Z)).
+  \end{equation}
+  And one particularly important example of this important property is
+  when $X = [0,1]$. Then (\ref{homtensor}) tells us that talking about
+  \textit{homotopies} of maps $Y \to Z$ is equivalent to talking about
+  \textit{paths} in $\Map(Y,Z)$.
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\T}{\mathcal{T}}
+
+\section{Monoidal and enriched categories}
+
+So we want to somehow talk about categories $\C$ in which we have
+hom-objects in some other category $\T$. It turns out the structure we
+want on $\T$ is some sort of ``tensor product''. In fact it's easy to
+see why we need some way of taking any two objects in $\T$ and
+producing a third: we need a way to write down a composition law
+$\Hom_\C(X,Y) \times \Hom_\C(Y,Z) \to \Hom_\C(X,\Z)$ as a map in $\T$!
+But we'll use the notation $\otimes$ instead of $\times$.
+
+\begin{definition}
+  A \textit{monoidal category} $\T$ is a category equipped with
+  \begin{itemize}
+  \item a functor $- \otimes - : \T \times \T \to \T$, the
+    \textit{tensor product}
+  \item an object $1 \in \T$, the \textit{unit}
+  \item a natural isomorphism $\alpha : (- \otimes -) \otimes - \to -
+    \otimes (- \otimes -)$, the \textit{associator}
+  \item a natural isomorphism $\lambda : 1 \otimes - \to \id_\T$, the
+    \textit{left unitor}
+  \item a natural isomorphism $\rho : - \otimes 1 \to \id_\T$, the
+    \textit{right unitor}
+  \end{itemize}
+  satisfying coherence conditions given by two commutative diagrams:
+  the \textit{triangle identity},
+    \[
+    \begin{tikzcd}[column sep = tiny]
+      (- \otimes 1) \otimes - \ar{rr}{\alpha} \ar{dr}[below]{\rho
+        \otimes \id_\T\hspace{30pt}} & \ & - \otimes (1 \otimes -)
+      \ar{dl}{\id_\T \otimes \lambda} \\ \ & - \otimes -, & \
+    \end{tikzcd}
+    \]
+    and the \textit{pentagon identity},
+    \[
+    \begin{tikzcd}[column sep = tiny]
+      \ & (- \otimes -) \otimes (- \otimes -) \ar{dr}{\alpha} \ \\ ((-
+      \otimes -) \otimes -) \otimes - \ar{ur}{\alpha} \ar{d}{\alpha
+        \otimes \id_\T} & \ & - \otimes (- \otimes (- \otimes -))
+      \\ (- \otimes (- \otimes -)) \otimes - \ar{rr}{\alpha} & \ & -
+      \otimes ((- \otimes -) \otimes -) \ar{u}{\id_\T \otimes \alpha}.
+    \end{tikzcd}
+    \]
+\end{definition}
+
+\begin{remark}
+  The coherence conditions look sort of intimidating. Basically the
+  point is that the tensor product should behave as one might
+  expect. Perhaps even more concretely, as the name suggests, a
+  symmetric monoidal category is a categorification of the notion of a
+  commutative monoid. So just think that the tensor product gives a
+  nice, commutative, associative multiplication on $\T$.
+\end{remark}
+
+\renewcommand{\Z}{\mathbb{Z}}
+
+\begin{examples}
+  \label{examples-monoidal}
+  One thing to note immediately is that we can put different monoidal
+  structures on the same category. We have the following familiar
+  examples.
+  \begin{enumerate}
+  \item $\T \coloneqq \Set$ the category of sets; $\otimes \coloneqq
+    \times$ the direct product; $1 \coloneqq \{*\}$ the one-point set.
+  \item $\T \coloneqq \Set$; $\otimes \coloneqq \amalg$ the disjoint
+    union; $1 \coloneqq \emptyset$ the empty set.
+  \item $\T \coloneqq \Ab$ the category of abelian groups; $\otimes
+    \coloneqq \otimes_\Z$ the tensor product over $\Z$; $1 \coloneqq
+    \Z$.
+  \item $\T \coloneqq \Ab$; $\otimes \coloneqq \oplus$ the direct sum;
+    $1 \coloneqq 0$ the trivial group.
+  \item If you're feeling fancy, $\T \coloneqq \Ch$ the category of
+    chain complexes; $\otimes \coloneqq \otimes_\Z$ the tensor product
+    of complexes over $\Z$, $1 \coloneqq \Z$ the complex with $\Z$
+    concentrated in degree $0$.
+  \item Most relevant to our immediate goals, $\T \coloneqq \Top$ the
+    category of topological spaces; $\otimes \coloneqq \times$ the
+    direct product; $1 \coloneqq \{*\}$ the one-point space.
+  \end{enumerate}
+\end{examples}
+
+Now we want to define precisely what it means for a category to have
+hom-objects in a monoidal category.
+
+\begin{definition}
+  Let $\T$ be a monoidal category. Then a \textit{$\T$-enriched
+    category} (or a \textit{category enriched over $\T$}) $\C$ is the
+  data of
+  \begin{itemize}
+  \item a collection $\Ob\C$ of \textit{objects}
+  \item a \textit{hom-object} $\Hom_\C(X,Y) \in \Ob\T$ for all pairs
+    $X,Y \in \Ob\C$
+  \item a \textit{composition} map (in the category $\T$!)
+    \[
+    \circ : \Hom_\C(Y,Z) \otimes \Hom_\C(X,Y) \to \Hom_\C(X,Z)
+    \]
+    for all triples of objects $X,Y,Z \in \Ob\C$
+  \item an \textit{identity} $\id_X : 1 \to \Hom_\C(X,X)$ for all
+    objects $X \in \C$
+  \end{itemize}
+  satisfying
+  \begin{itemize}
+  \item the commutative diagram for associativity for $W,X,Y,Z \in \Ob
+    \C$,
+    \[
+    \begin{tikzcd}
+      (\Hom_\C(Z,Y) \otimes \Hom_\C(X,Y)) \otimes \Hom_\C(W,X)
+      \rar{\circ \otimes \id} \ar{dd}{\alpha} & \Hom_\C(X,Z) \otimes
+      \Hom_\C(W,X) \dar{\circ} \\ \ & \Hom_\C(W,Z) \\ \Hom_\C(Z,Y)
+      \otimes (\Hom_\C(X,Y) \otimes \Hom_\C(W,X)) \rar{\id \otimes
+        \circ} & \Hom_\C(Z,Y) \otimes \Hom_\C(W,Y),
+      \ar{u}[right]{\circ}
+    \end{tikzcd}
+    \]
+  \item the commutative diagrams for the identity maps for $X,Y \in
+    \Ob\C$,
+    \[
+    \begin{tikzcd}[column sep = tiny]
+      1 \otimes \Hom_\C(X,Y) \ar{rr}{\id_Y \otimes \id}
+      \ar{dr}[below]{\lambda\hspace{10pt}} & \ & \Hom_\C(Y,Y) \otimes
+      \Hom_\C(X,Y) \ar{dl}{\circ} \\ \ & \Hom_\C(X,Y), & \
+    \end{tikzcd}
+    \]
+    and
+    \[
+    \begin{tikzcd}[column sep = tiny]
+      \Hom_\C(X,Y) \otimes 1 \ar{rr}{\id \otimes \id_X}
+      \ar{dr}[below]{\rho\hspace{10pt}} & \ & \Hom_\C(X,Y) \otimes
+      \Hom_\C(X,X) \ar{dl}{\circ} \\ \ & \Hom_\C(X,Y). & \
+    \end{tikzcd}
+    \]
+  \end{itemize}
+\end{definition}
+
+\begin{examples}
+  \ \begin{enumerate}
+  \item Any ordinary category is a $\Set$-enriched category when we
+    put a monoidal structure on $\Set$ as in Example
+    \ref{examples-monoidal}.1.
+  \item $\Set$, $\Ab$, and $\Ch$ are all enriched over themselves.
+  \item When we say a category has \textit{hom-spaces} we mean mean
+    the category is be enriched over $\Top$, given the monoidal
+    structure in Example \ref{examples-monoidal}.6.
+  \end{enumerate}
+\end{examples}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Replacing $\Top$ with $\CG$}
+
+Ok I just lied in that last example. As mentioned earlier, it turns
+out that the full category of topological spaces $\Top$ has some
+pathologies that we really don't want to deal with. So we're going to
+make a slight modification and replace $\Top$ with a certain
+subcategory $\CG$ which does not have these pathologies.\footnote{A
+  much more detailed and comprehensive account of $\CG$ can be found
+  at \url{neil-strickland.staff.shef.ac.uk/courses/homotopy/cgwh.pdf},
+  and the presentation here is mostly taken from there, in addition to
+  May's book, \textit{A Concise Course in Algebraic Topology}.}
+
+\begin{convention}
+  We will follow the convention of calling a space \textit{compact} if
+  it is quasicompact and Hausdorff, and the same for \textit{locally
+    compact}.
+\end{convention}
+
+Before I begin defining things, a disclaimer: I honestly don't know
+any great motivation for these definitions besides that they turn out
+to give us a more convenient category to work with.
+
+\begin{definitions}
+  Let $X$ a space, and $A \subseteq X$ a subspace.
+  \begin{enumerate}
+  \item We say $A$ is \textit{$k$-closed} if $f^{-1}(A)$ is closed in
+    $K$ for all compact spaces $K$ and continuous maps $f : K \to X$.
+  \item It is easy to check that the collection of $k$-closed subsets
+    form the closed sets of a topology on $X$. We call $X$ with this
+    topology the \textit{$k$-ification} of $X$, and denote it by $kX$.
+  \item We say $X$ is a \textit{$k$-space} if $X = kX$, that is, if
+    $A$ is $k$-closed if and only if $A$ is closed.
+  \item We say $X$ is \textit{weakly Hausdorff} if $f(K)$ is closed in
+    $X$ for all compact spaces $K$ and continuous maps $f : K \to X$.
+  \item We say $X$ is \textit{compactly generated} if it is a weakly
+    Hausdorff $k$-space.
+  \end{enumerate}
+\end{definitions}
+
+\begin{remarks}
+  \label{CGWH-rems}
+  Let us note a couple of immediate facts regarding the above
+  definitions.
+  \begin{enumerate}
+  \item If $A \subseteq X$ is closed then certainly $A$ is $k$-closed,
+    i.e., $\id : kX \to X$ is continuous. Thus $X$ is a $k$-space if
+    and only if all $k$-closed sets are closed.
+  \item If $A$ is $k$-closed, then in particular for $K \subseteq X$
+    any compact subspace, with inclusion $i : K \to X$, we have $A
+    \cap K = i^{-1}(A)$ is closed.
+  \item If $K$ is compact then a map $f : K \to X$ is continuous if
+    and only if it is continuous as a map $K \to kX$. Hence $k(kX) =
+    kX$, so $kX$ is a $k$-space.
+  \item If $X$ is weakly Hausdorff, then so is $kX$, and hence $kX$ is
+    compactly generated by the above.
+  \item Certainly if $X$ is Hausdorff then $X$ is weakly
+    Hausdorff. And certainly if $X$ is weakly Hausdorff then $X$ is
+    $T_1$ (points are closed).
+  \end{enumerate}
+\end{remarks}
+
+\begin{lemma}
+  \label{WH-props}
+  Let $X$ be a weakly Hausdorff space.
+  \begin{enumerate}
+  \item If $K$ is compact and $f : K \to X$ continuous then $f(K)$ is
+    compact (in the induced topology).
+  \item A subspace $A \subseteq X$ is compact in $X$ if and only if it
+    is compact in $kX$.
+  \item A subspace $A \subseteq X$ is $k$-closed if and only if $A
+    \cap K$ is closed in $K$ for every compact subspace $K \subseteq
+    X$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  Todo.
+\end{proof}
+
+The following shows that many of the spaces familiar to us are
+compactly generated.
+
+\begin{lemma}
+  A locally compact space $X$ is compactly generated and weakly
+  Hausdorff.
+\end{lemma}
+
+\begin{proof}
+  Since $X$ is Hausdorff, $X$ is weakly Hausdorff. So it suffices to
+  show a $k$-closed set $A \subseteq X$ must be closed. Let $x \in
+  \oline A$; choose a compact neighbourhood $K$ of $x$. For any open
+  neighbourhood $U$ of $x$, certainly $U \cap K$ is also a
+  neighbourhood of $x$, and hence $U \cap K \cap A \ne \emptyset$. But
+  this says that $x \in \oline{K \cap A}$, and since $A$ is $k$-closed
+  we know $K \cap A$ is closed, so in fact $x \in K \cap A$. Thus
+  $\oline A = A$ and we're done.
+\end{proof}
+
+\begin{lemma}
+  \label{C-CG-map}
+  Let $f : X \to Y$ a map, $X$ compactly generated. The following are
+  equivalent:
+  \begin{enumerate}
+  \item $f$ is continuous as a map $X \to Y$;
+  \item the restriction $f|_K : X \to Y$ is continuous for all compact
+    subspaces $K \subseteq X$;
+  \item $f$ is continuous as a map $X \to kY$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  (1) $\Rightarrow$ (2) is tautological, and (3) $\Rightarrow$ (1)
+  follows from $\id : kY \to Y$ being continuous (Remark
+  \ref{CGWH-rems}.1). Assume (2). By Remark \ref{CGWH-rems}.3, this is
+  equivalent to assuming $f|_K$ is continuous as a map $K \to kY$ for
+  all compact $K \subseteq X$. Thus if $A \subseteq kY$ is any closed
+  set and $K \subseteq X$ any compact set, then $f|_K^{-1}(A) =
+  f^{-1}(A) \cap K$ is closed, whence by Lemma \ref{WH-props} this
+  implies $f^{-1}(A)$ is closed. This gives (3).
+\end{proof}
+
+\begin{definition}
+  Let $\WH$ the full subcategory of $\Top$ consisting of weakly
+  Hausdorff spaces. Let $\CG$ the full subcategory of $\WH$ consisting
+  of compactly generated spaces.
+\end{definition}
+
+\begin{proposition}
+  We have functors $j : \CG \to \WH$, the forgetful inclusion, and $k
+  : \WH \to \CG$, given by $k$-ification. Moreover, there is a natural
+  isomorphism
+  \[
+  \Hom_\WH(jX, Y) \simeq \Hom_\CG(X, kY),
+  \]
+ i.e., $k$ is right-adjoint to $j$.
+\end{proposition}
+
+\begin{proof}
+  Obviously $j$ is a functor. That $k$ is a functor, and that the
+  adjunction given simply by the identity (on sets) is well-defined,
+  are immediate from Lemma \ref{C-CG-map}.
+\end{proof}
+
+\begin{definition}
+  Let $X,Y$ spaces. The \textit{compact-open topology} on
+  $\Hom_\Top(X,Y)$ is defined as having subbasis elements of the form
+\end{definition}
+
+Today we're interested in $\T = \Top$, $\otimes = \times$, and $1 =
+\{*\}$. And we're going to enrich $\CG$ compactly generatedHausdorff
+spaces with $\T$. We're interested in these spaces because we needs
+some conditions to get $\Map(X,Y) \times \Map(Y,Z) \to \Map(X,Z)$ to
+be continuous (i.e., a map in the category $\Top$). There's an article
+on nLab about ``Convenient categories of topological spaces'' that
+deals with this.
+
+But we jumped the gun. We need to define a topology on
+$\Map(X,Y)$. We'll define a subbasis for the compact-open topology:
+sets $(K,U)$ of maps $X \to Y$ which send $K \to Y$, where $K
+\subseteq X$ compact and $U \subseteq Y$ open.
+
+We claim that the following identity holds:
+\[
+\Map(A \times B, C) \simeq \Map(A, \Map(B,C)).
+\]
+Where $f \mapsto g$ where $g(a)(b) = f(a,b)$.
+
+For continuity in forward direction, suffices to show $(K,(L,U))
+\subseteq \Map(A, \Map(B,C))$ has open preimage (this is a lemma). But
+preimage is just $(K \times L, U)$ so clear. The other direciton is
+harder, and you probably need to use the compactly generated Hasudorff
+condition. Break $K$ into compact boxes $K_i \times L_j$ and then do
+shit. ``We're in the thick jungle of point-set topology.''
+
+Important example $A = [0,1]$. This tells us homotopies are paths in
+the mapping space.
+
+\end{document}

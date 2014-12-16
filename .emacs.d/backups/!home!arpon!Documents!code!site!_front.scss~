@@ -1,0 +1,29 @@
+.zuko {
+    float: right;
+    width: 20%;
+}
+
+.front_sec {
+    margin-bottom: 30px;
+
+    .label {
+        text-transform: uppercase;
+        font-size: $size-small;
+        float: left;
+    }
+
+    .content {
+        margin-left: 60px;
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        .desc {
+            font-family: $sans;
+            font-size: $size-small;
+            
+            margin-top: 5px;
+        }
+    }
+}

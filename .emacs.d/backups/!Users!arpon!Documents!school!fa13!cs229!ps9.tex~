@@ -1,0 +1,143 @@
+\input{preamble}
+
+\title{CS 229, Problem Set 8}
+\author{Arpon Raksit}
+\date{12 Nov 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+\subprob{a}
+
+Note first that if
+\[
+A \coloneqq
+\begin{pmatrix}
+  Y & X \\ X^t & Z
+\end{pmatrix}
+\succeq 0,
+\]
+then firstly $A$ must be symmetric, which clearly holds if and only if
+$Y$ and $Z$ are symmetric. (Ok, I thought I would, but I'm not going
+to write all this out rigorously, because it doesn't seem worth it.)
+We define the matrices $A_i \in \R^{(m+n) \times (m+n)}$ for $i \ge 1$
+in the minimisation (3) as all those with a $-1$ in a location and
+symetrically across the diagonal, and $0$ elsewhere. We set the
+constant $A_0$ to be the matrix with entries $-M_{i,j}$ for $(i,j) \in
+\Omega$ in the correct entries of $A$ corresponding to $X$, and
+transposed in the entries of $A$ corresponding to $X^t$.
+
+The entries of $x$ correspond to the upper diagonal entries of $Y$ and
+$Z$ and the entries of $X$ which do not lie in $\Omega$. Each
+coordinate naturally corresponds to one of the $A_i$ matrices defined
+above by its location in $A$. Then we set $B \coloneqq 0$ so that
+requiring this linear combination be $\preceq B$ is equivalent to
+requiring $A \succeq 0$.
+
+Finally we set $c$ to have $1$ in the locations corresponding to the
+diagonal entries of $Y$ and $Z$ in the vector $x$ and $0$ elsewhere,
+so that $c^tx = \tr(Y) + \tr(Z)$. \win
+
+\subprob{b}
+
+Let $X = U \Sigma V^t$ the SVD. Define $Y \coloneqq U \Sigma U^t \in
+\R^{m \times m}$ and $Z \coloneqq V \Sigma V^t \in \R^{n \times
+  n}$. Then by the cyclic property of the trace
+\[
+\tr(Y) = \tr(U^tU\Sigma) = \tr(\Sigma) = \|X\|_*,
+\]
+and similarly $\tr(Z) = \|X\|_*$, so $\tr(Y) + \tr(Z) \le 2t$. Next,
+note that
+\[
+\underbrace{\begin{pmatrix}
+  Y & X \\ X^t & Z
+\end{pmatrix}}_A
+=
+\underbrace{\begin{pmatrix}
+  U & 0 \\ 0 & V
+\end{pmatrix}}_{B^t}
+\underbrace{\begin{pmatrix}
+  \Sigma & \Sigma \\ \Sigma & \Sigma
+\end{pmatrix}}_C
+\underbrace{\begin{pmatrix}
+  U^t & 0 \\ 0 & V^t
+\end{pmatrix}}_B.
+\]
+Certainly $A$ and $C$ are symmetric as defined. Thus for any $x \in
+\R^{m+n}$ we have $x^tAx = (Bx)^tC(Bx)$, and hence to show $A$ is
+positive semidefinite it suffices to show $C$ is positive
+semidefinite. But since $\Sigma$ is diagonal with nonnegative entries,
+this is immediate from the Gershgorin circle theorem. Thus $A \succeq
+0$ and we win. \win
+
+\subprob{c}
+
+Suppose $A,B$ are symmetric positive semidefinite matrices. Then
+$A^{1/2},B^{1/2}$ are also symmetric so by the cyclic property of the
+trace we have
+\[
+\tr(AB) = \tr(A^{1/2}A^{1/2}B^{1/2}B^{1/2}) =
+\tr(B^{1/2}A^{1/2}A^{1/2}B^{1/2}) = \|A^{1/2}B^{1/2}\|_F^2 \ge 0.
+\]
+\win
+
+\subprob{d}
+
+Notation as in (b). Observe that $(UU^t)^2 = UU^t$ and $(VV^t)^2 =
+VV^t$, so both $UU^t$ and $VV^t$ are projection operators. Moreover,
+since $A$ is positive semidefinite it is immediate that $Y$ and $Z$
+are positive semidefinite. These two facts imply that
+\[
+\tr(UU^tY) \le \tr(Y) \quad\text{and}\quad \tr(VV^tZ) \le \tr(Z).
+\]
+(I'm omitting the details: roughly, if we consider a basis of $\R^m$
+consisting of a basis for $\mathrm{im}(UU^t)$ and its orthogonal
+complement, then the projection $UU^t$ just kills off the diagonal
+entries of $Y$ from the orthogonal complement, which must have been
+nonnegative\footnote{My roommate Ben Kuhn (not in this class) made me
+  realise this totally obvious fact.}  since $Y$ is positive
+semidefinite.)
+
+Next, consider the symmetric matrix
+\[
+W \coloneqq
+\begin{pmatrix}
+  UU^t & -UV^t \\ -VU^t & VV^t
+\end{pmatrix},
+\]
+and observe that $W^2 = 2W$. In particular, for $x \in \R^{m+n}$
+and $\lambda \in \R$ we have
+\[
+Wx = \lambda x \implies 2Wx = 2\lambda x \implies W^2x = 2\lambda x.
+\]
+This implies any twice any eigenvalue of $W$ is an eigenvalue of
+$W^2$. But of course $W^2$ has nonnegative eigenvalues. Thus $W$ is
+positive semidefinite. Then (c) implies that $\tr(WA) \ge 0$.
+
+Now, expanding, we have
+\begin{align*}
+0 \le \tr(WA) &= \tr
+\begin{pmatrix}
+  UU^tY - U \Sigma U^t & * \\ * & VV^tZ - V \Sigma V^t
+\end{pmatrix}
+ \\ &= \tr(UU^tY) - \tr(U \Sigma U^t) + \tr(VV^tZ) - \tr(V \Sigma
+ V^t).
+\end{align*}
+As in (b) we have $\tr(U \Sigma U^t) = \tr(V \Sigma V^t) =
+\|X\|_*$. Combining this with our first set of inequalities, the above
+implies
+\[
+2\|X\|_* = \tr(U \Sigma U^t) + \tr(V \Sigma V^t) \le \tr(UU^tY) +
+\tr(VV^tZ) \le 2t,
+\]
+so $\|X\|_* \le t$. Combining this result with (b) clearly gives that
+the same $X \in \R^{m \times n}$ will minimise (2) and (4) from the
+problem set, so solving them are equivalent. \win
+
+
+\end{document}

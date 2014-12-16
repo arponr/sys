@@ -1,0 +1,140 @@
+\input{../../preamble} \input{preamble}
+
+\title{CS 229, Project Notes} \author{Arpon Raksit} \date{\today}
+
+\begin{document}
+\maketitle \thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\D}{\mathcal{D}}
+
+\section{General argument of \cite{kane-2011}}
+
+\begin{notation}
+  Here $n,m,l$ denote positive integers and $\delta,\epsilon$
+  positive reals.
+\end{notation}
+
+\begin{remark}
+  We will often assume without loss of generality that various
+  quanities are integers, even integers, or powers of two.
+\end{remark}
+
+\begin{definitions}
+  A distribution $\D$ over $\R^{m \times n}$:
+  \begin{enumerate}
+  \item is a \emph{$(\delta,\epsilon)$-JL distribution} if $\Pr_{\Phi
+    \sim \D} [|\|\Phi x\|^2 - 1| > \epsilon] < \delta$ for $x \in
+    S^{n-1}$.
+  \item is a \emph{strong JL distribution} if it is a $(\exp(-\Omega(m
+    \min \{\epsilon,\epsilon^2\})),\epsilon)$-JL distribution for all
+    $\epsilon > 0$.
+  \item has the \emph{$(l,\delta,\epsilon)$-JL moment property} if
+    $\E_{\Phi \sim \D} [|\|\Phi x\|^2 - 1|^l] <
+    \epsilon^l\delta$ for $x \in S^{n-1}$.
+  \item has the \emph{strong JL moment property} if it has the
+    \[
+    (l, O((\max \{\sqrt{l/(\epsilon^2 m)}, l/(\epsilon
+    m)\})^l), \epsilon)\text{-JL}
+    \]
+    moment property for all $l \ge 2$ and $\epsilon > 0$.
+  \end{enumerate}
+\end{definitions}
+
+\begin{example}
+  We can state (one variant of) the JL lemma in this language as
+  follows. Let $\D$ the distribution over $\R^{m \times n}$ given by
+  choosing independent Rademacher entries. Then $\D$ is a strong JL
+  distribution.
+\end{example}
+
+\begin{lemma}
+  \label{distribution-iff-moment}
+  A distribution $\D$ over $\R^{m \times n}$ is a strong JL
+  distribution if and only if it has the strong JL moment property.
+\end{lemma}
+
+\begin{definition}
+  Let $\D$ a distribution over $\R^{m \times n}$ with independent
+  entries. An \emph{$l$-wising} of $\D$ is a distribution $\D'$ over
+  $\R^{m \times n}$ such that for $\Psi \sim \D'$ we have:
+  \begin{enumerate}
+  \item equality in distribution $\Psi_{i,j} \sim \Phi_{i,j}$ for
+    $(i,j) \in [m] \times [n]$, where $\Phi \sim \D$,
+  \item the entries $\{\Psi_{i,j}\}$ are $l$-wise independent;
+  \end{enumerate}
+  i.e., the entries of $\D'$ are identical to $\D$, but only required
+  to be $l$-wise, rather than fully, independent.
+\end{definition}
+
+\begin{lemma}
+  \label{moment-wise}
+  Let $\D$ a distribution over $\R^{m \times n}$ with independent
+  entries which has the $(l,\delta,\epsilon)$-JL moment
+  property. Then a $2l$-wising $\D'$ of $\D$ also has the
+  $(l,\delta,\epsilon)$-JL moment property.
+\end{lemma}
+
+\begin{proof}
+  This is simply the observation that the $l$-th moment of
+  $|\|\Phi\|^2 - 1|$ is determined only by the $2l$-wise independence
+  of the entries of $\Phi \sim \D$.
+\end{proof}
+
+\begin{lemma}
+  Assume $\delta \le $. Let $\log(1/\delta) \le q \le 1/\delta$. Then
+  for sufficiently large $m \coloneqq O(q/\epsilon^2)$ and $l
+  \coloneqq \log_q(1/\delta)$ the following holds. Let $\D$ a strong
+  JL distribution over $\R^{m \times n}$ with independent
+  entries. Then a $2l$-wising $\D'$ of $\D$ is a
+  $(\delta,\epsilon)$-JL distribution.
+\end{lemma}
+
+\begin{proof}
+  Let $x \in S^{n-1}$. Applying Markov's inequality,
+  (\ref{distribution-iff-moment}), and (\ref{moment-wise}) gives
+  \[
+  \Pr_{\Psi \sim \D'} [|\|\Psi x\|^2 - 1| > \epsilon] <
+  \epsilon^{-l} \E_{\Psi \sim \D'} [|\|\Psi x\|^2 - 1|^l] = O\l(
+  \l(\epsilon^{-1}\max\{\sqrt{l/m}, l/m\}\r)^l \r)
+  \]
+  By our choices of $m$ and $l$, and choosing large enough
+  constants, this is at most
+  \[
+  \l( O(\log_q(1/\delta)/(Cq)) \r)^{O(\log_q(1/\delta))} <
+  \delta. \qedhere
+  \]
+\end{proof}
+
+\begin{algorithm}
+  \label{iterate}
+  \ \begin{enumerate}
+  \item Input $(n,\delta,\epsilon)$.
+  \item Define $t \coloneqq
+    \log(\log(1/\delta)/\log(\log(1/\delta)))$, $\tilde\epsilon
+    \coloneqq \epsilon/(e(t+2))$, $\tilde\delta \coloneqq
+    \delta/(t+2)$.
+  \item Define $m_{-1} \coloneqq n$ and $m_i \coloneqq
+    C\tilde\delta^{-1/2^i}/\tilde\epsilon^2$, $l_i \coloneqq
+    2^{i+1}$ for $0 \le i \le t$.
+  \item Let $\Phi_i \sim \D_i$ with $\D_i$ a distribution over
+    $\R^{m_i \times m_{i-1}}$ which has the $(l_i, \tilde\delta,
+    \tilde\epsilon)$-JL moment property for $0 \le i \le t$.
+  \item Output $\Phi \coloneqq \Phi_t \cdots \Phi_0$.
+  \end{enumerate}
+\end{algorithm}
+
+\begin{theorem}
+  Let $\D$ the distribution over $\R^{m \times n}$ defined by the
+  output $\Phi$ of (\ref{iterate}). Then $m =
+  O(\log(1/\delta)/\epsilon)$ and $\D$ is a $(\delta,\epsilon)$-JL
+  distribution.
+\end{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{amsalpha}
+\bibliography{refs}
+
+\end{document}

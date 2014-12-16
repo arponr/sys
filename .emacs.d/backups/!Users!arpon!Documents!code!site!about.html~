@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+  <head>
+    <title>About | Arpon Raksit</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="//use.typekit.net/cen6cew.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header class="head">
+        <h2>About</h2>
+        <h1>Arpon Raksit</h1>
+      </header>
+
+      <figure class="topfig">
+        <img src="me.jpg" alt="me" class="banner">
+        <figcaption>Arpon, focused, eating with dignity and grace.</figcaption>
+      </figure>
+
+      <article class="post">
+        <h2>What is this place?</h2>
+        <p>Yo, I'm Arpon. I'm trying to understand things. Writing
+          notes seems like the best way for me to attempt to do
+          that. This is a place for me to keep these attempts.</p>
+
+        <blockquote>It always turned out that understanding was all
+          that mattered.</br>&mdash; A. Grothendieck</blockquote>
+
+        <p>These days I'm an undergraduate at Harvard, for the most
+          part trying to understand (parts of) math. So most of my
+          notes will be about that. But I'm also interested in
+          computer science (when there's enough math&hellip;), and I'm
+          nearly always distracted by music, fiction, design, tennis,
+          and running. So maybe there will be some random notes about
+          those things, too.</p>
+
+        <h2>Contact</h2>
+        <p>If you are <em>actually</em> reading this
+          and <em>actually</em> want to contact me, that's crazy, but
+          you can email me at arpon.raksit@gmail.com</p>
+      </article>
+
+      <footer class="nav">
+        <ul>
+          <li><a href="/">home</a></li>
+          <li><a href="/about.html">about</a></li>
+        </ul>
+      </footer>
+    </div>
+  </body>
+</html>
+

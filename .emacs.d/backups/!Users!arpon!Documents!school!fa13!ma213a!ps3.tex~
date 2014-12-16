@@ -1,0 +1,206 @@
+\input{preamble}
+
+\title{Math 213A, Problem Set 2}
+\author{Arpon Raksit}
+\date{17 Sep 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+\subprob{a}
+
+For $x, y \in \R$ we define $\exp(x+iy) := \exp(x)(\cos(y) +
+i\sin(y))$, which of course agrees with the exponential function $\exp
+: \R \to \R$ when $y = 0$. If we then define $u, v : \R^2 \to \R$ by
+$u(x,y) := \exp(x)\cos(y)$ and $v(x,y) := \exp(x)\sin(y)$, we have
+\[
+\p{u}{x} = \exp(x)\cos(y), \quad \p{u}{y} = -\exp(x)\sin(y), \quad
+\p{v}{x} = \exp(x)\sin(y), \quad \p{v}{y} = \exp(x)\cos(y).
+\]
+So clearly $u$ and $v$ satisfy the Cauchy-Riemann equations and are
+$C^1$ on all of $\R^2$, whence $\exp : \C \to \C$ as defined above is
+entire.
+
+\subprob{b}
+
+This is the special case $f(z) := z$ of (c), below.
+
+\subprob{c}
+
+Pick $z_0 \in U$ and write $f(z_0) =: r\exp(i\theta)$. Let $a :=
+\log(r) + i\theta$, so that $e^a = f(z_0)$. For any $z \in U$ choose a
+$C^1$ path $\gamma : [0,1] \to U$ from $z_0$ to $z$.\footnote{Here I'm
+  assuming that $U$ should be assumed to be connected as well.} We
+then define
+\[
+\log(f)(z) := a + \int_\gamma \frac{f'(\zeta)}{f(\zeta)}\,d\zeta.
+\]
+We claim this is in fact independent of our choice of $\gamma$. Indeed
+let $\eta$ another path from $z_0$ to $z$. Then concatenating $\gamma$
+and $\eta$ with reversed orientation determines the boundary $\del D$
+of a Green's domain $D \subset \C$. But then since $U$ is simply
+connected we have $D \subset U$, and since $f'/f$ is holomorphic on
+$U$ we then have
+\[
+0 = \int_{\del D} \frac{f'(\zeta)}{f(\zeta)}\,d\zeta = \int_\gamma
+\frac{f'(\zeta)}{f(\zeta)}\,d\zeta - \int_\eta
+\frac{f'(\zeta)}{f(\zeta)}\,d\zeta.
+\]
+This demonstrates independence of $\gamma$.
+
+So we have defined a holomorphic function $\log(f) : U \to \C$ with
+$\log(f)' = f'/f$. Now observe that
+\[
+(f\exp(-\log(f)))' = f'\exp(-\log(f)) - f\exp(-\log(f))\frac{f'}{f} =
+0,
+\]
+implying that $\exp(\log(f)) = cf$ on $U$ for some $c \in \C$. But we
+know $\exp(\log(f))(z_0) = z_0$ by construction, so $c=1$.
+
+Conversely, suppose $f = \exp(g)$ for some holomorphic function $g : U
+\to \C$. Observe that
+\[
+\log(f)' = \frac{\exp(g)'}{\exp(g)} = g',
+\]
+so that $\log(f) = g + c$ on $U$ for some $c \in \C$. But we know
+$\exp(\log(f)) = \exp(g)$, so by our definition of $\exp : \C \to \C$
+in (a) we know that $c \in 2\pi i\Z$. This in particular shows that
+$\log(f)$ is unique up to the choice of this constant $c$.
+
+\subprob{d}
+
+Clearly $U$ is open. Let $D \subset \C$ a Green's domain such that $D
+\cap \R_{\ge 0} \ne \emptyset$. Since $\oline D$ is compact we can
+define $x := \sup \oline D \cap \R_{\ge 0}$. Then certainly $x \in
+\del D$, so $\del D \not\subseteq U$. I.e., $\del D \subseteq U
+\implies D \subseteq U$, so $U$ is simply connected.
+
+Now, $\log : U \to \C$ is holomorphic by (b). Then for $a \in \R_{<
+  0}$ we have $a \in U$, so $\log$ is continuous at $a$, and hence
+\[
+\lim_{y \to 0^+} \log(a+iy) - \lim_{y \to 0^+} \log(a-iy) = \log(a) -
+\log(a) = 0.
+\]
+On the other hand take $a \in \R_{> 0}$. By (c) we can define $\log :
+U \to \C$ by
+\[
+\log(z) := i\pi + \int_{\gamma} \frac{d\zeta}{\zeta},
+\]
+where $\gamma$ is a path from $-1$ to $z$ in $U$. It is then clear by
+a change of variables $\zeta =: re^{i\theta}$ that
+\[
+\lim_{y \to 0^+} \log(a+iy) - \log(a-iy) = \lim_{y \to 0^+}
+\int_{a+iy}^{a-iy} \frac{d\zeta}{\zeta} = \lim_{\eta \to 0}
+\int_{\eta}^{2\pi-\eta} i\,d\theta = 2\pi i.
+\]
+
+\subprob{e}
+
+The argument from (d) gives that $U$ is simply connected, and that
+\[
+\lim_{y \to 0^+} \log(a+iy) - \log(a-iy) =
+\begin{cases}
+  0 & \text{if } a > 0,\\
+  2\pi i & \text{if } a < 0.
+\end{cases}
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+\subprob{a}
+
+If $\alpha = \beta$ then $\alpha^2\cos^2(\theta) +
+\beta^2\sin^2(\theta) = \alpha^2$, so the integral clearly equals
+$2\pi/\alpha^2$. So we can assume $\alpha \ne \beta$. Using the change
+of coordinates $z := e^{i\theta}$ we have
+\begin{align*}
+  \int_0^{2\pi} \frac{d\theta}{\alpha^2\cos^2(\theta) +
+    \beta^2\sin^2(\theta)} &=
+  \frac{4}{i} \int_{|z|=1} \frac{1}{\alpha^2(z+z^{-1})^2 -
+    \beta^2(z-z^{-1})^2} \frac{dz}z \\ &=
+  \frac{4}{i} \int_{|z|=1} \frac{z\,dz}{(\alpha^2-\beta^2)z^4 +
+    2(\alpha^2+\beta^2)z^2 + \alpha^2-\beta^2} \\ &=
+  \frac{4}{i} \int_{|z|=1} \frac{z\,dz}{((\alpha-\beta)z^2 + \alpha +
+    \beta)((\alpha+\beta)z^2+\alpha-\beta)},
+\end{align*}
+and then factoring the denominator gives that this is equal to
+\[
+  \frac{4}{i(\alpha^2-\beta^2)} \int_{|z|=1} \frac{z\,dz}{\left(z -
+    \sqrt{\frac{-\alpha-\beta}{\alpha-\beta}}\right) \left(z +
+    \sqrt{\frac{-\alpha-\beta}{\alpha-\beta}}\right) \left(z -
+    \sqrt{\frac{\beta-\alpha}{\alpha+\beta}}\right) \left(z +
+    \sqrt{\frac{\beta-\alpha}{\alpha+\beta}}\right)}.
+\]
+Clearly $\left|\sqrt{\frac{-\alpha-\beta}{\alpha-\beta}}\right| > 1$
+and $\left|\sqrt{\frac{\beta-\alpha}{\alpha+\beta}}\right| < 1$. The
+residue of the integrand at $z =
+\sqrt{\frac{\beta-\alpha}{\alpha+\beta}}$ is
+\[
+\frac{\sqrt{\frac{\beta-\alpha}{\alpha+\beta}}}{\left(2
+  \sqrt{\frac{\beta-\alpha}{\alpha+\beta}}\right)
+  \left(\frac{\beta-\alpha}{\alpha+\beta} +
+  \frac{\alpha+\beta}{\alpha-\beta}\right)} =
+\frac{\alpha^2-\beta^2}{8\alpha\beta},
+\]
+and it's easy to see by symmetry that we have the same residue at $z =
+-\sqrt{\frac{\beta-\alpha}{\alpha+\beta}}$. Thus by the residue
+theorem we finally have that
+\[
+\int_0^{2\pi} \frac{d\theta}{\alpha^2\cos^2(\theta) +
+  \beta^2\sin^2(\theta)} = \left(\frac{8\pi}{\alpha^2-\beta^2}\right)
+\left(\frac{\alpha^2-\beta^2}{4\alpha\beta}\right) =
+\frac{2\pi}{\alpha\beta}.
+\]
+
+\subprob{b}
+
+For $R > 0$ let $\Omega_R := \{z \in \C \mid |z| < R,\,\Im(z) > 0\}$,
+so that $\del\Omega_R = C_R \cup [-R,R]$, where $C_R := \{Re^{i\theta}
+\mid \theta \in [0, \pi]\}$. Then we have
+\[
+\left|\int_{C_R} \frac{dz}{(\alpha^2+z^2)(\beta^2+z^2)}\right| =
+\left|\int_0^\pi \frac{Rie^{\theta}\,d\theta}{(\alpha^2 +
+  R^2e^{2i\theta})(\beta^2 + R^2e^{2i\theta})}\right| \le
+\frac{R\pi}{R^4 -(\alpha^2+\beta^2)R^2 - \alpha^2\beta^2},
+\]
+which tends to $0$ as $R \to \infty$. It follows that
+\[
+\int_{-\infty}^\infty \frac{dx}{(\alpha^2+x^2)(\beta^2+x^2)} = \lim_{R
+  \to \infty} \int_{\Omega_R} \frac{dz}{(\alpha^2+z^2)(\beta^2+z^2)}.
+\]
+Now let $\omega := (\alpha^2+z^2)^{-1}(\beta^2+z^2)^{-1}\,dz$. If
+$\alpha \ne \beta$ we have
+\[
+\left.\Res(\omega)\right|_{z=i\alpha} =
+\frac{1}{2i\alpha(\beta^2-\alpha^2)}, \quad
+\left.\Res(\omega)\right|_{z=i\beta} =
+\frac{1}{2i\beta(\alpha^2-\beta^2)},
+\]
+whence by the residue theorem it follows that
+\[
+\int_{-\infty}^\infty \frac{dx}{(\alpha^2+x^2)(\beta^2+x^2)} =
+\frac{\pi}{\beta(\alpha^2-\beta^2)} -
+\frac{\pi}{\alpha(\alpha^2-\beta^2)} =
+\frac{\pi}{\alpha\beta(\alpha+\beta)}.
+\]
+On the other hand if we have $\alpha = \beta$ we have
+\[
+\left.\Res(\omega)\right|_{z=i\alpha} =
+\left.\frac{d}{dz}\right|_{z=i\alpha} \frac{1}{(z+i\alpha)^2} =
+\left.\frac{-2}{(z+i\alpha)^3}\right|_{z=i\alpha} =
+\frac{1}{4i\alpha^3},
+\]
+so again by the residue theorem we have
+\[
+\int_{-\infty}^\infty \frac{dx}{(\alpha^2+x^2)(\beta^2+x^2)} =
+\frac{\pi}{2\alpha^3}.
+\]
+\end{document}

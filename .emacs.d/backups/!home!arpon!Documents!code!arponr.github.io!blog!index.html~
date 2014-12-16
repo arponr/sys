@@ -1,0 +1,18 @@
+---
+layout: page
+section: blog
+title: Blog
+---
+
+<h1>all posts</h1>
+<ul class="stream">
+  {% for post in site.posts %}
+  <li>
+    <a href="{{ post.permalink }}">{{ post.title }}</a>
+    <time class="date">{{ post.date | date_to_string }}</time>
+    <div class="desc">
+      {{ post.preview }}
+    </div>
+  </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,10 @@
+\begin{remark}
+  For $l \in \N$, the *Stiefiel Manifold* $\V_{l,n}$ is the space
+  \[
+  \{(v_1,\ldots,v_l) : v_i \in \S^{n-1}, \langle v_i, v_j \rangle =
+  \delta_{i,j}\}
+  \]
+  of orthonormal $l$-frames on $\R^n$.
+\end{remark}
+
+And this is text outside, even with some math $\hom(x,y) \iso h$.

@@ -1,0 +1,179 @@
+\input{preamble}
+
+\title{Math 233A, Problem Set 8}
+\author{Arpon Raksit}
+\date{11 Nov 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+\begin{lemma}
+  \label{noetherian-minimal}
+  Let $X$ be a noetherian topological space. Then any nonempty
+  collection $\mathcal{Z}$ of closed sets of $X$ has a minimal element
+  (with respect to inclusion).
+\end{lemma}
+
+\begin{proof}
+  If not, we could produce a descending chain of closed sets $Z_1
+  \supsetneq Z_2 \supsetneq Z_3 \supsetneq \cdots$ in $\mathcal{Z}$,
+  contradicting that $X$ is noetherian.
+\end{proof}
+
+\noindent Suppose $X \simeq \Spec A$. Recall that for any open affine
+$\Spec A'$ in a locally noetherian scheme we must have $A'$
+noetherian. Thus $X$ noetherian implies $A$ noetherian. By Problem 2
+below, then $X$ has a noetherian underlying topological space. Define
+$\mathcal{Z}$ to be the collection of closed sets of $X$ which do not
+consist of finitely many irreducible components. By Lemma
+\ref{noetherian-minimal}, if $\mathcal{Z}$ were nonempty it would
+contain a minimal closed set $Z \in \mathcal{Z}$. Obviously $Z$ cannot
+be irreducible, so we can write $Z = Z_1 \cup Z_2$ a union of proper
+closed subsets. But $Z_1$ and $Z_2$ consist of finitely many
+irreducibly components by minimality of $Z$. Then clearly $Z$ does as
+well, contradiction. Thus $\mathcal{Z}$ must be empty, implying $X$
+consists of finitely many irreducible components. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+\subsection*{Proof}
+
+\renewcommand{\a}{\mathfrak{a}}
+
+Let $A$ noetherian and $X \coloneqq \Spec A$. Let $Z_1 \supseteq Z_2
+\supseteq Z_3 \supseteq \cdots$ a descending chain of closed sets of
+$X$. For $i \in \N$, write $Z_i = V(\a_i)$ for an ideal $\a_i
+\subseteq A$. Then $\a_1 \subseteq \a_2 \subseteq \a_2 \subseteq
+\cdots$ is an ascending chain of ideals, so by noetherianness it
+stabilises. But then the descending chain of closeds stabilises
+too. Thus $X$ has a noetherian underlying topological space. \win
+
+\subsection*{Counterexample}
+
+The converse is false. Consider $A \coloneqq \Spec
+k[t_1,t_2,\ldots]/(t_1^2,t_2^2,\ldots)$ for $k$ a field, say. Clearly
+any non-unit in $A$ is nilpotent, and hence $\nil(A) =
+(t_1,t_2,\ldots)$ is the only prime in $A$. Thus the underlying space
+of $\Spec A$ is a single point, which is of course noetherian. But $A$
+is not noetherian, witnessed by the ascending chain of ideals $(t_1)
+\subsetneq (t_1,t_2) \subsetneq (t_1,t_2,t_3) \subsetneq \cdots$. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+\subsection*{Finitely generated}
+
+Let $f \in A$ a uniformiser and $\m \coloneqq (f)$. Since the only
+ideals in $A$ are of the form $(f^n)$ for $n \in \N$, we have $K
+\simeq A_{(0)} \simeq A_f \simeq A[t]/(ft-1)$ is a finitely generated
+$A$-algebra. And obviously $k \simeq A/\m$ is a finitely generated
+$A$-algebra. It follows that $K \times k$ is a finitely generated
+$A$-algebra. \win
+
+\subsection*{Bijection}
+
+In a previous problem set I proved $\Spec(A_1 \times A_2) \simeq \Spec
+A_1 \amalg \Spec A_2$, the identification of sets in this context
+being $\Spec(K \times k) = \{(0) \times k, K \times (0)\}$. Now, as a
+set $\Spec A = \{(0), \m\}$, and so we get that $f$ is a bijection
+from
+\[
+\phi^{-1}((0) \times k) = i^{-1}((0)) = (0) \quad\text{and}\quad
+\phi^{-1}(K \times (0)) = \pi^{-1}((0)) = \m.
+\]
+\ \win
+
+\subsection*{Dimension}
+
+From the descriptions of $\Spec A$ and $\Spec(K \times k)$ given
+above, it is clear that $\dim(Y) = \dim(A) = 1$ and $\dim(X) = \dim(K
+\times k) = 0$. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{4}
+
+\subprob{a}
+
+Let $A \coloneqq R[t]$. Following the hint, let $\pi \in R$ a
+uniformiser and $\p \coloneqq (\pi t - 1) \subseteq A$. Since $A/\p
+\simeq R_\pi \simeq R_{(0)}$ is a field, $\p$ is a closed point in $X
+= \Spec A$. Now, since $\p$ is principal, we have by Krull's
+Hauptidealsatz that $\dim(\O_{X,\p}) = \dim(A_\p) \le 1$. On the other
+hand we must have $\dim(X) = \dim(A) = \dim(R) + 1 = 2$ since $R$ is a
+DVR. Thus $\dim(X) \ne \dim(\O_{X,\p})$. \win
+
+\subprob{b}
+
+With $\p$ as in (a), we can consider $Y \coloneqq \{\p\}$. Then
+clearly $\dim(Y) = 0$. But, as in (a), $\codim(Y,X) = \dim(A_\p) = 1
+\ne 2 = \dim(X)$. \win
+
+\subprob{c}
+
+Let $\pi \in R \subset A$ as in (a). Consider the nonempty open $U
+\coloneqq D(\pi) \subseteq X$. Then $U \simeq \Spec(A_\pi)$, and
+$A_\pi \simeq R_\pi[t] \simeq K[t]$ where $K \coloneqq \Frac(R)$. Thus
+$\dim(U) = \dim(K[t]) = 1$, but $\dim(X) = 2$ as in the previous
+parts. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{5}
+
+\subsection*{Condition $(*)$}
+
+We show $X \times \P^1$ is still separated, noetherian, integral, and
+regular in codimension $1$:
+\begin{itemize}
+\item Separated: By stability under base change, $X \times \P^1$ is
+  separated over $\P^1$, but we know $\P^1$ is separated (in fact
+  proper), so this implies $X \times \P^1$ is separated.
+\item Noetherian: Since $X$ is noetherian it is a finite union of
+  noetherian affine schemes. And of course $\P^1$ is covered by two
+  copies of $\A^1$. It follows that $X \times \P^1$ has a finite cover
+  of open affines of the form $\Spec(A) \times \A^1$ where $A$ is
+  noetherian. But
+  \[
+  \Spec(A) \times \A^1 \simeq \Spec(A \otimes_\Z \Z[t]) \simeq
+  \Spec(A[t])
+  \]
+  is noetherian as well. This implies $X \times \P^1$ is noetherian.
+\item Integral: We show $X \times \P^1$ is reduced and irreducible. As
+  above, $X \times \P^1$ is covered by open affines of the form
+  $\Spec(A) \times \A^1 \simeq \Spec(A[t])$, where now we assume $A$
+  is integral. It is clear that reducedness can be checked on an open
+  cover, so this gives $X \times \P^1$ is reduced. For irreducibility,
+  note that each of these opens is irreducible. Thus, as shown on a
+  previous problem set, it suffices to show $X \times \P^1$ is
+  connected. But I don't know how to show this?
+\item Regular in codimension $1$: the condition is local, so it
+  follows from the fact that $X \times \A^1$ is regular in
+  codimension $1$, proven in Hartshorne. \win
+\end{itemize}
+
+\subsection*{Class group}
+
+Here's the argument I tried but failed to complete:
+\begin{enumerate}
+\item Consider the open subscheme $U \coloneqq X \times \A^1 \subseteq
+  X \times \P^1$. As mentioned in lecture, and proved in Hartshorne,
+  we have $\Cl(U) \simeq \Cl(X)$.
+\item Then $Z \coloneqq X - U = X \times \{\infty\}$ should be of
+  codimension $1$.
+\item This gives an exact sequence $\Z \to \Cl(X \times \P^1) \to
+  \Cl(U) \simeq \Cl(X) \to 0$.
+\item Then I just have to show that $\Z \to \Cl(X \times \P^1)$ is
+  injective (i.e., no multiple of $X \times \{\infty\}$ is principal)
+  and then that the exact sequence splits.
+\end{enumerate}
+
+\end{document}

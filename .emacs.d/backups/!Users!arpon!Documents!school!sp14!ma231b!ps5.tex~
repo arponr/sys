@@ -1,0 +1,161 @@
+\input{preamble}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\titleset{4}{March 28, 2014}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{notation}
+  For $X$ a pointed space, let $\Sigma X$ denote the reduced
+  suspension of $X$ and $CX$ the reduced cone on $X$.
+\end{notation}
+
+\begin{lemma}
+  \label{clutching}
+  For $X$ a pointed space, there is a bijection
+  \[
+  \Vec_\C^n(\Sigma X) \simeq [X, \GL_n(\C)].
+  \]
+\end{lemma}
+
+\begin{remark}
+  There are a bunch of details which go into the proof of this, some
+  of which I ended up looking up in Hatcher's book. I'm going to
+  sketch a couple of the details because I don't feel like writing
+  them out, so I probably shouldn't get full credit for Problem 1.
+\end{remark}
+
+\begin{proof}
+  We first define a map $\phi \c \Vec_\C^n(\Sigma X) \to [X,
+  \GL_n(\C)]$. Let $E \to \Sigma X$ be a vector bundle of rank
+  $n$. Write $\Sigma X \ec C_1 \cup C_2$ where $C_1 \simeq C_2 \simeq
+  CX$ and $C_1 \cap C_2 \simeq X$. Since $CX$ is contractible we must
+  have trivialisations
+  \[
+  h_i \c E|_{C_i} \simeq C_i \times \C^n \quad\text{for }i \in
+  \{1,2\}.
+  \]
+  Then for $x \in X \simeq C_1 \cap C_2$ we get a linear isomorphism
+  $T_x \c \C^n \to \C^n$ induced by $h_2 \circ h_1^{-1}$. The map $X
+  \times \C^n \to \C^n$ sending $(x,v) \mapsto T_x(v)$ is just $p_2
+  \circ h_2 \circ h_1^{-1}$, hence is continuous. In particular the
+  restriction to the basis vectors $X \times \{e_j\} \to \C^n$ is
+  continuous, which implies that the map $T \c X \to \GL_n(\C)$
+  sending $x \mapsto T_x$ is continuous. Therefore we can define
+  $\phi(E) \ce [T]$. To check this is independent of the choice of
+  trivialisations $h_i$, we use that $\GL_n(\C)$ is path-connected to
+  define a homotopy.
+
+  We now define a map $\psi \c [X, \GL_n(C)] \to \Vec_\C^n(\Sigma
+  X)$. Let $T \c X \to \GL_n(C)$ be a continuous map. Write $T_x \ce
+  T(x)$ and define
+  \[
+  E_T \ce \frac{(C_1 \times \C^n) \amalg (C_2 \times \C^n)}{\{(x,v)
+    \sim (x,T_x(v)) \mid x \in C_1 \cap C_2 \simeq X \}}.
+  \]
+  We have a well-defined map $E_f \to \Sigma X$ induced by the
+  projections $C_i \times \C^n \to C_i$, which evidently defines a
+  vector bundle of rank $n$. If $T \sim T'$ are homotopic then this
+  construction defines a vector bundle $E \to \Sigma X \times I$ which
+  restricts to $E_T$ over $\Sigma X \times \{0\}$ and $E_{T'}$ over
+  $\Sigma X \times \{1\}$, and hence $E_T \simeq E_{T'}$. Thus
+  we can define $\psi([T]) \ce [E_T]$.
+
+  It is evident that $\phi$ and $\psi$ are inverse bijections.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+\subprob{a}
+
+The bijection is just Lemma \ref{clutching} for $X \ce S^0$. Since
+$\GL_n(\C)$ is connected, by Problem 2 and representability of reduced
+$K$-theory we get
+\[
+\pi_1(BU) \simeq [S^1, BU]_* \simeq [S^1, BU \times \Z]_* \simeq
+\tilde K(S^1) \simeq \colim{[S^0, \GL_n(\C)]} \simeq 0.
+\]
+This proves that $BU$ is simply connected and that $\tilde K(S^1)$ is
+trivial, i.e., every finite dimensional complex vector bundle on $S^1$
+is trivial.
+
+\subprob{b}
+
+This is just Lemma \ref{clutching} for $X \ce S^{k-1}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+It is evident that the following diagram commutes:
+\[
+\begin{tikzcd}
+  \Vec_\C^n(\Sigma X) \rar{\sim} \dar{\oplus \C} & {[X, \GL_n(\C)]}
+  \dar \\ \Vec_\C^{n+1}(\Sigma X) \rar{\sim} & {[X, \GL_{n+1}(\C)]},
+\end{tikzcd}
+\]
+and hence we have a bijection
+\[
+\tilde K(\Sigma X) \simeq \colim \Vec_\C^n(\Sigma X) \simeq \colim{[X,
+  \GL_n(\C)]}.
+\]
+We know the first bijection is a group isomorphism, so to finish we
+just need to check the second is as well. Suppose $E_1 \in
+\Vec_\C^m(\Sigma X)$ and $E_2 \in \Vec_\C^n(\Sigma X)$, with
+associated clutching functions $T_1 \c X \to \GL_m(\C)$ and $T_2 \c X
+\to \GL_n(\C)$. Then $E_1 \oplus E_2 \in \Vec_\C^{m+n}(\Sigma X)$ will
+have clutching function $T_1 \oplus T_2 \c X \to \GL_{m+n}(\C)$. But
+note:
+\begin{itemize}
+\item $T_1 \oplus T_2$ can be identified with $(T_1 \oplus \id_{\C^n})
+  * (\id_{\C^m} \oplus T_2)$;
+\item $\id_{\C^m} \oplus T_2 \sim T_2 \oplus \id_{\C^m}$ since $\C^m
+  \oplus E_2 \simeq E_2 \oplus \C^m$.
+\end{itemize}
+It follows that $[T_1 \oplus T_2] = [T_1] + [T_2]$ in $\colim [X,
+\GL_n(C)]$ so that the bijection is a group isomorphism as desired.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{4}
+
+Assume $f \c D^n \to D^n$ has no fixed point. As usual, this implies
+there is a retraction $D^n \to S^{n-1}$. But this is impossible since
+$D^n$ is contractible so $\tilde K^*(D^n) \simeq 0$, but we have
+computed $\tilde K^*(S^{n-1}) \ne 0$ by Bott periodicity.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{5}
+
+Recall we had the schubert cell decomposition of $X \ce
+\Gr_k(\C^{n+k})$ with only even-dimensional cells, and a total of
+$\binom{n+k}{k}$ cells. Thus we know
+\[
+K^0(X) \simeq \Z^{\binom{n+k}{k}}, \quad K^1(X) \simeq 0.
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{6}
+
+We have a long exact sequence
+\[
+\cdots \to K^{-n-1}(X) \to K^{-n-1}(Y) \to K^{-n}(X,Y) \to K^{-n}(X)
+\to K^{-n}(Y) \to \cdots.
+\]
+If $Y$ is a retract then we have a section $K^{-n}(Y) \to K^{-n}(X)$
+for each $n$. In particular $K^{-n}(X) \to K^{-n}(Y)$ is surjective,
+so we have short exact sequences
+\[
+0 \to K^{-n}(X,Y) \to K^{-n}(X) \to K^{-n}(Y) \to 0,
+\]
+and then the sections split these.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

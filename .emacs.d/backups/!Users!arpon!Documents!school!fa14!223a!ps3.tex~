@@ -1,0 +1,449 @@
+\input{preamble}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\titleset{2}{24 September 2014}{Rahul Dalal}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\abs}[1]{\l|{#1}\r|}
+
+\prob{1}
+
+\begin{lemma}
+  \label{abs-easy-props}
+  Let $K$ be a field equipped with an absolute value $\abs{-}$. Then:
+  \begin{enumerate}
+  \item $\abs{-x} = \abs{x}$ for all $x \in K$;
+  \item $\abs{1} = 1$;
+  \item $\abs{\o n} \le n$ for $\o n \ce 1 + \cdots + 1 \in K$ the
+    image of $n \in \N$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}[leftmargin=*]
+  \item We have $\abs{-x}^2 = \abs{(-x)^2} = \abs{x^2} = \abs{x}^2$,
+    and the claim follows since $\abs{x},\abs{-x} \in \R_{\ge 0}$.
+  \item Choose any $x \in K - \{0\}$. Then $\abs{x} \ne 0$ and
+    $\abs{1}\abs{x} = \abs{1x} = \abs{x}$, implying $\abs{1} = 1$.
+  \item Immediate from (2) and the triangle inequality. \qedhere
+  \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+  \label{abs-determined-integers}
+  An $\abs{-}$ be an absolute value on $\Q$ is determined by its
+  restriction to $\Z_{> 1} \subset \Q$. In particular, two absolute
+  values $\abs{-}_1, \abs{-}_2$ on $\Q$ are equivalent if their
+  restrictions to $\Z_{> 1}$ are equivalent.
+\end{lemma}
+
+\begin{proof}
+  Any $x \in \Q$ can be written as $a/b$ for $a,b \in \Z$ and $b \ne
+  0$. Then we must have $\abs{x} = \abs{a}/\abs{b}$. This combined
+  with (1) and (2) of Lm.~\ref{abs-easy-props} finishes the proof.
+\end{proof}
+
+\begin{lemma}
+  \label{log-lim}
+  For $x \in \R$ we have $(1 + nx)^{1/n} \to 1$ as $n \to \infty$.
+\end{lemma}
+
+\begin{proof}
+  If $x = 0$ this is obvious. Otherwise write $(1 + nx)^{1/n}$ as
+  $n^{1/n} \cdot (1/n+x)^{1/n}$. Then as $n \to \infty$ we have
+  \[
+  \log(n^{1/n}) = \log(n)/n \to 0 \implies n^{1/n} \to 1,
+  \]
+  and clearly $(1/n+x)^{1/n} \to 1$.
+\end{proof}
+
+\begin{lemma}
+  \label{abs-bound}
+  Let $\abs{-}$ be an absolute value on $\Q$. Let $a,b \in \Z_{>
+    1}$. Then
+  \[
+  \abs{b} \le \max\{\abs{a}^{\log_a(b)}, 1\}.
+  \]
+\end{lemma}
+
+\begin{proof}
+  For $n \in \N$ write $b^n$ in base $a$: $b^n = \sum_{i=0}^k c_ia^i$,
+  where $0 \le c_i \le a - 1$ and $k \le \log_a(b^n) = n
+  \log_a(b)$. By the triangle inequality and (3) of
+  \ref{abs-easy-props} we get
+  \begin{align*}
+    &\abs{b}^n = \abs{b^n} \le \sum_{i=0}^k \abs{c_ia^i} \le
+    \sum_{i=0}^k c_i \abs{a}^i \le (k+1) \cdot a \cdot
+    \max\{\abs{a}^k,1\} \abs{b} \le a^{1/n} \\ \implies &\abs{b} \le
+    a^{1/n} (1 + n \log_a(b))^{1/n} \max\{\abs{a}^{\log_a(b)},1\}.
+  \end{align*}
+  Then, letting $n \to \infty$, we're done by Lm. \ref{log-lim}.
+\end{proof}
+
+Now the proof of Ostrowski's theorem. Let $\abs{-}$ be a nontrivial
+absolute value on $\Q$. We have two cases:
+\begin{enumerate}[leftmargin=*]
+\item Assume $\abs{b} > 1$ for some $b \in \Z_{> 1}$. Then by
+  Lm. \ref{abs-bound}, for any $a \in \Z_{> 1}$ we must have
+  $\abs{a}^{\log_a(b)} > 1$, and since $b > 1 \implies \log_a(b) > 0$,
+  this implies $\abs{a} > 1$. Now Lm. \ref{abs-bound} tells us
+  \[
+  \abs{b} \le \abs{a}^{\log_a(b)} = \abs{a}^{\log(b)/\log(a)} \implies
+  \abs{b}^{1/\log(b)} \le \abs{a}^{1/\log(a)}.
+  \]
+  By symmetry this inequality must in fact be an equality. So there
+  must be some $t \in \R_{> 0}$ such that for all $a \in \Z_{> 1}$,
+  \[
+  \abs{a}^{1/\log(a)} = t \implies \abs{a} = t^{\log(a)} =
+  a^{\log(t)},
+  \]
+  and hence (by Lm. \ref{abs-determined-integers}) $\abs{-}$ is
+  equivalent to $\abs{-}_\infty$.
+\item Assume $\abs{a} \le 1$ for all $a \in \Z_{> 1}$. Since $\abs{-}$
+  is nontrivial, for some $b \in \Z_{> 1}$ we must have $\abs{b} <
+  1$. We have a prime factorisation $b = \prod p^{v_p}$, which shows
+  that $\abs{p} < 1$ for some prime $p$.
+
+  We claim for all other primes $q \ne p$ we must have $\abs{q} = 1$.
+  Suppose not, and $\abs{q} < 1$. Choose $k \in \N$ such that
+  $\abs{p^k} = \abs{p}^k < 1/2$ and $\abs{q}^k = \abs{q}^k <
+  1/2$. Since $p^k,q^k$ are coprime, we may choose $a,b \in \Z$ such
+  that $ap^k + bq^k = 1$. Then (applying (1) and (2) of
+  Lm. \ref{abs-easy-props} and the triangle inequality)
+  \[
+  1 = \abs{1} = \abs{ap^k + bq^k} \le \abs{a}\abs{p^k} +
+  \abs{b}\abs{q^k} \le \abs{p^k} + \abs{q^k} < 1/2 + 1/2 = 1,
+  \]
+  a contradiction.
+
+  So there is a unique prime $p$ such that $\abs{p} < 1$, and $\abs{q}
+  = 1$ for all other primes $q \ne p$. It is then clear (again
+  applying unique factorisation and Lm. \ref{abs-determined-integers})
+  that $\abs{-}$ is equivalent to $\abs{-}_p$.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\m}{\mathfrak{m}}
+
+We know if $v \c K^\times \to \R$ is a discrete valuation then $\O_v$
+is a PID, hence noetherian. Conversely, assume $\O_v$ is
+noetherian. Then the $\m_v \ce \{x \in \O_v \mid v(x) > 0\}$ must be a
+finitely generated ideal $(x_1, \ldots, x_n)$. Without loss of
+generality assume $v(x_1)$ is minimal among
+$v(x_1),\ldots,v(x_n)$. Then for any $x \in \m_v$ we may write $x =
+\sum_{i=1}^n a_ix_i$ for some $a_i \in \O_v$, implying
+\[
+v(x) \ge \min \{v(a_ix_i)\}_{i=1}^n \ge \min \{v(x_i)\}_{i=1}^n =
+v(x_1).
+\]
+Thus $v(x_1)$ is a minimum positive element in $\im(v)$. The following
+lemma then finishes the proof.
+
+\begin{lemma}
+  \label{valuation-discrete-min}
+  Let $K$ be a field and $v \c K^\times \to \R$ a valuation. Then $v$
+  is discrete if and only if $\im(v)$ has a minimum positive element.
+\end{lemma}
+
+\begin{proof}
+  The only if direction is clear, so assume $\im(v)$ has a minimum
+  positive element $v(x)$. We just need to show that $v(x)$ generates
+  $\im(v)$, so it suffices to show for any $y \in K^\times$ with $v(y)
+  > 0$ we have $v(y) = n \cdot v(x)$ for some $n \in \N$. By
+  minimality we have $v(y) \ge v(x)$, so we may write $v(y) = n \cdot
+  v(x) + r$ for some $0 \le r < v(x)$. But we have $r = v(yx^{-n})$ so
+  we must have $r = 0$, lest minimality of $v(x)$ be contradicted.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+\begin{itemize}[leftmargin=*]
+\item Assume $\abs{-}$ is non-archimedean. Then for $n \in \Z_{> 0}$
+  we have $\abs{n} = \abs{1 + \cdots + 1} \le \abs{1} = 1$. Since
+  $\abs{0} = 0$ and $\abs{-n} = \abs{n}$ this implies $\{\abs{n} : n
+  \in \Z\}$ is bounded.
+\item Assume $\{\abs{n} : n \in \Z\}$ is bounded by $R > 0$. Let $x,y
+  \in K$, and suppose without loss of generality that $\abs{x} \ge
+  \abs{y}$. Then for $k \in \N$ we have
+  \[
+  \abs{x+y}^n = \abs{(x+y)^n} = \abs{\sum_{i=0}^k \binom{k}{i} x^i
+    y^{k-i}} \le \sum_{i=0}^k \abs{\binom{k}{i}} \abs{x}^i
+  \abs{y}^{k-i} \le (k+1)R\abs{x}^k,
+  \]
+  so $\abs{x+y} \le (k+1)^{1/k}R^{1/k}\abs{x}$. Taking $k \to \infty$,
+  we have $(k+1)^{1/k} \to 1$ and $R^{1/k} \to 1$, so we get
+  $\abs{x+y} \le \abs{x}$, proving $\abs{-}$ is non-archimedean.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{4}
+
+\subprob{a}
+
+Suppose $x_n \to x \in K$ and $x \ne 0$. Then $\abs{x} > 0$, so choose
+$\epsilon < \abs{x}$. For $n$ large enough we have $\abs{x_n - x} <
+\epsilon < \abs{x}$. It follows that
+\[
+\abs{x} \le \max\{\abs{x_n}, \abs{x_n-x}\} \implies \abs{x} \le
+\abs{x_n}, \quad \abs{x_n} \le \max\{\abs{x}, \abs{x_n-x}\} = \abs{x},
+\]
+and hence $\abs{x_n} = \abs{x}$.
+
+\subprob{b}
+
+Assume $\abs{x_{n+1}-x_n} \to 0$ as $n \to \infty$. Then for each
+$\epsilon > 0$ there is some $n_0 \in \N$ such that for $n > n_0$ we
+have $\abs{x_{n+1}-x_n} < \epsilon$. Then for $n > m > n_0$ we have
+\[
+\abs{x_n - x_m} \le \max\{\abs{x_n-x_{n-1}}, \ldots,
+\abs{x_{m+1}-x_m}\} < \epsilon,
+\]
+proving $(x_n)$ is Cauchy.
+
+Conversely suppose $(x_n)$ is Cauchy, and fix any $\epsilon > 0$. Then
+for $m,n$ large enough we have $\abs{x_n - x_m} < \epsilon$. But then
+\[
+\abs{x_{n+1}-x_n} \le \max\{\abs{x_{n+1}-x_m}, \abs{x_n-x_m}\} <
+\epsilon,
+\]
+so $\abs{x_{n+1}-x_n} \to 0$ as $n \to \infty$.
+
+\subprob{c}
+
+Here's a lazy proof: let $\hat K$ be a completion of $K$ with respect
+to $\abs{-}$. So we have an isometric embedding $K \inj \hat K$, and
+$\hat K$ is non-archimedean (this is immediate from Problem 3, for
+instance). Then a Cauchy sequence $(x_n)$ in $K$, which does not
+coverge to $0$, converges to some nonzero $x \in \hat K$, so by (a) we
+have $\abs{x_n} = \abs{x}$ for $n$ large enough. In particular
+$\abs{x_n} = \abs{x_m}$ for $m,n$ large enough.
+
+\subprob{d}
+
+If $K$ is complete then the series $\sum_{n=1}^\infty x_n$ converges
+if and only if the sequence $(\sum_{n=1}^N x_n)$ is Cauchy. By (b)
+this is true if and only if as $n \to \infty$,
+\[
+\textstyle{\abs{\sum_{n=1}^{N+1} x_n - \sum_{n=1}^N x_n} \to 0 \iff
+\abs{x_n} \to 0 \iff x_n \to 0.}
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{5}
+
+Fix a prime $p$.
+
+\begin{lemma}
+  \label{padic-geometric}
+  The series $\sum_{i=0}^\infty p^i$ converges to $1/(1-p)$ in
+  $\Q_p$.
+\end{lemma}
+
+\begin{proof}
+  For $n \in \N$ we have by the usual geometric series formula that
+  $x_n \ce \sum_{i=0}^n p^i = (1-p^{n+1})/(1-p)$. Then as $n \to
+  \infty$,
+  \[
+  \abs{x_n - \frac{1}{1-p}}_p = \abs{\frac{p^{n+1}}{1-p}}_p \to 0,
+  \]
+  so $x_n \to 1/(1-p)$ in $\Q_p$.
+\end{proof}
+
+\begin{lemma}
+  \label{periodic-algorithm}
+  Let $(x_n)$ be a sequence of elements of some set $X$. Suppose there
+  is a finite set $A$, maps $\phi \c A \to A$ and $\psi \c A \to X$,
+  and an element $a_1 \in A$ such that $x_n = \psi(\phi^{n-1}(a_1))$
+  for $n \in \N$. Then $(x_n)$ is eventually periodic.
+\end{lemma}
+
+\begin{proof}
+  Let $a_n \ce \phi^{n-1}(a_1)$ for $n \in \N$. Since $A$ is finite,
+  we must have $a_m = a_n$ for some $n > m$. It is then clear that
+  $(a_n)$ is eventually periodic, and hence $(x_n)$ must be too.
+\end{proof}
+
+\begin{lemma}
+  \label{periodic-add}
+  Let $x = \sum_{n=0}^\infty x_np^n \in \Z_p$. Let $k \in \Z_{>
+    0}$. Define $y \ce x + k$ and write $y = \sum_{n=0}^\infty
+  y_np^n$. If $(y_n)$ is eventually periodic, then so is $(x_n)$.
+\end{lemma}
+
+\begin{proof}
+  Write $k = \sum_{n=0}^\infty k_n p^n$. Set $r_{-1} \ce 0$. Then for
+  $n \ge 0$ we have $x_n + k_n + r_{n-1} = y_n + r_np$. For $n$ large
+  enough we have $k_n = 0$, and $y_n$ is uniquely determined by
+  $(y_{n-1},\ldots,y_{n-m})$ for some fixed $m \in \N$, and hence
+  $x_n,r_n,y_n$ are uniquely determined by the tuple
+  $(r_{n-1},y_{n-1},\ldots,y_{n-m})$. We are then done by
+  Lm. \ref{periodic-algorithm}, taking our finite set $A$ to be
+  $(\Z/p)^{m+1}$.
+\end{proof}
+
+\subprob{a}
+
+After scaling by a power of $p$, it suffices to show that $x \in \Z_p$
+is rational if and only if its $p$-adic expansion $\sum_{n=0}^\infty
+x_np^n$ is eventually periodic.
+\begin{itemize}
+\item Assume $x$ is rational. By Lm. \ref{periodic-add} we may assume
+  $x > 0$, so we can write $x = a/b$ with $a,b \in \Z_{> 0}$. Write $a
+  = \sum_{n=0}^u a_np^n$ and $b = \sum_{n=0}^v b_np^n$. Then we can
+  write $bx = a$ as
+  \[
+  \textstyle{r_{n-1} + \sum_{i=0}^v b_ix_{n-i} = a_n + r_np} \quad
+  \text{for } n \ge 0,
+  \]
+  where we take $r_n = x_n = 0$ for $n < 0$ and $a_n = 0$ for $n >
+  u$. This implies for $n > u$ that $x_n,r_n$ are determined uniquely
+  by $(r_{n-1},x_{n-1},\ldots,x_{n-v})$. We are then done by
+  Lm. \ref{periodic-algorithm}, taking our finite set $A$ to be
+  $(\Z/p)^{v+1}$.
+\item Assume $(x_n)$ is eventually periodic. Then we can write $x = k
+  + lp^m\sum_{n=0}^\infty p^n$ for some $k,l,m \in \Z_{\ge 0}$. By
+  Lm. \ref{padic-geometric} this implies $x$ is rational.
+\end{itemize}
+
+\subprob{b}
+
+Obviously if $x = \sum_{n=n_0}^\infty x_np^n \in \Z_{\ge 0}$ then $x_n
+= 0$ for $n$ large enough, so it can't be that $x_n = p-1$ for all but
+finitely many $n$. So assume $x < 0$. And again scaling by a power of
+$p$ we may assume $n_0 = 0$. Let $y \ce -x$, so $y \in \Z_{> 0}$ and
+we can write $y = \sum_{n=0}^\infty y_np^n$ where $y_n$ is zero for
+$n$ large enough. Then we can write the relation $x + y = 0$ as $x_n +
+y_n + r_{n-1} = r_np$ for $n \ge 0$, where $r_{-1} \ce 0$ and $r_n \in
+\{0,1\}$ for all $n$. For $n$ large enough this gives $x_n + r_{n-1} =
+r_np$. In this situation if $r_{n-1} = 0$ then we must have $r_n = 0$
+and $x_n = 0$, and hence inductively $x_n$ is eventually zero. But
+then we would have $x \in \Z_{\ge 0}$, a contradiction. So we must
+have $r_n = 1$ for all $n$ large enough, which clearly implies $x_n =
+p-1$ for all $n$ large enough, as desired.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{6}
+
+I gave up and consulted the internet, specifically
+\url{deltaepsilons.wordpress.com/2009/10/06/the-artin-whaples-approximation-theorem/}.
+
+\begin{lemma}
+  \label{ineq-ineq}
+  Let $\abs{-}_1$ and $\abs{-}_2$ be inequivalent nontrivial absolute
+  values on a field $K$. Then there exists $x \in K$ such that
+  $\abs{x}_1 > 1$ and $\abs{x}_2 < 1$.
+\end{lemma}
+
+\begin{proof}
+  It suffices to find $x \in K$ such that $\abs{x}_1 \ge 1$ and
+  $\abs{x}_2 < 1$. For then, by symmetry, we can find $y \in K$ such
+  that $\abs{y}_1 < 1$ and $\abs{y}_2 \ge 1$, and then $\abs{x/y}_1 >
+  1$ and $\abs{x/y}_2 < 1$.
+
+  Assume this is not possible, i.e., that $\abs{x}_1 < 1 \iff
+  \abs{x}_2 < 1$ for $x \in K$. Let $K_i$ denote $K$ given the
+  topology of $\abs{-}_i$ for $i \in \{1,2\}$. Let $i \c K_1 \to K_2$
+  denote the identity map. If we show $i$ is continuous then by
+  symmetry it will be a homeomorphism, contradicting the inequivalence
+  of $\abs{-}_1, \abs{-}_2$.
+
+  To show $i$ is continuous it suffices to show for each $x \in K$ and
+  some sequence $(r_n) \in \R^\N$ converging to $0$ that the open
+  balls $B_2(x,r_n)$ in $K_2$ are also open in $K_1$. Since addition
+  is a homeomorphism in both topologies, it suffices to take $x =
+  0$. Now choose (by nontriviality) $a \in K$ with $\abs{a}_2 < 1$ and
+  choose our sequence to be $r_n \ce \abs{a}_2^n$. Since
+  multiplication is a homeomorphism in both topologies, it suffices to
+  show $B_2(0,1)$ is open in $K_1$. But our hypothesis is precisely
+  that $B_2(0,1) = B_1(0,1)$, so we're done.
+\end{proof}
+
+\begin{lemma}
+  \label{ineq-ineq-general}
+  Let $n \ge 2$ and $\abs{-}_1, \ldots, \abs{-}_n$ be pairwise
+  inequivalent nontrivial absolute values on a field $K$. Then there
+  exists $x \in K$ such that $\abs{x}_1 > 1$ and $\abs{x}_i < 1$ for
+  $2 \le i \le n$.
+\end{lemma}
+
+\begin{proof}
+  We proceed inductively. The case $n=2$ is
+  Lm. \ref{ineq-ineq}. Assume $n>2$. By the inductive hypothesis we
+  can find $y \in K$ such that $\abs{y}_1 > 1$ and $\abs{y}_i < 1$ for
+  $2 \le y \le n-1$. We now have three cases:
+  \begin{itemize}
+  \item Suppose $\abs{y}_n < 1$. Then we can set $x \ce y$ and we're done.
+  \item Suppose $\abs{y}_n > 1$. By the $n=2$ case we can choose $z
+    \in K$ such that $\abs{z}_1 > 1$ and $\abs{z}_n < 1$. Observe that
+    as $k \to \infty$,
+    \[
+    \abs{\frac{y^k}{1+y^k}}_i \to
+    \begin{cases}
+      1, & i \in \{1,n\} \\
+      0, & \text{otherwise}.
+    \end{cases}
+    \]
+    It follows that we're done if we take $x \ce zy^k(1+y^k)$ for $k$
+    large enough.
+  \item Suppose $\abs{y}_n = 1$. Again by the $n=2$ case we can choose
+    $z \in K$ such that $\abs{z}_1 > 1$ and $\abs{z}_n < 1$, and this
+    time we're done if we take $x \ce zy^k$ for $k$ large
+    enough. \qedhere
+  \end{itemize}
+\end{proof}
+
+\begin{lemma}
+  \label{artwh-special}
+  Let $n \ge 2$ and $\abs{-}_1, \ldots, \abs{-}_n$ be pairwise
+  inequivalent nontrivial absolute values on a field $K$. Fix
+  $\epsilon > 0$. There is an $x \in K$ such that $\abs{x_1 - 1} <
+  \epsilon$ and $\abs{x_i} < \epsilon$ for $2 \le i \le n$.
+\end{lemma}
+
+\begin{proof}
+  By Lm. \ref{ineq-ineq-general} choose $y \in K$ such that $\abs{y}_1
+  > 1$ and $\abs{y}_i < 1$ for $2 \le y \le n$. Then again use the
+  observation that
+  \[
+  \abs{\frac{y^k}{1+y^k}}_i \to
+  \begin{cases}
+    1, & i = 1 \\
+    0, & \text{otherwise}
+  \end{cases}
+  \]
+  to see that we can take $x \ce y^k/(1+y^k)$ for sufficiently large
+  $k \in \N$.
+\end{proof}
+
+Finally we prove Artin-Whaples in full. Let $x_1,\ldots,x_n \in K$ and
+fix $\epsilon > 0$. Choose $R > 0$ such that $R > \max\{\abs{x_j}_i :
+1 \le i,j \le n\}$. By Lm. \ref{artwh-special} we can for each $1 \le
+i \le n$ choose $y_i \in K$ such that
+\[
+\abs{y_i - \delta_{i,j}}_i < \frac{\epsilon}{nR} \quad \text{for } 1
+\le j \le n.
+\]
+Now set $x \ce \sum_{i=1}^n y_ix_i$. Then for each $1 \le i \le n$ we
+have
+\[
+\abs{x - x_i}_i = \abs{\sum_{j=1}^n (y_j-\delta_{i,j})x_j}_i \le
+\sum_{j=1}^n \abs{y_j-\delta_{i,j}}_i\abs{x_j}_i < \sum_{j=1}^n
+\frac{\epsilon}{n} = \epsilon. \qedhere
+\]
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

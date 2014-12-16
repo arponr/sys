@@ -1,0 +1,24 @@
+\input{../../preamble}
+\input{preamble}
+
+\title{Valuative criteria}
+\author{Arpon Raksit}
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Separated morphisms}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\nocite{goerssjardine, riehl-ssets, mathew-doldkan, weibel}
+\bibliographystyle{amsplain}
+\bibliography{refs}
+
+\end{document}

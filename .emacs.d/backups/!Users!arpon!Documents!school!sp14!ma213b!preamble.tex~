@@ -1,0 +1,97 @@
+\documentclass[10pt]{amsart}
+
+\usepackage[tmargin=1.0in, bmargin=1.0in,
+            lmargin=1.9in, rmargin=1.9in]{geometry}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz-cd}
+\usepackage{enumitem}
+\usepackage{eucal}
+\usepackage{ifthen}
+
+\frenchspacing
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead{}
+\fancyfoot{}
+\fancyfoot[R]{\ \\\small\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbf{A}}
+\renewcommand{\P}{\mathbb{P}}
+
+\renewcommand{\H}{\mathrm{H}}
+
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\F}{\mathcal{F}}
+
+\renewcommand{\l}{\left}
+\renewcommand{\r}{\right}
+\newcommand{\f}{\frac}
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\longfrom}{\longleftarrow}
+\newcommand{\oline}{\overline}
+\newcommand{\uline}{\underline}
+\newcommand{\wtilde}{\widetilde}
+\newcommand{\what}{\widehat}
+\newcommand{\del}{\partial}
+\renewcommand{\c}{\colon}
+\newcommand{\ce}{\mathrel{:=}}
+\renewcommand{\d}[2]{\frac{d #1}{d #2}}
+
+\newcommand{\Ob}{\operatorname{Ob}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\im}{\operatorname{im}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Res}{\operatorname*{Res}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\colim}{\operatorname*{colim}}
+\newcommand{\Div}{\operatorname{Div}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\PGL}{\mathrm{PGL}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{
+  \par\pushQED{\qed}
+  \normalfont
+  \topsep6\p@\@plus6\p@\relax
+  \trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces
+}{\popQED\endtrivlist\@endpefalse}
+\makeatother
+
+\renewcommand{\labelitemi}{---}
+\renewcommand{\labelitemii}{--}
+
+\newcommand{\prob}[1]{\section*{Problem #1}}
+\newcommand{\subprob}[1]{\subsection*{(#1)}}
+
+\newcommand{\titleset}[3]{
+  \title{Math 213b, Problem Set #1}
+  \author{Arpon Raksit}
+  \thanks{Due #2.
+    \ifthenelse{\equal{#3}{}}{}{I discussed problems with #3.}
+  }
+
+  \maketitle
+  \thispagestyle{fancy}
+}

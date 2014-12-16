@@ -1,0 +1,84 @@
+\documentclass[10pt]{amsart}
+
+\usepackage[tmargin=1.0in, bmargin=1.0in,
+            lmargin=1.9in, rmargin=1.9in]{geometry}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz-cd}
+\usepackage{enumitem}
+\usepackage{eucal}
+\usepackage{ifthen}
+
+\frenchspacing
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead{}
+\fancyfoot{}
+\fancyfoot[R]{\ \\\small\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+\renewcommand{\H}{\mathrm{H}}
+\newcommand{\Gr}{\mathrm{Gr}}
+\newcommand{\GL}{\mathrm{GL}}
+\renewcommand{\Vec}{\mathrm{Vec}}
+
+\renewcommand{\l}{\left}
+\renewcommand{\r}{\right}
+\newcommand{\f}{\frac}
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\longfrom}{\longleftarrow}
+\newcommand{\oline}{\overline}
+\newcommand{\uline}{\underline}
+\newcommand{\wtilde}{\widetilde}
+\newcommand{\what}{\widehat}
+\newcommand{\del}{\partial}
+\newcommand{\ce}{\mathrel{:=}}
+\newcommand{\ec}{\mathrel{=:}}
+\renewcommand{\c}{\colon}
+
+\newcommand{\Ob}{\operatorname{Ob}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\pr}{\mathrm{pr}}
+\newcommand{\colim}{\operatorname*{colim}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem*{notation}{Notation}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\labelitemi}{---}
+\renewcommand{\labelitemii}{--}
+
+\newcommand{\prob}[1]{\section*{Problem #1}}
+\newcommand{\subprob}[2]{\subsection*{Part #1}}
+
+\newcommand{\titleset}[3]{
+  \title{Math 231b, Problem Set #1}
+  \author{Arpon Raksit}
+  \thanks{Due #2.
+    \ifthenelse{\equal{#3}{}}{}{I discussed problems with #3.}
+  }
+  \maketitle
+  \thispagestyle{fancy}
+}

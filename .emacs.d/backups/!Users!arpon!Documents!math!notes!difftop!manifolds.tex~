@@ -1,0 +1,2361 @@
+\input{preamble}
+
+\title{Differentiable manifolds} 
+\author{Arpon Raksit} 
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+  These are the notes I have taken in reading (sections of) {\itshape
+    Foundations of Differentiable Manifolds and Lie Groups} by Warner,
+  and are basically just a regurgitation of the text with details
+  filled in to clarify the material for myself.
+\end{abstract}
+
+\maketitle 
+\tableofcontents
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Basic notions}
+
+\begin{ntns}
+  Let $\N := \{1, 2, \ldots\}$ the {\itshape natural numbers}. Let
+  $\N_0 := \{0\} \cup \N$ the {\itshape natural numbers with
+    zero}. Let $\R$ denote the field of {\itshape real numbers}. Let
+  $\C$ denote the field of {\itshape complex numbers}.
+  
+  \medskip\noindent Let $d \in \N$. For $1 \le i \le d$ define the
+  {\itshape $i$-th canonical coordinate function} $r_i : \R^d \to \R$
+  by
+  \[
+  r_i(x_1,x_2,\ldots,x_d) := x_i\quad\text{for all}\quad
+  (x_1,x_2,\ldots,x_d) \in \R^d.
+  \]
+  
+  \medskip\noindent For $\alpha = (\alpha_1,\alpha_2,\ldots,\alpha_d)
+  \in (\N_0)^d$, define
+  \begin{enumerate}
+  \item $[\alpha] := \sum_{i=1}^d \alpha_i$,
+  \item $\alpha! := \prod_{i=1}^d \alpha_i!$, and
+  \item $\displaystyle{\f{\p^\alpha}{\p r^\alpha} :=
+      \f{\p^{[\alpha]}}{\p r_1^{\alpha_1} \p r_2^{\alpha_2} \cdots \p
+        r_d^{\alpha_d}}}$. Note if $[\alpha] = 0$ then
+    $\displaystyle{\f{\p^\alpha}{\p r^\alpha}}$ is just the identity
+    operator on maps.
+  \end{enumerate}
+\end{ntns}
+
+\begin{dfn}
+  Let $d \in \N$. Let $U \subset \R^d$ open. For $n \in \N, k \in
+  \N_0$ we say $f : U \to \R^n$ is {\itshape differentiable of class
+    $C^k$} (or simply, is $C^k$) if $\p^\alpha(r_i \circ f)/\p
+  r^\alpha$ exists and is continuous on $U$ for all $1 \le i \le d$
+  and $\alpha \in (\N_0)^d$ with $[\alpha] \le k$. We say $f$ is
+  $C^\infty$ if $f$ is $C^k$ for all $k \in \N_0$.
+\end{dfn}
+
+\begin{dfns}
+  Let $d \in \N$. Let $X$ a topological space. We say $X$ is a {\it
+    locally Euclidean space of dimension $d$} if $X$ is Hausdorff and
+  for each $x \in X$ there exists a neighbourhood $U \subset X$ of $x$
+  homeomorphic to an open set $V \subset \R^d$. If $U \subset X$ a
+  connected open set, $V \subset \R^d$ open and $\varphi : U \to V$ a
+  homeomorphism, then $\varphi$ is called a {\itshape coordinate
+    map}. For $1 \le i \le d$ we call $x_i := r_i \circ \varphi$ the
+  {\itshape $i$-th coordinate function}. We call the pair $(U,
+  \varphi)$, or sometimes the tuple $(U, x_1, x_2, \ldots, x_d)$, a
+  {\itshape coordinate system}. A coordinate system $(U, \varphi)$ is
+  {\itshape cubic} if $\im \varphi$ is an open cube centred at the
+  origin $0 \in \R^d$. We say $U$ is {\itshape centred at $x \in U$}
+  if $\varphi(x) = 0$.
+\end{dfns}
+
+\begin{lem}
+  \label{lem-localeuclidsubprod}
+  Let $X$ a locally Euclidean space of dimension $d$.
+  \begin{enumerate}
+  \item Let $U \subset X$ open. Then $U$ is locally Euclidean of
+    dimension $d$ (in the subspace topology).
+  \item Let $Y$ a locally Euclidean space of dimension $e$. Then $X
+    \times Y$ is locally Euclidean of dimension $d + e$ (in the
+    product topology).
+  \end{enumerate}
+\end{lem}
+
+\begin{proof}
+  (Recall that a subspace of a Hausdorff space and a product of
+  Hausdorff spaces are Hausdorff.)
+  
+  \medskip\noindent First (1). Let $x \in U$. Since $X$ is locally
+  Euclidean, there exists a homeomorphism $\varphi : V \to W$, where
+  $V$ is a neighbourhood in $X$ of $x$ and $W$ an open subset of
+  $\R^d$. Then $U \cap V$ is open in $X$ since $U,V$ are open in
+  $X$. It follows that $U \cap V$ is open in $U$ and $V$ (in the
+  subspace topologies). Then $U \cap V$ is a neighbourhood in $U$ of
+  $x$, and since $\varphi$ is a homeomorphism, $W' := \varphi(U \cap
+  V)$ is open in $W$ and hence open in $\R^d$. Finally
+  $\varphi|_{U\cap V} : U \cap V \to W'$ is a homeomorphism. So indeed
+  $U$ is locally Euclidean of dimension $d$.
+
+  \medskip\noindent Now (2). Let $(x,y) \in X \times Y$. Since $X,Y$
+  are locally Euclidean of dimensions $d,e$ respectively, there exist
+  homeomorphisms $\varphi : U \to W_1$ and $\psi : V \to W_2$ where $U
+  \subset X$ is a neighbourhood of $x$, $W_1$ an open set in $\R^d$,
+  $V \subset Y$ a neighborhood of $Y$, and $W_2$ an open set in
+  $\R^e$. Then $U \times V \subset X \times Y$ is a neighbourhood of
+  $(x,y)$ and $W_1 \times W_2$ an open set in $\R^d \times \R^e$. Let
+  $(\varphi,\psi) : U \times V \to W_1 \times W_2$ the map $(u,v)
+  \mapsto (\varphi(u),\psi(v))$, which is clearly a homeomorphism, and
+  let $\gamma$ the canonical homeomorphism $\R^d \times \R^e \to
+  \R^{d+e}$. Then $W := \gamma(W_1 \times W_2)$ is open in $\R^{d+e}$
+  and $\gamma \circ (\varphi, \psi) : U \times V \to W$ is a
+  homeomorphism. So indeed $X \times Y$ is locally Euclidean of
+  dimension $d+e$.
+\end{proof}
+
+\begin{dfn}
+  \label{dfn-diffstructure}
+  Let $X$ a locally Euclidean space of dimension $d$ and $k \in \N_0
+  \cup \{\infty\}$. An indexed collection $\A :=
+  \{(U_\alpha,\varphi_\alpha) \mid \alpha \in A\}$ of coordinate
+  systems is {\itshape differentiable structure of class $C^k$} on $X$
+  if
+  \begin{enumerate}
+  \item $\bigcup_{\alpha \in A} U_\alpha = X$,
+  \item $\varphi_\alpha \circ
+    \varphi_\beta^{-1}|_{\varphi_\beta(U_\alpha \cap U_\beta)}$ is
+    $C^k$ for all $\alpha,\beta \in A$, and
+  \item if $(U,\varphi)$ is any coordinate system on $X$ such that
+    $\varphi_\alpha \circ \varphi^{-1}|_{\varphi(U \cap U_\alpha)}$
+    and $\varphi \circ \varphi_\alpha^{-1}|_{\varphi_\alpha(U \cap
+      U_\alpha)}$ are $C^k$ for all $\alpha \in A$, then $(U,\varphi)
+    \in \A$.
+  \end{enumerate}
+\end{dfn}
+
+\begin{lem}
+  \label{lem-maximaldiffstruct}
+  Let $X$ a locally Euclidean space of dimension $d$ and $k \in \N_0
+  \cup \{\infty\}$. Let $\A_0 := \{(U_\alpha,\varphi_\alpha) \mid
+  \alpha \in A\}$ any collection of coordinate systems on $X$
+  satisfying conditions (1) and (2) of \cref{dfn-diffstructure}. There
+  is a unique differentiable structure $\A$ of class $C^k$ on $X$
+  containing $\A$.
+\end{lem}
+
+\begin{proof}
+  We claim
+  \begin{align*}
+    \A := \{&(U, \varphi)\ \text{a coordinate system on}\ X \\ &\mid
+    \varphi_\alpha \circ \varphi^{-1}|_{\varphi(U \cap U_\alpha)}\
+    \text{and}\ \varphi \circ \varphi_\alpha^{-1}|_{\varphi_\alpha(U
+      \cap U_\alpha)}\ \text{are}\ C^k\ \text{for all}\ \alpha \in A\}
+  \end{align*}
+  is the required differentiable structure. Since $\A_0$ satisfies
+  (2), $\A_0 \subset \A$. Then since $\A_0$ satisfies (1), it follows
+  that $\A$ satisfies (1). Now let $(U, \varphi), (V, \psi) \in
+  \A$. Let $x \in U \cap V$. Let $\alpha \in A$ such that $x \in
+  U_\alpha$. Then by definition of $\A$, $\varphi \circ
+  \varphi_\alpha^{-1}|_{\varphi_\alpha(U_\alpha \cap U)}$ and
+  $\varphi_\alpha \circ \psi^{-1}|_{\psi(U_\alpha \cap V)}$ are $C^k$,
+  so the composition
+  \[
+  \varphi \circ \varphi_\alpha^{-1} \circ \varphi_\alpha \circ
+  \psi^{-1}|_{\psi(U_\alpha \cap U \cap V)} = \varphi \circ
+  \psi^{-1}|_{\psi(U_\alpha \cap U \cap V)}
+  \]
+  is $C^k$. Since $\psi$ is a homeomorphism, $\psi(U_\alpha \cap U
+  \cap V)$ is open in $\R^d$, whence $\varphi \circ \psi^{-1}|_{\psi(U
+    \cap V)}$ is $C^k$ on a neighbourhood of $\psi(x)$. Since $x \in U
+  \cap V$ was arbitrary and being $C^k$ is a local condition, it
+  follows that $\varphi \circ \psi^{-1}|_{\psi(U \cap V)}$ is $C^k$. A
+  similar argument gives that $\psi \circ \varphi^{-1}|_{\varphi(U
+    \cap V)}$ is $C^k$. Hence $\A$ satisfies (2). Finally suppose
+  $(U,\varphi)$ is any coordinate system on $X$ such that $\psi \circ
+  \varphi^{-1}|_{\varphi(U \cap V)}$ and $\varphi \circ
+  \psi^{-1}|_{\psi(U \cap V)}$ are $C^k$ for all $(V, \psi) \in
+  \A$. Then in particular $\varphi_\alpha \circ
+  \varphi^{-1}|_{\varphi(U \cap U_\alpha)}$ and $\varphi \circ
+  \varphi_\alpha^{-1}|_{\varphi_\alpha(U \cap U_\alpha)}$ are $C^k$
+  for all $\alpha \in A_0$, since $\A_0 \subset \A$. So $(U, \varphi)
+  \in \A$ by definition of $\A$. Hence $\A$ satisfies (3).
+
+  \medskip\noindent Then let $\A'$ any differentiable structure of
+  class $C^k$ on $X$ containing $\A_0$. By (3) we clearly must have
+  $\A \subset \A'$. Then let $(U, \varphi) \in \A'$. By (2) $\psi
+  \circ \varphi^{-1}|_{\varphi(U \cap V)}$ and $\varphi \circ
+  \psi^{-1}|_{\psi(U \cap V)}$ are $C^k$ for all $(V, \psi) \in
+  \A'$. In particular $\varphi_\alpha \circ \varphi^{-1}|_{\varphi(U
+    \cap U_\alpha)}$ and $\varphi \circ
+  \varphi_\alpha^{-1}|_{\varphi_\alpha(U \cap U_\alpha)}$ are $C^k$
+  for all $\alpha \in A$, since $\A_0 \subset \A'$. Then $(U, \varphi)
+  \in \A$ by definition of $\A$, so $\A' \subset \A$. Thus indeed $\A'
+  = \A$, implying that $\A$ is unique.
+\end{proof}
+
+\begin{dfn}
+  Let $M$ be a second countable, locally Euclidean space of dimension
+  $d$. Let $k \in \N_0 \cup \{\infty\}$ and $\A$ a differentiable
+  structure of class $C^k$ on $M$. The pair $(M,\A)$, though often the
+  structure $\A$ will be implicit and we just say $M$, is a {\itshape
+    $d$-dimensional differentiable manifold of class $C^k$}.
+\end{dfn}
+
+\begin{rem}
+  From now on, unless explicitly stated otherwise, by {\itshape
+    differentiable} (or {\itshape smooth}) we will mean {\itshape
+    differentiable of class $C^\infty$}. That is, we will be
+  restricting ourselves to talking about infinitely differentiable
+  maps and $C^\infty$ manifolds.
+\end{rem}
+
+\begin{ntn}
+  For $M$ a differentiable manifold, we denote the dimension of $M$ by
+  $\dim M$.
+\end{ntn}
+
+\begin{exas}
+  \label{exas-manifolds}
+  \begin{alphenum}
+  \item We have a standard differentiable structure on $\R^d$, for $d
+    \in \N$. This is the unique differentiable structure $\A$ (as in
+    \cref{lem-maximaldiffstruct}) containing $(\R^d, \id_{\R^d})$,
+    where $\id_{\R^d} : \R^d \to \R^d$ is the identity map. (Note that
+    the lemma applies because $\{(\R^d, \id_{\R^d})\}$ trivially
+    satisfies both conditions (1) and (2) in
+    \cref{dfn-diffstructure}.) From the proof of the lemma we have
+    that
+    \[
+    \A = \{(U, \varphi)\ \text{a coordinate system on}\ \R^d \mid
+    \id_{\R^d} \circ\, \varphi^{-1}, \varphi \circ \id_{\R^d}^{-1}|_U\
+    \text{are smooth}\}.
+    \]
+    But $\id_{\R^d} \circ\, \varphi^{-1} = \varphi^{-1}$ and $\varphi
+    \circ \id_{\R^d}^{-1}|_U = \varphi$ so the above reduces to
+    \[
+    \A = \{(U, \varphi)\ \text{a coordinate system on}\ \R^d \mid
+    \varphi,\varphi^{-1} \text{are smooth}\}.
+    \]
+    Note that $\varphi$ being smooth does not imply $\varphi^{-1}$
+    being smooth. As a counterexample, take $d = 1$ and the coordinate
+    system $(\R, f)$ where $f(x) := x^3$ for $x \in \R$. Obviously $f$
+    is smooth, but observe that $f^{-1}$ (the map $x \mapsto
+    \sqrt[3]x$) is not (specifically at $x = 0$).
+
+  \item Let $V$ a finite dimensional vector space over $\R$. Let $d :=
+    \dim V$. Choose a basis $\{e_1, e_2, \ldots, e_d\}$ for $V$ and
+    let $\{e^1, e^2, \ldots, e^d\}$ the dual basis of $V^*$. Then let
+    $\varphi : V \to \R^d$ be defined as
+    \[
+    \varphi(v) := (e^1(v), e^2(v), \ldots, e^d(v))\quad\text{for}\ v
+    \in V.
+    \]
+    Then $\varphi$ is an isomorphism of vector spaces and thus, in
+    particular, a bijection. It follows that if $V$ is given the
+    topology $\T := \{\varphi^{-1}(U) \mid U \subset \R^d\
+    \text{open}\}$, then $\varphi$ is a homeomorphism. Then (again by
+    \cref{lem-maximaldiffstruct}) we have a unique differentiable
+    structure $\A$ on $V$ which contains $(V, \varphi)$, again because
+    $\{(V,\varphi)\}$ trivially satisfies (1) and (2) from
+    \cref{dfn-diffstructure}.
+
+    \medskip\noindent We can check that the above topology $\T$ and
+    differentiable structure $\A$ are independent of the choice of
+    basis $\{e_1,e_2,\ldots,e_d\}$. Let $\{e_1',e_2',\ldots,e_d'\}$
+    another basis of $V$ and define $\varphi',\T',\A'$ analogously to
+    $\varphi,\T,\A$. Then $\varphi' \circ \varphi^{-1}, \varphi \circ
+    \varphi'^{-1} : \R^d \to \R^d$ are homeomorphisms. It follows that
+    \[
+    U \in \T \Leftrightarrow \varphi(U)\ \text{open in}\ \R^d
+    \Leftrightarrow (\varphi' \circ \varphi^{-1})(\varphi(U)) =
+    \varphi'(U)\ \text{open in}\ \R^d \Leftrightarrow U \in \T'.
+    \]
+    Hence $\T = \T'$, so the topology on $V$ is indeed independent of
+    the chosen basis. Then to show $\A = \A'$, it suffices to show
+    that $(V, \varphi') \in \A$. This holds because the maps $\varphi'
+    \circ \varphi^{-1}$ and $\varphi \circ \varphi'^{-1}$ are simply
+    given by (constant) invertible $d \times d$ matrices, and thus
+    have linear (hence smooth) component functions.
+
+  \item We can take $V := \C^d$ for $d \in \N$ as a special case of
+    (b), which gives us a $2d$-dimensional smooth manifold.
+
+  \item Let $d \in \N$. Define the {\itshape $d$-sphere},
+    \[
+    S^d := \left\{(x_1,x_2,\ldots,x_{d+1}) \in \R^{d+1}\ \middle|\
+      \sum_{i=1}^{d+1} (x_i)^2 = 1\right\}.
+    \]
+    Let $n := (0, 0, \ldots, 0, 1) \in S^d$ (the north pole) and $s :=
+    (0, 0, \ldots, 0, -1) \in S^d$ (the south pole). Define the
+    stereographic projections $p_n : S^d - \{n\} \to \R^d$ and $p_s :
+    S^d - \{s\} \to \R^d$ from $n$ and $s$ by
+    \[
+    p_n(\b x) := \left(\frac{x_i}{1-x_{d+1}}\right)_{1 \le i \le
+      d}\quad\text{and}\quad p_s(\b x) :=
+    \left(\frac{x_i}{1+x_{d+1}}\right)_{1 \le i \le d}
+    \]
+    for $\b x = (x_1,x_2,\ldots,x_{d+1})$ in the appropriate domains
+    of each. It is easy to check that $p_n$ and $p_s$ are invertible,
+    with
+    \begin{align*}
+      p_n^{-1}(\b y) &= \left(\frac{2y_1}{1+\sum_{i=1}^d (y_i)^2},
+        \frac{2y_2}{1+\sum_{i=1}^d (y_i)^2}, \ldots,
+        \frac{2y_d}{1+\sum_{i=1}^d (y_i)^2}, \frac{-1+\sum_{i=1}^d
+          (y_i)^2}{1+\sum_{i=1}^d (y_i)^2}\right), \\
+      p_s^{-1}(\b y) &= \left(\frac{2y_1}{1+\sum_{i=1}^d (y_i)^2},
+        \frac{2y_2}{1+\sum_{i=1}^d (y_i)^2}, \ldots,
+        \frac{2y_d}{1+\sum_{i=1}^d (y_i)^2}, \frac{1-\sum_{i=1}^d
+          (y_i)^2}{1+\sum_{i=1}^d (y_i)^2}\right)
+    \end{align*}
+    for $\b y = (y_1,y_2,\ldots,y_d) \in \R^d$. So then clearly
+    $p_n,p_s$ are homeomorphisms. Now let $\A := \{(S^d - \{n\}, p_n),
+    (S^d - \{s\}, p_s)\}$. Clearly $\A$ satisfies (1) from
+    \cref{dfn-diffstructure}. To check (2) (from from
+    \cref{dfn-diffstructure}) we must show that $p_n \circ
+    p_s^{-1}|_{\R^d - \{0\}}$ and $p_s \circ p_n^{-1}|_{\R^d - \{0\}}$
+    are differentiable. By computation we have
+    \[
+    (p_n \circ p_s^{-1})(\b y) = (p_s \circ p_n^{-1})(\b y) =
+    \left(\f{y_1}{\sum_{i=1}^d (y_i)^2},\f{y_2}{\sum_{i=1}^d
+        (y_i)^2},\ldots,\f{y_d}{\sum_{i=1}^d (y_i)^2}\right)
+    \]
+    for $\b y = (y_1,y_2,\ldots,y_d) \in \R^d - \{0\}$. Clearly this
+    is a smooth map, so indeed $\A$ satisfies (2). Thus by
+    \cref{lem-maximaldiffstruct} there is a (unique) differentiable
+    structure $\A^*$ on $S^d$ containing $\A$, which we take to be the
+    standard one on $S^d$.
+
+  \item Let $M$ a $d$-dimensional differentiable manifold with
+    differentiable structure $\A := \{(U_\alpha, \varphi_\alpha) \mid
+    \alpha \in A\}$. Let $U \subset M$ open. We claim
+    \[
+    \A_U := \{(U_\alpha \cap U, \varphi_\alpha|_{U_\alpha \cap U})
+    \mid \alpha \in A\}
+    \]
+    is a differentiable structure on $U$ (in the subspace
+    topology). (Since $M$ being second countable and locally Euclidean
+    of dimension $d$ implies $U$ is second countable and locally
+    Euclidean of dimension $d$ (\cref{lem-localeuclidsubprod}), this
+    gives us a canonical manifold structure on $U$.) We check the
+    conditions (1), (2) and (3) of \cref{dfn-diffstructure}. Since
+    \[
+    \textstyle{\bigcup_{\alpha \in A} U_\alpha = M \implies
+      \bigcup_{\alpha \in A} (U_\alpha \cap U) = \left(\bigcup_{\alpha
+          \in A} U_\alpha\right) \cap U = M \cap U = U},
+    \]
+    (1) is satisfied. Then for any $\alpha, \beta \in A$ we have by
+    restriction that
+    \[
+    \varphi_\alpha \circ \varphi_\beta^{-1}|_{\varphi_\beta(U_\alpha
+      \cap U_\beta)}\ \text{is}\ C^\infty \implies \varphi_\alpha
+    \circ \varphi_\beta^{-1}|_{\varphi_\beta(U \cap U_\alpha \cap
+      U_\beta)}\ \text{is}\ C^\infty,
+    \]
+    so (2) is satisfied. Finally suppose $(V,\varphi)$ is a coordinate
+    system on $U$ such that $\varphi_\alpha \circ
+    \varphi^{-1}|_{\varphi(V \cap U_\alpha)}$ and $\varphi \circ
+    \varphi_\alpha^{-1}|_{\varphi_\alpha(V \cap U_\alpha)}$ are
+    $C^\infty$ for all $\alpha \in A$. Then since $V$ is open in $U$
+    and $U$ is open in $X$, $V$ is open in $X$. Thus since $\A$
+    satisfies (3), $(V, \varphi) \in \A$, which by definition of
+    $\A_U$ means $(V,\varphi) \in \A_U$. So indeed (3) is satisfied by
+    $\A_U$ as well.
+
+  \item Let $n \in \N$ and let $d := n^2$. We have a clear embedding
+    of the set $\GL_n\R$ of invertible $n \times n$ real matrices into
+    $\R^d$. We can then view the determinant as a continuous map $\det
+    : \R^d \to \R$, whence $\GL_n\R$ is the open set $\{A \in \R^d
+    \mid \det A \ne 0\}$. Hence $\GL_n\R$ gets a manifold structure,
+    as in (e), as an open subspace of $\R^d$.
+
+  \item Let $M,N$ be differentiable manifolds with differentiable
+    structures
+    \[
+    \A_M := \{(U_\alpha,\varphi_\alpha) \mid \alpha \in A\},\ \A_N :=
+    \{(V_\beta, \psi_\beta) \mid \beta \in B\}\ \text{respectively}.
+    \]
+    Let $d := \dim M, e := \dim N$. Then $M \times N$ (in the product
+    topology, so that $M,N$ being second countable and locally
+    Euclidean of dimensions $d,e$ imply that $M \times N$ is second
+    countable and locally Euclidean of dimension $d+e$
+    (\cref{lem-localeuclidsubprod})) can be given a differentiable
+    structure as follows. We claim the collection
+    \[
+    \A_0 := \{(U_\alpha \times V_\beta, (\varphi_\alpha,\psi_\beta)
+    \mid \alpha \in A, \beta \in B\}
+    \]
+    satisfies conditions (1) and (2) of
+    \cref{dfn-diffstructure}. (Note, the definition of the map
+    $(\varphi_\alpha,\varphi_\beta) : U_\alpha \times V_\beta \to
+    \R^{d+e}$, where here we are implicitly including the composition
+    with the canonical homeomorphism $\R^d \times \R^e \to \R^{d+e}$,
+    and the fact that the map is a homeomorphism to its image are
+    given in \cref{lem-localeuclidsubprod}.) Since $\bigcup_{\alpha
+      \in A} U_\alpha = M$ and $\bigcup_{\beta \in B} V_\beta = N$, we
+    have
+    \[
+    \textstyle{\bigcup_{\alpha \in A,\beta \in B} U_\alpha \times
+      V_\beta = \left(\bigcup_{\alpha \in A} U_\alpha\right) \times
+      \left(\bigcup_{\beta \in B} V_\beta\right) = M \times N},
+    \]
+    so (1) is satisfied. Now let $\alpha,\gamma \in A$ and
+    $\beta,\delta \in B$. We know
+    \[
+    \varphi_\alpha \circ \varphi_\gamma^{-1}|_{\varphi_\gamma(U_\alpha
+      \cap U_\gamma)},\ \varphi_\gamma \circ
+    \varphi_\alpha^{-1}|_{\varphi_\alpha(U_\alpha \cap U_\gamma)},\
+    \psi_\beta \circ \psi_\delta^{-1}|_{\psi_\delta(V_\beta \cap
+      V_\delta)},\ \text{and}\ \psi_\delta \circ
+    \psi_\beta^{-1}|_{\psi_\beta(V_\beta \cap V_\delta)}
+    \]
+    are $C^\infty$. It then follows clearly that both
+    \begin{align*}
+      (\varphi_\alpha, \psi_\beta) &\circ
+      (\varphi_\gamma,\psi_\delta)^{-1}
+      |_{(\varphi_\gamma,\psi_\delta)(U_\alpha \times V_\beta \cap
+        U_\gamma \times V_\delta)} \\ &= (\varphi_\alpha \circ
+      \varphi_\gamma^{-1}, \psi_\beta \circ
+      \psi_\delta^{-1})|_{\varphi_\gamma(U_\alpha \cap U_\gamma)
+        \times \psi_\delta(V_\beta \cap V_\delta)}\ \ \text{and} \\
+      (\varphi_\gamma, \psi_\delta) &\circ
+      (\varphi_\alpha,\psi_\beta)^{-1}
+      |_{(\varphi_\alpha,\psi_\beta)(U_\alpha \times V_\beta \cap
+        U_\gamma \times V_\delta)} \\ &= (\varphi_\gamma \circ
+      \varphi_\alpha^{-1}, \psi_\delta \circ
+      \psi_\beta^{-1})|_{\varphi_\alpha(U_\alpha \cap U_\gamma) \times
+        \psi_\beta(V_\beta \cap V_\delta)}
+    \end{align*}
+    are $C^\infty$, so (2) is satisfied. Hence by
+    \cref{lem-maximaldiffstruct} there is a unique differentiable
+    structure $\A$ on $M \times N$ containing $\A_0$, which we take to
+    be the natural differentiable structure on the product manifold $M
+    \times N$.
+  \end{alphenum}
+\end{exas}
+
+\begin{dfns}
+  Let $(M,\A)$ a differentiable manifold. Let $U \subset M$ open. We
+  say $f : U \to \R$ is $C^\infty$ if $f \circ
+  \varphi^{-1}|_{\varphi(U \cap V)}$ is $C^\infty$ for all $(V,
+  \varphi) \in \A$. Let $N$ another differentiable manifold. We say a
+  continuous map $\psi : M \to N$ is $C^\infty$ if for all $W \subset
+  N$ open and $C^\infty$ functions $g : W \to \R$, the function $g
+  \circ \psi|_{\psi^{-1}(W)}$ is $C^\infty$ (note by continuity
+  $\psi^{-1}(W)$ is open in $M$).
+\end{dfns}
+
+\begin{lem}
+  \label{lem-diffmapequiv}
+  Let $(M,\A),(N,\B)$ differentiable manifolds. Let $\psi : M \to N$ a
+  continuous map. Then $\psi$ is $C^\infty$ if and only if $\tau \circ
+  \psi \circ \sigma^{-1}|_{\sigma(U\cap\psi^{-1}(V))}$ is $C^\infty$
+  for all $(U,\sigma) \in \A, (V, \tau) \in \B$.
+\end{lem}
+
+\begin{proof}
+  $(\Rightarrow)$ Let $(U,\sigma) \in \A$ and $(V, \tau) \in \B$. Let
+  $e := \dim N$, then let $\tau_i := r_i \circ \tau$ the $i$-th
+  component function of $\tau$ for $1 \le i \le e$. Then since $\psi$
+  is $C^\infty$, we have for $1 \le i \le e$ that $\tau_i \circ
+  \psi|_{U \cap\psi^{-1}(V)}$ is $C^\infty$, which (by definition)
+  implies that $\tau_i \circ \psi \circ \sigma^{-1}|_{\sigma(U \cap
+    \psi^{-1}(V))}$ is $C^\infty$. This by definition means that $\tau
+  \circ \psi \circ \sigma^{-1}|_{\sigma(U \cap \psi^{-1}(V))}$ is
+  $C^\infty$.
+
+  \medskip\noindent $(\Leftarrow)$ Let $W \subset N$ open and $g : W
+  \to \R$ a $C^\infty$ function. Let $(U, \sigma) \in \A$. Let $x \in
+  \sigma(U \cap \psi^{-1}(W))$ and let $(V, \tau) \in \B$ such that
+  $\psi(\sigma^{-1}(x)) \in V$. Since $g$ is $C^\infty$ we have that
+  $g \circ \tau^{-1}|_{\tau(V \cap W)}$ is $C^\infty$. And by
+  hypothesis we have $\tau \circ \psi \circ \sigma^{-1}|_{\sigma(U
+    \cap \psi^{-1}(V))}$ is $C^\infty$. It follows that the
+  composition
+  \[
+  g \circ \tau^{-1} \circ \tau \circ \psi \circ \sigma^{-1}|_{\sigma(U
+    \cap \psi^{-1}(V \cap W))} = g \circ \psi \circ
+  \sigma^{-1}|_{\sigma(U \cap \psi^{-1}(V \cap W))}
+  \]
+  is $C^\infty$. Since $\psi$ is continuous, $\sigma$ is a
+  homeomorphism, and $U \subset M,V \subset N, W \subset N,\im \sigma
+  \subset \R^d$ are open, we have $\sigma(U \cap \psi^{-1}(V \cap W)$
+  is an open neighbourhood of $x$ in $\R^d$, where $d := \dim
+  M$. Because $x$ was arbitrary, we have $g \circ \psi \circ
+  \sigma^{-1}|_{U \cap \psi^{-1}(W)}$ is $C^\infty$ on a neighbourhood
+  of each of the points in its domain, and since being $C^\infty$ is
+  local in $\R^d$, this implies $g \circ \psi \circ \sigma^{-1}|_{U
+    \cap \psi^{-1}(W)}$ is $C^\infty$ on the entire domain. Finally
+  since $(U,\sigma)$ was arbitrary, this by definition implies that $g
+  \circ \psi$ is $C^\infty$, and since $W,g$ were arbitrary, this by
+  definition implies $\psi$ is $C^\infty$.
+\end{proof}
+
+\begin{lem}
+  \label{lem-cinftynbhd}
+  Let $(M,\A),(N,\B)$ differentiable manifolds. Let $\psi : M \to N$ a
+  continuous map. Then $\psi$ is $C^\infty$ if and only if for every
+  $x \in M$ there exists a neighbourhood $U$ of $x$ such that
+  $\psi|_U$ is $C^\infty$.
+\end{lem}
+
+\begin{proof}
+  $(\Rightarrow)$ Trivial: for each $x \in M$ we can take the
+  neighborhood $U := M$.
+
+  \medskip\noindent $(\Leftarrow)$ Let $(V,\sigma) \in \A$ and
+  $(W,\tau) \in \B$. Let $x \in \sigma(V \cap \psi^{-1}(W))$. Let $U
+  \subset M$ a neighbourhood of $\sigma^{-1}(x)$ such that $\psi|_U$
+  is $C^\infty$. By the definition of the differentiable structure on
+  $U$ as a subspace of $M$ (see \cref{exas-manifolds}e) and
+  \cref{lem-diffmapequiv}, the restriction $\tau \circ \psi \circ
+  \sigma^{-1}|_{\sigma(U \cap V \cap \psi^{-1}(W))}$ of $\tau \circ
+  \psi \circ \sigma^{-1}|_{\sigma(V \cap \psi^{-1}(W))}$ is
+  $C^\infty$. Since $\sigma(U \cap V \cap \psi^{-1}(W))$ is an open
+  neighbourhood of $x$ and $x$ was arbitrary, we have that $\tau \circ
+  \psi \circ \sigma^{-1}|_{\sigma(V \cap \psi^{-1}(W))}$ is $C^\infty$
+  on a neighbourhood of each point in its domain. Since being
+  $C^\infty$ is a local condition in $\R^{\dim M}$, it follows that
+  $\tau \circ \psi \circ \sigma^{-1}|_{\sigma(V \cap \psi^{-1}(W))}$
+  is $C^\infty$. Then by \cref{lem-diffmapequiv}, since $(V,\sigma)$
+  and $(W,\tau)$ were arbitrary, $\psi$ is $C^\infty$.
+\end{proof}
+
+\begin{lem}
+  \label{lem-diffcompositiondiff}
+  Let $L,M,N$ be differentiable manifolds. Let $\varphi : L \to M,
+  \psi : M \to N$ differentiable maps. Then $\psi \circ \varphi$ is
+  differentiable.
+\end{lem}
+
+\begin{proof}
+  Firstly, recall that $\varphi,\psi$ being continuous imply that
+  $\psi \circ \varphi$ is continuous.
+
+  \medskip\noindent Now let $W \subset N$ open and $g : W \to \R$ a
+  $C^\infty$ function. Since $\psi$ is $C^\infty$, $g \circ \psi$ is a
+  $C^\infty$ function. Then since $\varphi$ is $C^\infty$, $g \circ
+  \psi \circ \varphi$ is a $C^\infty$ function (note we are using the
+  associativity of composition). Thus $\psi \circ \varphi$ is
+  $C^\infty$.
+\end{proof}
+
+
+\begin{lem}
+  \label{lem-diffmapequivmaximal}
+  Let $(M,\A),(N,\B)$ differentiable manifolds. Suppose $\A_0 \supset
+  \A$ and $\B_0 \supset \B$ satisfy (1) and (2) of
+  \cref{dfn-diffstructure}. Let $\psi : M \to N$ a continuous
+  map. Then $\psi$ is $C^\infty$ if and only if $\tau \circ \psi \circ
+  \sigma^{-1}|_{\sigma(U\cap\psi^{-1}(V))}$ is $C^\infty$ for all
+  $(U,\sigma) \in \A_0, (V, \tau) \in \B_0$.
+\end{lem}
+
+\begin{proof}
+  $(\Rightarrow)$ Immediate from \cref{lem-diffmapequiv}.
+
+  \medskip\noindent $(\Leftarrow)$ Let $(U',\sigma') \in \A,
+  (V',\tau') \in \B$. Let $x \in U' \cap \psi^{-1}(V')$. Since $\A_0$
+  and $\B_0$ satisfy (1), we can choose $U \in \A_0$ such that $x \in
+  U$ and $V \in \B_0$ such that $\psi(x) \in V$. Now we have
+  \[
+  \tau' \circ \psi \circ \sigma'^{-1}|_{\sigma'(U \cap U' \cap
+    \psi^{-1}(V \cap V'))} = \tau' \circ \tau^{-1} \circ \tau \circ
+  \psi \circ \sigma^{-1} \circ \sigma \circ \sigma'^{-1}|_{\sigma'(U
+    \cap U' \cap \psi^{-1}(V \cap V'))}.
+  \]
+  By condition (2) of \cref{dfn-diffstructure} we know $\tau' \circ
+  \tau^{-1}|_{\tau(V \cap V')}$ and $\sigma \circ
+  \sigma'^{-1}|_\sigma'(U \cap U')$ are $C^\infty$. And by hypothesis
+  $\tau \circ \psi \circ \sigma^{-1}$ is $C^\infty$. Thus the
+  composition above is $C^\infty$ by
+  \cref{lem-diffcompositiondiff}. Since $x$ was arbitrary this gives
+  us that $\tau' \circ \psi \circ \sigma'^{-1}|_{\sigma'(U' \cap
+    \psi^{-1}(V'))}$ is $C^\infty$ on a neighbourhood of each point in
+  its domain, and since being $C^\infty$ is a local condition this
+  implies that $\tau' \circ \psi \circ \sigma'^{-1}|_{\sigma'(U' \cap
+    \psi^{-1}(V'))}$ is $C^\infty$. Finally by \cref{lem-diffmapequiv}
+  this means $\psi$ is $C^\infty$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Partitions of unity}
+
+\begin{lem}
+  \label{lem-manifoldsregular}
+  Locally euclidean spaces are locally compact and completely regular.
+\end{lem}
+
+\begin{proof}
+  Let $X$ a locally Euclidean space of dimension $d$. Let $x \in
+  X$. Let $(U,\varphi)$ a coordinate system on $X$ such that $x \in
+  U$. Since $\im \varphi$ is open in $\R^d$ and $\R^d$ is regular,
+  there exist $a_i,b_i \in \R$ with $a_i < b_i$ for $1 \le i \le d$
+  such that $\varphi(x) \subset V \subset \bar V \subset \im \varphi$
+  where $V := \prod_{i=1}^d (a_i,b_i)$ and hence $\bar V =
+  \prod_{i=1}^d [a_i,b_i]$. Since $V$ is open, $\bar V$ is compact,
+  and $\varphi$ is a homeomorphism, $\varphi^{-1}(\bar V)$ is a
+  compact subset of $X$ containing the neighbourhood $\varphi^{-1}(V)$
+  of $x$. So $X$ is locally compact. Then recall that any locally
+  compact Hausdorff space is completely regular.
+\end{proof}
+
+\begin{dfn}
+  Let $X$ a topological space and $\varphi : X \to \R$ a function on
+  $X$. Then the {\itshape support of $\varphi$} is the subset $\supp
+  \varphi := \bar{\varphi^{-1}(\R - \{0\})}$ of $X$. I.e., $x \in X -
+  \supp \varphi$ if and only if there exists a neighbourhood $U$ of
+  $x$ such that $\varphi$ vanishes on $U$.
+\end{dfn}
+
+\begin{dfns}
+  \label{dfn-partitionofunity}
+  Let $X$ a topological space. A {\itshape partition of unity on $X$}
+  is an indexed collection $\{\varphi_i \mid i \in I\}$ of $C^\infty$
+  functions $\varphi_i : X \to \R$ such that
+  \begin{enumerate}
+  \item the collection $\{\supp \varphi_i \mid i \in I\}$ is locally
+    finite, and
+  \item for all $x \in X$, $\sum_{i \in I} \varphi_i(x) = 1$ and $0
+    \le \varphi_i(x) \le 1$ for all $i \in I$.
+  \end{enumerate}
+  Note that the expression $\sum_{i\in I} \varphi_i(x)$ in (2) is well
+  defined since, by (1), $\varphi_i(x) \ne 0$ for only finitely many
+  $i \in I$ for any given $x \in X$.
+
+  \medskip\noindent Let $\{U_\alpha \mid \alpha \in A\}$ a cover of
+  $X$. The partition of unity $\{\varphi_i \mid i \in I\}$ is
+  {\itshape subordinate to $\{U_\alpha \mid \alpha \in A\}$} if for
+  each $i \in I$ there exists $\alpha \in A$ such that $\supp
+  \varphi_i \subset U_\alpha$, and is {\itshape subordinate to
+    $\{U_\alpha \mid \alpha \in A\}$ with equal index set} if $I = A$
+  and $\supp \varphi_\alpha \subset U_\alpha$ for all $\alpha \in A$.
+\end{dfns}
+
+\begin{sit}
+  \label{sit-seccountlocalcomphaus}
+  Here $X$ is a second countable, Hausdorff, locally compact
+  topologial space.
+\end{sit}
+
+\begin{lem}
+  \label{lem-compactbasis}
+  In \cref{sit-seccountlocalcomphaus}. There is a countable basis of
+  $X$ whose elements have compact closures.
+\end{lem}
+
+\begin{proof}
+  Let $\{U_n \mid n \in \N\}$ a countable basis of $X$. Let $I := \{n
+  \in \N \mid \bar{U_n}\ \text{is compact}\}$. We claim $\{U_n \mid n
+  \in I\}$ is a basis of $X$. Let $n \in \N$ and $x \in U_n$. Since
+  $X$ is locally compact, there exists $K \subset X$ compact such that
+  $K \supset U_m \ni x$ for some $m \in \N$. Then there exists $l \in
+  \N$ such that $x \in U_l \subset U_n \cap U_m \subset K$. Since $K$
+  is compact and $X$ is Hausdorff, $K$ is closed. Hence $\bar{U_l}
+  \subset K$ and, as a closed subset of a compact set, $\bar{U_l}$ is
+  compact. So $l \in I$. This shows that, if $\T'$ is the topology
+  given by the basis $\{U_n \mid n \in I\}$ and $\T$ the topology
+  given by the basis $\{U_n \mid n \in \N\}$, then $\T' \supset
+  \T$. But obviously $\T' \subset \T$ as well, since $I \subset \N$,
+  so $\T' = \T$, and the claim is indeed shown.
+\end{proof}
+
+\begin{lem}
+  \label{lem-opencovercompactclosure}
+  In \cref{sit-seccountlocalcomphaus}. There exists an open cover
+  $\{G_n \mid n \in \N\}$ of $X$ such that $\bar{G_n}$ is compact and
+  $\bar{G_n} \subset G_{n+1}$ for $n \in \N$.
+\end{lem}
+
+\begin{proof}
+  By \cref{lem-compactbasis} we have a countable basis $\{U_n \mid n
+  \in \N\}$ of $X$ such that $\bar{U_n}$ is compact for $n \in \N$. We
+  will show there exists a sequence $\{j_n \in \N \mid n \in \N\}$
+  such that setting $G_n := \bigcup_{i=1}^{j_n} U_n$ gives the desired
+  open cover. Note that since $\bar{U_n}$ is compact for $n \in \N$
+  and a finite union of compact sets is compact, we will automatically
+  have $\bar{G_n} = \bar{\bigcup_{i=1}^{j_n} U_n} =
+  \bigcup_{i=1}^{j_n} \bar{U_n}$ is compact. Let $j_1 := 1$ and
+  proceed by induction. Let $n \in \N$. We have by the inductive
+  hypothesis $G_n \subset X$ open such that $\bar{G_n}$ is
+  compact. Then $\{U_n \mid n \in \N\}$ is an open cover of
+  $\bar{G_n}$, so there exists a finite subcover. So we can set
+  $j_{n+1} := \min \{j > j_n \mid \bar{G_n} \subset
+  \bigcup_{i=1}^{j_{n+1}} U_i\}$. Then since $j_{n+1} > j_n$ for all
+  $n \in \N$, we must have $\bigcup_{i=1}^\infty G_n =
+  \bigcup_{i=1}^\infty U_n = X$. So indeed $\{G_n \mid n \in \N\}$ is
+  the desired open cover.
+\end{proof}
+
+\begin{lem}
+  \label{lem-manifoldsparacompact}
+  In \cref{sit-seccountlocalcomphaus}. Then any open cover of $X$ has
+  a locally finite refinement of open sets with compact closures. In
+  particular, $X$ is paracompact.
+\end{lem}
+
+\begin{proof}
+  Let $\{U_\alpha \mid \alpha \in A\}$ an open cover of $X$. By
+  \cref{lem-opencovercompactclosure} there exists an open cover $\{G_n
+  \mid n \in \N\}$ of $X$ such that $\bar{G_n}$ is compact and
+  $\bar{G_n} \subset G_{n+1}$ for $n \in \N$. Let $K_2 := \bar{G_2}$
+  and $V_2 := G_3$. For $n \ge 3$ let $K_n := \bar{G_n} - G_{n-1}$ and
+  let $V_n := G_{n+1} - \bar{G_{n-2}}$. Now let $n \ge 2$. As a closed
+  subset of the compact set $\bar{G_n}$, $K_n$ is compact. And $V_n$
+  is open and contains $K_n$. Hence $\{U_\alpha \cap V_n \mid \alpha
+  \in A\}$ is an open cover of $K_n$, so there exists a finite subset
+  $A_n$ of $A$ such that $\{U_\alpha \cap V_n \mid \alpha \in A_n\}$
+  covers $K_n$. We claim $\bigcup_{n=2}^\infty \{U_\alpha \cap V_n
+  \mid \alpha \in A_n\}$ is the desired refinement of $\{U_\alpha \mid
+  \alpha \in A\}$. Let $x \in X$ and let $m := \min \{m \ge 1 \mid x
+  \in G_m\}$. Then for all $n \ge m+2$, $V_n \cap G_m = \emptyset$,
+  which implies $U_\alpha \cap V_n \cap G_m = \emptyset$ for all
+  $\alpha \in A_n$. Thus $G_m$ is a neighbourhood of $x$ which
+  intersects only finitely many elements of $\bigcup_{n=2}^\infty
+  \{U_\alpha \cap V_n \mid \alpha \in A_n\}$, for $A_n$ is finite for
+  all $n \ge 2$. So indeed the refinement is locally finite. And for
+  any $n \ge 2$ and $\alpha \in A_n$ we know $U_\alpha$ and $V_n$ are
+  open, so $U_\alpha \cap V_n$ is open, and $\bar{U_\alpha \cap V_n}$
+  is a closed subset of the compact set $\bar{G_{n+1}}$, hence
+  compact.
+\end{proof}
+
+\begin{ntn}
+  \label{ntn-opencube}
+  Let $d \in \N$. For $r > 0$ we denote by $C_d(r)$ the open cube
+  \[
+  \{(x_1,x_2,\ldots,x_d) \in \R^d \mid |x_i| < r\ \text{for all}\ 1
+  \le i \le d\}
+  \]
+  in $\R^d$ of side length $2r$, whose closure $\bar{C_d(r)}$ is the
+  corresponding closed cube
+  \[
+  \{(x_1,x_2,\ldots,x_d) \in \R^d \mid |x_i| \le r\ \text{for all}\ 1
+  \le i \le d\}.
+  \]
+\end{ntn}
+
+\begin{lem}
+  \label{lem-onezerocubefn}
+  Let $d \in \N$.  There exists a function $\chi_d : \R^d \to \R$
+  which equals $1$ identically on $\bar{C_d(1)}$ and which vanishes
+  outside $C_d(2)$.
+\end{lem}
+
+\begin{proof}
+  Let $f : \R \to \R$ be defined for $t \in \R$ as
+  \[
+  f(t) := \begin{cases} e^{-1/t} & \text{if}\ t > 0, \\ 0 & \text{if}\
+    t \le 0. \end{cases}
+  \]
+  It is straightforward to check that $f$ is $C^\infty$. Then $g : \R
+  \to \R$ defined for $t \in \R$ by
+  \[
+  g(t) := \frac{f(t)}{f(t) + f(1-t)}
+  \]
+  is also $C^\infty$, by the quotient rule and since $f(t) + f(1-t)$
+  is nowhere zero. Note that $g(t) = 0$ for $t \le 0$ and $g(t) = 1$
+  for $t \ge 1$. Then if we let $h : \R \to \R$ the function defined
+  for $t \in \R$ as $h(t) := g(2+t)g(2-t)$, we have that $h(t) = 1$
+  for $|t| \le 1$ and $h(t) = 0$ for $|t| \ge 2$. Finally it is clear
+  that defining $\chi_d(\b x) := \prod_{i=1}^d h(x_i)$ for $\b x =
+  (x_1,x_2,\ldots,x_d) \in \R^d$ gives the desired function.
+\end{proof}
+
+\begin{thm}
+  \label{thm-partitionsofunityexist}
+  Let $(M,\A)$ a differentiable manifold. Let $\{U_\alpha \mid \alpha
+  \in A\}$ an open cover of $M$.
+  \begin{enumerate}
+  \item There is a countable partition of unity $\{\varphi_n \mid n
+    \in \N\}$ subordinate to $\{U_\alpha \mid \alpha \in A\}$ such
+    that $\supp \varphi_n$ is compact for $n \in \N$.
+  \item There is a partition of unity $\{\psi_\alpha \mid \alpha \in
+    A\}$ subordinate to $\{U_\alpha \mid \alpha \in A\}$ with equal
+    index set such that $\psi_\alpha$ is not identically zero for only
+    countably many $\alpha \in A$.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  By \cref{lem-opencovercompactclosure} there exists an open cover
+  $\{G_n \mid n \in \N\}$ of $M$ such that $\bar{G_n}$ is compact and
+  $\bar{G_n} \subset G_{n+1}$ for $n \in \N$. For $p \in M$: let $n_p
+  := \max \{n \in \N \mid p \notin \bar{G_n}\}$, so $p \notin
+  \bar{G_{n_p}}$ but $p \in \bar{G_{n_p+1}} \subset G_{n_p+2}$; let
+  $\alpha_p \in A$ such that $p \in U_{\alpha_p}$; let $(V_p,\tau_p)
+  \in \A$ such that $p \in V$. Let $d := \dim M$. For each $p \in M$,
+  by replacing $V_p$ with $V_p \cap U_{\alpha_p} \cap G_{n_p+2} -
+  \bar{G_{n_p}}$ and $\tau_p$ with $\tau_p|_{V_p \cap U_{\alpha_p}
+    \cap G_{n_p+2} - \bar{G_{n_p}}}$ we can assume without loss of
+  generality that $V_p \subset U_{\alpha_p} \cap G_{n_p+2} -
+  \bar{G_{n_p}}$; then by replacing $\tau_p$ with $\tau_p - \tau_p(p)$
+  we can assume without loss of generality that $(V_p,\tau_p)$ is
+  centred at $p$; finally since $\im \tau_p$ is open there exists $r >
+  0$ such that $C_d(r) \subset \im \tau_p$, so by replacing $\tau_p$
+  with $3\tau_p/r$ we can assume without loss of generality that
+  $C_d(3) \subset \im \tau_p$.
+
+  \medskip\noindent Now for $p \in M$ define $\gamma_p : M \to \R$ by
+  \[
+  \gamma_p(q) := \begin{cases} \chi_d(\tau_p(q)) & \text{if}\ q \in
+    V_p, \\ 0 & \text{otherwise} \end{cases}\quad\text{for}\ q \in M,
+  \]
+  where $\chi_d : \R^d \to \R $ is the function from
+  \cref{lem-onezerocubefn} which equals $1$ on $\bar{C_d(1)}$ and
+  vanishes outside $C_d(2)$. We claim $\gamma_p$ is $C^\infty$ for $p
+  \in M$. Take any $p \in M$. Let $(V, \tau) \in \A$. Let $x \in \im
+  \tau$. If $\tau^{-1}(x) \notin V_P$ then since $C_d(3) \subset \im
+  \tau_p$ there exists a neighbourhood of $x$ on which $\gamma_p \circ
+  \tau^{-1}$ vanishes, so $\gamma_p \circ \tau^{-1}$ is $C^\infty$ at
+  $x$. If $\tau^{-1}(x) \in V_p$ then, since $\gamma_p \circ
+  \tau^{-1}|_{\tau(V \cap V_p)} = \chi_d \circ \tau_p \circ
+  \tau^{-1}|_{\tau(V \cap V_p)}$, it follows from $\chi_d$ being
+  $C^\infty$ (by \cref{lem-onezerocubefn}) and $\tau_p \circ
+  \tau^{-1}|_{\tau(V \cap V_p)}$ being $C^\infty$ (by
+  \cref{dfn-diffstructure}, (2)) that $\gamma_p \circ \tau^{-1}$ is
+  $C^\infty$ at $x$. So $\gamma_p \circ \tau^{-1}$ is $C^\infty$, and
+  since $(V,\tau)$ was arbitrary this by definition means $\gamma_p$
+  is $C^\infty$.
+
+  \medskip\noindent So for each $p \in M$, $\gamma_p$ is identically
+  equal to $1$ on the neighbourhood $W_p := \tau_p^{-1}(C_d(1))
+  \subset V_p$ of $p$, and $\supp \gamma_p$ is a closed subset of $V_p
+  \subset \bar{G_{n_p+2}}$, so $\bar{G_{n_p+2}}$ being compact implies
+  $\supp \gamma_p$ is compact. Now for each $n \in \N$, $\{W_p \mid p
+  \in \bar{G_{n+1}} - G_n\}$ is an open cover of $\bar{G_{n+1}} -
+  G_n$, which is a closed subset of the compact set $\bar{G_{n+1}}$
+  and hence compact; so there is a finite subset $F_n$ of
+  $\bar{G_{n+1}} - G_n$ such that $\{W_p \mid p \in F_n\}$ covers
+  $\bar{G_{n+1}} - G_n$. We now claim $\bigcup_{n=1}^\infty \{\supp
+  \gamma_p \mid p \in F_n\}$ is locally finite. Take the neighbourhood
+  $G_{n_q+2} - \bar{G_{n_q}}$ of any $q \in M$. Suppose $G_{n_q+2} -
+  \bar{G_{n_q}}$ intersects $\supp \varphi_p$ for some $p \in H_n$
+  where $n \in \N$. Then since $\supp \varphi_p \subset G_{n_p+2} -
+  \bar{G_{n_p}}$ it is clear that we must have $n_q - 1 \le n_p \le
+  n_q + 1$. And since $p \in \bar{G_{n_p+1}} - \bar{G_{n_p}}$ by
+  definition of $n_p$, we must have $n_p + 1 \le n \le n_p + 2$. It
+  follows that $n_q \le n \le n_q + 3$, leaving only finitely many
+  possibilities for $p$ since $F_n$ is finite for all $n \in \N$.
+
+  \medskip\noindent Now $\bigcup_{n=1}^\infty \{(W_p,\gamma_p) \mid p
+  \in F_n\}$ is countable so it can be ordered into the indexed set
+  $\{(W_n,\gamma_n) \mid n \in \N\}$. By the above, $\{\supp \varphi_n
+  \min n \in \N$ is locally finite, so the function $\gamma : M \to
+  \R$ given by $\gamma(p) := \sum_{i=1}^\infty \gamma_i(p)$ for $p \in
+  M$ is well defined. Moreover $\gamma(p) > 0$ for all $p \in M$
+  because $\{W_n \mid n \in \N\}$ clearly covers $M$ and for $n \in
+  \N$ we know $\gamma_n$ is nonnegative everywhere and equal to $1$ on
+  $W_n$. Then for $n \in \N$ define $\varphi_n : M \to \R$ by
+  $\varphi_n(p) := \gamma_n(p)/\gamma(p)$ for $p \in M$. Since clearly
+  $\supp \varphi_n = \supp \gamma_n$ for $n \in \N$, it is now evident
+  that $\{\varphi_n \mid n \in \N\}$ is a countable partition of unity
+  on $M$ subordinate to $\{U_\alpha \mid \alpha \in A\}$ with $\supp
+  \varphi_n$ compact for each $n \in \N$. This completes (1) of the
+  theorem.
+
+  \medskip\noindent Now for $\alpha \in A$ let $I_\alpha := \{n \in \N
+  \mid \supp \varphi_n \subset U_\alpha\}$ and let $\psi_\alpha : M
+  \to \R$ be given by
+  \[
+  \psi_\alpha(p) := \sum_{n \in I_\alpha} \varphi_n(p)\quad\text{for}\
+  p \in M,
+  \]
+  where we take the sum over the empty set to be $0$. (Note again that
+  the sum is well defined because $\{\supp \varphi_n \mid n \in \N\}$
+  is locally finite.) We claim $\{\psi_\alpha \mid \alpha \in A\}$ is
+  a partition of unity subordinate to $\{U_\alpha \mid \alpha \in A\}$
+  with equal index set. That conditions (1) and (2) from
+  \cref{dfn-partitionofunity} hold for $\{\psi_\alpha \mid \alpha \in
+  A\}$ is immediate from their holding for $\{\varphi_n \mid n \in
+  \N\}$. And since $\{\supp \varphi_n \mid n \in \N\}$ is locally
+  finite we have $\supp \psi_\alpha = \bar{\bigcup_{i \in I_\alpha}
+    \supp \varphi_i} = \bigcup_{n \in I_\alpha} \supp \varphi_n
+  \subset U_\alpha$. Finally since for each $n \in \N$ we know $\supp
+  \varphi_n \subset U_\alpha$ for some $\alpha$, there can only be
+  countably many $\alpha \in A$ such that $I_\alpha \ne \emptyset$,
+  and thus only countably many $\psi_\alpha$ which are not identically
+  zero. This completes (2) of the theorem.
+\end{proof}
+
+\begin{cor}
+  Let $M$ a differentiable manifold. Let $U \subset M$ open and $A
+  \subset U$ closed (in $M$). Then there exists a $C^\infty$ function
+  $\varphi : M \to \R$ such that
+  \begin{enumerate}
+  \item $0 \le \varphi(p) \le 1$ for all $p \in M$,
+  \item $\varphi(p) = 1$ for all $p \in A$, and
+  \item $\supp \varphi \subset U$.
+  \end{enumerate}
+\end{cor}
+
+\begin{proof}
+  We have an open cover $\{U, M - A\}$ of $M$. By
+  \cref{thm-partitionsofunityexist} there is a partition of unity
+  $\{\varphi,\psi\}$ on $M$ with $\supp \varphi \subset U$ and $\supp
+  \psi \subset M - A$. Then $\varphi$ clearly satisfies the required
+  properties.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Tangents and differentials}
+
+\begin{sit}
+  \label{sit-manifoldpoint}
+  Here we have a differentiable manifold $(M,\A)$ of dimension $d$ and
+  have fixed a point $p \in M$.
+\end{sit}
+
+\begin{dfns}
+  In \cref{sit-manifoldpoint}. Let $C^\infty(p)$ be the $\R$-algebra
+  (under function addition, function multiplication, and scalar
+  multiplication) of $C^\infty$ functions defined on neighbourhoods of
+  $p$. Let $Z \subset C^\infty(p)$ the ideal of functions which vanish
+  on some neighbourhood of $p$. The quotient $\tilde\F_p :=
+  C^\infty(p)/Z$ is the {\itshape $\R$-algebra of germs at $p$}.
+
+  \medskip\noindent For $f \in C^\infty(p)$ we call the image of $f$
+  in the canonical quotient map $C^\infty(p) \to \tilde\F_p$ the
+  {\itshape germ of $f$ at $p$}, and denote the germ by $\b f$. For
+  any $\b f \in \tilde \F_p$ we have a well defined value $\b f(p) :=
+  f(p)$.
+
+  \medskip\noindent Note that $f,g \in C^\infty(p)$ have the same germ
+  at $p$ if and only if they agree on some neighbourhood of $p$; this
+  induces a equivalence relation $\sim$ on $C^\infty(p)$ and the
+  quotient $C^\infty(p)/Z$ is equivalent to modding out by $\sim$.
+
+  \medskip\noindent We denote by $\F_p$ the ideal in $\tilde\F_p$ of
+  germs $\b f$ such that $\b f(p) = 0$. Then for $k \in \N$ we have
+  ${\F_p}^k$ the $k$-th (ideal) power of $\F_p$, comprised of finite
+  linear combinations of $k$-fold products of elements of
+  $\F_p$. Observe that
+  \[
+  \tilde\F_p \supset \F_p \supset {\F_p}^2 \supset {\F_p}^3 \supset
+  \cdots
+  \]
+  is a descending chain of ideals.
+\end{dfns}
+
+\begin{dfn}
+  In \cref{sit-manifoldpoint}. The {\itshape tangent space to $M$ at
+    $p$}, denoted $T_pM$, is the $\R$-vector space of derivations on
+  $\tilde\F_p$. That is, $T_pM$ is the set of $\R$-linear maps $v :
+  \tilde\F_p \to \R$ such that $v(\b f\b g) = \b f(p)v(\b g) + \b
+  g(p)v(\b f)$ for all $\b f,\b g \in \tilde\F_p$, where defining
+  $(v+w)(\b f) := v(\b f) + w(\b f)$ and $(cv)(\b f) := cv(\b f)$ for
+  $v,w \in T_pM, \b f \in \tilde\F_p,c \in \R$ clearly gives $T_pM$ a
+  vector space structure. We call elements of $T_pM$ {\itshape tangent
+    vectors to $M$ at $p$}.
+\end{dfn}
+
+\begin{ntn}
+  In \cref{sit-manifoldpoint}. Let $v \in T_pM$. We will often abuse
+  notation and apply $v$ to functions $f \in C^\infty(p)$ rather than
+  their germs $\b f \in \tilde\F_p$. This is defined in the obvious
+  way: $v(f) := v(\b f)$. Conversely, we might (in fact we will in the
+  following definition) define an element $v \in T_pM$ by its action
+  $C^\infty(p)$, though we will have to show that indeed the action
+  only depends on the germ of the function.
+\end{ntn}
+
+\begin{dfn}
+  \label{dfn-partialderivationbasis}
+  In \cref{sit-manifoldpoint}. Let $(U,\varphi) \in \A$ such that $p
+  \in U$. Let $x_1,x_2,\ldots,x_d$ the coordinate functions of
+  $\varphi$. For $1 \le i \le d$ we can define a tangent vector
+  $(\p/\p x_i)|_p \in T_pM$ by
+  \[
+  \left.\f{\p}{\p x_i}\right|_p(f) := \left.\f{\p f}{\p x_i}\right|_p
+  := \left.\f{\p (f\circ \varphi^{-1})}{\p r_i}\right|_{\varphi(p)}
+  \]
+  for $f \in C^\infty(p)$. Clearly this definition only depends on the
+  germ $\b f$ of $f$. For if $g \in C^\infty(p)$ agrees with $f$ on a
+  neighbourhood $V$ of $p$ then $f \circ \varphi^{-1}$ and $g \circ
+  \varphi^{-1}$ agree on the neighbourhood $\varphi(U \cap V)$ of
+  $\varphi(p)$. Then since the partial derivative at $\varphi(p)$ only
+  depends on the function locally, the above definition must agree on
+  $f$ and $g$. And the definition indeed gives a derivation by the
+  linearity and product rule of partial differentiation. Note briefly
+  that for $1 \le i \le d$ the derivation $(\p/\p x_i)|_p$ is
+  dependent not only on the coordinate function $x_i$ but on
+  $\varphi$.
+\end{dfn}
+
+\begin{ntn}
+  \label{ntn-constgerm}
+  For $c \in \R$ we let $\b c \in \tilde\F_p$ the germ of the
+  $C^\infty$ function on $M$ which is identically equal to $c$.
+\end{ntn}
+
+\begin{lem}
+  \label{lem-derivconstzero}
+  In \cref{sit-manifoldpoint}. Let $c \in \R$. Let $v \in T_pM$. Then
+  $v(\b c) = 0$.
+\end{lem}
+
+\begin{proof}
+  By linearity $v(\b c) = cv(\b 1)$. Then we have
+  \[
+  v(\b 1) = v(\b 1 \cdot \b 1) = 1 \cdot v(\b 1) + 1 \cdot v(\b 1) =
+  2v(\b 1) \implies v(\b 1) = 0. \qedhere
+  \]
+\end{proof}
+
+\begin{lem}
+  \label{lem-tangentspaceiso}
+  In \cref{sit-manifoldpoint}, $T_pM \simeq (\F_p/{\F_p}^2)^*$, where
+  $(\F_p/{\F_p}^2)^*$ is the dual vector space to $\F_p/{\F_p}^2$
+  (viewed as a vector space, forgetting the extra algebra structure).
+\end{lem}
+
+\begin{proof}
+  Let $v \in T_pM$. Define $\xi_v \in (\F_p/{\F_p}^2)^*$ by $\xi_v([\b
+  f]) := v(\b f)$, where $[\b f]$ is the image of $\b f$ in the
+  canonical quotient map $\F_p \to \F_p/{\F_p}^2$ for $\b f \in
+  \F_p$. Note that $\xi_v$ is well defined because for $\b f,\b g \in
+  \F_p$ we have $v(\b f \b g) = \b f(p)v(\b g) + \b g(p)v(\b f) = 0$,
+  so $v$ vanishes on ${\F_p}^2$.
+
+  \medskip\noindent For $\xi \in (\F_p/{\F_p}^2)^*$ define $v_\xi \in
+  T_pM$ by $v_\xi(\b f) := \xi([\b f - \b{f(p)}])$, where $\b{f(p)}$
+  is the germ associated to the constant $\b f(p)$, as in
+  \cref{ntn-constgerm}. That $v_\xi$ is linear is immediate from $\xi$
+  being linear. And for $\b f,\b g \in \tilde F_p$ we have
+  \begin{align*}
+    v_\xi(\b f\b g) &= \xi([\b f\b g - \b{f(p)g(p)}]) \\ &= \xi([(\b f
+    - \b{f(p)})(\b g - \b{g(p)}) + \b{f(p)}(\b g - \b{g(p)}) +
+    \b{g(p)}(\b f - \b{f(p)})]) \\ &= \xi([(\b f - \b{f(p)})(\b g -
+    \b{g(p)})]) + \b f(p)\xi([\b g - \b{g(p)}]) + \b g(p)\xi([\b f -
+    \b{f(p)}]) \\ &= \b f(p)v_\xi(g) + \b g(p)v_\xi(f),
+  \end{align*}
+  using the linearity of $\xi$ and the quotient map $\b f \mapsto [\b
+  f]$ from $\F_p \to \F_p/{\F_p}^2$, as well as the fact that $(\b f -
+  \b{f(p)})(\b g - \b{g(p)}) \in {\F_p}^2$ which implies $\xi([(\b f -
+  \b{f(p)})(\b g - \b{g(p)})]) = \xi([\b 0]) = 0$. So indeed $v_\xi$
+  is a derivation on $\tilde\F_p$, and hence in $T_pM$.
+
+  \medskip\noindent Now let $\lambda,\mu \in \R$ For $v,w \in T_pM$ we
+  have
+  \[
+  \xi_{\lambda v + \mu w}([\b f]) = (\lambda v + \mu w)(\b f) =
+  \lambda v(\b f) + \mu w(\b f) = \lambda \xi_v([\b f]) + \mu
+  \xi_w([\b f])
+  \]
+  for all $\b f \in \F_p$, so the map $v \mapsto \xi_v$ is linear. And
+  for $\xi, \eta \in (\F_p/{\F_p}^2)^*$ we have
+  \[
+  v_{\lambda\xi + \mu\eta}(\b f) = (\lambda\xi+\mu\eta)([\b f -
+  \b{f(p)}]) = \lambda v_\xi(\b f) + \mu v_\eta(\b f)
+  \]
+  for all $\b f \in \tilde\F_p$, so the map $\xi \mapsto v_\xi$ is
+  linear. Finally for $\xi \in (\F_p/{\F_p}^2)^*$ we have
+  \[
+  \xi_{v_\xi}([\b f]) = v_\xi(\b f) = \xi([\b f - \b{f(p)}]) = \xi([\b
+  f])
+  \]
+  for all $\b f \in \F_p$, and for $v \in T_pM$ we have by
+  \cref{lem-derivconstzero} that
+  \[
+  v_{\xi_v}(\b f) = \xi_v([\b f - \b{f(p)}]) = v(\b f - \b{f(p)}) =
+  v(\b f) - v(\b{f(p)}) = v(\b f)
+  \]
+  for all $\b f \in \tilde\F_p$. Thus the maps $v \to \xi_v$ and $\xi
+  \to v_\xi$ are mutually inverse isomorphisms.
+\end{proof}
+
+\begin{thm}
+  \label{thm-manifolddimequalscotangentdim}
+  In \cref{sit-manifoldpoint}, $\dim \F_p/{\F_p}^2 = \dim M$.
+\end{thm}
+
+\begin{proof}
+  Let $(U,\varphi) \in \A$ such that $p \in U$. Let
+  $x_1,x_2,\ldots,x_d$ the coordinate functions of $\varphi$. Let $[\b
+  f] \in \F_p/{\F_p}^2$ (recall our notation: this means that $\b f$
+  is a representative in $\F_p$ of $[\b f]$ and $f$ is a
+  representative in $C^\infty(p)$ of $\b f$). Recall (a particular
+  case of) Taylor's theorem that for some neighbourhood $V \subset \im
+  \varphi$ of $\varphi(p)$ we have (keeping in mind that $\b f \in
+  \F_p \implies f(p) = 0$)
+  \[
+  f \circ \varphi^{-1}|_V = \sum_{i=1}^d \left.\f{\p (f \circ
+      \varphi^{-1})}{\p r_i}\right|_{\varphi(p)}(r_i - x_i(p)) +
+  \sum_{i,j=1}^d(r_i - x_i(p))(r_j - x_j(p))h_{i,j},
+  \]
+  where $h_{i,j} : V \to \R$ is $C^\infty$ for $1 \le i,j \le
+  d$. Composing with $\varphi$ on each side then gives
+  \[
+  f|_{\varphi^{-1}(V)} = \sum_{i=1}^d \left.\f{\p (f \circ
+      \varphi^{-1})}{\p r_i}\right|_{\varphi(p)}(x_i - x_i(p)) +
+  \sum_{i,j=1}^d(x_i - x_i(p))(x_j - x_j(p))(h_{i,j} \circ \varphi).
+  \]
+  For $1 \le i,j \le d$, since $h_{i,j}$ is $C^\infty$ and we must
+  have $\varphi \circ \tau^{-1}|_{\tau(U \cap W)}$ is $C^\infty$ for
+  any $(W, \tau) \in \A$, it is clear that $h_{i,j} \circ
+  \varphi|_{\varphi^{-1}(V)}$ is $C^\infty$. Then since $x_i - x_i(p)
+  \in \F_p$ for $1 \le i \le d$ and ${\F_p}^2$ is an ideal in
+  $\tilde\F_p$, the germ of the function $\sum_{i,j=1}^d(x_i -
+  x_i(p))(x_j - x_j(p))(h_{i,j} \circ \varphi)$ is an element of
+  ${\F_p}^2$. It follows that
+  \[
+  [\b f] = \sum_{i=1}^d \left.\f{\p (f \circ \varphi^{-1})}{\p
+      r_i}\right|_{\varphi(p)}[\b{x_i} - \b{x_i(p)}].
+  \]
+  Thus $\{[\b{x_i} - \b{x_i(p)}] \mid 1 \le i \le d\}$ span
+  $\F_p/{\F_p}^2$. Now suppose we have $a_i \in \R$ for $1 \le i \le
+  d$ such that $\sum_{i=1}^d a_i[\b{x_i} - \b{x_i(p)}] = [\b 0] \iff
+  \sum_{i=1}^d a_i(\b{x_i} - \b{x_i(p)}) \in {\F_p}^2$.  But then (as
+  shown in the proof of \cref{lem-tangentspaceiso}) the derivations
+  $(\p/\p x_j)|_p$ from \cref{dfn-partialderivationbasis} must vanish
+  on $\sum_{i=1}^d a_i(\b{x_i} - \b{x_i(p)})$ for $1 \le j \le
+  d$. That is, we have
+  \[
+  0 = \left.\f{\p}{\p x_j}\right|_p\left(\sum_{i=1}^d a_i(\b{x_i} -
+    \b{x_i(p)})\right) = \left.\f{\p}{\p
+      r_j}\right|_p\left(\sum_{i=1}^d a_i(r_i - x_i(p))\right) = a_j
+  \]
+  for $1 \le j \le d$. So $\{[\b{x_i} - \b{x_i(p)}] \mid 1 \le i \le
+  d\}$ is linearly independent as well, hence a basis, completing the
+  proof.
+\end{proof}
+
+\begin{cor}
+  \label{cor-manifolddimequalstangentdim}
+  In \cref{sit-manifoldpoint}, $\dim T_pM = \dim M$.
+\end{cor}
+
+\begin{pro}
+  \label{pro-partialtangentbasis}
+  In \cref{sit-manifoldpoint}. Let $(U,\varphi) \in \A$ with $p \in
+  U$. Let $x_1,x_2,\ldots,x_d$ the coordinate functions of
+  $\varphi$. Then
+  \begin{enumerate}
+  \item $\{(\p/\p x_i)|_p \mid 1 \le i \le d\}$ is a basis for $T_pM$,
+    and
+  \item $\displaystyle{v = \sum_{i=1}^d v(\b{x_i}) \left.\f{\p}{\p
+          x_i}\right|_p}$ for all $v \in T_pM$.
+  \end{enumerate}
+\end{pro}
+
+\begin{proof}
+  Let $\theta : T_pM \to (\F_p/{\F_p}^2)^*$ the isomorphism from the
+  proof of \cref{lem-tangentspaceiso}. To prove (1) it suffices to
+  show $\{\xi_i \mid 1 \le i \le d\}$ is a basis for
+  $(\F_p/{\F_p}^2)^*$, where $\xi_i := \theta((\p/\p x_i)|_p)$ for $1
+  \le i \le d$. From the proof of
+  \cref{thm-manifolddimequalscotangentdim} we know $\{[\b{x_i} -
+  \b{x_i(p)}] \mid 1 \le i \le d\}$ is a basis for
+  $\F_p/{\F_p}^2$. And for $1 \le i,j \le d$ we have by the definition
+  of $\theta$ that
+  \[
+  \xi_i([\b{x_j} - \b{x_j(p)}]) = \left.\f{\p}{\p
+      x_i}\right|_p(\b{x_j} - \b{x_j(p)}) = \left.\f{\p}{\p
+      x_i}\right|_p(x_j) = \delta_{i,j}.
+  \]
+  Thus $\{\xi_i \mid 1 \le i \le d\}$ is the basis of
+  $(\F_p/{\F_p}^2)^*$ dual to the basis $\{[\b{x_i} - \b{x_i(p)}] \mid
+  1 \le i \le d\}$ of $\F_p/{\F_p}^2$. Then (2) follows easily from
+  this: it is easy to check for $v \in T_pM$ that $\theta(v)$ and
+  $\theta(\sum_{i=1}^d v(\b x_i)(\p/\p x_i)|_p)$ agree on the basis
+  elements $[\b{x_i} - \b{x_i(p)}]$ for $1 \le i \le d$, and hence
+  must be equal.
+\end{proof}
+
+\begin{cor}
+  \label{cor-switchcoordinates}
+  In \cref{sit-manifoldpoint}. Let $(U, \varphi), (V,\psi) \in \A$
+  with $p \in U \cap V$. Let $x_1,x_2,\ldots,x_d$ the coordinate
+  functions of $\varphi$ and $y_1,y_2,\ldots,y_d$ the coordinate
+  functions of $\psi$. Then
+  \[
+  \left.\f\p{\p y_i}\right|_p = \sum_{j=1}^d\left.\f{\p y_i}{\p
+      x_j}\right|_p \left.\f\p{\p x_j}\right|_p\quad\text{for}\ 1 \le
+  j \le d.
+  \]
+\end{cor}
+
+\begin{ntn}
+  In \cref{sit-manifoldpoint}. We denote the dual space $(T_pM)^*$ to
+  $T_pM$ by $T_p^*M$, and call this the {\itshape cotangent space to
+    $M$ at $p$}.
+\end{ntn}
+
+\begin{dfns}
+  Let $M,N$ differentiable manifolds. Let $\varphi : M \to N$ a
+  $C^\infty$ map. Let $p \in M$. Then the {\itshape differential of
+    $\varphi$ at $p$} is the linear map $d\varphi|_p : T_pM \to
+  T_{\varphi(p)}N$ defined such that for $v \in T_pM$,
+  $d\varphi|_p(v)(f) := v(f \circ \varphi)$ for all $f \in
+  C^\infty(\varphi(p))$. It is evident that $d\varphi|_p$ is indeed
+  linear. It is also clear that $d\varphi|_p$ is indeed a derivation
+  on $\tilde\F_{\psi(p)}$, since for $v \in T_pM$,
+  \begin{enumerate}
+  \item if $f,g \in C^\infty(\varphi(p))$ agree on a neighbourhood $U$
+    of $\varphi(p)$, then $f \circ \varphi,g \circ \varphi$ agree on
+    the neighbourhood $\varphi^{-1}(U)$ (open by continuity of
+    $\varphi$) of $p$, so
+    \[
+    v \in T_pM \implies v(f \circ \varphi) = v(g \circ \varphi)
+    \implies d\varphi|_p(v)(f) = d\varphi|_p(v)(g),
+    \]
+    and
+  \item that $d\varphi|_p(v)$ is linear and satisfies the necessary
+    product rule follows immediately from these conditions holding for
+    $v$.
+  \end{enumerate}
+
+  \medskip\noindent The {\itshape dual map $\delta\varphi|_p :
+    T_{\psi(p)}^*N \to T_p^*M$ to $d\varphi|_p$} is then defined such
+  that for $\omega \in T_{\psi(p)}^*N$, $\delta\varphi|_p(\omega)(v)
+  := \omega(d\varphi|_p(v))$ for $v \in T_pM$, which indeed gives a
+  linear functional since both $d\varphi|_p$ and $\omega$ are linear.
+
+  \medskip\noindent Take the special case $\varphi : M \to \R$ a
+  $C^\infty$ function. By \cref{pro-partialtangentbasis} we must be
+  able to write
+  \[
+  d\varphi|_p(v) = d\varphi|_p(v)(r)\left.\f\p{\p
+      r}\right|_{\varphi(p)},
+  \]
+  where $r$ is the canonical coordinate function on $\R$. But
+  $d\varphi|_p(v)(r) = v(r \circ \varphi) = v(\varphi)$ so we have
+  \[
+  d\varphi|_p(v) = v(\varphi)\left.\f\p{\p r}\right|_{\varphi(p)}.
+  \]
+  Thus in this situation we will often view $d\varphi|_p(v)$ as an
+  element of $T_p^*M$ defined by $d\varphi|_p(v) := v(\varphi)$ for $v
+  \in T_pM$ (when we do this it should be clear from context). I.e.,
+  we view $d\varphi|_p$ as $\delta\varphi|_p(\omega)$, where $\omega$
+  is the basis element of $T_{\varphi(p)}^*\R$ dual to the basis
+  element $(\p/\p r)|_{\varphi(p)}$ of $T_{\varphi(p)}\R$.
+\end{dfns}
+
+\begin{lem}
+  \label{lem-jacobian}
+  In the situation of the above definition. Let $(U,\sigma) \in \A$
+  with $p \in U$ and let $(V, \tau) \in \B$ with $\varphi(p) \in V$,
+  where $\A$ is the differentiable structure on $M$ and $\B$ is the
+  differentiable structure on $N$. Let $x_1,x_2,\ldots,x_d$ the
+  coordinate functions of $\sigma$ and $y_1,y_2,\ldots,y_e$ the
+  coordinate functions of $\tau$, where $d := \dim M$ and $e := \dim
+  N$. Then
+  \[
+  d\varphi|_p\left(\left.\f\p{\p x_i}\right|_p\right) = \sum_{j=1}^e
+  \left.\f{\p (y_j \circ \varphi)}{\p x_i}\right|_p \left.\f\p{\p
+      y_j}\right|_{\varphi(p)}
+  \]
+  for $1 \le i \le d$.
+\end{lem}
+
+\begin{proof}
+  This is immediate from the definition of $d\varphi|_p$ and
+  \cref{pro-partialtangentbasis}.
+\end{proof}
+
+\begin{dfn}
+  In the situation of the above lemma. The matrix
+  \[
+  \left(\left.\f{\p (y_j \circ \varphi)}{\p x_i}\right|_p\right)_{1
+    \le i \le d, 1 \le j \le e}
+  \]
+  is called {\itshape the Jacobian of $\varphi$ at $p$ (with respect
+    to the coordinate systems $(U,\sigma)$ and $(V,\tau)$)}.
+\end{dfn}
+
+\begin{ntn}
+  \label{ntn-dualpartialbasis}
+  Let $(M,\A)$ a differentiable manifold. Let $p \in M$. Let $(U,
+  \sigma) \in \A$ with $p \in M$. Let $x_1,x_2,\ldots,x_d$ the
+  coordinate functions of $\sigma$ where $d := \dim M$. Then we denote
+  by $\{dx_i|_p \mid 1 \le i \le d\}$ the basis for $T_p^*M$ dual to
+  the basis $\{(\p/\p x_i)|_p \mid 1 \le i \le d\}$ of $T_pM$. Then
+  clearly for $\varphi : M \to \R$ a $C^\infty$ function we have
+  \[
+  d\varphi|_p = \sum_{i=1}^d \left.\f{\p \varphi}{\p x_i}\right|_p
+  dx_i|_p.
+  \]
+\end{ntn}
+
+\begin{pro}[Chain rule]
+  \label{pro-chainrule}
+  Let $L,M,N$ differentiable manifolds. Let $\varphi : L \to M$ and
+  $\psi : M \to N$ be $C^\infty$ maps. Then for $p \in L$,
+  \[
+  d(\psi \circ \varphi)|_p = d\psi|_{\varphi(p)} \circ d\varphi|_p.
+  \]
+\end{pro}
+
+\begin{proof}
+  Let $v \in T_pL$. Let $f \in C^\infty(\psi(\varphi(p)))$. Then we
+  have
+  \[
+  d(\psi \circ \varphi)|_p(v)(f) = v(f \circ \psi \circ \varphi) =
+  d\varphi|_p(v)(f \circ \psi) =
+  d\psi|_{\varphi(p)}(d\varphi|_p(v))(f). \qedhere
+  \]
+\end{proof}
+
+\begin{lem}
+  \label{lem-pullofpush}
+  Let $M,N$ differentiable manifolds. Let $\varphi : M \to N$ and
+  $\psi : N \to \R$ be $C^\infty$. Then for $p \in M$,
+  $\delta\varphi|_p(d\psi|_{\varphi(p)}) = d(\psi \circ \varphi)|_p$.
+\end{lem}
+
+\begin{proof}
+  Indeed for $p \in M$ and $v \in T_pM$ we have
+  \[
+  \delta\varphi|_p(d\psi|_{\varphi(p)})(v) =
+  d\psi|_{\varphi(p)}(d\varphi|_p(v)) = d(\psi \circ \varphi)|_p(v),
+  \]
+  the second equality following from \cref{pro-chainrule}.
+\end{proof}
+
+\begin{dfns}
+  Let $M$ a differentiable manifold. Let $a,b \in \R$ with $a < b$. A
+  $C^\infty$ map $\gamma : (a, b) \to M$ is called a {\itshape smooth
+    curve in $M$}. For $\gamma$ a smooth curve on $M$, the {\itshape
+    tangent vector $\dot\gamma(t)$ to $\gamma$ at $t \in (a,b)$} is
+  defined as $\dot\gamma(t) := d\gamma|_t((d/dr)|_t) \in
+  T_{\gamma(t)}M$.
+
+  \medskip\noindent Now let $\gamma : (a,b) \to M$ and $\gamma' :
+  (a,b) \to M$ two smooth curves in $M$ with $\gamma(t) = \gamma'(t)$
+  where $t \in (a,b)$. Let $p := \gamma(t) = \gamma'(t)$. Observe that
+  $\gamma,\gamma'$ have the same tangent vector at $t$, that is
+  $\dot\gamma(t) = \dot\gamma'(t)$, if and only if
+  \begin{align*}
+    d\gamma|_t\left(\left.\f d{dr}\right|_t\right) =
+    d\gamma'|_t\left(\left.\f d{dr}\right|_t\right) &\Leftrightarrow
+    (\forall f \in C^\infty(p))\ d\gamma|_t\left(\left.\f
+        d{dr}\right|_t\right)\!(f) = d\gamma'|_t\left(\left.\f
+        d{dr}\right|_t\right)\!(f) \\ &\Leftrightarrow (\forall f \in
+    C^\infty(p))\ \left.\f{d(f \circ \gamma)}{dr}\right|_t =
+    \left.\f{d(f \circ \gamma')}{dr}\right|_t.
+  \end{align*}
+\end{dfns}
+
+\begin{lem}
+  \label{lem-tangentvectorsequalcurvetangents}
+  In \cref{sit-manifoldpoint}. Let $v \in T_pM$. There exists a smooth
+  curve $\gamma : (a, b) \to M$ such that $\dot\gamma(t) = v$ for some
+  $t \in (a,b)$.
+\end{lem}
+
+\begin{proof}
+  Let $(U,\varphi) \in \A$ centred at $p$. Let $x_1,x_2,\ldots,x_d$
+  the coordinate functions of $\varphi$. By
+  \cref{pro-partialtangentbasis} we have $v = \sum_{i=1}^d
+  v(x_i)(\p/\p x_i)|_p$. Let $a > 0$ such that $(-a,a)^d \subset \im
+  \varphi$. Let $b := \max_{1 \le i \le d} |v(x_i)|$. Define $\gamma :
+  (-a/b, a/b) \to M$ as the map
+  \[
+  t \mapsto \varphi^{-1}(v(x_1)t, v(x_2)t, \ldots, v(x_d)t).
+  \]
+  Then we have by \cref{pro-chainrule}
+  \[
+  d\gamma|_0\left(\left.\f d{dr}\right|_0\right) =
+  d\varphi^{-1}|_{(0,0,\ldots,0)}\left(\sum_{i=1}^d v(x_i)\left.\f
+      \p{\p r_i}\right|_{(0,0,\ldots,0)}\right) = \sum_{i=1}^d
+  v(x_i)\left.\f \p{\p x_i}\right|_p = v,
+  \]
+  so $v$ is the tangent vector to $\gamma$ at $0$.
+\end{proof}
+
+\begin{thm}
+  \label{thm-zerodifferentialimpliesconstant}
+  Let $(M,\A),(N,\B)$ differentiable manifolds. Assume $M$ is
+  connected. Let $\varphi : M \to N$ a $C^\infty$ map such that
+  $d\varphi|_p \equiv 0$ for all $p \in M$. Then $\varphi$ is a
+  constant map.
+\end{thm}
+
+\begin{proof}
+  Let $q \in \im \varphi$. Since $N$ is Hausdorff, $\{q\}$ is closed
+  in $N$. Then since $\varphi$ is continuous this implies
+  $\varphi^{-1}(q)$ is closed in $M$. Now let $p \in
+  \varphi^{-1}(q)$. Let $(U,\sigma) \in \A$ with $p \in U$ and
+  $(V,\tau)\in \B$ with $q \in V$. By replacing $U$ with $U \cap
+  \varphi^{-1}(V)$ and $\sigma$ with $\sigma|_{U \cap
+    \varphi^{-1}(V)}$ we have without loss of generality that
+  $\varphi(U) \subset V$. Let $x_1,x_2,\ldots,x_d$ the coordinate
+  functions of $\sigma$ and $y_1,y_2,\ldots,y_2$ the coordinate
+  functions of $\tau$, where $d := \dim M$ and $e := \dim N$. By
+  hypothesis and \cref{lem-jacobian} we have
+  \[
+  0 = d\varphi|_{p'}\left(\left.\f\p{\p x_i}\right|_{p'}\right) =
+  \sum_{j=1}^e \left.\f{\p(y_j \circ \varphi)}{\p
+      x_i}\right|_{p'}\left.\f\p{\p y_j}\right|_{\varphi(p')}
+  \]
+  for $1 \le i \le d$ and $p' \in U$. But then for all $p' \in U$,
+  since $\{(\p/\p y_j)|_{\varphi(p')} \mid 1 \le j \le e\}$ is a basis
+  for $T_{\varphi(p')}N$ by \cref{pro-partialtangentbasis}, we must
+  have $(\p(y_j \circ \varphi)/\p x_i)|_{p'} = 0$ for $1 \le i \le d,
+  1 \le j \le e$. Thus the functions $y_j \circ \varphi$ for $1 \le j
+  \le e$ must be constant on $U$. It follows that $U \subset
+  \varphi^{-1}(q)$. Hence $\varphi^{-1}(q)$ is open. But then
+  $\varphi^{-1}(q)$ is clopen and nonempty. So by the connectedness of
+  $M$ we have $M = \varphi^{-1}(q)$, that is, $\varphi$ is identically
+  equal to $q$.
+\end{proof}
+
+\begin{dfns}
+  Let $(M, \A)$ a differentiable manifold of dimension $d$. Define
+  \[
+  TM := \bigcup_{p \in M} \{p\} \times T_pM\quad\text{and}\quad T^*M
+  := \bigcup_{p \in M} \{p\} \times T_p^*M.
+  \]
+  We will define manifold structures on $TM$ and $T^*M$.
+
+  \medskip\noindent Let $\pi : TM \to M$ and $\pi^* : T^*M \to M$ the
+  projections $(p,v) \mapsto p$ and $(p,\xi) \mapsto p$ onto the first
+  coordinates, where $p\in M, v \in T_pM, \xi \in T_p^*M$. Let $(U,
+  \varphi) \in \A$. Then define $\tilde\varphi : \pi^{-1}(U) \to
+  \R^{2d}$ and $\tilde\varphi^* : \pi^{*-1}(U) \to \R^{2d}$ by
+  \begin{align*}
+    \tilde\varphi(p, v) &:= (x_1(p), x_2(p), \ldots, x_d(p),
+    dx_1|_p(v), dx_2|_p(v), \ldots, dx_d|_p(v))\ \ \text{and} \\
+    \tilde\varphi^*(p, \xi) &:= \left(x_1(p), x_2(p), \ldots, x_d(p),
+      \xi\left(\left.\f\p{\p x_1}\right|_p\right),
+      \xi\left(\left.\f\p{\p x_2}\right|_p\right), \ldots,
+      \xi\left(\left.\f\p{\p x_d}\right|_p\right)\right)
+  \end{align*}
+  for $p \in M, v \in T_pM, \xi \in T_p^*M$ and $x_1,x_2,\ldots,x_d$
+  the coordinate functions of $\varphi$. Then we can see that
+  $\tilde\varphi,\tilde\varphi^*$ are injective and have open images
+  in $\R^{2d}$. Injectivity follows from $\varphi$ being a
+  homeomorphism, hence injective, and the fact
+  (\cref{pro-partialtangentbasis}, \cref{ntn-dualpartialbasis}) that
+  $\{(\p/\p x_i)|_p \mid 1 \le i \le d\}$ is a basis for $T_pM$ and
+  $\{dx_i|_p \mid 1 \le i \le d\}$ the dual basis for $T_p^*M$ for $p
+  \in M$. That these sets are bases also implies that
+  $\im\tilde\varphi = \im\tilde\varphi^* = U \times \R^d$ which is
+  open in $\R^{2d}$ since $U$ is open in $\R^d$ and by the canonical
+  homeomorphism $\R^d \times \R^d \to \R^{2d}$.
+
+  \medskip\noindent Next we show that $\tilde\varphi \circ
+  \tilde\psi^{-1}|_{\tilde\psi(\pi^{-1}(U) \cap \pi^{-1}(V))}$ and
+  $\tilde\varphi^* \circ \tilde\psi^{*-1}|_{\tilde\psi^*(\pi^{-1}(U)
+    \cap \pi^{-1}(V))}$ are $C^\infty$ for all $(U,\varphi),(V,\psi)
+  \in \A$. Let $x \in \tilde\psi(\pi^{-1}(U) \cap \pi^{-1}(V))$. Now
+  by \cref{cor-switchcoordinates} we have
+  \[
+  \left.\f\p{\p x_i}\right|_p = \sum_{j = 1}^d \left.\f{\p x_i}{\p
+      y_j}\right|_p\left.\f\p{\p y_j}\right|_p \implies dx_i|_p =
+  \sum_{j = 1}^d \left.\f{\p x_i}{\p y_j}\right|_p dy_j|_p
+  \]
+  for $1 \le i \le d$. It follows that
+  \[
+  \tilde\varphi \circ \tilde\psi^{-1}|_{\tilde\psi(\pi^{-1}(U) \cap
+    \pi^{-1}(V))}\quad\text{and}\quad \tilde\varphi^* \circ
+  \tilde\psi^{*-1}|_{\tilde\psi^*(\pi^{-1}(U) \cap \pi^{-1}(V))}
+  \]
+  are both given by the map (restricted to the appropriate domains)
+  \begin{align*}
+    \b a \mapsto \Bigg(&x_1(\psi^{-1}(\b a_1)),
+    x_2(\psi^{-1}(\b a_1)), \ldots, x_d(\psi^{-1}(\b a_1)), \\
+    &\sum_{j=1}^d \left.\f{\p x_1}{\p y_j}\right|_{\psi^{-1}(\b a_1)}
+    a_{n+1},\sum_{j=1}^d \left.\f{\p x_i}{\p y_j}\right|_{\psi^{-1}(\b
+      a_1)} a_{n+2}, \ldots, \sum_{j=1}^d \left.\f{\p x_i}{\p
+        y_j}\right|_{\psi^{-1}(\b a_1)} a_{2n}\Bigg)
+  \end{align*}
+  where $\b a = (a_1,a_2,\ldots,a_{2n})$ and $\b a_1 =
+  (a_1,a_2,\ldots,a_n)$. By condition (2) of \cref{dfn-diffstructure}
+  we know $\varphi \circ \psi^{-1}|_{\psi(U \cap V)}$ is $C^\infty$,
+  from which it is evident that each of the components of the above
+  map are $C^\infty$, hence by definition the map is $C^\infty$.
+
+  \medskip\noindent Now we claim $\U := \{\tilde\varphi^{-1}(W) \mid W
+  \subset \R^{2d}\ \text{open and}\ (U,\varphi) \in \A\}$ is a basis
+  for a topology $\T$ on $TM$ in which $TM$ is second countable and
+  locally Euclidean of dimension $2d$. We first check that $\U$
+  satisfies the definition of a basis. By \cref{dfn-diffstructure} we
+  must have $\bigcup_{(U,\varphi) \in \A} U = M$. It follows that
+  \[
+  \bigcup_{(U,\varphi) \in \A} \tilde\varphi^{-1}(\R^{2d}) =
+  \bigcup_{(U,\varphi) \in \A} \pi^{-1}(U) = \pi^{-1}(M) = TM.
+  \]
+  Then since $\{\tilde\varphi^{-1}(\R^{2d}) \mid (U,\varphi) \in \A\}
+  \subset \U$, this implies that $\U$ covers $TM$. Now observe that
+  $\U$ is closed under finite intersection, since for
+  $\tilde\varphi^{-1}(W), \tilde\psi^{-1}(W') \in \U$, where $W,W'$
+  are open in $\R^{2d}$ and $(U,\varphi),(V,\psi) \in \A$, we have
+  \[
+  \tilde\varphi^{-1}(W) \cap \tilde\psi^{-1}(W') =
+  \tilde\varphi^{-1}(W \cap \tilde\varphi(\psi^{-1}(W'))).
+  \]
+  Since by the above
+  \[
+  \tilde\varphi \circ \tilde\psi^{-1}|_{\tilde\psi(\pi^{-1}(U) \cap
+    \pi^{-1}(V))}\quad\text{and}\quad\tilde\psi \circ
+  \tilde\varphi^{-1}|_{\tilde\varphi(\pi^{-1}(U) \cap \pi^{-1}(V))}
+  \]
+  are $C^\infty$, hence continuous, and of course mutually inverse,
+  each map is a homeomorphism. It follows that $W'$ being open implies
+  $\tilde\varphi(\psi^{-1}(W')$ is open, whence $W$ being open implies
+  $W \cap \tilde\varphi(\psi^{-1}(W'))$ is open. Thus indeed
+  $\tilde\varphi^{-1}(W \cap \tilde\varphi(\psi^{-1}(W'))) \in \U$. So
+  $\U$ is a basis for a topology $\T$ on $TM$. Since for each
+  $\tilde\varphi^{-1}(W) \in \U$ with $W$ open in $\R^{2d}$ and
+  $(U,\varphi) \in \A$ we have by the above that $\tilde\varphi$ is
+  injective and hence clearly a homeomorphism $\tilde\varphi^{-1}(W)
+  \to W$, $TM$ is obviously locally Euclidean of dimension $2d$ in the
+  topology $\T$. And the second countability of $TM$ in the topology
+  $\T$ is evident from the second countability of $\R^{2d}$. Of course
+  by an analogous argument $\U^* := \{\tilde\varphi^{*-1}(W) \mid W
+  \subset \R^{2d}\ \text{open and}\ (U,\varphi) \in \A\}$ is a basis
+  for a topology $\T^*$ on $T^*M$ in which $T^*M$ is second countable
+  and locally Euclidean of dimension $2d$.
+
+  \medskip\noindent Finally, it is evident from our work so far that
+  the collections
+  \[
+  \{(\pi^{-1}(U), \tilde\varphi) \mid (U, \varphi) \in
+  \A\}\quad\text{and}\quad\{(\pi^{*-1}(U), \tilde\varphi) \mid (U,
+  \varphi) \in \A\}
+  \]
+  satisfy conditions (1) and (2) of \cref{dfn-diffstructure}, so by
+  \cref{lem-maximaldiffstruct} there exist differentiable structures
+  \[
+  \tilde\A \supset \{(\pi^{-1}(U), \tilde\varphi) \mid (U, \varphi)
+  \in \A\}\quad\text{and}\quad\tilde\A^* \supset \{(\pi^{*-1}(U),
+  \tilde\varphi) \mid (U, \varphi) \in \A\}
+  \]
+  on $TM$ and $T^*M$ respectively, in the above topologies $\T$ and
+  $\T^*$. Now we have manifold structures on $TM$ and $T^*M$. With
+  these manifold structures, we call $TM$ the {\itshape tangent bundle
+    of $M$} and $T^*M$ the {\itshape cotangent bundle of $M$}.
+\end{dfns}
+
+\begin{dfn}
+  Let $(M,\A),(N,\B)$ differentiable manifolds. Let $\varphi : M \to
+  N$ a $C^\infty$ map. Then the {\itshape differential of $\varphi$}
+  is the map $d\varphi : TM \to TN$ given by $d\varphi(p, v) :=
+  (\varphi(p), d\varphi|_p(v))$ for $p \in M$ and $v \in T_pM$.
+
+  \medskip\noindent We claim $d\varphi$ is $C^\infty$. Let $(U,\sigma)
+  \in \A$ and $(V, \tau) \in \B$. Let $x_1,x_2,\ldots,x_d$ and
+  $y_1,y_2,\ldots,y_e$ the coordinate functions of $\sigma$ and $\tau$
+  respectively, where $d := \dim M$ and $e := \dim N$. Keep the
+  notation from the previous definition (of the tangent bundle). Let
+  $\b a = (a_1,a_2,\ldots,a_{2n}) \in \im \tilde\sigma$. Let $\b a_1
+  := (a_1,a_2,\ldots,a_n)$. Let $(p, v) = \tilde\sigma^{-1}(\b a)$,
+  with $p = \sigma^{-1}(\b a_1) \in M$ and $v \in T_pM$. By
+  \cref{pro-partialtangentbasis} and \cref{lem-jacobian} we have
+  \begin{align*}
+    v = \sum_{i=1}^d a_i \left.\f\p{\p x_i}\right|_p \implies
+    d\varphi(p, v) &= d\varphi|_p(v) = \sum_{i=1}^d a_i
+    d\varphi|_p\left(\left.\f\p{\p x_i}\right|_p\right) \\ &=
+    \sum_{i=1}^d a_i \sum_{j=1}^e\left.\f{\p(y_j \circ \varphi)}{\p
+        x_i}\right|_{\sigma^{-1}(\b a_1)}\left.\f\p{\p
+        y_j}\right|_{\sigma^{-1}(\b a_1)}.
+  \end{align*}
+  It follows that $(\tilde\tau \circ d\varphi \circ
+  \tilde\sigma^{-1})(\b a)$ is equal to
+  \begin{align*}
+    \Bigg(&(y_1 \circ \varphi \circ \sigma^{-1})(\b a_1), (y_2 \circ
+    \varphi \circ \sigma^{-1})(\b a_1), \ldots, (y_e \circ \varphi
+    \circ \sigma^{-1})(\b a_1), \\ &\sum_{i=1}^d a_i \left.\f{\p(y_1
+        \circ \varphi)}{\p x_i}\right|_{\sigma^{-1}(\b a_1)},
+    \sum_{i=1}^d a_i \left.\f{\p(y_2 \circ \varphi)}{\p
+        x_i}\right|_{\sigma^{-1}(\b a_1)}, \ldots, \sum_{i=1}^d a_i
+    \left.\f{\p(y_e \circ \varphi)}{\p x_i}\right|_{\sigma^{-1}(\b
+      a_1)}\Bigg).
+  \end{align*}
+  By \cref{lem-diffmapequiv} we know $y_j \circ \varphi \circ
+  \sigma^{-1}|_{\sigma(U \cap \varphi^{-1}(V))}$ is $C^\infty$ for $1
+  \le j \le e$. From this it is clear that $\tilde\tau \circ d\varphi
+  \circ \tilde\sigma^{-1}$ is $C^\infty$. Thus by
+  \cref{lem-diffmapequivmaximal} and the definition of the
+  differentiable structures on $TM$ and $TN$, $d\varphi$ is
+  $C^\infty$.
+\end{dfn}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Submanifolds and diffeomorphisms}
+
+\begin{dfns}
+  \label{dfns-submanifolddiffeo}
+  Let $M, N$ be differentiable manifolds. Let $\varphi : M \to N$ a
+  $C^\infty$ map. We say:
+  \begin{enumerate}
+  \item $\varphi$ is an {\itshape immersion (resp. submersion)} if
+    $d\varphi|_p$ is injective (resp. surjective) for $p \in M$;
+  \item $(M, \varphi)$ is a {\itshape submanifold of $N$} if $\varphi$
+    is an injective immersion;
+  \item $\varphi$ is an {\itshape embedding} if $\varphi$ is an
+    immersion which is a homeomorphism into its image;
+  \item $\varphi$ is a {\itshape diffeomorphism} and $M,N$ are
+    {\itshape diffeomorphic} if $\varphi$ is homeomorphism with
+    $\varphi^{-1}$ a $C^\infty$ map.
+  \end{enumerate}
+\end{dfns}
+
+\begin{rem}
+  See the book for examples of an immersion which is not a submanifold
+  and a submanifold which is not an embedding.
+\end{rem}
+
+\begin{exa}
+  Let $f : \R \to \R$ the homeomorphism $x \mapsto x^3$. Recall from
+  \cref{exas-manifolds}, (a) that $(\R, f) \notin \A$, where $\A$ is
+  the standard differentiable structure on $\R$. However $\{(R,f)\}$
+  trivially satisfies (1) and (2) of \cref{dfn-diffstructure} so there
+  exists a unique differentiable structure $\B$ on $\R$ such that
+  $(\R,f) \in \B$. Of course, then $\A \ne \B$. But if let $M$ the
+  differentiable manifold $(\R,\A)$ and $N$ the differentiable
+  manifold $(\R,\B)$ it is easy to see that $M$ and $N$ are
+  diffeomorphic. To produce a diffeomorphism $\varphi : M \to N$ it
+  suffices by \cref{lem-diffmapequivmaximal} to find a map $\varphi$
+  such that $\varphi \circ f$ and $f \circ \varphi$ are
+  $C^\infty$. Setting $\varphi := f^{-1}$ clearly works.
+\end{exa}
+
+\begin{lem}
+  \label{lem-diffeocompdiffeo}
+  Let $L,M,N$ differentiable manifolds. Let $\varphi : L \to M$ and
+  $\psi : M \to N$ diffeomorphisms. Then $\psi \circ \varphi$ is a
+  diffeomorphism.
+\end{lem}
+
+\begin{proof}
+  Immediate from \cref{lem-diffcompositiondiff} and the fact that
+  $(\psi \circ \varphi)^{-1} = \varphi^{-1} \circ \psi^{-1}$.
+\end{proof}
+
+\begin{lem}
+  \label{lem-csystemdiffeo}
+  Let $(M, \A)$ a differentiable manifold of dimension $d$. Let $(U,
+  \varphi)$ any coordinate system on $M$. Then $(U,\varphi) \in
+  \A$ if and only if $\varphi$ is a diffeomorphism to its image.
+\end{lem}
+
+\begin{proof}
+  $(\Rightarrow)$ Let $(V, \psi) \in \A$. By (2) of
+  \cref{dfn-diffstructure} we have $\varphi \circ \psi^{-1}|_{\psi(U
+    \cap V)}$ and $\psi \circ \varphi^{-1}|_{\varphi(U \cap V)}$ are
+  $C^\infty$. Then by \cref{lem-diffmapequivmaximal} and the
+  definition of the standard differentiable structure on $\R^d$
+  (\cref{exas-manifolds}, (a)) we have that $\varphi$ and
+  $\varphi^{-1}$ are $C^\infty$, so $\varphi$ is a diffeomorphism.
+
+  \medskip\noindent $(\Leftarrow)$ Let $(V, \psi) \in \A$. By the
+  above we know $\psi$ is a diffeomorphism to its image. Then $\varphi
+  \circ \psi^{-1}|_{\psi(U \cap V)}$ and $\psi \circ
+  \varphi^{-1}|_{\varphi(U \cap V)}$ are obviously $C^\infty$. Since
+  $(V,\psi)$ was arbitrary it follows from (3) of
+  \cref{dfn-diffstructure} that $(U,\varphi) \in \A$.
+\end{proof}
+
+\begin{lem}
+  \label{lem-diffeodiffiso}
+  Let $M,N$ differentiable manifolds. Let $\varphi : M \to N$ a
+  diffeomorphism. Then $d\varphi|_p$ is an isomorphism for each $p \in
+  M$.
+\end{lem}
+
+\begin{proof}
+  Let $p \in M$. By \cref{pro-chainrule} we have
+  \begin{align*}
+    d\varphi|_p \circ d\varphi^{-1}|_{\varphi(p)} &= d(\varphi \circ
+    \varphi^{-1})|_{\varphi(p)} = d(\id_N)|_{\varphi(p)} =
+    \id_{T_{\varphi(p)}N},\ \ \text{and} \\
+    d\varphi^{-1}|_{\varphi(p)} \circ d\varphi|_p &= d(\varphi^{-1}
+    \circ \varphi)|_p = d(\id_M)|_p = \id_{T_pM},
+  \end{align*}
+  so $d\varphi|_p, d\varphi^{-1}|_{\varphi(p)}$ are mutually inverse
+  isomorphisms.
+\end{proof}
+
+\begin{cor}
+  If $M,N$ are diffeomorphic differentiable manifolds then $\dim M =
+  \dim N$.
+\end{cor}
+
+\begin{proof}
+  Let $p \in M$. By \cref{lem-diffeodiffiso} we have $T_pM \cong
+  T_{\varphi(p)}N$, which implies $\dim T_pM = \dim
+  T_{\varphi(p)}N$. Then by
+  \cref{cor-manifolddimequalstangentdim} we have
+  \[
+  \dim M = \dim T_pM = \dim T_{\varphi(p)}N = \dim N. \qedhere
+  \]
+\end{proof}
+
+\begin{lem}
+  \label{lem-uniquediffeostruct}
+  Let $(M, \A)$ a differentiable manifold and $X$ a set. Let $\varphi
+  : M \to X$ a bijective set map. Then there exists a unique manifold
+  structure on $X$ for which $\varphi$ is a diffeomorphism.
+\end{lem}
+
+\begin{proof}
+  If $\varphi$ is a diffeomorphism then of course $\varphi$ is a
+  homeomorphism, so we must have the topology $\{\varphi(U) \mid U
+  \subset M\ \text{open}\}$ on $X$. That this makes $X$ a second
+  countable locally euclidean space of dimension $\dim M$ follows
+  easily from these properties holding for $M$. Now by
+  \cref{lem-csystemdiffeo} we know that, given a differentiable
+  structure $\B$ on $X$, if $(V, \tau)$ is a coordinate system on $X$
+  then $(V, \tau) \in \B$ if and only if $\tau$ is a diffeomorphism to
+  its image. So suppose $\B$ is a differentiable structure on $X$ such
+  that $\varphi$ is a diffeomorphism. Then for all $(U, \sigma) \in
+  \A$ we know (again by \cref{lem-csystemdiffeo}) that $\sigma$ is a
+  diffeomorphism, implying by \cref{lem-diffeocompdiffeo} that $\sigma
+  \circ \varphi^{-1}|_{\varphi(U)}|$ is a diffeomorphism. Thus we must
+  have $(\varphi(U), \sigma \circ \varphi^{-1}|_{\varphi(U)}) \in
+  \B$. Conversely if $(V, \tau) \in \B$ then $\tau \circ
+  \varphi|_{\varphi^{-1}(V)}$ is similarly a diffeomorphism, so
+  $(\varphi^{-1}(V), \tau \circ \varphi|_{\varphi^{-1}(V)}) \in
+  \A$. It follows that we must have $\B = \{(\varphi(U), \sigma \circ
+  \varphi^{-1}|_{\varphi(U)}) \mid (U, \sigma) \in \A\}$, proving that
+  $\B$ is unique. That this unique definition of differentiable
+  structure indeed satisfies the conditions of
+  \cref{dfn-diffstructure} is evident, completing the proof.
+\end{proof}
+
+\begin{dfn}
+  Let $M$ a differentiable manifold. Let $p \in M$. Let $j \in
+  \N$. For $1 \le i \le j$ let $x_i : U_i \to \R$ a $C^\infty$
+  function with $U_i$ a neighbourhood of $p$. We say
+  $x_1,x_2,\ldots,x_j$ are {\itshape independent at $p$} if
+  $dx_1|_p,dx_2|_p,\ldots,dx_j|_p$ are linearly independent elements
+  of $T_p^*M$.
+\end{dfn}
+
+\begin{thm}[Inverse function theorem]
+  \label{thm-inversefn}
+  Let $(M, \A), (N, \B)$ differentiable manifolds. Let $\varphi : M
+  \to N$ a $C^\infty$ map. Let $p \in M$ and assume $d\varphi|_p$ is
+  an isomorphism. Then there exists a neighbourhood $U$ of $p$ such
+  that $\varphi|_U$ is a diffeomorphism $U \to \varphi(U)$.
+\end{thm}
+
+\begin{proof}
+  We recall that this theorem holds for the case $M = N = \R^d$ (in
+  the standard differentiable structure) for $d \in \N$. The general
+  case follows easily, as follows. Let $(U, \sigma) \in \A$ and $(V,
+  \tau) \in \B$ such that $p \in U$ and $\varphi(p) \in V$. By
+  \cref{lem-csystemdiffeo}, \cref{lem-diffeodiffiso}, and
+  \cref{pro-chainrule} we have
+  \[
+  d(\tau \circ \varphi \circ \sigma^{-1}|_{\sigma(U \cap
+    \varphi^{-1}(V))})|_{\sigma(p)} = d\tau|_{\varphi(p)} \circ
+  d\varphi|_p \circ d\sigma^{-1}|_{\sigma(U \cap
+    \varphi^{-1}(V))})|_{\sigma(p)}
+  \]
+  is a composition of isomorphisms and hence an isomorphism. Since the
+  theorem holds for $M = N = \R^d$ with $d := \dim M$, there exists a
+  neighbourhood $W \subset \sigma(U \cap \varphi^{-1}(V))$ of
+  $\sigma(p)$ such that $\tau \circ \varphi \circ \sigma^{-1}|_W$ is a
+  diffeomorphism. Since $\sigma,\tau$ are diffeomorphisms by
+  \cref{lem-csystemdiffeo}, by \cref{lem-diffeocompdiffeo} it follows
+  that
+  \[
+  \varphi|_{\sigma^{-1}(W)} = \tau^{-1} \circ \tau \circ \varphi \circ
+  \sigma^{-1} \circ \sigma|_{\sigma^{-1}(W)}
+  \]
+  is a diffeomorphism, completing the proof.
+\end{proof}
+
+\begin{cor}
+  \label{cor-indepfnsgivecsystem}
+  Let $(M, \A)$ a differentiable manifold of dimension $d$. Let $p \in
+  M$. For $1 \le i \le d$ let $x_i : U_i \to \R$ a $C^\infty$ function
+  with $U_i$ a neighbourhood of $p$. Assume $x_1,x_2,\ldots,x_d$ are
+  independent at $p$. Let $U := \bigcap_{i=1}^d U_i$. Let $\varphi : U
+  \to \R^d$ the map such that $r_i \circ \varphi = x_i$ for $1 \le i
+  \le d$. Then there is a neighbourhood $V \subset U$ of $p$ such that
+  $(V, \varphi|_V) \in \A$.
+\end{cor}
+
+\begin{proof}
+  Observe that by \cref{lem-pullofpush} we have
+  $\delta\varphi|_p(dr_i|_{\varphi(p)}) = d(r_i \circ \varphi)|_p =
+  dx_i|_p$ for $1 \le i \le d$. Now we know
+  $\{dr_1|_{\varphi(p)},dr_2|_{\varphi(p)},\ldots,dr_d|_{\varphi(p)}\}$
+  is a basis for $T_{\varphi(p)}^*\R^d$ and
+  $\{dx_1|_p,dx_2|_p,\ldots,dx_d|_p\}$ is a linearly independent set
+  and thus, since $\dim T_p^*M = \dim M = d$, a basis for $T_p^*M$. It
+  follows that $\delta\varphi|_p$ is an isomorphism, whence its dual
+  map $d\varphi|_p$ is an isomorphism. Then by \cref{thm-inversefn}
+  there exists a neighbourhood $V \subset U$ of $p$ such that
+  $\varphi|_V$ is a diffeomorphism. Finally by
+  \cref{lem-csystemdiffeo} this implies $(V, \varphi|_V) \in \A$.
+\end{proof}
+
+\begin{cor}
+  \label{cor-incomplindepfnsgivecsystem}
+  Let $(M, \A)$ a differentiable manifold of dimension $d$. Let $p \in
+  M$. Let $1 \le c < d$. For $1 \le i \le c$ let $x_i : U_i \to \R$ a
+  $C^\infty$ function with $U_i$ a neighbourhood of $p$. Assume
+  $x_1,x_2,\ldots,x_c$ are independent at $p$. Let $U :=
+  \bigcap_{i=1}^c U_i$. Then there exists $(V, \varphi) \in \A$ such
+  that $V \subset U$ and $r_i \circ \varphi = x_i$ for $1 \le i \le
+  c$.
+\end{cor}
+
+\begin{proof}
+  Let $(V, \varphi) \in \A$ with $p \in V$. Without loss of generality
+  $V \subset U$. Let $y_1,y_2,\ldots,y_d$ the coordinate functions of
+  $\varphi$. Then we know $dy_1|_p,dy_2|_p,\ldots,dy_d|_p$ form a
+  basis for $T_p^*M$. Since $dx_1|_p,dx_2|_p,\ldots,dx_c|_p$ are
+  linearly independent we can choose $1 \le i_1 < i_2 < \cdots <
+  i_{d-c} \le d$ such that
+  \[
+  \{dx_1|_p,dx_2|_p,\ldots,dx_c|_p, dy_{i_1}|_p, dy_{i_2}|_p,
+  dy_{i_{d-c}}|_p\}
+  \]
+  is a basis for $T_p^*M$. Thus $x_1,x_2,\ldots,x_c, y_{i_1},
+  y_{i_2},\ldots,y_{d-c}$ are independent at $p$. Then applying
+  \cref{cor-indepfnsgivecsystem} completes the proof.
+\end{proof}
+
+\begin{cor}
+  \label{cor-surjdiffpullbackcoord}
+  Let $(M, \A), (N, \B)$ differentiable manifolds of dimensions $d$
+  and $e$ respectively. Let $\varphi : M \to N$ a
+  $C^\infty$ map. Let $p \in M$. Assume $d\varphi|_p$ is
+  surjective. Let $(V, \tau) \in \B$ such that $\varphi(p) \in V$. Let
+  $y_1,y_2,\ldots,y_e$ the coordinate functions of $\tau$. Then there
+  exists $(U, \sigma) \in \A$ such that $r_i \circ \sigma = y_i \circ
+  \varphi$ for $1 \le i \le e$.
+\end{cor}
+
+\begin{proof}
+  First note, since $d\varphi|_p$ is surjective, by
+  \cref{cor-manifolddimequalstangentdim} we have that $d = \dim T_pM
+  \ge \dim T_{\varphi(p)}N = e$. Since $d\varphi|_p$ is surjective,
+  the dual map $\delta\varphi|_p$ is injective. Thus since
+  $dy_1|_{\varphi(p)},dy_2|_{\varphi(p)},\ldots,dy_e|_{\varphi(p)}$
+  are linearly independent,
+  \[
+  \delta\varphi|_p(dy_1|_{\varphi(p)}),
+  \delta\varphi|_p(dy_2|_{\varphi(p)}), \ldots,
+  \delta\varphi|_p(dy_e|_{\varphi(p)}),
+  \]
+  or equivalently by \cref{lem-pullofpush}, $d(y_1 \circ \varphi)|_p,
+  d(y_2 \circ \varphi)|_p, \ldots, d(y_e \circ \varphi)|_p$, are
+  linearly independent. Then by definition $y_1 \circ \varphi, y_2
+  \circ \varphi, \ldots, y_e \circ \varphi$ are independent at $p$. So
+  applying \cref{cor-incomplindepfnsgivecsystem} compeletes the
+  proof.
+\end{proof}
+
+\begin{cor}
+  \label{cor-spanningfnsgivecsystem}
+  Let $(M, \A)$ a differentiable manifold of dimension $d$. Let $p \in
+  M$. Let $c > d$. For $1 \le i \le c$ let $x_i : U_i \to \R$ a
+  $C^\infty$ function with $U_i$ a neighbourhood of $p$. Assume
+  $dx_1|_p,dx_2|_p,\ldots,dx_c|_p$ span $T_p^*M$. Let $U :=
+  \bigcap_{i=1}^c U_i$. Then there exist $1 \le i_1 < i_2 < \cdots i_d
+  \le c$ and $(V, \varphi) \in \A$ such that $V \subset U$ and $r_j
+  \circ \varphi = x_{i_j}$ for $1 \le j \le c$.
+\end{cor}
+
+\begin{proof}
+  We can choose $1 \le i_1 < i_2 < \cdots i_d \le c$ such that
+  $dx_{i_1}|_p, dx_{i_2}|_p, \ldots, dx_{i_d}|_p$ form a basis for
+  $T_p^*M$. Then we can apply \cref{cor-indepfnsgivecsystem} to
+  $x_{i_1},x_{i_2},\ldots,x_{i_d}$ to complete the proof.
+\end{proof}
+
+\begin{cor}
+  \label{cor-injdiffpullbackcoord}
+  Let $(M, \A), (N, \B)$ differentiable manifolds of dimensions $d$
+  and $e$ respectively. Let $\varphi : M \to N$ a $C^\infty$ map. Let
+  $p \in M$. Assume $d\varphi|_p$ is injective. Let $(V, \tau) \in \B$
+  such that $\varphi(p) \in V$. Let $y_1,y_2,\ldots,y_e$ the
+  coordinate functions of $\tau$. Then there exist $1 \le i_1 < i_2 <
+  \cdots i_d \le e$ and $(U, \sigma) \in \A$ such that $r_j \circ
+  \sigma = y_{i_j} \circ \varphi$ for $1 \le j \le d$.
+\end{cor}
+
+\begin{proof}
+  First note, since $d\varphi|_p$ is injective, by
+  \cref{cor-manifolddimequalstangentdim} we have that $d = \dim T_pM
+  \le \dim T_{\varphi(p)}N = e$. Since $d\varphi|_p$ is injective, the
+  dual map $\delta\varphi|_p$ is surjective. Thus since
+  $dy_1|_{\varphi(p)},dy_2|_{\varphi(p)},\ldots,dy_e|_{\varphi(p)}$
+  are a basis for $T_{\varphi(p)}^*N$,
+  \[
+  \delta\varphi|_p(dy_1|_{\varphi(p)}),
+  \delta\varphi|_p(dy_2|_{\varphi(p)}), \ldots,
+  \delta\varphi|_p(dy_e|_{\varphi(p)}),
+  \]
+  or equivalently by \cref{lem-pullofpush}, $d(y_1 \circ \varphi)|_p,
+  d(y_2 \circ \varphi)|_p, \ldots, d(y_e \circ \varphi)|_p$, span
+  $T_p^*M$. So applying \cref{cor-spanningfnsgivecsystem} compeletes
+  the proof.
+\end{proof}
+
+\begin{dfn}
+  \label{dfn-factorthrusubmanifold}
+  Let $L,M,N$ differentiable manifolds. Let $\varphi : M \to N$ such
+  that $(M, \varphi)$ is a submanifold of $N$. Let $\psi : L \to N$ a
+  $C^\infty$ map. If $\im \psi \subset \im \varphi$, we say {\itshape
+    $\psi$ factors through $\varphi$}, in the sense that there exists
+  a unique map $\tilde\psi : L \to M$ such that the diagram
+  \[
+  \xymatrix{
+    L \ar[r]^-{\psi} \ar[dr]_-{\tilde\psi} & N \\
+    & M \ar[u]_-{\varphi} }
+  \]
+  commutes.
+\end{dfn}
+
+\begin{thm}
+  \label{thm-submanifoldfactorcontinuity}
+  In the situation of the above definition. 
+  \begin{enumerate}
+  \item If $\varphi$ is an embedding, then $\tilde\psi$ is continuous.
+  \item If $\tilde\psi$ is continuous, then $\tilde\psi$ is $C^\infty$.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  If $\varphi$ is an embedding then we have a continuous inverse map
+  $\varphi^{-1} : \im \varphi \to M$. Then obviously $\tilde\psi =
+  \varphi^{-1} \circ \psi$, and since $\varphi^{-1}$ and $\psi$ are
+  continuous, so is $\tilde\psi$, proving (1).
+
+  \medskip\noindent Now assume $\tilde\psi$ is continuous. Let $\A$
+  the differentiable structure on $M$ and $\B$ the differentiable
+  structure on $N$. Let $d := \dim M$ and $e := \dim N$. Let $p \in
+  M$. Let $(V, \tau) \in \B$ and let $y_1,y_2,\ldots,y_e$ the
+  coordinate functions of $\tau$. Since $\varphi$ is an immersion we
+  by definition have that $d\varphi|_p$ is injective. So by
+  \cref{cor-injdiffpullbackcoord} there exist $1 \le i_1 < i_2 <
+  \cdots i_d \le e$ and $(U, \sigma) \in \A$ such that $r_k \circ
+  \sigma = y_{i_k} \circ \varphi$ for $1 \le k \le d$. Let $\pi : \R^e
+  \to \R^d$ the projection $(a_1,a_2,\ldots,a_e) \mapsto
+  (a_{i_1},a_{i_2},\ldots,a_{i_d})$. Then we have that
+  \[
+  \tilde\psi|_{\tilde\psi^{-1}(U)} = \sigma^{-1} \circ \sigma \circ
+  \tilde\psi|_{\tilde\psi^{-1}(U)} = \sigma^{-1} \circ \pi \circ \tau
+  \circ \varphi \circ \tilde\psi|_{\tilde\psi^{-1}(U)} = \sigma^{-1}
+  \circ \pi \circ \tau \circ \psi|_{\tilde\psi^{-1}(U)}.
+  \]
+  By \cref{lem-csystemdiffeo}, $\sigma,\tau$ are diffeomorphisms so
+  $\sigma^{-1},\tau$ are $C^\infty$; obviously $\pi$ is $C^\infty$;
+  and by hypothesis $\psi$ is $C^\infty$. Thus by
+  \cref{lem-diffcompositiondiff} $\tilde\psi|_{\tilde\psi^{-1}(U)}$ is
+  $C^\infty$. Since $\tilde\psi^{-1}(U)$ is an open neighbourhood of
+  any $q \in \tilde\psi^{-1}(p)$ by continuity of $\tilde\psi$ and $p$
+  was arbitrary, $\tilde\psi$ is $C^\infty$ by
+  \cref{lem-cinftynbhd}. This completes the proof of (2).
+\end{proof}
+
+\begin{dfn}
+  \label{dfn-submanifoldequiv}
+  Let $N$ a differentiable manifold. Let $\M$ the collection of
+  submanifolds of $N$. If $(L, \varphi), (M,
+  \psi) \in M$ we say $(L, \varphi)$ and $(M, \psi)$
+  are {\itshape equivalent (submanifolds of $N$)} if there exists a
+  diffeomorphism $\gamma : L \to M$ such that the diagram
+  \[
+  \xymatrix{
+    L \ar[dr]_-{\varphi} \ar[rr]^-{\gamma} & & M \ar[dl]^-{\psi} \\
+    & N }
+  \]
+  commutes. Obviously this is an equivalence relation on $\M$.
+\end{dfn}
+
+\begin{rem}
+  In the situation of the above definition. Let $(M, \varphi) \in
+  \M$. We note that there exists a unique $A \subset N$ such that $(M,
+  \varphi)$ is equivalent to $(A, \iota) \in \M$, where $\iota : A \to
+  M$ is the inclusion map. For, clearly we must have $A = \im \varphi$
+  with differentiable structure uniquely induced (as in
+  \cref{lem-uniquediffeostruct}) by the requirement that $\varphi$ be
+  a diffeomorphism to $A$.
+\end{rem}
+
+\begin{dfn}
+  \label{dfn-slice}
+  Let $(M, \A)$ a differentiable manifold of dimension $d$. Let $(U,
+  \sigma) \in \A$, let $x_1,x_2,\ldots,x_d$ the coordinate functions
+  of $\sigma$. Fix $p \in U$. Let $0 \le c \le d$. Let $S := \{q \in U
+  \mid (\forall c+1\le i \le d)\ x_i(q) = x_i(p)\}$. Let $\iota : S
+  \to M$ the inclusion map. We claim we can give $S$ a manifold
+  structure such that $(S,\iota)$ is a submanifold of $M$. With this
+  manifold structure we call $S$ a {\itshape slice of $(U, \sigma)$}.
+
+  \medskip\noindent We put the subspace topology on $S$, whence $S$ is
+  Hausdorff and second countable. Let $\pi : \R^d \to \R^c$ the
+  projection $(a_1,a_2,\ldots,a_d) \mapsto (a_1,a_2,\ldots,a_c)$. Let
+  $\tau : S \to \R^c$ the map $\pi \circ \sigma$. We claim that $\tau$
+  is a homeomorphism into an open subset of $\R^c$. We know $\pi$ is
+  an open map, and since $(U, \sigma) \in \A$ we know $\im \sigma$ is
+  open in $\R^d$, so it follows that $\im \tau = \pi(\im \sigma)$ is
+  open in $\R^c$. Then since $\pi$ and $\sigma$ are continuous so is
+  $\tau$. And we clearly have $\tau^{-1} = \sigma^{-1} \circ \theta$,
+  where $\theta : \R^c \to \R^d$ is the map
+  \[
+  (a_1,a_2,\ldots,a_c) \mapsto (a_1,a_2,\ldots,a_c,x_{c+1}(p),
+  x_{c+2}(p),\ldots,x_d(p)).
+  \]
+  Of course $\theta$ is continuous, and we know $\sigma^{-1}$ is
+  continuous, so $\tau^{-1}$ is continuous. So indeed $\tau$ is a
+  homeomorphism into its image. So $S$ is trivially locally Euclidean
+  of dimension $c$. Now by \cref{lem-maximaldiffstruct} there is a
+  unique maximal differentiable structure $\A_S$ on $S$ containing
+  $(S, \tau)$. We want to show, when $S$ is given the differentiable
+  structure $\A_S$, that $\iota$ is an injective
+  immersion. Injectivity is clear. To show $\iota$ is $C^\infty$ it
+  suffices (by \cref{lem-diffmapequivmaximal}) to show that $\rho
+  \circ \iota \circ \tau^{-1}|_{\tau(S \cap V)}$ is $C^\infty$ for all
+  $(V, \rho) \in \A$. Since $S \subset U$ we have
+  \[
+  \rho \circ \iota \circ \tau^{-1}|_{\tau(S \cap V)} = \rho \circ
+  \sigma^{-1} \circ \sigma \circ \iota \circ \tau^{-1}|_{\tau(S \cap
+    V)}.
+  \]
+  Observe that $\sigma \circ \iota \circ \tau^{-1}$ is simply the map
+  $\theta$, which is clearly $C^\infty$, and we know by condition (2)
+  of \cref{dfn-diffstructure} that $\rho \circ \sigma^{-1}|_{\sigma(U
+    \cap V)}$ is $C^\infty$. Thus by \cref{lem-diffcompositiondiff} it
+  follows that indeed the composition $\rho \circ \iota \circ
+  \tau^{-1}|_{\tau(S \cap V)}$ is $C^\infty$. Then finally we must
+  show that $d\iota|_q$ is injective for all $q \in S$. Let $q \in S$,
+  let $1 \le i \le c$. For $f \in C^\infty(\iota(q))$ we have
+  \[
+  d\iota|_q\left(\left.\f\p{\p x_i}\right|_q\right)(f) = \left.\f{\p(f
+      \circ \iota)}{\p x_i}\right|_q = \left.\f{\p(f \circ \iota \circ
+      \tau^{-1})}{\p r_i}\right|_{\tau(q)} = \left.\f{\p(f \circ
+      \sigma^{-1})}{\p r_i}\right|_{\sigma(q)} = \left.\f{\p f}{\p
+      x_i}\right|_{\iota(q)}.
+  \]
+  That is, $d\iota|_q((\p/\p x_i)|_q) = (\p/\p x_i)_{\iota(q)}$. It
+  follows that $d\iota|_q$ is an inclusion of $T_qS$ into $T_qM$, and
+  hence injective.
+\end{dfn}
+
+\begin{pro}
+  \label{pro-imminjslice}
+  Let $(M,\A),(N,\B)$ differentiable manifolds of dimensions $d$ and
+  $e$ respectively. Let $\varphi : M \to N$ an immersion. Let $p \in
+  M$. Let $\pi : \R^e \to \R^d $ the projection $(a_1,a_2,\ldots,a_e)
+  \mapsto (a_1,a_2,\ldots,a_d)$. Then there exist $(U, \sigma) \in \A$
+  and $(V, \tau) \in \B$ such that:
+  \begin{enumerate}
+  \item $p \in U$ and $V$ is centred at $\varphi(p)$,
+  \item $\varphi(U)$ is a slice of $(V, \tau)$ and
+  \item $\sigma = \pi \circ \rho \circ \varphi|_U$.
+  \end{enumerate}
+  If $\varphi$ is an embedding then we can moreover choose $(U,
+  \sigma) \in \A$ and $(V, \tau) \in \B$ such that $\varphi(U) = \im
+  \varphi \cap V$.
+\end{pro}
+
+\begin{proof}
+  Let $(\tilde V, \tilde\tau) \in \B$ centred at $\varphi(p)$. Let
+  $y_1,y_2,\ldots,y_e$ the coordinate functions of $\tilde\tau$. By
+  \cref{cor-injdiffpullbackcoord} (and by ordering, without loss of
+  generality, the coordinates $y_1,y_2,\ldots,y_e$ in a convenient
+  manner) there exists $(\tilde U, \tilde\sigma) \in \A$ such that $p
+  \in \tilde U$ and $\tilde\sigma = \pi \circ \tilde \tau \circ
+  \varphi|_{\tilde U}$. For $1 \le i \le e$ define $x_i : (\pi \circ
+  \tilde\tau)^{-1}(\tilde\sigma(\tilde U)) \to \R$ by
+  \[
+  x_i := \begin{cases}
+    y_i & \text{if}\ 1 \le i \le d, \\
+    y_i - y_i \circ \varphi \circ \tilde\sigma^{-1} \circ \pi \circ
+    \tilde\tau & \text{otherwise}.
+  \end{cases}
+  \]
+  It is easy to see that for $1 \le i \le e$ we have
+  \[
+  dx_i = \begin{cases}
+    dy_i & \text{if}\ 1 \le i \le d, \\
+    dy_i - \sum_{j=1}^d a_{i,j}\,dy_j & \text{otherwise}.
+  \end{cases}
+  \]
+  where $a_{i,j} \in \R$ for $d+1 \le i \le e, 1 \le j \le d$. The
+  linear independence of $dx_1,dx_2,\ldots,dx_e$ follows easily from
+  the linear independence of $dy_1,dy_2,\ldots,dy_e$. So by
+  \cref{cor-indepfnsgivecsystem} there is a neighbourhood $V \subset
+  (\pi \circ \tilde\tau)^{-1}(\tilde\sigma(\tilde U))$ of $\varphi(p)$
+  such that $(V, \tau) \in \B$, where $\tau$ is the map such that $r_i
+  \circ \tau = x_i$ for $1 \le i \le e$. Let $U := \varphi^{-1}(V)
+  \cap \tilde U$. We claim that
+  \[
+  y_i(q) = (y_i \circ \varphi \circ {\tilde{\sigma}}^{-1} \circ \pi \circ
+  \tilde\tau)(q)\quad\text{for}\ d + 1 \le i \le e
+  \]
+  holds if and only if $q \in \varphi(U)$. This is true because for
+  all $q \in \tilde V$ we obviously have $y_i(q) = (y_i \circ \varphi
+  \circ \tilde\sigma^{-1} \circ \pi \circ \tilde\tau)(q)$ for $1 \le i
+  \le d$, so then the above condition is equivalent to $(\varphi \circ
+  \tilde\sigma^{-1} \circ \pi \circ \tilde\tau)(q) = q$, since
+  $\tilde\tau$ is a homeomorphism. It is clear that this second
+  statement holds if and only if $q \in \varphi(U)$. From this and
+  since $(\tilde V, \tilde \tau)$ is centred at $\varphi(p)$ it is
+  evident that $(V, \tau)$ is centred at $\varphi(p)$. Then
+  $\varphi(U)$ is the slice of $(V, \tau)$ given by
+  \[
+  \{q \in V' \mid (\forall d+1 \le i \le e)\ x_i(q) = x_i(\varphi(p))
+  = 0\}.
+  \]
+  And if we let $\sigma := \tilde\sigma|_U$, we have that $\sigma =
+  \pi \circ \tilde\tau \circ \varphi|_U = \pi \circ \tau \circ
+  \varphi|_U$ since $\pi \circ \tilde\tau|_V = \pi \circ \tau$.
+
+  \medskip\noindent Finally if $\varphi$ is an embedding then
+  $\varphi(U)$ is open in $\im \varphi$, so by definition of the
+  subspace topology there exists $V' \subset N$ open such that
+  $\varphi(U) = \im \varphi \cap V'$. Since $\varphi(U) \subset \im
+  \varphi \cap V$ we can take $V' \subset V$ without loss of
+  generality. By replacing $(V, \tau)$ with $(V',\tau|_{V'})$ we still
+  have conditions (1)--(3) satisfied, and indeed $\varphi(U) = \im
+  \varphi \cap V'$.
+\end{proof}
+
+\begin{rem}
+  What the above proposition tells us is that every immersion is
+  {\itshape locally} an embedding, and in fact we can choose the
+  embedding to be into a slice of a coordinate system in the image.
+\end{rem}
+
+\begin{lem}
+  \label{lem-bijimmdiffeo}
+  Let $(M,\A),(N,\B)$ differentiable manifolds. Let $\varphi : M \to
+  N$ a bijective immersion. That is, $\varphi$ is a $C^\infty$
+  bijection such that $d\varphi|_p$ is injective for all $p \in
+  M$. Then $\varphi$ is a diffeomorphism.
+\end{lem}
+
+\begin{proof}
+  By \cref{lem-cinftynbhd} and since $\varphi$ is a bijection it
+  suffices to show for each $p \in M$ that there exists a
+  neighbourhood $U$ of $p$ such that $\varphi|_U$ is a
+  diffeomorphism. By \cref{thm-inversefn} it furthermore suffices to
+  show that, for each $p \in M$, $d\varphi|_p$ is an isomorphism, and
+  since we have by hypothesis that $d\varphi|_p$ is injective it only
+  remains to show that $d\varphi|_p$ is surjective. Assume the
+  contrary: let $p \in M$ such that $d\varphi|_p$ is not
+  surjective. This implies that $d = \dim T_pM < \dim T_{\varphi(p)}N
+  = e$, where $d := \dim M, e := \dim N$. Choose $(V, \tau) \in \B$
+  such that $\varphi(p) \in V$. By \cref{pro-imminjslice} for each $q
+  \in U$ there exists a neighbourhood $U_q$ of $q$ such that
+  $\varphi(U_q)$ is a slice of some $(V_q, \tau_q) \in \B$. Without
+  loss of generality, for $q \in U$ we have $V_q \subset V$, $U_q \in
+  \U$ where $\U$ is a countable basis for $M$, and $U_q \subset U$
+  since $U$ is open by continuity of $\varphi$. Then we can choose a
+  countable subset $\{q_n \mid n \in \N\}$ of $U$ such that
+  $\bigcup_{n=1}^\infty U_{q_n} = \bigcup_{q \in U} U_q = U$. Let $U_n
+  := U_{q_n}, V_n := V_{q_n}, \tau_n := \tau_{q_n}$ for $n \in
+  \N$. Now, since $\varphi$ is a bijection we have
+  \[
+  \bigcup_{n=1}^\infty \varphi(U_n) =
+  \varphi\left(\bigcup_{n=1}^\infty U_n\right) = \varphi(U) = W
+  \implies \bigcup_{n=1}^\infty \tau(\varphi(U_n)) =
+  \tau\left(\bigcup_{n=1}^\infty \varphi(U_n)\right) = \im \tau.
+  \]
+  For $n \in \N$, it is clear from $d < e$ and the definition of a
+  slice that $\tau_n(\varphi(U_n))$ is nowhere dense in $\im
+  \tau_n$. Then for $n \in \N$ since $V_n \subset V$ we have $\tau
+  \circ \tau_n^{-1}$ is a homeomorphism from $\im \tau_n \to
+  \tau(V_n)$, so $(\tau \circ \tau_n^{-1})(\tau_n(\varphi(U_n)) =
+  \tau(\varphi(U_n))$ is nowhere dense in $\im \tau$. But then we have
+  that $\im \tau$ is a countable union of nowhere dense sets, a
+  contradiction since $\im \tau$ is an open set in the Baire space
+  $\R^e$ and hence a Baire space itself.
+\end{proof}
+
+\begin{pro}
+  \label{pro-submanifoldunique}
+  Let $M$ a differentiable manifold. Let $A \subset M$ and $\iota : A
+  \to M$ the inclusion map. 
+  \begin{enumerate}
+  \item If we fix a topology on $A$ then there is at most one
+    differentiable structure on $A$ such that $(A, \iota)$ is a
+    submanifold of $M$.
+  \item If in the subspace topology there is a differentiable
+    structure on $A$ such that $(A, \iota)$ is a submanifold of $M$
+    then this is the unique manifold structure on $A$ for which $(A,
+    \iota)$ is a submanifold of $M$.
+  \end{enumerate}
+  Note, in both these statements the uniqueness is meant to be up to
+  the equivalence relation from \cref{dfn-submanifoldequiv}.
+\end{pro}
+
+\begin{proof}
+  Fix a (second countable locally Euclidean) topology on $A$. Let $\A,
+  \B$ any two differentiable structures on $A$ such that
+  $((A,\A),\iota)$ and $((A,\B),\iota)$ are submanifolds of
+  $M$. Clearly the diagram
+  \[
+  \xymatrix{
+    (A,\A) \ar[r]^-{\iota} \ar@/^/[dr]^-{\id_A} & M \\
+    & (A,\B) \ar[u]_-{\iota} \ar@/^/[ul]^-{\id_A} }
+  \]
+  commutes. Since the topologies on $(A,\A)$ and $(A,\B)$ are the
+  same, $\id_A$ is a homeomorphism. Then
+  \cref{thm-submanifoldfactorcontinuity} implies that $\id_A$ is a
+  diffeomorphism. Hence $((A,\A),\iota)$ and $((A,\B),\iota)$ are by
+  definition equivalent submanifolds of $M$. This proves (1).
+
+  \medskip\noindent Now suppose $\A$ is a differentiable structure on
+  $A$ with the subspace topology such that $((A, \A), \iota)$ is a
+  submanifold of $M$. Let $\B$ denote any differentiable structure on
+  $A$ with an arbitrary (second countable locally Euclidean) topology
+  such that $((A, \B), \iota)$ is also a submanifold of $M$. Again the
+  diagram
+  \[
+  \xymatrix{
+    (A,\A) \ar[r]^-{\iota} \ar@/^/[dr]^-{\id_A} & M \\
+    & (A,\B) \ar[u]_-{\iota} \ar@/^/[ul]^-{\id_A} }
+  \]
+  commutes. It follows by \cref{pro-chainrule} that $d\iota|_p \circ
+  d\id_A|_p = d(\iota \circ \id_A)|_p = d\iota|_p$ for each $p \in
+  A$. Since $\iota$ is an immersion, $d\iota|_p$ is injective,
+  implying that $d\id_A|_p$ must also be injective for $p \in
+  A$. Hence $\id_A$ is a bijective immersion, which by
+  \cref{lem-bijimmdiffeo} implies that $\id_A$ is a diffeomorphism. So
+  $((A,\A),\iota)$ and $((A,\B),\iota)$ are by definition equivalent
+  submanifolds of $M$, proving (2).
+\end{proof}
+
+\begin{pro}
+  \label{pro-submanifoldextendfns}
+  Let $(N,\B)$ a differentiable manifold of dimension $e$. Let $(M,
+  \varphi)$ a submanifold of $N$ of dimension $d$, where $M$ has
+  differentiable structure $\A$. Then the following are equivalent:
+  \begin{enumerate}
+  \item $\varphi$ is an embedding and $\im \varphi$ is closed in $N$,
+    and
+  \item for each $C^\infty$ function $f : M \to \R$ there exists a
+    $C^\infty$ function $\tilde f : N \to \R$ such that $\tilde f
+    \circ \varphi = f$.
+  \end{enumerate}
+\end{pro}
+
+\begin{proof}
+  Assume (1). Let $f : M \to \R$ any $C^\infty$ function. For $p \in
+  M$ choose by \cref{pro-imminjslice} $(U_p, \sigma_p) \in \A$ and
+  $(V_p, \tau_p) \in \B$ for which the conditions (1)--(3) of
+  \cref{pro-imminjslice} are satisfied and $\varphi(U_p) = \im \varphi
+  \cap V_p$. Then $g_p : V_p \to \R$ defined by $g_p := f \circ
+  \sigma_p^{-1} \circ \pi \circ \tau_p$ is $C^\infty$ by
+  \cref{lem-diffcompositiondiff} and clearly $g_p \circ \varphi|_{U_p}
+  = f|_{U_p}$, for $p \in M$. Now $\{V_p \mid p \in M\} \cup \{M - \im
+  \varphi\}$ is an open cover of $N$, so by
+  \cref{thm-partitionsofunityexist} there is a partition of unity
+  $\{\psi_n \mid n \in \N\}$ subordinate to the cover. Let $I := \{i
+  \in \N \mid \supp \psi_i \cap \im \varphi \ne \emptyset\}$. Then for
+  $i \in I$ we can choose $p_i \in M$ such that $\supp \psi_i \subset
+  V_{p_i}$. Define $\tilde f : N \to \R$ by $\tilde f := \sum_{i \in
+    I} \psi_i g_{p_i}$, which is $C^\infty$ because we know $\{\supp
+  \varphi_i \mid i \in I\}$ is locally finite and which extends $f$ to
+  $N$ in the sense of (2) in the statement of the proposition.
+
+  \medskip\noindent {\small {\bfseries INCOMPLETE:} I am not sure how
+    to do the other direction. To show $\varphi$ is a homeomorphism we
+    need to show $U \in M$ open implies $\varphi(U) \subset \im
+    \varphi$ open. This is clear for open sets of the form $U =
+    f^{-1}(W)$, where $W \subset \R$ open and $f$ a $C^\infty$
+    function on $M$, but it is not evident to me how to get the
+    general case from this, or if this is even the right way to go
+    about the proof.}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Implicit function theorems}
+
+\begin{thm}
+  \label{thm-implicitfndimzero}
+  Let $(M,\A), (N,\B)$ differentiable manifolds of dimensions $d$ and
+  $e$ respectively. Let $\varphi : M \to N$ a submersion. Let $q \in
+  \im \varphi$ and let $A := \varphi^{-1}(q)$. Let $\iota : A \to M$
+  the inclusion map. Then there exists a unique manifold structure on
+  $A$ such that $(A,\iota)$ is a submanifold of $M$. Given this
+  manifold structure on $A$, $\iota$ is an embedding and $\dim A = d -
+  e$.
+\end{thm}
+
+\begin{proof}
+  Give $A$ the subspace topology. Let $(V, \tau) \in \B$ centred at
+  $q$ and let $y_1,y_2,\ldots,y_e$ the coordinate functions of
+  $\tau$. Let $p \in A$. By \cref{cor-surjdiffpullbackcoord} we can
+  choose $(U_p, \sigma_p) \in \A$ such that $x_{p,i} = y_i \circ
+  \varphi$ for $1 \le i \le e$, where $x_{p,1},x_{p,2},\ldots,x_{p,d}$
+  are the coordinate functions of $\sigma_p$. Then we have $U_p \cap A
+  = \{p' \in U \mid x_{p,i}(p') = 0\ \text{for}\ 1 \le i \le e\}$. Let
+  \[
+  \tilde\A_0 := \{(U_p \cap A, \pi \circ\sigma_p|_{U_p \cap A} \mid p
+  \in A\},
+  \]
+  where $\pi : \R^d \to \R^e$ is the projection $(a_1,a_2,\ldots,a_d)
+  \mapsto (a_1,a_2,\ldots,a_e)$. By definition of the subspace
+  topology $U_p \cap A$ is open in $A$ for $p \in A$, and it is clear
+  that $\pi \circ \sigma|_p |_{U_p \cap A}$ is a homeomorphism $U_p
+  \cap A \to \R^{d-e}$, so indeed $A$ is locally Euclidean of
+  dimensoin $d - e$. Then we have $\bigcup_{p \in A} U_p \cap A = A$
+  and
+  \[
+  (\pi \circ \sigma_{p'}) \circ (\pi \circ \sigma_p)^{-1}|_{(\pi \circ
+    \sigma_p)(U_p \cap U_{p'} \cap A)} = \pi \circ \sigma_{p'} \circ
+  \sigma_p^{-1} \circ \theta|_{(\pi \circ \sigma_p)(U_p \cap U_{p'}
+    \cap A)},
+  \]
+  where $\theta : \R^e \to \R^d$ is the embedding
+  $(a_1,a_2,\ldots,a_e) \mapsto (a_1,a_2,\ldots,a_e,0,0,\ldots,0)$, is
+  $C^\infty$ since $\sigma_p \in \A$ and by
+  \cref{lem-diffcompositiondiff} for all $p,p' \in A$. Thus
+  $\tilde\A_0$ satisfies (1) and (2) of \cref{dfn-diffstructure}, so
+  \cref{lem-maximaldiffstruct} gives us the exists of a differentiable
+  structure $\tilde\A \supset \tilde\A_0$ on $A$. By
+  \cref{lem-cinftynbhd} the property of a map being an immersion is a
+  local one. So since $A$ in the above manifold structure is locally a
+  slice of some $(U,\sigma) \in \A$, and in \cref{dfn-slice} we have
+  shown that the inclusion of a slice into its ambient space is an
+  immersion, $\iota$ is an immersion here as well. And of course
+  $\iota$ is injective so we have $(A, \iota)$ a submanifold of
+  $M$. Since we have given $A$ the subspace topology $\iota$ is an
+  embedding, and by \cref{pro-submanifoldunique} this is the unique
+  manifold structure on $A$ for which $(A,\iota)$ is a submanifold of
+  $M$.
+\end{proof}
+
+\begin{cor}
+  \label{cor-classicalimplicit}
+  Let $d,e \in \N$. Let $U \subset \R^d \times \R^e$ open. Let $f : U
+  \to \R^e$ a $C^\infty$ map. Let $(p,q) \in U$. Assume that $f(p,q) =
+  0$ and that the Jacobian
+  \[
+  \left(\left.\f{\p (r_i \circ f \circ \gamma)}{\p
+        r_{d+j}}\right|_{(p,q)}\right)_{1 \le i,j \le e}
+  \]
+  is invertible, where $\gamma$ is the canonical diffeomorphism
+  $\R^{d+e} \to \R^d \times \R^e$. Then there exists a neighbourhood
+  $V \subset \R^d$ of $p$, a neighbourhood $W \subset \R^e$ of $q$,
+  and a $C^\infty$ map $g : V \to W$ such that $V \times W \subset U$
+  and $ f(p',q') = 0 \iff q' = g(p')$ for $(p',q') \in V \times W$.
+\end{cor}
+
+\begin{proof}
+  Basically, we follow the proof of the
+  \cref{thm-implicitfndimzero}. What is special in this case is that
+  we can take a convenient coordinate system on some open set
+  contained in $U$, namely the map $(r,s) \mapsto (r, f(r,s))$, which
+  is easily checked to be a diffeomorphism on a suitable
+  domain. Details omitted.
+\end{proof}
+
+\begin{rem}
+  Perhaps this classical implicit function theorem shouldn't strictly
+  be called a corollary to \cref{thm-implicitfndimzero}, but in fact
+  it is just an explicit local statement of the theorem on manifolds
+  above. 
+\end{rem}
+
+
+\end{document}

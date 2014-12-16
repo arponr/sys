@@ -1,0 +1,13 @@
+@function prefix($ext) {
+    @return '/static/MathJax/fonts/HTML-CSS/TeX/' + $ext +
+            '/MathJax_Main-Regular.' + $ext;
+}
+
+@font-face {
+    font-family: 'tex';
+    src: url(prefix('eot'));
+    src: url(prefix('eot')+'?#iefix') format('embedded-opentype'),
+         url(prefix('woff')) format('woff'),
+         url(prefix('otf')) format('opentype');
+}
+

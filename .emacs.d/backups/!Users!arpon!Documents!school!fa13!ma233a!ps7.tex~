@@ -1,0 +1,186 @@
+\input{preamble}
+
+\title{Math 233A, Problem Set 6}
+\author{Arpon Raksit}
+\date{25 Oct 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lemma}
+  \label{prop-sep-closed}
+  Let $X \to S$ proper and $Y \to S$ separated. Then any morphism $f :
+  X \to Y$ is closed (on spaces).
+\end{lemma}
+
+\begin{proof}
+  Since $Y$ is separated, the graph morphism $\Gamma_f : X \to X
+  \times_S Y$ is a closed immersion, hence closed. And since $X$ is
+  proper, hence universally closed, the projection $\pi : X \times_S Y
+  \to Y$ is closed. Therefore $f = \pi \circ \Gamma_f$ is closed.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lemma}
+  \label{inj-dom}
+  Let $X$ a scheme and $Y \simeq \Spec A$. Let $f : X \to Y$ a
+  quasicompact scheme morphism induced by a ring morphism $\phi : A
+  \to \O_X(X)$. If $\phi$ is injective then $f$ is dominant.
+\end{lemma}
+
+\begin{proof}
+  Let $g \in A$ non-nilpotent. If $\phi$ is injective then $\phi(g)
+  \in \O_X(X)$ is non-nilpotent. Since $f$ is quasicompact we can
+  cover $X$ by open affines $\{U_i\}_{1 \le i \le n}$. If
+  $(\phi(g)|_{U_i})^{m_i} = 0$ for some $m_i \in \N$ for each $1 \le i
+  \le n$, then by the sheaf axioms $\phi(g)^m = 0$ for $m \ge \max
+  \{m_i\}_{1 \le i \le n}$. It follows that there exists an open
+  affine $\Spec B \simeq U \subseteq X$ such that $g' \coloneqq
+  \phi(g)|_U \in B$ is non-nilpotent. Then
+  \[
+  f|_U^{-1}(D(g)) = D(\phi(g)) \ne \emptyset,
+  \]
+  where the first equality was proved in a previous problem set. Since
+  $\{D(g)\}_{g \in A}$ are a basis of $Y$, it follows that $f$ is
+  dominant.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+By Lemma \ref{prop-sep-closed}, $f$ has closed image, and by
+hypothesis $f$ also has open image, so $f$ must be surjective on
+spaces by connectedness of $Y$. Of course a surjective open immersion
+is an isomorphism. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+Let $f \in \O_X(X)$. Let $\phi : A[t] \to \O_X(X)$ the $A$-algebra map
+sending $t \mapsto f$. Then $Af \simeq A[t]/\ker(\phi)$, so to show
+$f$ is integral over $A$ it suffices to show $A[t]/\ker(\phi)$ is
+finite over $A$. Let $Y \coloneqq \Spec(A[t]/\ker(\phi))$. We can
+factor $\phi$ as $A[t] \surj A[t]/\ker(\phi) \inj \O_X(X)$, so by
+Lemma \ref{inj-dom} there is a dominant $A$-morphism $X \to Y'$.  But
+by Lemma \ref{prop-sep-closed}, $X \to Y'$ must also have closed
+image, and hence is surjective. Now, $X \to \Spec A$ is proper by
+hypothesis; $Y' \to \Spec K$ is separated as a morphism of affines;
+and that $Y' \to \Spec K$ is of finite type is immediate from the
+hypothesis that $Y \to \Spec K$ is of finite type. It follows that $Y'
+\to \Spec K$ is a proper morphism of affines, and hence finite. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+Let $Y \simeq \Spec A$. A morphism $X \to Y$ is induced by a morphism
+$\phi : A \to \O_X(X)$. Precisely the argument from problem 2 gives us
+that $A/\ker(\phi)$ is a finite $K$-module. Then $A/\ker(\phi)$ is
+Artinian, and the generic point of $X$ (which exists by
+irreducibility) must be sent to a closed point. By continuity, the
+image of $X$ must be precisely this point. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{4}
+
+The positive statement was proved in last week's problem set, so we
+just give the counterexamples.
+
+\subprob{a}
+
+Let $k$ a field. Let $A \coloneqq k[x,y]$ and $I \coloneqq
+(xy,y^2)$. Consider the two $k$-algebra morphisms $\phi, \psi: A \to
+A/I$ sending $x \mapsto x, y \mapsto y$ and $x \mapsto x, y \mapsto
+0$, respectively. Firstly note that clearly $\nil(A/I) = (y)$ is
+prime, so that $\Spec(A/I)$ is irreducible. It follows that $U
+\coloneqq \Spec((A/I)_x)$ is a dense open in $\Spec(A/I)$. But since
+$xy = 0 \in A/I$, the morphisms $\Spec(A/I) \to \Spec A$ agree on $U$,
+but clearly are not equal. \win
+
+\subprob{b}
+
+Let $X$ the affine line over a field $k$ with doubled origin. Then we
+have two inclusions $\A^1_k \to X$ which agree on the dense open
+$\A^1_k - \{0\}$ but are not equal. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{5}
+
+\subprob{a}
+
+For $\p \in \Spec A$ we have
+\[
+\p \in \supp(m) \iff m_\p \ne0 \iff \ann(m) \cap (A - \p) = \emptyset
+\iff \ann(m) \subseteq \p,
+\]
+implying $\supp(m) = V(\ann(m))$.
+
+\subprob{b}
+
+If $\ann(M) \cap (A - \p) \ne \emptyset$ then clearly $M_\p = \wtilde
+M_\p \simeq 0$, so certainly $\supp(\wtilde M) \subseteq
+V(\ann(M))$. Conversely suppose $\p \in V(\ann(M))$. Let $m_1, \ldots,
+m_n$ be generators of $M$. We claim $\p \in V(\ann(m_i))$ for some $1
+\le i \le n$, and hence $\p \in \supp(m_i) \implies \p \in \supp(M)$
+by (a), whence we will be done. Indeed if this were not the case, we
+could choose $f_1,\ldots,f_n \in A-\p$ such that $f_i^{n_i}m_i = 0$
+for $1 \le i \le n$. But then since $\p$ is prime, clearly
+\[
+f \coloneqq \prod_{i=1}^n f_i^{n_i} \in (A - \p) \cap \bigcap_{i=1}^n
+\ann(m_i) = (A - \p) \cap \ann(M),
+\]
+contradiction. \win
+
+\subprob{c}
+
+Closedness is local so we can take our scheme to be an affine $\Spec
+A$ without loss of generality, and our coherent sheaf to be $\wtilde
+M$ for some finite $A$-module $M$. But then we are done by (b). \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{6}
+
+\begin{lemma}
+  Let $A$ noetherian and $M$ a finite $A$-module. If $M_\p$ is free
+  over $A_\p$ then there exists $f \in A - \p$ such that $M_f$ is free
+  over $A_f$.
+\end{lemma}
+
+\begin{proof}
+  This is some basic commutative algebra which I learned a few months
+  ago so I'm going to omit it here. The point is that localisation is
+  exact, and under the hypotheses, if $M_\p \simeq 0$ then there
+  exists $f \in A - \p$ such that $M_f \simeq 0$.
+\end{proof}
+
+\renewcommand{\F}{\mathcal{F}}
+
+\subprob{a}
+
+The question is local so we can assume $X \simeq \Spec A$ with $A$
+noetherian and $\F \simeq \wtilde M$ with $M$ a finite
+$A$-module. Suppose we have $\p \in X$ such that $\wtilde M_\p \simeq
+M_\p$ is free over $A_\p$. By the lemma there exists $f \in A - \p$
+such that $M_f$ is free over $A_f$. So letting $U \coloneqq D(f) \ni
+\p$ we get that $\F|_U \simeq \wtilde{M_f}$ is free. \win
+
+\subprob{b}
+
+$(\Rightarrow)$ If $\F$ is locally free then by coherence $X$ can be
+covered by open affines $U$ such that $\F|_U \simeq (\O_X|_U)^n$ for
+some $n \in \N$. Since filtered colimits commute with finite products
+it follows that for each $x \in X$ we have $\F_x \simeq (\O_x)^n$.
+
+$(\Leftarrow)$ This is immediate from (a). \win
+
+
+\end{document}

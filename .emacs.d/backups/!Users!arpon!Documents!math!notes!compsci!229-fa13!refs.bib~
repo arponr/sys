@@ -1,0 +1,116 @@
+@inproceedings{ben-sasson-2012,
+  title        = {An additive combinatorics approach relating rank to
+                  communication complexity},
+  author       = {Ben-Sasson, Eli and Lovett, Shachar and Ron-Zewi,
+                  Noga},
+  booktitle    = {Foundations of Computer Science (FOCS), 2012 IEEE
+                  53rd Annual Symposium on},
+  pages        = {177--186},
+  year         = {2012},
+  organization = {IEEE},
+}
+
+@inproceedings{gavinsky-2013,
+  title        = {En Route to the log-rank Conjecture: New Reductions
+                  and Equivalent Formulations},
+  author       = {Gavinsky, Dmitry and Lovett, Shachar},
+  booktitle    = {Electronic Colloquium on Computational Complexity
+                  (ECCC)},
+  volume       = {20},
+  pages        = {80},
+  year         = {2013},
+}
+
+@inproceedings{lovasz-1988,
+  title        = {Lattices, mobius functions and communications
+                  complexity},
+  author       = {Lov{\'a}sz, L{\'a}szl{\'o} and Saks, Michael},
+  booktitle    = {Foundations of Computer Science, 1988., 29th Annual
+                  Symposium on},
+  pages        = {81--90},
+  year         = {1988},
+  organization = {IEEE},
+}
+
+@article{lovett-2013,
+  title        = {Communication is bounded by root of rank},
+  author       = {Lovett, Shachar},
+  journal      = {arXiv:1306.1877 [cs.CC]},
+  year         = {2013},
+}
+
+@article{nisan-1995,
+  title        = {On rank vs. communication complexity},
+  author       = {Nisan, Noam and Wigderson, Avi},
+  journal      = {Combinatorica},
+  volume       = {15},
+  number       = {4},
+  pages        = {557--565},
+  year         = {1995},
+  publisher    = {Springer},
+}
+
+@article{tsang-2013,
+  title        = {Fourier sparsity, spectral norm, and the Log-rank
+                  conjecture},
+  author       = {Tsang, Hing Yin and Wong, Chung Hoi and Xie, Ning
+                  and Zhang, Shengyu},
+  journal      = {arXiv:1304.1245 [cs.CC]},
+  year         = {2013},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+@incollection{kane2011almost,
+  title={Almost optimal explicit Johnson-Lindenstrauss families},
+  author={Kane, Daniel and Meka, Raghu and Nelson, Jelani},
+  booktitle={Approximation, Randomization, and Combinatorial Optimization. Algorithms and Techniques},
+  pages={628--639},
+  year={2011},
+  publisher={Springer}
+}
+
+@inproceedings{motwani2010randomized,
+  title={Randomized algorithms},
+  author={Motwani, Rajeev and Raghavan, Prabhakar},
+  booktitle={Algorithms and theory of computation handbook},
+  pages={12--12},
+  year={2010},
+  organization={Chapman \& Hall/CRC}
+}
+
+@inproceedings{karnin2011explicit,
+  title={Explicit dimension reduction and its applications},
+  author={Karnin, Zohar Shay and Rabani, Yuval and Shpilka, Amir},
+  booktitle={Computational Complexity (CCC), 2011 IEEE 26th Annual Conference on},
+  pages={262--272},
+  year={2011},
+  organization={IEEE}
+}
+
+@incollection{indyk2010almost,
+  title={Almost-Euclidean Subspaces of$\backslash$ ell\_1\^{} N via Tensor Products: A Simple Approach to Randomness Reduction},
+  author={Indyk, Piotr and Szarek, Stanislaw},
+  booktitle={Approximation, Randomization, and Combinatorial Optimization. Algorithms and Techniques},
+  pages={632--641},
+  year={2010},
+  publisher={Springer}
+}
+
+@inproceedings{engebretsen2002derandomized,
+  title={Derandomized dimensionality reduction with applications},
+  author={Engebretsen, Lars and Indyk, Piotr and O'Donnell, Ryan},
+  booktitle={Proceedings of the thirteenth annual ACM-SIAM symposium on Discrete algorithms},
+  pages={705--712},
+  year={2002},
+  organization={Society for Industrial and Applied Mathematics}
+}
+
+@inproceedings{sivakumar2002algorithmic,
+  title={Algorithmic derandomization via complexity theory},
+  author={Sivakumar, D},
+  booktitle={Proceedings of the thiry-fourth annual ACM symposium on Theory of computing},
+  pages={619--626},
+  year={2002},
+  organization={ACM}
+}

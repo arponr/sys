@@ -1,0 +1,158 @@
+\input{preamble}
+
+\title{CS 229, Problem Set 7}
+\author{Arpon Raksit}
+\date{05 Nov 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\subsection*{Collaborators}
+
+Andrew Liu, David Liu, Aleksandar Makelov.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+\noindent Assume $(\Pi,R)$ is an $\ell_2$/$\ell_1$ recovery
+scheme. Note then that
+\[
+\|R(0)\|_2 = \|0 - R(\Pi(0))\|_2 \le O(1/\sqrt{k}) \min_{\|y\|_0 \le
+  k} \|0 - y\|_1 = 0,
+\]
+so we must have $R(0) = 0$. Now, by definition of Gelfand width we can
+choose $x \in \ker(\Pi) \cap B_{\ell_1^n}$ such that
+\[
+\|x\|_2 \gtrsim d^m(B_{\ell_1^n})_{\ell_2} \gtrsim
+\sqrt{\frac{\log(n/m) + 1}{m}}.
+\]
+On the other-hand, since $R(\Pi(x)) = R(0) = 0$, our guarantee is that
+\[
+\|x\|_2 = \|x - R(\Pi(x))\|_2 \le O(1/\sqrt{k}) \min_{\|y\|_0 \le k}
+\|x - y\|_1 \le O(1/\sqrt{k}) \|x\|_1 \le O(1/\sqrt{k}).
+\]
+It follows then that $(\log(n/m) + 1)/m \le O(1/k) \implies m/k +
+\log(m) \ge \Omega(\log n)$. But if $m \le o(k\log(n/k))$ then we
+would have
+\[
+m/k + \log(m) \le o(\log(n/k) + \log(k\log(n/k)) \le o(\log(n) +
+\log(\log(n/k))),
+\]
+a contradiction. Thus we must have $m \ge \Omega(k \log(n/k))$. \win
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+\begin{notation}
+  For $x \in \R^n$ and $S \subseteq [n]$, let $x_S \in \R^n$ be given
+  by $(x_S)_i = x_i$ for $i \in S$ and $(x_S)_i = 0$ for $i \notin S$.
+\end{notation}
+
+\begin{lemma}[Jelani's email]
+  Let $x,z \in \R^n$ and $j \le n$. Let $A \subseteq [n]$ the indices
+  of the largest $j$ entries of $x$, and $B \subseteq [n]$ the indices
+  of the largest $2j$ entries of $z$. Then
+  \[
+  \|x - z_B\|_2^2 \le \|x - x_A\|_2^2 + 4\|(x - z)_{A \cup B}\|_2^2.
+  \]
+\end{lemma}
+
+\begin{proof}
+  Nope.
+\end{proof}
+
+Set $j \coloneqq 2k$. Let $z \coloneqq R(\Pi x)$. Let $A,B$ as in the
+lemma, and let $A' \subseteq [n]$ the indices of the largest $k$
+entries of $x$. As in the hint we define $R'(\Pi x) \coloneqq
+z_B$. Note immediately that
+\begin{equation}
+  \tag{$\dagger$}
+  \|x - x_A\|_1 \le \|x - x_{A'}\|_1 = \min_{\|y\|_0 \le k} \|x - y\|_1.
+\end{equation}
+By the triangle inequality we have $\|x - z_B\|_1 \le \|x - x_A\|_1 +
+\|x_A - z_B\|_1$. Since $|A| = 2k$ and $|B| = 4k$, by Cauchy-Schwarz
+we have $\|x_A - z_B\|_1 \le O(\sqrt{k})\|x_A - z_B\|_2$. Thus we have
+reduced the problem to showing $\|x_A - z_B\|_2 \le O(1/\sqrt{k}) \|x
+- x_{A'}\|_1$.
+
+Now, by the triangle inequality we have $\|x_A - z_B\|_2 \le \|x -
+x_A\|_2 + \|x - z_B\|_2$. By shelling (see Lecture 18, p. 2) we have
+$\|x - x_A\|_2 \le O(1/\sqrt{k})\|x - x_{A'}\|_1$, so we just need to
+bound $\|x - z_B\|_2$. But by the lemma, the same shelling result, and
+the $\ell_2$/$\ell_1$ recovery guarantee we have $\|x - z_B\|_2^2 \le
+O(1/k)\|x - x_{A'}\|_1^2$ which finishes the analysis.
+
+Finally note that constructing $z_B$ from $z$ just requires finding
+the top $k$ coordinates of $z$, which can be done in $O(n)$ time using
+a linear selection algorithm like quickselect. \win
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+\subprob{a}
+
+It is a well-known identity that the determinant of the $2k \times 2k$
+(Vandermonde) submatrix given by columns $1 \le i_1 < \cdots < i_{2k}
+\le n$ has absolute value $\prod_{1 \le \mu < \nu \le 2k}
+|\alpha_{i_\mu} - \alpha_{i_\nu}|$. Given that the $\alpha_i$ are
+distinct, this implies any such submatrix has nonzero determinant, and
+is hence invertible (over $\R$).
+
+\subprob{b}
+
+Assume $x \in \R^n$ with $\|x\|_0 \le k$. Let $y \in \R^n$ also with
+$\|y\|_0 \le k$. Then $\|x - y\|_0 \le 2k$. Then since any $2k \times
+2k$ submatrix of $A$ is invertible by (a), it folows that
+\[
+Ax = Ay \iff A(x-y) \ne 0 \iff x - y = 0 \iff x = y.
+\]
+So we can consider the following algorithm to recover $x$ from $Ax$.
+
+\begin{quote}
+For each subset $I \subseteq [n]$ of size $k$:
+  \begin{enumerate}
+  \item Let $J \subseteq [n]$ of size $2k$ such that $J \supseteq
+    I$. (Here we make the bold assumption that $2k \le n$.)
+  \item Let $A_J$ the $2k \times 2k$ submatrix of $A$ given by the
+    columns indexed by $J$, which is invertible by (a).
+  \item Let $\hat y \coloneqq A_J^{-1}(Ax) \in \R^J$.
+  \item Let $y \in \R^n$ defined by $y_i \coloneqq \hat y_i$ for $i
+    \in I$ and $y_i \coloneqq 0$ for $i \notin I$.
+  \item If $Ay = Ax$ then output $y$, else continue.
+  \end{enumerate}
+\end{quote}
+\smallskip
+
+\noindent Note that by the above, since $\|y\|_0 \le k$ by definition
+in (4), the only possible output is $y = x$. On the other hand,
+consider the iteration in which we choose $I \supseteq
+\mathrm{supp}(x)$. Then it is clear that if $x_J$ is the projection of
+$x$ onto the coordinates indexed by the corresponding $J$, we have $Ax
+= A_Jx_J$. Then (3) will compute $\hat y \coloneqq A_J^{-1}A_Jx_J =
+x_J$, and clearly (4) will compute $y = x$. This guarantees success of
+the algorithm. Finally note that since computing $A_J^{-1}$ takes
+$O(k^3)$ time (or can be precomputed), computing $\hat y$ takes
+$O(k^2)$ time, computing $Ay$ takes $O(nk)$ time, and there are
+$\binom{n}{k} \le O(n^k)$ choices of $I \subseteq [n]$, the above
+algorithm takes $n^{O(k)}$ time.
+
+\subprob{c}
+
+Since $1/10 < \sqrt{2} - 1$, if $A$ satisfied RIP with distortion with
+$1/10$ for $k \le \sqrt{n}$, by Lecture 16, Theorem 4, we could
+produce an $\ell_2$/$\ell_1$ recovery scheme $(A,R)$, as defined in
+Problem 1, with respect to $k/2$-sparse vectors. Then the result of
+Problem 1 would imply that $A$ has
+\[
+\Omega((k/2)\log(2n/k)) \ge \Omega((k/2)\log(2\sqrt{n}))
+\]
+rows, which (asymptotically) is a contradiction since $A$ has $2k$
+rows.
+
+
+\end{document}

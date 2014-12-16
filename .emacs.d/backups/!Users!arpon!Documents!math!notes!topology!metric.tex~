@@ -1,0 +1,237 @@
+\input{../preamble}
+\input{preamble}
+
+\title{Math 131 Section, I:\\Metric topology}
+\author{Arpon Raksit}
+\date{September 10, 2013 (original); \today\ (last edit).}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Some more on countability}
+
+Professor McMullen didn't get quite as far as he had planned to last
+Thursday, so let's talk a little more about countability. (The
+material for this part of section is all on pp. 8--11 of Professor
+McMullen's notes on the course website.)
+
+\begin{exercise}
+  Let $S$ be an enemy submarine travelling indefinitely along a line
+  $\R$ (underwater!). Suppose our intelligence is intelligent enough
+  to know that, at time $t=0$, $S$ is at some $i \in \Z \subset \R$,
+  and that $S$ moves with some constant velocity $v \in \Z$; but not
+  intelligent to know $i$ or $v$. You need to shoot down $S$ to win
+  the war; luckily your set of torpedos is in bijection with
+  $\N$. Give a strategy to guarantee victory in finite time.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Quick review of metric spaces}
+
+I bet you'll find yourself thinking at some point that point-set
+topology is just absurdly, unreasonably, unmotivatedly, unnecessarily
+general.\footnote{cf.
+  \url{http://en.wikipedia.org/wiki/Pointless_topology}} When this
+happens, do two things:
+\begin{enumerate}
+\item Stop thinking that. Bask in the generality. Like Professor
+  McMullen said in the introductory lecture, it turns out all this
+  generality is unbelievably useful all over mathematics. Otherwise
+  this course probably wouldn't be taught.
+\item But seriously, if you find yourself miserable, amidst a downpour
+  of statements about open sets, seek shelter in the land of metric
+  spaces! Metric spaces can give you a nice picture to keep in your
+  head when thinking about weird topological definitions. Moreover, if
+  you're stuck in a proof, maybe try proving the statement with a
+  metric, and see if you can't translate things back into topological
+  terms.
+\end{enumerate}
+In light of point (2), I thought I'd review the basic definitions of
+metric topology and how they relate to general topology.
+
+\begin{definition}
+  A \textit{metric space} is the following data:
+  \begin{itemize}
+  \item a set $X$,
+  \item a function $d : X \times X \to \R$,
+  \end{itemize}
+  satisfying the following conditions:
+  \begin{itemize}
+  \item for $x,y \in X$, $d(x,y) = 0$ if and only if $x = y$,
+  \item for $x,y \in X$, $d(x,y) = d(y,x)$,
+  \item for $x,y,z \in X$, $d(x,y) \le d(x,z) + d(z,y)$.
+  \end{itemize}
+  We refer to a metric space by the pair $(X, d)$, or, by the usual
+  abuse of notation when no confusion might arise, simply by $X$. We
+  refer to $d$ as the \textit{metric} on $X$.
+\end{definition}
+
+\begin{example}
+  The first example one thinks of is $X \coloneqq \R^n$ and $d(x,y)
+  \coloneqq |x-y|$. Indeed you're probably picturing $\R^2$ in your
+  head whenever you're thinking about a topological space (but be wary
+  of this as we tread into weirder corners of topology!). Of course
+  there are other interesting examples, but I don't want to spend time
+  developing the theory of metric spaces\footnote{Professor Elkies has
+    some nice notes that do this, see
+    \url{http://www.math.harvard.edu/~elkies/M55b.10/index.html}. You
+    can find some cool problems there also.} right now, so I'll be a
+  bad person and leave them out.
+\end{example}
+
+Of course metric spaces are usually presented as a more general place
+where we can talk about limits and continuous functions in terms of
+our trusty $\epsilon$ and $\delta$.
+
+\begin{definition}
+  Let $X$ a metric space. A sequence $(x_k)_{k \in \N}$ of points in
+  $X$ is said to \textit{converge} to $x \in X$ if for each $\epsilon
+  > 0$ there exists $n \in \N$ such that $d(x_k,x) < \epsilon$ for all
+  $k \ge n$. We write $\lim_{k \to \infty} x_k = x$, or $x_k \to x$ as
+  $k \to \infty$.
+\end{definition}
+
+\begin{exercise}
+  A sequence converges to a unique point.
+\end{exercise}
+
+\begin{definition}
+  Let $(X, d_X), (Y, d_Y)$ metric spaces. A function $\phi : X \to Y$
+  is
+  \begin{itemize}
+  \item \textit{continuous at} $x \in X$ if for each $\epsilon > 0$
+    there exists a $\delta > 0$ such that
+    \[
+    d_X(x,y) < \delta \implies d_Y(\phi(x),\phi(y)) < \epsilon
+    \quad\text{for } y \in X.
+    \]
+  \item a \textit{continuous map} (or just \textit{map} if we're
+    feeling lazy) if $\phi$ is continuous at each $x \in X$.
+  \end{itemize}
+\end{definition}
+
+Ok, that's all well and good, and we can do things like differential
+calculus with these definitions. But in this class we are topologists,
+not analysts. We don't want to push these loathsome epsilons around!
+Even the smallest of epsilons is a burden. So let's rephrase things.
+
+\begin{definition}
+  Let $X$ a metric space, $x \in X$, and $r > 0$. The \textit{open
+    ball of radius $r$ centred at $x$} is defined as $B(x,r) \coloneqq
+  \{y \in X \mid d(x,y) < r\}$.
+\end{definition}
+
+\begin{definition}
+  Let $X$ a metric space. We say a subset $U \subseteq X$ is
+  \emph{open} if for each $x \in U$ there exists an $r > 0$ such that
+  $B(x,r) \subseteq U$.
+\end{definition}
+
+\begin{exercise}
+  $B(x,r) \subseteq X$ is open for any $x \in X, r > 0$.
+\end{exercise}
+
+\begin{proposition}
+  Let $X$ a metric space. Then $\mathcal{T} \coloneqq \{U \subseteq X
+  \mid U\ \text{open}\}$ is a topology on $X$.
+\end{proposition}
+
+\begin{proof}
+  Let $\{U_\alpha\}_{\alpha \in A} \subseteq \mathcal{T}$, set $U
+  \coloneqq \bigcup_{\alpha \in A} U_\alpha$, and let $x \in U$. Pick
+  $\alpha \in A$ such that $x \in U_\alpha$. By definition there
+  exists $r > 0$ such that $B(x,r) \subseteq U_\alpha \subseteq U$.
+
+  \medskip
+  Next let $U_1,\ldots,U_n \in \mathcal{T}$, set $U \coloneqq
+  \bigcap_{i=1}^n U_i$, and let $x \in U$. By definition there exists
+  $r_i > 0$ such that $B(x,r_i) \subseteq U_i$ for $1 \le i \le
+  n$. Then if we set $r \coloneqq \min \{r_i \mid 1 \le i \le n\}$
+  (this is where we use that the intersection is finite!) we have
+  $B(x,r) \subseteq U_i$ for $1 \le i \le n$, whence $B(x,r) \subseteq
+  U$.
+
+  \medskip
+  Since obviously $\emptyset, X \in \mathcal{T}$, $\mathcal{T}$ is
+  indeed a topology on $X$.
+\end{proof}
+
+\begin{exercise}
+  \label{unionofballs}
+  A subset $U \subseteq X$ is open if and only if it's a union
+  $\bigcup_{\alpha \in A} B(x_\alpha, r_\alpha)$ of open balls. (Soon
+  you'll learn that the open balls form a \textup{basis} for this
+  topology on $X$.)
+\end{exercise}
+
+\begin{proposition}
+  Let $X$ a metric space and $A \subseteq X$. The following are
+  equivalent:
+  \begin{enumerate}
+  \item $X - A$ is open.
+  \item For any sequence $(x_k)_{k \in \N}$ in $A$ converging to $x
+    \in X$, we have $x \in A$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  Assume (1). Let $(x_k)_{k \in \N}$ a sequence in $A$ converging to
+  $x \in X$. If $x \in X - A$ then by hypothesis there exists
+  $\epsilon > 0$ such that $B(x, \epsilon) \subseteq X - A$. But one
+  easily sees that this contradicts that $x_k \to x$ as $k \to
+  \infty$.
+
+  \medskip
+  Assume (2). Let $x \in X$. Assume $B(x,\epsilon) \cap A \ne
+  \emptyset$ for each $\epsilon > 0$. In particular, for $k \in \N$ we
+  have $x_k \in A$ such that $d(x_k,x) < 1/k$. Here one easily checks
+  that $x_k \to x$ as $k \to \infty$. So $x \in A$ by hypothesis.
+\end{proof}
+
+So being closed under the operation of taking limits of sequences is
+the same thing as being closed in the topological sense.
+
+\begin{proposition}
+  Let $X, Y$ metric spaces and $\phi : X \to Y$ a function. The
+  following are equivalent
+  \begin{enumerate}
+  \item $\phi^{-1}(U) \subseteq X$ is open whenever $U \subseteq Y$ is
+    open.
+  \item $\phi$ is a continuous map.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  Assume (1). Let $x \in X$ and $\epsilon > 0$. Since
+  $B(\phi(x),\epsilon)$ is open in $Y$, by hypothesis
+  $\phi^{-1}(B(\phi(x), \epsilon))$ is open in $X$. Thus there exists
+  $\delta > 0$ such that $\phi(B(x, \delta)) \subseteq B(\phi(x),
+  \epsilon)$, which says exactly that $\phi$ is continuous at $x$.
+
+  \medskip
+  Assume (2). Let $U \subseteq Y$ an open set, $x \in \phi^{-1}(U)$,
+  and $\epsilon > 0$ such that $B(\phi(x),\epsilon) \subseteq Y$. By
+  continuity we can choose $\delta > 0$ such that
+  \[
+  \phi(B(x,\delta)) \subseteq B(y,\epsilon) \implies B(x,\delta)
+  \subseteq \phi^{-1}(U).
+  \]
+  It follows that $\phi^{-1}(U)$ is open.
+\end{proof}
+
+So a map of metric spaces is continuous in the $\epsilon$-$\delta$
+sense if and only if it's continuous in the topological sense. Ok,
+hopefully this provides some motivation for why things are defined the
+way they are for general topological spaces. (Of course, it's easy for
+me to say this is all motivated---the hard thing was for the actual
+mathematicians to come up with the correct general formulation for
+these notions!)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

@@ -1,0 +1,50 @@
+#left {
+    @include placeholder($grey-medium);
+
+    .info {
+        color: $warning;
+    }
+
+    input {
+        width: 100%;
+        margin-bottom: 2rem;
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: none;
+    }
+
+    input[type="text"], input[type="password"] {
+        border-bottom: 1px solid $grey-mediumer;
+    }
+}
+
+.login {
+    .submit, .toggle {
+        padding: 0.3rem 0;
+        color: $grey-medium;
+        cursor: pointer;
+    }
+
+    .submit {
+        border: 1px solid $grey-mediumer;
+
+        &:hover {
+            color: $grey-dark;
+            border-color: $grey-dark;
+        }
+
+        &:active {
+            @include inset-shadow(.3rem, $grey-medium);
+        }
+    }
+
+    .toggle:hover {
+        color: $grey-dark;
+        text-decoration: underline;
+    }
+
+    .again {
+        display: none;
+    }
+}

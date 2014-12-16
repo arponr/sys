@@ -1,0 +1,252 @@
+\input{../preamble}
+\input{preamble}
+
+\title{Covering spaces}
+\author{Arpon Raksit}
+\date{November 22, 2013 (original); \today\ (last edit).}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Setting up}
+
+\begin{nothing}
+  For the remainder we fix a nice pointed space $(X,x)$. Sometimes we
+  won't use the basepoint, and sometimes we will. Here \emph{nice}
+  means that $X$ is connected, locally path connected, and semilocally
+  simply connected.
+\end{nothing}
+
+\begin{definition}
+  \label{covering}
+  A map $p : E \to X$ of spaces is a \emph{covering} if each $x \in X$
+  has an open neighbourhood $U$ such that $p^{-1}(U) = \coprod_{j \in
+    J} V_j$, where $J \ne \emptyset$ and for each $j \in J$:
+  \begin{enumerate}
+  \item $V_j \subseteq E$ is open,
+  \item the restriction $p : V_j \to U$ is a homeomorphism.
+  \end{enumerate}
+\end{definition}
+
+\begin{remarks}
+  (\ref{covering}) is just how one formalises the idea that $E$
+  locally looks like a bunch of copies of $X$. Note we'll often be
+  abusive and refer to $E$ as a covering, leaving the map $p$
+  implicit.
+\end{remarks}
+
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\Gal}{\operatorname{Gal}}
+
+\begin{definition}
+  We define $\Cov(X)$, the \emph{category of coverings of $X$}, as
+  follows.
+  \begin{enumerate}
+  \item An object of $\Cov(X)$ is a covering $p : E \to X$.
+  \item A \emph{morphism of coverings} from $p : E \to X$ to $p' : E'
+    \to X$ is given by a map $f : E \to E'$ such that $p'f = p$, i.e.,
+    a commutative diagram
+    \[
+    \begin{tikzcd}
+      E \ar{rr}{f} \drar[swap]{p} & & E'. \dlar{p'} \\ & X &
+    \end{tikzcd}
+    \]
+  \end{enumerate}
+\end{definition}
+
+\begin{nothing}
+  As one might expect, we call a based map $p : (E,e) \to (X,x)$ a
+  covering if the underlying unbased map $p : E \to X$ is a
+  covering. Similarly if $p : (E,e) \to (X,x)$ and $p' : (E',e') \to
+  (X,x)$ are coverings, we will call $f : (E,e) \to (E',e')$ a
+  morphism of coverings simply if the underlying $f : E \to E'$ is a
+  morphism of coverings as defined above.
+\end{nothing}
+
+\begin{notation}
+  \begin{enumerate}[leftmargin=*]
+  \item Denote the interval $[0,1]$ by $I$.
+  \item Denote by $\pi_1(Y,y)$ the fundamental group of a pointed
+    space $(Y,y)$.
+  \item If we write an element $g \in \pi_1(Y,y)$ as $[\gamma]$, we
+    mean that $g$ is the homotopy class of the loop $\gamma : I \to Y$
+    based at $y$.
+  \item Denote by $f_* : \pi_1(Y,y) \to \pi_1(Y',y')$ the group
+    homomorphism induced by a map of pointed spaces $f : (Y,y) \to
+    (Y',y')$.
+  \item Denote $\pi_1(X,x)$ by $G$.
+  \end{enumerate}
+\end{notation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lifting things}
+
+\begin{proposition}
+  \label{general-lifting}
+  Let $p : (E,e) \to (X,x)$ be a covering. Let $f : (Y,y) \to (X,x)$
+  be a map of pointed spaces.
+  \begin{enumerate}
+  \item There is a lift $\tilde f : (Y,y) \to (E,e)$ making the
+    diagram
+    \[
+    \begin{tikzcd}
+      \ & (E,e) \dar{p} \\ (Y,y) \rar{f} \ar[dashed]{ur}{\tilde f} &
+      (X,x)
+    \end{tikzcd}
+    \]
+    commute if and only if $\im(f_*) \subseteq \im(p_*)$.
+  \item If $Y$ is connected and the lift $\tilde f$ does exist, then
+    it is unique.
+  \end{enumerate}
+\end{proposition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The fibre functor}
+
+One of the mottos in this theory, which will surely become clear, is
+that everything is determined by the fibres.
+
+\begin{definition}
+  If $p : E \to X$ is a covering, we denote, somewhat abusively, the
+  \emph{fibre} $p^{-1}(x)$ by $F_x(E)$.
+\end{definition}
+
+\begin{lemma}
+  \label{pi1-action}
+  If $p : E \to X$ is a covering, there is a canonical $G$-action on
+  the fibre $F_x(E)$.
+\end{lemma}
+
+\begin{proof}
+  Let $e \in F_x(E)$ and $g = [\gamma] \in G$. Then by a lifting
+  lemma, $\gamma$ lifts uniquely to a path $\tilde\gamma : I \to E$
+  with $\gamma(0) = e$. Then $p\tilde\gamma(1) = \gamma(1) = x
+  \implies \tilde\gamma(1) \in F_x(E)$. We define the action by $g
+  \cdot e \coloneqq \tilde\gamma(1)$.
+
+  \medskip
+  \textbf{Check that this is independent of the loop
+    representative. This should probably be a lemma in the Lifting
+    things section}.
+
+  \medskip
+  Now if $g = \id_G$ then we can take $\gamma$ to be the constant loop
+  at $x$, which clearly lifts to $\tilde\gamma$ the constant loop at
+  $e$. Thus $\id_G \cdot e = \tilde\gamma(1) = e$.
+
+  Finally let $h = [\delta] \in G$. Then $\delta$ lifts to a unique
+  $\tilde\delta : I \to E$ satisfying $\tilde\delta(0) = g \cdot
+  e$. By definition, $h \cdot (g \cdot e) = \tilde\delta(1)$. But note
+  that the composition $\tilde\delta \cdot \tilde\gamma$ is a lift of
+  the composition $\delta \cdot \gamma$. Since $hg = [\delta \cdot
+    \gamma]$, it follows that also $hg \cdot e =
+  \tilde\delta(1)$. Thus we indeed have a $G$-action.
+\end{proof}
+
+\begin{nothing}
+  \label{fibre-map}
+  Let $p : E \to X$ and $p' : E' \to X$ be coverings, and $f : E \to
+  E'$ a morphism of coverings. By definition, $f$ restricts to a map
+  of sets $F_x(f) : F_x(E) \to F_x(E')$. Let $e,g,\gamma,\gamma'$ as
+  above. Then $f\gamma' : I \to E'$ is a lift of $\gamma$ at
+  $f(e)$. So by uniqueness of lifting we must have $gf(e) =
+  f(ge)$. I.e., $F_x(f)$ is a morphism of $G$-sets.
+\end{nothing}
+
+\begin{definition}
+  (\ref{pi1-action}) and (\ref{fibre-map}) define for us the
+  \emph{fibre functor}
+  \[
+  F_x : \Cov(X) \to G\text{-}\Set.
+  \]
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The universal cover}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Classifying coverings}
+
+Now we're going to sit down and classify all of the coverings of
+$X$. This stuff is beautiful, I hope I can convey that.
+
+\begin{lemma}
+  \label{cover-injection}
+  Let $p : (E,e) \to (X,x)$ a covering. Then $p_* : \pi_1(E,e) \to
+  \pi_1(X,x)$ is injective.
+\end{lemma}
+
+\begin{proof}
+  Let $[\gamma] \in \pi_1(E,e)$ the homotopy class of a loop $\gamma :
+  I \to Y$ at $y$. By definition, $p_*[\gamma] = [p\gamma]$. Suppose
+  $[\gamma] \in \ker(p_*)$. Then there's a null-homotopy (through
+  loops) $h : I \times I \to X$ of $p\gamma$. But by a lifting lemma,
+  this lifts to $h' : I \times I \to Y$ with $h'(0,0) = y$ and, for $t
+  \in I$,
+  \begin{align*}
+    ph'(0,t) = h(0,t) = x, \quad &ph'(1,t) = h(1,t) = x, \\ ph'(t,0) =
+    h(t,0) = p\gamma(t), \quad &ph'(t,1) = h(t,1) = x.
+  \end{align*}
+  By uniqueness of lifting this implies $h'(0,t) = h'(1,t) = h'(t,1) =
+  y$ and $h'(t,0) = \gamma(t)$ for $t \in I$. I.e., $h'$ is a
+  null-homotopy of $\gamma$, and hence $[\gamma] =
+  \id_{\pi_1(Y,y)}$. Thus $\ker(p_*)$ is trivial, implying the claim.
+\end{proof}
+
+\begin{notation}
+  Let $p : (E,e) \to (X,x)$ is a covering. We will use the following
+  notation for the remainder:
+  \begin{enumerate}
+  \item
+  \item $H(E,e) \coloneqq p_*\pi_1(E,e) \subseteq G$.
+  \end{enumerate}
+  Note that (\ref{cover-injection}) says that $H(E,e) \simeq
+  \pi_1(E,e)$.
+\end{notation}
+
+\begin{lemma}
+  Let $p : (E,e) \to (X,x)$ and $p' : (E',e') \to (X,x)$
+  coverings.
+  \begin{enumerate}
+  \item There is a morphism of coverings $f : (E,e) \to (E',e')$
+    if and only if $H(E,e) \subseteq H(E',e')$.
+  \item If $E$ is connected and the morphism $f$ does exist, then it
+    is unique.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  This is immediate from (\ref{general-lifting}).
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{amsplain}
+\bibliography{refs}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Outline
+
+1. Motivation
+2. Definitions
+3. Universal cover
+4. Lifting
+5. Galois
+   when do we have a morphism of connected coverings?
+   equivalence of categories (construct inverse by quotienting
+   disjoint union of universals)
+   the connected case
+Appendix: G-sets as products of quotients
+

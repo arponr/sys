@@ -1,0 +1,4 @@
+$pdflatex = "xelatex -interaction=nonstopmode";
+$pdf_previewer = "mupdf -r 98";
+$pdf_update_method = 4;
+$pdf_update_command = "xdotool search --class mupdf key --window %@ r";

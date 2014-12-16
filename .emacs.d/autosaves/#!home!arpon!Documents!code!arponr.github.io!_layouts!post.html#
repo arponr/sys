@@ -1,0 +1,9 @@
+{% include header.html %}
+
+    <main class="wrap">
+      <article class="text">
+        {{ content }}
+      </article>
+    </main>
+
+{% include footer.html %}

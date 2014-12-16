@@ -1,0 +1,164 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage[margin=1in]{geometry}
+
+\renewcommand{\labelitemi}{---}
+\renewcommand{\labelitemii}{--}
+
+\frenchspacing
+
+\titleformat{\section}[block]{\scshape}{\thesection. }{2pt}{}[\vspace{2pt}\titlerule]
+\titlespacing*{\section}{0pt}{10pt}{3pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\thispagestyle{empty}
+
+\setlength{\parindent}{0pt}
+
+\begin{flushleft}
+  {\LARGE Arpon Raksit} \\
+  \url{araksit@college.harvard.edu} \\
+  \url{arponr.com}
+\end{flushleft}
+
+\vspace{10pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Education}
+\vspace{3pt}
+\textbf{Harvard College}, 2011--2015
+
+\begin{itemize}[leftmargin=20pt,itemsep=3pt]
+\item Expecting A.B. in mathematics with secondary in computer
+  science, current GPA: 3.91/4.0
+
+\item Selected Courses (M = Math, CS = Computer Science): \vspace{-17pt}
+  \begin{center}
+    \begin{tabular}{p{142pt}p{133pt}p{200pt}}
+      \begin{itemize}[leftmargin=*]
+      \item M55a: Honors Algebra
+      \item M55b: Honors Analysis
+      \item M213b: Riemann Surfaces
+      \end{itemize}
+      &
+      \begin{itemize}[leftmargin=*]
+      \item M129: Number Fields
+      \item M231: Algebraic Topology
+      \item M233: Theory of Schemes
+      \end{itemize}
+      &
+      \begin{itemize}[leftmargin=*]
+      \item CS121: Theory of Computation
+      \item CS124: Algorithms
+      \item CS229: Big Data Algorithms
+      \end{itemize}
+    \end{tabular}
+  \end{center}
+\end{itemize}
+
+\vspace{-5pt}
+\textbf{Commack High School}, 2007--2011
+\begin{itemize}[leftmargin=20pt,itemsep=3pt]
+\item International Baccalaureate (IB) Diploma, GPA: 104.4/100
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5pt}
+
+\section*{Honours \& Awards}
+\vspace{-8pt}
+\begin{tabular}{p{190pt}p{225pt}}
+  \begin{itemize}[leftmargin=*]
+  \item Putnam Comptetion Top 200, 2012
+  \item Detur Prize (Harvard), 2012
+  \item John Harvard Scholar, 2012
+  \end{itemize}
+  &
+  \begin{itemize}[leftmargin=*]
+  \item Intel Science Talent Search Semifinalist, 2011
+  \item Siemens Competition Semifinalist, 2010
+  \item USACO Gold Division, 2009--2011
+  \end{itemize}
+\end{tabular}
+
+\vspace{-12pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5pt}
+
+\section*{Work \& Experience}
+\vspace{3pt}
+
+\textbf{Independent study, Harvard University}
+
+\begin{itemize}[leftmargin=20pt,itemsep=3pt]
+\item Simplicial homotopy theory, Fall 2013. Supervised by Emily
+  Riehl.
+\item Reading group on $\infty$-categories, Fall 2013. Organised
+  by Hiro Lee Tanaka. Gave talk on the Dold-Kan correspondence.
+\item Representation theory of Lie groups and Lie algebras, Summer
+  2012. Supervised by Prof. Joe Harris. Funded by Harvard College
+  Program for Research in Science and Engineering (PRISE).
+\end{itemize}
+
+\vspace{5pt}
+
+\textbf{Teaching, Harvard University}
+
+\begin{itemize}[leftmargin=20pt,itemsep=3pt]
+\item Course assistant: Math 131 (Topology), Fall 2013; Math 123
+  (Algebra II), Spring 2014.
+\item Math Circle (for 7--9 year-olds) instructor: Fall 2013; Spring
+  2014.
+\end{itemize}
+
+\vspace{5pt}
+
+\textbf{Software Engineering Intern, Google}, Summer 2013
+
+\begin{itemize}[leftmargin=20pt,itemsep=3pt]
+\item Data analytics for the Google Play team in Mountain View, CA.
+\item Implemented MapReduces in C++ and Go to analyse data logs, and
+  data visualisation scripts in Python.
+\end{itemize}
+
+\vspace{5pt}
+
+\textbf{Computational modelling research, Stony Brook University},
+Summer 2009--Summer 2011
+
+\begin{itemize}[leftmargin=20pt,itemsep=3pt]
+\item With Prof. Dilip Gersappe, Dept. of Materials Science and
+  Engineering.
+\item Derived and implemented parallel models of material
+  phenomena. Extended the C++ library \textit{Palabos}, which
+  implements a fluid simulation technique called the lattice Boltzmann
+  method.
+\item Work presented at APS March Meetings 2010--2012.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5pt}
+
+\section*{Skills \& Activities}
+\vspace{3pt}
+\textbf{Programming}: C, C++, Python, Go, Java, \LaTeX, Bash.
+
+\vspace{5pt}
+
+\textbf{Tennis}: Harvard Club Tennis, 9/11--present. Commack Varsity
+Tennis, 3/09--6/11.
+
+\vspace{5pt}
+
+\textbf{Saxophone}: Play alto and soprano, primarily jazz.
+
+\end{document}

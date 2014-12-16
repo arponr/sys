@@ -1,0 +1,16 @@
+\section{Top-enriched categories}
+
+Fix $\T$ a category. (Imagine $\T = \Sets$ maybe.) Suppose we have a
+way of taking two objects, $T_1,T_2 \in \obj(\T)$, and producing a
+third $T_1 \otimes T_2$. I.e., we have some map $\otimes : \ob \T
+\times \ob \T \to \ob T$. If $\T = \Sets$, we have a bunch of
+possibilities: $\otimes = \times, \otimes = \cap, \otimes = \coprod$.
+
+Suppose we have $1 \in \ob \T$ such that $1 \otimes T \simeq T$ for
+all $T \in \T$. Taking our examples again:
+\begin{itemize}
+\item if $\otimes = \times$ then $1 = \{*\}$;
+\item if $\otimes = \coprod$ then $1 = \emptyset$.
+\end{itemize}
+Together with associativity (and other coherence conditions)
+

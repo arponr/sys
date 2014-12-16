@@ -1,0 +1,410 @@
+\input{preamble}
+\title{Derandomizing the Johnson-Lindenstrauss transform} \author{Arpon Raksit  \and Aleksandar Makelov} 
+\date{December 5, 2013}
+
+\begin{document}
+\setbeamercovered{transparent}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+
+\section{The problem}
+\label{sec:}
+
+\begin{frame}
+  \sectionpage
+\end{frame}
+
+\begin{frame}{The problem}
+
+\bdefn
+	\label{defn:}
+	For $\eps,\delta>0$, a \bf{generator} $G:\{0,1\}^r\to \R^{s\times d}$ is an $(d,s,\delta,\eps)$-JL generator if for all $w\in\R^d$ with $\|w\|=1$, we have
+	\begin{align*}
+	\pr_{y\inr\{0,1\}^r}\l[| \|(G(y))(w) \|^2 - 1|\geq\eps\r]\leq\delta
+\end{align*}
+\edefn
+
+  \pause\bigskip\bigskip
+  
+The goal is to embed in the asymptotically optimal dimension:
+
+  \pause\bigskip\bigskip
+  
+  \bprob
+	\label{prob:}
+	Minimize $r$ in a $(d,O(\log(1/\delta)/\eps^2),\delta,\eps)$-JL generator.
+\eprob
+
+
+\end{frame}
+
+\begin{frame}{What is possible?}
+
+Using the probabilistic method, one can show that
+
+\bthm[Kane, Meka, Nelson \cite{kane2011almost}]
+	\label{thm:}
+	There exist an $(d,O(\log(1/\delta)/\eps^2),\delta,\eps)$-JL generator with seed length $r=O(\log d + \log(1/\delta))$
+\ethm
+
+  \pause\bigskip\bigskip
+  
+The same paper constructs an almost optimal generator:
+
+\bthm
+	\label{thm:main}
+	There exists a constant $C$ such that for every $0<\eps,\delta<1/2$, there exists an explicit $(d,C\log(1/\delta)/\eps^2,\delta,\eps)$-JL generator $G:\{0,1\}^r\to \R^{s\times d}$ with 
+	\begin{align*}
+	r=O \l(\log d + \log(1/\delta)\log \l(\frac{\log(1/\delta)}{\eps}\r)\r)
+\end{align*}
+\ethm
+\end{frame}
+
+
+
+% section  (end)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{The \cite{kane2011almost} approach }
+\label{sec:}
+
+\begin{frame}
+  \sectionpage
+\end{frame}
+
+\begin{frame}{Overview}
+
+Main observation: being a JL distribution $\iff$  moment bounds on the distortion of the embedding.
+
+  \pause\bigskip\bigskip
+  
+Specifically: any strong JL distribution (to be defined below) can be derandomized using $2\log(1/\delta)$-wise independence of the entries of the matrix. 
+
+
+
+\end{frame}
+
+\begin{frame}{Definitions}
+
+\bdefn
+	\label{defn:}
+	A distribution $\mc{D}$ over $\R^{s\times d}$ is an \bf{$(d,s,\delta,\eps)$-JL distribution} if for any $w\in S^{d-1}$, we have
+	\begin{align*}
+	\pr_{S\sim\mc{D}}\l[|\|Sw\|^2-1|\geq\eps\r]\leq\delta
+\end{align*}
+\edefn
+
+  \pause\bigskip\bigskip
+
+\bdefn
+	\label{defn:}
+	A distribution $\mc{D}$ over $\R^{s\times d}$ has the \bf{$(d,s,t,\delta,\eps)$-JL moment property} if for any $w\in S^{d-1}$, we have
+		\begin{align*}
+	\expec_{S\sim\mc{D}}\l[|\|Sw\|^2-1|^t\r]<\eps^t\delta
+\end{align*}
+\edefn
+
+
+\end{frame}
+
+\begin{frame}{Definitions}
+
+Here are some more useful properties:
+
+  \pause\bigskip\bigskip
+
+\bdefn
+	\label{defn:}
+	A distribution $\mc{D}$ over $\R^{s\times d}$ is a \bf{strong $(d,s)$-JL distribution} if it is an $(d,s,\exp(-\Omega(\eps^2s)),\eps)$-JL distribution for all $\eps>0$. $\mc{D}$ has the \bf{strong $(d,s)$-JL property} if it has the $(d,s,l,O(\sqrt{l/(\eps^2s)})^l,\eps)$-JL moment property for all $0<\eps<1/2$ and integer $l\geq2$.
+\edefn
+
+\end{frame}
+
+\begin{frame}
+
+\bthm
+	\label{thm:}
+	A distribution $\mc{D}$ is a strong $(d,s)$-JL distribution if and only if it has the strong $(d,s)$-JL moment property.
+\ethm
+
+  \pause\bigskip\bigskip
+  
+In fact, the strong $(d,s)$-JL moment property applied to a $O(s\eps^2)=O(
+\log(1/\delta))$-th moment suffices to get the strong $(d,s)$-JL property:
+\begin{equation}
+\label{eq:main}
+		\pr\l[|\|Sw\|^2-1|>\eps\r]<\eps^{-l}\expec_{S\sim\mc{D}}\l[(\|Sw\|^2-1)^l\r]\leq2^{O(l)} \l(\frac{1}{\eps}\sqrt{\frac{l}{s}}\r)^l
+\end{equation}
+
+  \pause\bigskip\bigskip
+  
+\bthm
+	\label{thm:}
+	Any strong $(d,s)$-JL distribution can be derandomized with $O(\log(1/\delta))$-wise independent entries.
+\ethm
+\end{frame}
+
+\begin{frame}
+
+Observe: a $d\times s$ matrix for $d>s$ with $l$-wise independent random sign entries can be obtained from $O(l\log d)$ bits by polynomials over $\F_d$. 
+
+  \pause\bigskip\bigskip
+Thus, 
+\bthm[Also Clarkson-Woodruff \cite{clarkson2009numerical}]
+	\label{thm:}
+	There exists an explicit $(d,O(\log(1/\delta)/\eps^2),\delta,\eps)$-JL generator with seed length $O(\log d \log (1/\delta))$.
+\ethm
+\end{frame}
+
+\begin{frame}{Improving \cite{clarkson2009numerical}}
+
+The important observation of \cite{kane2011almost} is that there is a trade-off between the amount of independence needed and the embedding dimension in \ref{eq:main}. 
+
+  \pause\bigskip\bigskip
+  
+In particular, through a carefully chosen sequence of embeddings, \cite{kane2011almost} prove their main theorem \ref{thm:main} and construct an explicit generator with seed length
+\begin{align*}
+	r=O \l(\log d + \log(1/\delta)\log \l(\frac{\log(1/\delta)}{\eps}\r)\r)
+\end{align*}
+\end{frame}
+
+\begin{frame}{The algorithm}
+
+\begin{block}{Algorithm}
+	Generic JL derandomization template:
+	\begin{enumerate}
+	\i Let $m=\d\log \l(\frac{\log(1/\delta)}{2\log\log(1/\delta)}\r),\eps'=\d\frac{\eps}{e(m+2)},\delta'=\frac{\delta}{m+2}$.
+	  \pause
+	\i Let $s_i=\d\frac{C}{\eps'^2\delta'^{1/2^i}}$ and $l_i=\Theta(2^i)$ be an even integer for $i\geq0$. Let $s_{-1}=d$.
+	  \pause
+	\i Let $S_i$ be a random matrix drawn from a distribution with the $(s_{i-1},s_i,l_i,\delta',\eps')$-JL moment property for $i=0,1,\ldots,m$.
+	  \pause
+	\i Let $S_{final}$ be drawn from a $\l(s_m, O \l(\d\frac{\log(1/\delta)}{\eps^2}\r),\delta',\eps'\r)$-JL distribution.
+	  \pause
+	\i Output $S=S_{final}S_m\ldots S_0$
+\end{enumerate} 
+\end{block} 
+
+\end{frame}
+
+\begin{frame}
+\bprf
+		Let $w^i=S_i\ldots S_0w$, $w^{-1}=w$. Then, for all $0\leq i \leq m$,
+	\begin{align*}
+	\pr\l[| \|w^i\|^2/\|w^{i-1}\|^2-1|>\eps'\r]<\eps'^{-l_i}\expec\l[(\|w^i\|^2/\|w^{i-1}\|^2-1)^{l_i}\r]<\delta'
+\end{align*}
+On the last step, we have 
+\begin{align*}
+	\pr\l[|\|S_{final}w^m\|^2/\|w^m\|^2-1|>\eps'\r]<\delta'
+\end{align*}
+Then, by a union bound, all the bad events fail to occur with probability at least $1-(m+2)\delta'$. That is,
+\begin{align*}
+	\pr\l[\|S_{final}w^m\|^2\leq (1+\eps')^{m+2}\r]\geq 1- (m+2)\delta'=1-\delta
+\end{align*}
+Finally, for our choice of $\eps'$, we have 
+\begin{align*}
+	(1+\eps')^{m+2}\leq e^{(m+2)\eps'}\leq 1+\eps
+\end{align*}
+ 
+\eprf
+
+\end{frame}
+
+\begin{frame}
+
+\bprf[Proof of seed length bound]
+	\begin{enumerate}
+	\i Level $0$: $O(\log d)$ bits.
+	\pause
+	\i Level $1\leq i \leq m$: $O(l_i\log \l(\frac{1}{\eps'^2\delta'^{-1/2^i}}\r))$ which is never larger than the cost for the final level. 
+	\pause
+	\i Final level: $O(\log(1/\delta')\log(\log(1/\delta')/\eps')=O(\log(1/\delta)\log(\log(1/\delta)/\eps)$	
+\end{enumerate}
+\pause
+So the first and final steps dominate the cost. 
+Notice that since we're using a union bound, we can use the same seed on each level.
+\eprf
+
+\end{frame}
+% section  (end)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{One approach for improving \cite{kane2011almost}}
+\label{sec:}
+
+\begin{frame}
+	\sectionpage
+	\end{frame}
+	
+\begin{frame}
+
+\begin{enumerate}
+	\i Notice that the 
+\end{enumerate}
+
+
+\end{frame}
+
+% section  (end)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Expander graphs}
+\label{sec:}
+
+\begin{frame}{High-level overview}
+  An expander graph is a basic `pseudorandom' object.
+
+  \pause\bigskip\bigskip
+
+  What this means is that an expander graph is defined explicitly but shares many properties with random graphs.
+
+  \pause\bigskip\bigskip
+
+  Consequently, expanders can be used to `fool' randomized algorithms and reduce the number of random bits needed.
+\end{frame}
+
+\begin{frame}{Definition}
+
+For simplicity, we will consider only $c$-regular expanders. There are several ways to define an expander $G$: 
+\begin{enumerate}
+	\i Combinatorially: $G$ is a good expander if every $S\subs V(G)$ has a large edge boundary relative to $c|S|$.
+	\pause\bigskip\bigskip
+	\i Probabilistically: $G$ is a good expander if a random walk on $G$ converges to the uniform distribution as fast as possible.
+	\pause\bigskip\bigskip
+	\i Algebraically: $G$ is a good expander if the nontrivial eigenvalues (the ones different from $c$) of the adjacency matrix of $G$ are small. 
+\end{enumerate}
+
+  
+\pause\bigskip\bigskip
+
+Most useful to us will be the algebraic definition.
+
+\end{frame}
+
+\begin{frame}{Definition}
+\bdefn
+	\label{defn:}
+	For a regular graph $G$, label the eigenvalues by $\lambda_1\geq\ldots\geq\lambda_n$ and denote $\lambda(G)=\max\{|\lambda_2|,|\lambda_n|\}$.
+\edefn
+
+\pause\bigskip\bigskip
+
+\bdefn
+	\label{defn:}
+	A $c$-regular graph $G$ on $n$ vertices is called an $(n,c,\a)$-graph if the normalized second eigenvalue is small: $\lambda(G)\leq \a c$
+\edefn
+
+
+\end{frame}
+
+\begin{frame}{Random walks on expanders are almost like independent sampling}
+
+Now comes a very cool theorem that shows a way one can use expander graphs to sufficiently reduce the number of random bits required for a randomized algorithm.
+
+\pause\bigskip\bigskip
+
+\bthm[Ajtai, Komlos, Szemeredi \cite{ajtai1987deterministic}]
+	\label{thm:}
+	Let $G$ be an $(n,c,\a)$-graph and $B\subs V$ with $|B|=\b n$. Then, for a random walk $X_0,X_1,\ldots,X_t$ on $G$ started from a uniformly random vertex,
+	\begin{align*}
+	\pr\l[\forall 0\leq i\leq t: X_i\in B\r]\leq (\a+\b)^t
+\end{align*}
+\ethm
+
+  \pause\bigskip\bigskip
+  
+One can deduce this fact working in an orthonormal basis of eigenvectors and using basic linear algebra techniques. 
+\end{frame}
+
+\begin{frame}{Random walks on expanders are almost like independent sampling}
+
+What we need in our case however is a lower bound on the probability of staying in some good sets $G_0,G_1,\ldots,G_t$ each of some given density. This is provided by the following related result:
+
+\bthm[Alon, Feige, Widgerson, Zuckerman \cite{alon1995derandomized}]
+	\label{thm:}
+	Let $G$ be an $(n,c,\a)$-graph and $G_0,\ldots,G_t\subs V$ with $|G_i|\geq \b n$. Then, if $\b>6\a$, for a random walk $X_0,X_1,\ldots,X_t$ on $G$ started from a uniformly random vertex,
+	\begin{align*}
+	\pr\l[\forall 0\leq i\leq t: X_i\in G_i\r]\geq \b(\b-2\a)^t
+\end{align*}
+\ethm
+
+\end{frame}
+
+\begin{frame}{How small can $\a$ be?}
+
+We want to be able to make $\a$ as small as possible.
+
+\pause\bigskip\bigskip
+
+It's not hard to show that the limit is 
+\bthm[Alon-Boppana]
+	\label{thm:}
+	For any $(n,c)$ graph, 
+	\begin{align*}
+	\lambda(G)\geq 2\sqrt{c-1}-o_n(1)
+\end{align*}
+\ethm 
+
+(and in fact a bound of $\lambda(G)\geq O(\sqrt{c})$ is straightforward).
+\pause\bigskip\bigskip
+
+\bdefn
+	\label{defn:}
+	An $(n,c)$-graph $G$ is called \bf{Ramanujan} if $\lambda(G)\leq 2\sqrt{c-1}$.
+\edefn
+
+\end{frame}
+
+\begin{frame}{Ramanujan graphs exist!}
+
+\bdefn
+	\label{defn:}
+	A family of (expander) $(n,c)$-graphs is \bf{very explicit} if there is an algorithm which on input $i\in\N,v\in V(G_i),k\in\{1,\ldots,c\}$ outputs the $k$-th neighbor of $v$ in $G_i$ and runs in time polynomial in $\log(i)+\log(|v|)+\log(k)$
+\edefn
+
+\pause\bigskip\bigskip
+
+We have the following 
+
+\bthm[Lubotzky, Phillip, Sarnak, \cite{lubotzky1988ramanujan}, Morgenstern \cite{morgenstern1994existence}]
+	\label{thm:}
+	For every prime $p$ and every $k\in\N$, there exist families of very explicit $p^k+1$-regular Ramanujan graphs.
+\ethm
+
+\pause\bigskip\bigskip
+
+Thus, we can take $\a=O \l(\frac{1}{\sqrt{c}}\r)$
+\end{frame}
+
+% section  (end)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{References}
+\label{sec:}
+\begin{frame}{References}
+
+\nocite{*} \bibliographystyle{amsalpha} \bibliography{slides-refs}
+\end{frame}
+% section  (end)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

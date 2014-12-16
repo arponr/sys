@@ -1,0 +1,170 @@
+\input{preamble}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\titleset{6}{5 November 2014}{Rahul Dalal}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+\subprob{a}
+
+Since $\sigma|_K$ generates $\Gal(K/\Q) \iso \Z/2$ it suffices to
+prove the following more general claim.
+
+\begin{lemma}
+  \label{galois-composite}
+  Let $F \inj K$ and $K \inj L$ be Galois field extensions. Then $F
+  \inj L$ is also Galois if and only if the restriction map $\rho \c
+  \Gal(L/F) \to \Gal(K/F)$ is surjective.
+\end{lemma}
+
+\begin{proof}
+  Note that $\ker(\rho) = \Gal(L/K)$. Now $F \inj L$ is Galois if and
+  only if the inequality
+  \[
+  |\Gal(L/F)| = |\ker(\rho)||\im(\rho)| \le |\Gal(L/K)||\Gal(K/F)| =
+  [L:K][K:F] = [L:F],
+  \]
+  is an equality, which holds if and only if $|\im(\rho)| =
+  |\Gal(K/F)|$, or equivalently $\rho$ is surjective.
+\end{proof}
+
+\subprob{b}
+
+Let $L' \ce \sigma(L) \subseteq \C$. Since $\sigma(K) = K$ we have $K
+\subseteq L'$ and $\sigma$ defines an isomorphism of field extensions
+$L \to L'$. In particular $L'$ is an unramified and abelian extension
+of $K$, so by definition of the Hilbert class field we must have $L'
+\subseteq L$, implying $\sigma$ is an automorphism of $L$.
+
+\subprob{c}
+
+Note that $L \cap \R$ is the subfield of $L$ fixed by $\sigma \in
+\Gal(L/\Q)$. So let's write $L^\sigma \ce L \cap \R$. Observe that
+\[
+K \cap \R = \Q \implies L^\sigma \cap K = \Q,
+\]
+and since $L^\sigma$ and $K$ are Galois extensions of $\Q$, this
+implies the two are linearly disjoint. I.e. the canonical map $\phi \c
+L^\sigma \otimes_\Q K \to L$ is injective. But
+\[
+[L^\sigma : \Q] = [L : \Q]/|\langle \sigma \rangle| = [L : \Q]/2
+\]
+and $[K : \Q] = 2$, so $\phi$ must be surjective as well. Now by the
+primitive element theorem we may write $L^\sigma = \Q(\alpha)$ and of
+course by multiplying by a suitable rational we may assume $\alpha \in
+\O_{L^{\sigma}} \subseteq \O_L \cap \R$. The surjectivity of $\phi$
+then implies $L = K(\alpha)$.
+
+\subprob{d}
+
+We first prove a general claim:
+
+\renewcommand{\P}{\mathfrak{P}}
+
+\begin{lemma}
+  \label{primitive-splitting}
+  Let $K \inj L$ be a Galois extension of number fields. Let $\p$ be a
+  prime in $\O_K$ which is unramified in $\O_L$. Write $L = K(\alpha)$
+  for some $\alpha \in \O_L$ with minimal polynomal $f \in
+  \O_K[x]$. Suppose the discriminant of $f$ is nonzero mod $\p$. Then
+  $\p$ splits completely in $L$ if and only if $f$ has a root mod
+  $\p$.
+\end{lemma}
+
+\begin{proof}
+  First note that, since $f$ has nonzero discriminant mod $\p$, we may
+  write $f \equiv f_1 \cdots f_g \mod \p$ where the $f_i$ are distinct
+  irreducibles mod $\p$. Hence by Kummer's criterion we have the prime
+  factorization $\p\O_L = \P_1 \cdots \P_g$ with $\P_i \ce \p\O_L +
+  f_i(\alpha)\O_L$ for each $i$.
+
+  We claim that each $f_i$ has degree the residual degree $f_\p$. Fix
+  an $i$ for the remainder of the paragraph. Let $G_{\P_i}$ denote the
+  decomposition group of $\P_i$, which contains $f_i(\alpha)$. Then
+  $f_i(\sigma(\alpha)) = \sigma(f_i(\alpha)) \in \P_i$ for $\sigma \in
+  G_{\P_i}$, i.e. the set $S \ce \{\sigma(\alpha) \mod \P_i : \sigma
+  \in \G_{P_i}\}$ are roots of $f_i$ mod $\P_i$. Now $G_{\P_i}$ acts
+  transitively on $S$, and the stabilizer of $\alpha \mod \P_i$
+  consists of the $\sigma$ for which $\sigma(\alpha) \equiv \alpha
+  \mod \P_i$; since $\alpha$ generates $L$ this stabilizer is the
+  inertia subgroup $I_{\P_i}$. It follows that $|S| = |G_\p/I_\p| =
+  f_\p$. This implies $\deg(f_i) \ge f_\p$. The reverse inequality
+  holds simply because we have the inclusion
+  \[
+  (\O_K/\p)[t]/(f_i) \to \O_L/\P_i = \O_L/(\p\O_L + f_i(\alpha)\O_L)
+  \]
+  via $t \mapsto \alpha$.
+
+  Thus we have $f_\p = 1$ if and only if any of the $f_i$ are linear,
+  qhich is of course equivalent to $f$ having a root mod $\p$.
+\end{proof}
+
+Now since $L$ is Galois over $\Q$ by (b), $p$ splits completely in $L$
+if and only if (i) $p$ splits completely as $\p\o\p$ in $K$ and (ii)
+$\p$ splits completely in $L$. Since $p$ is unramified in
+$\Q(\sqrt{d_K})$ if and only if $p \nmid d_K$, applying Lemma
+\ref{primitive-splitting} to the extension $\Q \inj K$ (with polynmial
+$x^2 - d_K$) implies that condition (i) is equivalent to $(d_K/p) =
+1$. And since by (c) we know the minimal polynomial of $\alpha$ over
+$K$ is equal to its minimal polynomial $f$ over $\Q$, applying Lemma
+\ref{primitive-splitting} to the extension $K \inj L$ (with polynomial
+$f$) implies that condition (ii) is equivalent to $f$ having a root
+mod $\p$; but since condition (i) implies $\O_K/\p \iso \Z/p$ this is
+equivalent to $f$ having a root mod $p$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+\subprob{(a) $\Rightarrow$ (b)}
+
+Assume $p = x^2 + ny^2$. Then for $\p \ce (x + \sqrt{-n}y) \subset
+\O_K$ we have
+\[
+\p\o\p = (x + \sqrt{-n}y)(x - \sqrt{-n}y) = (x^2+ny^2) = (p).
+\]
+Since $p$ is odd and does not divide $n$, it is unramified in $K$, and
+hence $\p$ and $\o\p$ are distinct.
+
+\subprob{(b) $\Rightarrow$ (a)}
+
+Assume $p\O_K = \p\o\p$ with $\p$ principal. Since $\O_K =
+\Z[\sqrt{-n}]$ we have $\p = (x + \sqrt{-n}y)$ and $\o\p = (x -
+\sqrt{-n}y)$. Then
+\[
+(x^2+ny^2) = \p\o\p = (p),
+\]
+and taking norms down to $\Q$ implies $(x^2+ny^2)^2 = p^2$, which
+implies $x^2+ny^2 = p$.
+
+\subprob{(b) $\Leftrightarrow$ (c)}
+
+Since $L$ is Galois over $\Q$ by problem 1(b), $p$ splits completely in
+$L$ if and only if it splits completely in $K$, so $p\O_K = \p\o\p$
+with $\p \ne \o\p$, and $\p$ splits completely in $L$. So it suffices
+to show that $\p$ splits completely in $L$ if and only if $\p$ is
+principal. But this is immediate from the facts that:
+\begin{itemize}
+\item $\p$ splits completely in $L$ if and only if
+  $\operatorname{Frob}_{L/K}(\p) = \id$;
+\item the Artin map $\mathrm{Cl}_K \to \Gal(L/K)$ sending $\p \mapsto
+  \operatorname{Frob}_{L/K}(\p)$ is an isomorphism.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+Since $d_K = -4n$ we have
+\[
+\l(\frac{d_K}{p}\r) = \l(\frac{4}{p}\r)\l(\frac{-n}{p}\r) =
+\l(\frac{-n}{p}\r).
+\]
+Thus the theorem is immediate from the equivalence of (a) and (c) in
+problem 2, and then problem 1d.
+
+\end{document}

@@ -1,0 +1,31 @@
+\input{preamble}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Notes}
+\author{Arpon Raksit}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{August 19, 2014}
+
+\begin{lemma}
+  \label{invertible-module}
+  Let $A$ be a commutative ring. Let $M$ be an $A$-module. Then the
+  following are equivalent:
+  \begin{enumerate}
+    Let $A$ be a commutative ring. Let $M$ be an $A$-module\item 
+  \end{enumerate}
+\end{lemma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \nocite{mathew-J, shah-vfields}
+% \bibliographystyle{amsalpha}
+% \bibliography{refs}
+
+\end{document}

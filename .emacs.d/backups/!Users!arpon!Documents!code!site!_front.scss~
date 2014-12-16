@@ -1,0 +1,52 @@
+.head nav {
+    li {
+        display: inline;
+        margin-right: 5px;
+    }
+
+    .hover {
+        color: $color-light;
+        cursor: pointer;
+
+        &:hover {
+            color: $color-base;
+        }
+    }
+}
+
+#about {
+    display: none;
+
+    blockquote {
+        float: right;
+        padding-left: 40px;
+        text-align: right;
+        line-height: 1.55em;
+        font-family: $sans;
+        font-size: $size-mini;
+        color: $color-light;
+    }
+}
+
+#notes li {
+    margin-bottom: 15px;
+    width: 260px;
+
+    a, time {
+        display: block;
+    }
+
+    time {
+        font-size: $size-small;
+        color: $color-light;
+    }
+
+    .desc {
+        display: none;
+        position: absolute;
+        right: 0;
+        width: 200px;
+        font-size: $size-mini;
+        color: $color-light;
+    }
+}

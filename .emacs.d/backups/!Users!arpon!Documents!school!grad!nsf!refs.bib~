@@ -1,0 +1,68 @@
+@article{ando-power,
+    title         = "Power operations in elliptic cohomology and representations of loop groups",
+    author        = "M. Ando",
+    journal       = "Transactions of the American Mathematical Society",
+    volume        = "352",
+    number        = "12",
+    pages         = "5619--5666",
+    year          = "2000",
+}
+
+@article{atiyah-power,
+    title         = "Power operations in {K-theory}",
+    author        = "M. Atiyah",
+    journal       = "The Quarterly Journal of Mathematics",
+    volume        = "17",
+    number        = "1",
+    pages         = "165--193",
+    year          = "1966",
+    publisher     = "Oxford Univ Press",
+}
+
+@article{hkr-characters,
+    title         = "Generalized group characters and complex oriented cohomology theories",
+    author        = "M. Hopkins and N. Kuhn and D. Ravenel",
+    journal       = "Journal of the American Mathematical Society",
+    volume        = "13",
+    number        = "3",
+    pages         = "553--594",
+    year          = "2000",
+}
+
+@article{ganter-elliptic,
+    title         = "The elliptic {Weyl} character formula",
+    author        = "N. Ganter",
+    journal       = "Compositio Mathematica",
+    pages         = "1--39",
+    year          = "2012",
+    publisher     = "Cambridge Univ Press",
+}
+
+@incollection{lurie-elliptic,
+    title         = "A survey of elliptic cohomology",
+    author        = "J. Lurie",
+    booktitle     = "Algebraic topology",
+    pages         = "219--277",
+    year          = "2009",
+    publisher     = "Springer",
+}
+
+@article{tanabe-chevalley,
+  title           = "{On Morava K-theories of Chevalley groups}",
+  author          = "M. Tanabe",
+  journal         = "American Journal of Mathematics",
+  pages           = "263--278",
+  year            = "1995",
+  publisher       = "JSTOR",
+}
+
+@article{witten-elliptic,
+    title         = "Elliptic genera and quantum field theory",
+    author        = "E. Witten",
+    journal       = "Communications in Mathematical Physics",
+    volume        = "109",
+    number        = "4",
+    pages         = "525--536",
+    year          = "1987",
+    publisher     = "Springer",
+}

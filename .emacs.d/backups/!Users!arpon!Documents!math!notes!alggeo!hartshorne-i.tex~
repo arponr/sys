@@ -1,0 +1,40 @@
+\input{../preamble}
+%\input{preamble}
+
+\setlist[enumerate,1]{label=(\alph*), ref=\theequation\alph*,
+  leftmargin=*, itemsep=3pt, align=left}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Solutions to Hartshorne:\\Chapter I, Varieties}
+\author{Arpon Raksit}
+\date{December 19, 2013 (original); \today\ (last edit)}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Affine varieties}
+
+\begin{nothing}
+  (a) We have $A(Y) \simeq k[x,y]/(y-x^2)$. The maps $k[x,y]/(y-x^2)
+  \to k[t]$ sending $(x,y) \mapsto (t,t^2)$ and $k[t] \to
+  k[x,y]/(y-x^2)$ sending $t \mapsto x$ are inverse isomorphisms.
+
+  \medskip\noindent
+  (b) We have $A(Y) \simeq k[x,y]/(xy-1)$. Any map of $k$-algebras
+  $k[x,y]/(xy-1) \to k[t]$ must send $x$ to a unit, hence to an
+  element of $k$, so cannot be injective.
+
+  \medskip\noindent
+  (c) Skipped.
+\end{nothing}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{amsalpha}
+\bibliography{refs}
+
+\end{document}

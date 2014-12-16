@@ -1,0 +1,35 @@
+Numbers
+=======
+13 Aug 2013, 11:17:01 pm, pacific
+
+This is a post about some numbers that I saw at work today. Here they
+are.
+- 21: Today I got to run a job with 21 terabytes of
+      input. *Tera*. And that's compressed.
+- 10000000000: 21 TB means I got to compute statistics on data sets of
+               size greater than 10 billion. *Billion*.
+- 3: It took fewer than 3 hours to run that job. I love MapReduce and
+     resources.
+- 23: Later on, after realising I had made some stupid mistakes, I
+      needed to run that job again (and because it felt so damn cool
+      the first time, and I could, so why not). Anyway it turns out
+      the data was on a machine on the East Coast, and the job was
+      running on machines on the West Coast. That's efficiency. Well
+      so I (and, by "I", I mean someone else on my team who actually
+      knows what he's doing) managed to get the job running next door
+      to the data. And for ten minutes or so, that 21 TB was being
+      sent to the job at more than 23 gigbatyes per
+      second. *Giga*. *Second*. GB/s. Holy bandwith, batman.
+
+So it turns out working at Google indeed has perks. Those numbers are
+all due to some really smart people that work (or have worked)
+here. That's nice to think about. It's even nicer to stop thinking
+about that, look at those numbers, and just feel dope as hell, if
+only for a moment.
+
+Edit (14 aug 9:53:23): A new number arrives the following day.
+- 30: After tweaking some things, the job ran in less than 30
+      minutes. That's some astounding stuff.
+
+
+

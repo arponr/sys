@@ -1,0 +1,305 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[lmargin=1.8in,rmargin=1.8in,
+            tmargin=1.2in,bmargin=1.2in]{geometry}
+\usepackage{fancyhdr}
+\usepackage[hyphens]{url}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amssymb}
+
+\frenchspacing
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead{}
+\fancyfoot[C]{\ \\\small \thepage}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont{Adobe Garamond Pro}
+
+\newenvironment{prompt}{
+  \begin{center}
+    \begin{minipage}{.75\linewidth}
+      \textbf{Prompt.}\it
+}{
+    \end{minipage}
+  \end{center}
+  \vspace{5pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Financial innovation and the crisis}
+\author{Arpon Raksit}
+\date{March 13, 2014}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{prompt}
+  Discuss an aspect of the policy response to the recent economic
+  and financial crisis that reveals the power or the limitations,
+  the insight or the illusion, of an influential economic
+  idea. Illustrate your argument in the context of a particular
+  contemporary economy.
+\end{prompt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+Financial innovation has been an extremely influential process in the
+contemporary economy. On the surface, it seems like the phrase
+``financial innovation'' might describe some philosophical ideal at
+the intersection of democracy and capitalism. In reality, it refers to
+the creation of new types of assets in the market. A notable example,
+and the one we will focus on in this paper, is the introduction of
+financial derivatives like stock options and weather derivatives. To
+realise just how influential this has been, one needs only hear that
+the total notional value of the derivatives contracts in the United
+States is on the order of hundreds of trillions of dollars
+\cite{occ-derivatives}.
+
+Financial innovations evidently introduces a great deal of complexity
+into the market. But what is the purpose of this complexity?  A
+fundamental theorem in welfare economics, usually attributed to Arrow
+and Debreu \cite{arrow-optimal, debreu-optimal, arrow-existence},
+states that competitive equilibria exist and provide Pareto-optimal
+resource allocation under certain assumptions on the market. While
+this provides some rigorous justification for Adam Smith's ``invisible
+hand'' of the market, it is imperative to understand how valid the
+assumptions of this theorem are in the real economy. A principal
+example of this is the work of Greenwald and Stiglitz
+\cite{stiglitz-incomplete}, which demonstrates that in markets which
+are incomplete or have imperfect information---in particular, real
+markets!---this theorem does not hold, i.e., the conditions of the
+Arrow-Debreu model are not satisfied practically.
+
+This provides and important theoretical motivation for financial
+innovation: creating assets enlarges the set of events on which one
+can trade, making the market more complete. So the economic idea
+pervading the massive expansion of the derivatives market is the
+following. Financial innovation allows the real market to better
+approximate a complete market, hence better approximate the
+Arrow-Debreu model, hence better allocate resources. Of course this is
+only a heuristic justification. It's certainly not clear that more
+closely approximately satisfying assumptions of the Arrow-Debreu model
+will result in closer approximations to the optimality result of the
+theorem.
+
+In any case, analysis of the recent financial crisis has shed light on
+how derivatives have truly impacted the economy. That there were
+unforeseen consquences of this financial innovation is highlighted by
+the regulatory reform instituted in the United States by the
+Dodd-Frank Wall Street Reform and Consumer Protection act. In this
+paper we:
+\begin{enumerate}
+\item discuss the role of derivatives in the crisis and why reform of
+  the derivatives market was necessary;
+\item argue how this discussion calls into question how effective the
+  strategy of completing the market through financial innovation is in
+  establishing economic growth.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Derivatives by example}
+
+We begin by discussing derivatives specifically in the context of the
+United States economy during the crisis.
+
+\subsection{The role of derivatives}
+
+As stated above, financial innovation can most abstractly be viewed as
+a mechanism to make the market more complete. But one can make a more
+precise, rigorous economic justification for trading derivatives: it
+creates the possibility for better risk sharing in the market. For
+instance, a futures contract decides a selling price and future
+delivery date for an asset to be traded. This allows both parties to
+share the risk of the asset value increasing or decreasing before the
+delivery date, rather than each of these possibilities providing
+concentrated risk to one party. Equal risk sharing is a feature of
+optimal resource allocation \cite{cochrane-asset}.
+
+However, risk sharing has constituted only a small fraction of the use
+of the derivatives market, perhaps unfortunately so. It seems fairly
+obvious that the creation of new assets, especially as expansive a
+range as derivatives provide, will inevitably lead to
+speculation. That is, one can bet on derivatives not to hedge or share
+risk, but to acquire more risk in a new asset. For evidence of this,
+we observe that ``since the value of credit default swaps hit \$62
+trillion in December 2007, while the maximum value of debt that might
+conceivably be insured through these derivatives was \$5 trillion, it
+was evident that massive speculation by banks and others was taking
+place'' \cite{crotty-structural}.
+
+Of course it is not simply that derivatives allow speculation which
+contributed to the financial crisis. Rather, what is key is the
+specific nature of derivatives, which are essentially higher-order
+bets on underlying assets. This nature allows the value of a
+derivative to be highly sensitive to small changes in the value of the
+actual underlying asset. In other words, derivatives can provide
+enormous leverage. Consequently, investment banks and insurance
+companies were able to accumulate \emph{and hide} enormous leverage
+and debt in assets via off-balance sheet derivatives. When hidden
+leverages become excessive, losses can have catastrophic effects, in
+extreme cases resulting in bankruptcy. The inability (of banks in
+particular) to compensate for these incredible losses was a primary
+root of the financial crisis and the need for government intervention
+\cite{simkovic-leverage}.
+
+\subsection{Policy response}
+
+The policy response to the state of the derivatives market took the
+form of the Dodd-Frank Wall Street Reform and Consumer Protection Act of
+2010. The essential response to the role of derivatives in hiding
+leverage in the crisis was reform enforcing the transparency of
+derivatives trading. A key aspect of the problems outlined above was
+the ability to hide leverage \emph{opaquely}, off of the balance sheet
+and outside of exchanges. Dodd-Frank proposed to alleviate this
+problem by requiring more derivatives trading to go through
+exchanges. This increased transparency would allow more stringent
+regulation of excessive leverage and hence prevent the excessively
+risky and unbacked trading that led to the crisis.
+
+What we should take away from the crisis and the need for this
+regulatory reform is that continual financial innovation doesn't
+automatically improve welfare. While derivatives indeed create a more
+complete market, the crisis illustrates that this is not enough for
+stable economic growth. There is still a great deal of imperfect
+information and over-speculation which can instead lead the market to
+crisis. It seems that establishing regulatory institutions might be
+more effective than the market alone in ensuring financial innovations
+are used in a prudent and valuable manner.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Derivatives in theory}
+
+In light of the regulatory reform provoked in the United States, we
+next ask for a more theoretical justification for regulation of the
+derivatives market. I.e., we look to models to provide a consistent
+explanation of the need of regulation to control financial innovation.
+
+\subsection{Belief disagreements}
+
+One useful model which begins to answer this question is given by
+Simsek \cite{simsek-speculation}. The main idea is that if everybody
+agreed about the value of financial assets, derivatives would
+effectively serve their role in bettering risk sharing. In reality,
+though, there are \emph{belief disagreements} about asset values. It
+is precisely these disagreements which drive speculation. Simsek
+measures risk by net worth variance, and decomposes this risk into two
+components: uninsurable risk and speculative risk. The former is
+variance that would exist without belief disagreements, and the latter
+is variance due to belief disagreements. The model demonstrates that
+financial innovation decreases average uninsurable risk, supporting
+its role as a device for risk sharing, but increases average
+speculative risk. Moreover, if there is a sufficient degree of
+disagreement, this increase in speculative risk outweighs the decrease
+in uninsurable risk.
+
+Simsek's model opposes the established idea that more complete markets
+should always be closer to optimal. Instead it indicates that adding
+assets to the market can in fact increase average risk taken in the
+market when one considers belief disagreements. As disagreements are
+essentially due to market players' imperfect information and inability
+to exactly model the market, this can be viewed in line with the
+results of the Greenwald-Stiglitz model mentioned in \textsection
+1. Moreover, this provides some rigorous explanation of the events of
+the financial crisis discussed in \textsection 2. It was exactly the
+fact that derivatives encouraged overly risky and opaque trading that
+contributed to the crisis. We can attribute some of the belief
+disagreements in the market to this opaqueness. Hence this model gives
+some theoretical justification for the reforms stated above increasing
+transparency (i.e., information symmetry) in the derivatives market.
+
+\subsection{Systemic risk}
+
+The second theoretical consideration we discuss is not an explicit
+model. Rather, we observe that a consequence of making a market more
+complete is that the market becomes more connected. That is, when new
+assets are created, new pairs of players are able to trade. A positive
+effect of this connectedness is the ability to share risk more
+evenly. One expects negative effects as well however: ``As is well
+known from network theory, a more highly connected system\ldots will
+often be more vulnerable to shocks and systemic failure''
+\cite{colander-models}. In the context of the financial crisis, this
+might suggest why subprime loans and the collapse of the housing
+bubble precipitated such a severe and widespread reaction in the
+international economy. It is not clear that the regulatory reforms
+discussed directly address this connectedness issue. Indeed it seems
+more practical to mitigate the possibility of systemic risk, since as
+noted already, connectedness is also a virtue.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{More fundamental evaluation}
+
+We have now discussed the role of derivatives in the economy both
+empirically and theoretically. In both cases we have argued that
+financial innovation, with the goal of creating a more complete
+market, should not be expected to automatically encourage stable
+economic growth. In particular, policy reform in the United States
+after the crisis as well as theoretical models suggest financial
+innovation can instead encourage unwanted risky behaviour, and hence
+requires institutional regulation.
+
+This leads us, finally, to ask: even with regulation, how effective at
+all is financial innovation in increasing true economic productivity
+and wealth? Fundamentally, how attached \emph{at all} should we be to
+the premise that a more complete market will augment competitive
+capabilities and increase welfare? This is essentially the following
+more basic point that Professor Unger has brought up in lecture: we
+need to understand the relationship between finance and the real
+productive economy. It's one thing to say derivatives can
+theoretically facilitate risk sharing, and another to investigate
+practically how derivatives can serve finance's ``main function of
+providing investment funds for production'' \cite{unger-democracy}.
+
+The concern is that financial innovation might cause increase
+higher-order financial wealth, but not provide concrete growth in the
+productive economy. This echoes the concerns raised by Markovits about
+``snowball inequality'' \cite{markovits-snowball}. The idea is that
+inequality engenders more inequality, and that even within the
+framework of capitalism, this higher-order inequality is harmful to
+the market as ``it does not so much spur invention and the creation of
+new resources as drive up the prices of assets that already exist.''
+One can imagine this same negative higher-order effect applying to
+complex financial innovation.
+
+Therefore, the questions raised about the derivatives market by the
+crisis and the following policy form lead to more fundamental
+questions about the utility of financial innovation and the current
+conecption of the market economy. The initial idea that we should not
+dogmatically pursue a pure complete market guides us to Unger's
+broader idea that we should be implement a more imaginative,
+experimental, and fluid market economy.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{amsplain}
+\bibliography{refs}
+
+\end{document}
+
+
+thesis: derivatives had much different effect than modelled at
+first. effects suggest that continual innovation to better approximate
+theoretical market behaviour may not actually be efficient.
+
+discuss original and newer models for derivative behaviour: risk
+sharing vs systemic network risks and speculative risk, how does the
+financial regulation address this?
+
+find out precisely what happened with derivatives in the united states
+
+discuss how financial innovation seems like a higher order sort of
+process, becoming more removed from productivity of the real economy
+(try to tie in something from unger, and that reading on higher order
+inequality)

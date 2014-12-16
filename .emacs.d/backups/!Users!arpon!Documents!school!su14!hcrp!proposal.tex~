@@ -1,0 +1,92 @@
+\documentclass{amsart}
+
+\usepackage[lmargin=1.9in,rmargin=1.9in,
+            tmargin=1.5in,bmargin=1.5in]{geometry}
+\usepackage{fancyhdr}
+
+\frenchspacing
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[R]{\small Arpon Raksit}
+
+\title{Personal Statement}
+\author{Arpon Raksit}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+At the moment my foremost interest and passion is mathematics, and it
+seems that this will be the case for the foreseeable future. I can't say
+this has always been true though. I owe a great deal to Harvard's
+uniquely flexible and challenging department of mathematics, for I don't
+believe there are many other places on Earth where I could have become
+so engrossed in and learned so much math in two and a half years.
+
+Of course, I was not \emph{uninterested} in math prior to enrolling at
+Harvard. I was on my high school's math team and did fairly well in
+local competitions, I took the AMC a couple of times, I participated in
+ARML, etc. But I didn't even qualify for AIME and didn't come close to
+qualifying for the final rounds at ARML. Moreover, I didn't have any
+strong desire to get there. I was doing math as a sort of hobby, a
+social activity, but never felt motivated to study or practice for these
+contests. I didn't know what \emph{Art of Problem Solving} was and
+wasn't looking for it.
+
+Not even three years have passed, but my relationship with mathematics
+has changed a great deal. Last semester I did an independent study on
+simplicial homotopy theory and model categories, took the first-semester
+course in the theory of schemes, and gave a talk on the Dold-Kan
+correspondence in a reading group on infinity-categories. This semester
+I am taking graduate courses in complex analysis on Riemann surfaces and
+vector bundles in algebraic topology, as well as continuing in the
+theory of schemes. In addition, this year I have been a course assistant
+for our undergraduate topology and algebra courses, and have been
+teaching somewhat younger kids (8--10 year olds!) in the Math Circle a
+bit about set theory and graph theory.
+
+I think it all began when I discovered Spivak's \emph{Calculus} during
+my final year of high school. I read the book on and off, learning about
+what was \emph{actually} going on in my calculus class and finding the
+process of placing these intuitive ideas on rigorous foundations quite
+fascinating. I ended up writing an expository paper about Riemann and
+Darboux integration for my IB diploma, and then decided to study
+multivariable calculus and linear algebra that summer before coming to
+Harvard.
+
+So my interest in math was growing rapidly. But in just the first few
+weeks at Harvard, ``rapid'' transformed into absolutely ridiculous. I
+decided to give the infamous Math 55 a go at the start of the semester
+and, well, I just kept going. I was exhilarated learning from and
+collaborating with an incredible set of classmates and found thinking
+about problems by understanding abstraction and structure beautiful and
+inspiring, something I didn't manage to find during high school and in
+contests. Before I knew it, I was spending at least thirty hours per
+week thinking about math (and another thirty hours per week dreaming
+about it).
+
+Math 55 and my entire freshman year were transformative, and I haven't
+looked back. I am currently deeply interested in understanding the ideas
+of algebraic topology and algebraic geometry, and curious about how
+these fields interact and can be applied to problems in other areas like
+number theory. Needless to say, I am only at the start of understanding
+these ideas. But I believe I am only at the start of my mathematical
+life. I plan to continue pursuing these ideas in graduate school and
+afterwards as a professional mathematician.
+
+While I have immersed myself in mathematics during the past few years, I
+have not yet had the opportunity to do original research in the subject.
+I enjoyed myself as a software engineering intern at Google last summer,
+but at the end of it all I really just missed spending my days thinking
+about math. My experiences have convinced me that I am most fulfilled
+and stimulated by mathematics. Participating in an REU will give me an
+opportunity to apply my skills and knowledge, and engage in the subject
+in a more hands-on and creative way.
+
+\end{document}

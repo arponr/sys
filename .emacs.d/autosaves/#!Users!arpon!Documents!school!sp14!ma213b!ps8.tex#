@@ -1,0 +1,209 @@
+\input{preamble}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\titleset{8}{April 1, 2014}{Nick Watters, Allen Yuan, Rahul Dalal}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\Q}{\mathcal{Q}}
+\newcommand{\DR}{\mathrm{DR}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+Recall from lecture that we have an exact sequence $0 \to \O \to \E^0
+\to \E^{0,1} \to 0$. Since $\E^0, \E^{0,1}$ are $C^\infty$-modules
+their higher cohomology vanishes. By the long exact sequence this
+implies $\H^i(X,\O) \simeq 0$ for $i \ge 2$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+If $f \in \M(U)$ then $df = 0$ if and only if $f$ is locally
+constant. I.e., $0 \to \C \to \M \to \Q$ is exact, so it just remains
+to show $d \c \M \to \Q$ is surjective. Let $p \in X$ and consider any
+open neighbourhood $U \ni p$ with $(U,p) \simeq (\Delta,0)$. Let
+$\omega \in \Q(U)$ and let $A \subseteq U$ be the set of poles of
+$\omega$. Fix any $q_0 \in U - A$. For any $q \in U - A$ let $\gamma$
+be a path from $q_0$ to $q$ and define
+\[
+f(q) \ce \int_\gamma \omega.
+\]
+This is independent of $\gamma$ because for any other choice $\eta$ we
+have
+\[
+\int_\gamma \omega - \int_\eta \omega = \int_{\gamma - \eta} \omega =
+c\sum_{x \in \operatorname{int}(\gamma - \eta)} \Res(x,\omega) = 0
+\]
+by definition of $\Q$. It's clear from path-independence that:
+\begin{itemize}
+\item $f$ is holomorphic on $U - A$ with $df = \omega$ from the
+  fundamental theorem of calculus;
+\item $\lim_{q \to a} f(q) = \infty$ for any $a \in A$, so $f \in
+  \M(U)$.
+\end{itemize}
+It follows that $d\c \M \to \Q$ is surjective, as desired.
+
+Now the exact sequence $0 \to \C \to \M \to \Q \to 0$ gives rise to a
+long exact sequence
+\[
+0 \to \C \to \M(X) \to \Q(X) \to \H^1(X,\C) \to \H^1(X,\M) \to \cdots.
+\]
+Thus $\H^1(X,\M) \simeq 0$ implies $\Q(X) \to \H^1(X,\C)$ is
+surjective.
+
+We claim this last map is just the period map. Consider the exact
+sequence
+\[
+0 \to \C \to \E^0(X) \to \E^1(X) \to \H^1(X,\C) \to 0 \simeq
+\H^1(X,\E^0)
+\]
+which defines the isomorphism $\H^1_\DR(X,\C) \to \H^1(X,\C)$. It's
+easy to construct the inverse isomorphism: fix a Lerary cover $(U_i)$
+of $X$ and take any $[(c_{ij})] \in \H^1(X,\C)$. Since $\H^1(X,\E^0)
+\simeq 0$ there exist $f_i \in \E^0$ such that $c_{ij} = f_i -
+f_j$. Then we have $df_i = df_j$, so $(df_i)$ glue to $\omega \in
+\E^1(X)$. It's evident that $[(c_{ij})] \mapsto \omega$ gives an
+inverse to the connecting isomorphism. Now observe that the periods of
+$\omega$ can be computed as follows: for any $\gamma \c I \to X$,
+cover $\gamma$ with finitely many opens $U_1,\ldots,U_n$ giving
+segments $\gamma_1,\ldots,\gamma_n$. Then
+\[
+\int_\gamma \omega = \sum \int_{\gamma_i} df_k = \sum f_{k+1} - f_k =
+\sum c_{k+1,k}.
+\]
+By the same integration if we have $\eta \in \Q(X)$ which restricts to
+$dm_i$ on $U_i$ with $m_i \in \M(X)$ such that $m_i - m_j = c_{ij}$
+then we have $\int_\gamma \eta = \sum c_{k+1,k}$. It follows that the
+diagram
+\[
+\begin{tikzcd}
+  \H^1(X,\C) \rar & \H^1_\DR(X,\C) \rar & \hom(\pi_1(X),\C) \\ \Q(X)
+  \uar \ar{urr}
+\end{tikzcd}
+\]
+commutes, as desired.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+Consider the forms $dz$ and $\wp\,dz$---the first is holomorphic and
+the second has a single pole of order $2$, so are elements of
+$\Q(X)$. To show these form a basis for $\H^1(X,\C)$, it suffices by
+problem 2 to show that there do no exist nontrivial $a,b\in \C$ such
+that $(a\wp+b)\,dz = df$ for some $f \in \M(X)$. I hoped this would
+follow easily from the fact that $\M(X) \simeq \C(\wp,\wp')$ but I
+can't finish.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{4}
+
+\subprob{i}
+
+It suffices to check $\Delta f = \Delta u \ast \log |z| = Cu$ at $z =
+0$. We have
+\[
+(\Delta u \ast \log |z|)(0) = \lim_{R \to \infty} \int_{B_R} \Delta
+u(z) \log |z| \,dz \wedge d\oline z.
+\]
+Now note $\Delta u\, dz \wedge d\oline z = 4 \del\oline\del u = 4 d
+\oline\del u.$ Now by integration by parts and Stokes we get the above
+is equal to
+\[
+\lim_{R \to \infty} \l( \int_{B_R} 4\oline\del u \wedge d(\log |z|) +
+\int_{\del B_R} 4\oline\del u \wedge \log |z|\r).
+\]
+The second term vanishes because $u$ is compactly supported. For the
+first term observe that
+\[
+\oline\del u \wedge d(\log|z|) = \frac{du}{d\oline z}
+\frac{d\log|z|}{dz} d\oline z \wedge dz = \frac{du}{d\oline z}
+\frac{-1}{2z} dz \wedge d\oline z.
+\]
+Combining this with the above and our proof of the Dolbeault lemma we
+get that $\Delta f = 2 \pi u$.
+
+\subprob{ii}
+
+By definition of $f$ it suffices to show $Cg = \Delta g \ast \log
+|z|$, which is the statement of part i with $u$ replaced by $g$. For
+the proof to go through here, we can approximate $g$ by compactly
+supported $g_i$. Then since $g \to 0$ as $z \to 0$ and $\Delta g = Cu$
+is compactly supported, we have $\Delta g_i \ast \log |z| \to \Delta g
+\ast \log |z|$. Part i applies to give $\Delta g_i \ast \log |z| =
+Cg_i$, and of course $Cg_i \to Cg$, so we're done.
+
+\subprob{iii}
+
+It suffices to show $\del f/\del x$ exists and is continuous. Since
+$u$ is compactly supported we can interchange the derivative and
+integral to get
+\[
+\frac{\del f}{\del x} = \int_\C u(w) \frac{\del \log|z-w|}{\del x},
+\]
+which exists and is continuous since $\log |z - w|$ is continuously
+differentiable (away from the single point $w = z$).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{5}
+
+\newcommand{\cH}{\mathcal{H}}
+
+By definition we have $\cH = \ker(\del\oline\del \c \E^0 \to \E^2)$,
+so $0 \to \cH \to \E^0 \to \E^2$ is exact. Then the surjectivity of
+$\del\oline\del$ follows immediately from what we did in lecture for
+$\oline\del$ (in particular this is Corollary 7.3 on p. 65 of the
+course notes).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{6}
+
+By Corollary 7.11 on p. 68 of the notes, the composition
+\[
+\oline\Omega(X) \to \E^{0,1}(X) \to \E^{0,1}(X)/\oline\del\E^0 \simeq
+\H^{0,1}(X)
+\]
+is an isomorphism. That is, we have a short exact sequence
+\[
+0 \to \oline\del\E^0(X) \to \E^{0,1}(X) \to \oline\Omega(X) \to 0
+\]
+which is split by the inclusion $\oline\Omega(X) \to \E^{0,1}(X)$. So
+$E^{0,1}(X) \simeq \oline\Omega(X) \oplus \oline\del\E^0(X)$, and then
+taking conjugates gives the desired splitting
+\[
+E^{1,0}(X) \simeq \Omega(X) \oplus \del\E^0(X).
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{7}
+
+From Problem 5 we get a long exact sequence
+\[
+0 \to \cH(X) \to \E^0(X) \to \E^2(X) \to \H^1(X,\cH) \to \H^1(X,\E^0)
+\to \cdots.
+\]
+We know $\H^1(X,\E^0) \simeq 0$ so we must have $\H^1(X,\cH) \simeq
+\E^2(X)/\oline\del\del\E^0(X)$. By Problem 6 we have
+\[
+\oline\del\E^{1,0}(X) = \oline\del\Omega(X) \oplus
+\oline\del\del\E^0(X) = \oline\del\del\E^0(X)
+\]
+by definition of $\Omega(X)$. Therefore
+\[
+\H^1(X,\cH) \simeq \E^2(X)/\oline\del\E^{1,0}(X) \simeq \H^{1,1}(X).
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

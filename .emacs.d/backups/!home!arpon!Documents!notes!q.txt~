@@ -1,0 +1,74 @@
+----------------------------------------------------------------------
+25 may 2014
+
+is there a general notion of closed immersion for ringed spaces? is
+there actually a finiteness/coherence condition required for complex
+analytic spaces?
+
+
+    3 june 2014, meeting with lurie
+    
+    yes. just define X --> Y to be a closed immersion if on spaces
+    on spaces |X| --> |Y| is a closed embedding and on sheaves O_X -->
+    O_Y is an epimorphism. here's the point then: if X and Y are
+    *both* schemes, then the correponding sheaf of ideals I is
+    automatically quasicoherent; similarly if they're both complex
+    analytic spaces then I is automatically coherent. but there's a
+    separate question: suppose a priori i only know Y is a scheme
+    (resp. complex analytic space). then we may have a closed
+    immersion where X is not a scheme (resp. complex analytic
+    space). it is then that i have to *check* that I is quasicoherent
+    (resp. coherent).
+
+----------------------------------------------------------------------
+3 june 2014
+
+unoriented bordism of X, i.e., bordism classes of maps M --> X from
+compact manifolds, is given by MO-homology. what is MO-cohomology?
+
+
+    3 june 2014, meeting with lurie
+
+    one way to think about it: suppose X is a simplicial complex. then
+    a cocycle is the data of an n-manifold for each vertex, a bordism
+    between the vertices for each edge, and higher bordisms for higher
+    simplices. a coboundary is: take the same data for the simplicial
+    complex X x I, and then take the difference of the restrictions to
+    the two faces.
+
+    i haven't thought about why this is true, but it certainly
+    restricts to the right thing for X a point. and since it's sort of
+    like families of manifolds over X, it should pull back
+    contravariantly as cohomology should.
+
+----------------------------------------------------------------------
+5 june 2014
+
+fix a space G. then on any space X i get a sheaf of sets U |-->
+Mor(U,G). what are the stalks of this sheaf? (more generally (taking Y
+= X x G) I can consider the sheaf of sections of a map Y --> X.)
+
+i am really interested in the case that G is a topological group. when
+G is discrete then maps to G are locally constant so the stalks are
+just G, but this certainly isn't the case for G non-discrete. the
+reason i ask this is that I want to know, when i have an exact
+sequence 1 --> H --> G --> G/H --> 1, whether the associated sequence
+of sheaves is exact.
+
+----------------------------------------------------------------------
+5 june 2014
+
+can one define (higher) sheaf cohomology for sheaves of nonabelian
+groups? i see how to define the first cech group, which classifies
+principal bundles. assuming they exist, do the higher groups classify
+natural objects as well?
+
+----------------------------------------------------------------------
+9 june 2014
+
+i want to say BH --> BG is a fibration because a homotopy of maps to
+BG is just an isomorphism of G-bundles, and if you start out with an
+H-bundle you always have an H-bundle. this certainly applies to
+finding lifts from, say, CW-complexes, but is that enough to say its a
+fibration of topological spaces? i guess this depends on what your
+definition of a fibration is.

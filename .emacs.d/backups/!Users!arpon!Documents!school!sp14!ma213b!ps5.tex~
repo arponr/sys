@@ -1,0 +1,206 @@
+\input{preamble}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\titleset{4}{February 25, 2014}{Rahul Dalal, Allen Yuan, Aaron
+  Landesman, Josh Pfeffer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+Suppose $f \c X \to \P^1$ is a degree $5$ map with $B(f) =
+\{0,1,\infty\}$. Let $\sigma_0,\sigma_1,\sigma_\infty \in S_5$ denote
+the monodromies around $0,1,\infty$ respectively. As discussed in
+lecture, if $\sigma_i$ determines the partition $\{p_{i,j}\}$ of
+$d=5$, then $|C(f)| = \sum_{i,j} (p_{i,j} - 1)$. Of course we have $1
+\le p_{i,j} \le 5$, so we must have $0 \le |C(f)| \le 12$. Then by
+Riemann-Hurwitz we have
+\[
+2 - 2g = 5 \cdot 2 - |C(f)| \implies g \in \{0,1,2\}.
+\]
+We claim all three such values of $g$ can be obtained, and prove this
+by finding explicit examples for each case:
+\begin{itemize}
+\item $g=0 \iff |C(f)| = 8$. We can choose $\sigma_0 \ce (1\,2\,3)$
+  and $\sigma_1 \ce (3\,4\,5)$, forcing $\sigma_\infty^{-1} =
+  \sigma_0\sigma_1 = (1\,2\,4\,5\,3)$.
+\item $g=1 \iff |C(f)| = 10$. We can choose $\sigma_0 \ce
+  (1\,2)(3\,4\,5)$ and $\sigma_1 \ce (1\,2\,3\,4\,5)$, forcing
+  $\sigma_\infty^{-1} = \sigma_0\sigma_1 = (1\,3\,5\,4)$.
+\item $g=0 \iff |C(f)| = 12$. We can choose $\sigma_0 \ce
+  (1\,2\,3\,4\,5)$ and $\sigma_1 \ce \sigma_0^2$, forcing
+  $\sigma_\infty^{-1} = \sigma_0\sigma_1 = \sigma_0^3$.
+\end{itemize}
+Note in each case that the choices of $\sigma_0,\sigma_1$ clearly
+generate a transitive subgroup of $S_5$, and hence define valid
+monodromy representations.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+\subprob{a}
+
+Assume $a_{0,d} \ne 0$ (which holds for generic $p$). If $|x| \le R$ then
+\[
+\lim_{|y|\to\infty} |p(x,y)/y^d| = |a_{0,d}| \implies \lim_{|y|\to\infty}
+|p(x,y)| = \infty
+\]
+so $\{(x,y) \in X^* \mid |x| \le R\}$ must be bounded. It's also
+closed as the premiage of $\{0\}$ in the continuous map $p \c \C^2 \to
+\C$, and hence compact. Therefore $\pi$ is proper. And for any $x \in
+\C$ the equation $p(x,y) = 0$ is a degree $d$ polynomial in $y$ so
+$\pi$ must have degree $d$.
+
+\subprob{b}
+
+Again assume $a_{0,d} \ne 0$. Let $\Delta_y$ be the discriminant of
+$p$ when we view $p \in \C[x][y]$. Recall that (up to a constant
+factor) $\Delta_y$ can be expressed as resultant of $p$ and $p' \ce
+\del p/\del y$, and hence the Sylvester determinant associated to $p$
+and $p'$. It follows that $\Delta_y \in \Z[a_{i,j}][x]$ is a
+polynomial of degree $d(d-1)$. Now $\Delta_y$ has distinct roots
+unless its disciminant $\Delta_x \in \Z[a_{i,j}]$ vanishes, which does
+not occur for generic $p$.
+
+Note that $(x,y) \in C(\pi)$ if and only if $p(x,y) = 0$ and $p'(x,y)
+= 0$. The above argument shows that generically there are at least
+$d(d-1)$ values of $x$ in $C(\pi)$. But by Bezout's theorem as long as
+$\Delta_y \ne 0 \in \C[x]$ (which holds generically), we must have the
+number of critical points (counted with multiplicity) is
+$d(d-1)$. Thus we conclude that $|C(\pi)| = d(d-1)$, and moreover each
+critical point is of multiplicity $2$, generically.
+
+\subprob{c}
+
+Let $X \subseteq \P^2$ be the vanishing set of $P(X,Y,Z) \ce \sum
+a_{i,j} X^iY^jZ^{d-i-j}$. We have an obvious embedding $X^* \inj X$,
+and indeed the completion of $X^* \to \C$ is given by the projection
+$\pi \c X \to \P^1$ sending $[X:Y:Z] \mapsto [X:Z]$. Then
+$\pi^{-1}(\infty)$ must be given by $\{[X:Y:0] \in X\}$, that is the
+vanishing locus of $\sum a_{i,d-i} X^iY^{d-i}$. Clearly if $X = 0$
+then we must have $Y = 0$ (assuming again generically that $a_{0,d}
+\ne 0$), so we can set $X=1$. Then $\pi^{-1}(\infty)$ is given by the
+solutions to $\sum a_{i,d-i} Y^{d-i}$, which by the same discriminant
+argument as in (b) has precisely $d$ distinct solutions generically.
+
+\subprob{d}
+
+By (c) and Riemann-Hurwitz we have
+\[
+2 - 2g = 2d - d(d-1) \implies g = \frac{(d-1)(d-2)}2.
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+\subsection*{Sheaf}
+
+The identity axiom is obvious since the nontrivial restriction maps
+are injective, so we just need to verify the gluing axiom. Let
+$\{U_i\}_{i \in I}$ be a collection of open sets in $P$, and write
+$U_i = P - Q_i$. Then $\bigcup U_i = P - \bigcap Q_i$. Suppose we are
+given $f_i \in \F(U_i)$ for $i \in I$ which are consistent on
+intersections. Then by definition of the restriction maps we must have
+\[
+\textstyle{f_i = f \in \bigcap \Z[\{1/q\}_{q \in Q_i}] = \Z[\{1/q\}_{q
+    \in \bigcap Q_i}] \subseteq \Q}
+\]
+for all $i \in I$. Then $f \in \F(\bigcup U_i)$ gives the necessary
+section which restricts to $f_i$ on each $U_i$.
+
+\subsection*{Stalk}
+
+The stalk $\F_p$ is the localisation of $\Z$ at $(p)$:
+\[
+\F_p \simeq \colim_{U \ni p} \F(U) \simeq \colim_{Q \not\ni p}
+\Z[\{1/q\}_{q \in Q}] \simeq \Z[\{1/q\}_{q \ne p}] \simeq \Z_{(p)}.
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{4}
+
+\subsection*{Connectedness}
+
+We claim $|\F|$ is indeed path-connected. Let $\phi,\psi \in |\F|$ be
+any two points, say over $x,y \in \R$ respectively. As stated in
+[Forster, Ch. 1, 7.1--7.2], giving a path from $\phi$ to $\psi$ is
+equivalent to giving a path $u : [0,1] \to \R$ from $x$ to $y$ along
+with $0 = t_0 < t_1 < \cdots < t_{n-1} < t_n = 1$ and $f_i \in
+\F(U_i)$ with $u([t_{i-1},t_i]) \subseteq U_i$ for $1 \le i \le n$
+such that:
+\begin{enumerate}
+\item $(f_1)_x = \phi$ and $(f_n)_y = \psi$;
+\item $f_i|_{V_i} = f_{i+1}|_{V_i}$ where $V_i$ is the connected
+  component of $U_i \cap U_{i+1}$ containing $u(t_i)$.
+\end{enumerate}
+We can construct $U_i \ce (a_i,b_i)$ and $f_i \in \F(U_i)$ as
+follows. Choose $(a_1,b_1) \ni x$ and $(a_4,b_4) \ni y$ such that
+there exist $f_1 \in \F(U_1)$ and $f_4 \in \F(U_4)$ for which $(f_1)_x
+= \phi$ and $(f_4)_y = \psi$. Let $a_2 \in (a_1, b_1)$, $a_3 \in (a_4,
+b_4)$ and $b_2 = b_3 > \max(b_1, b_6) + 1$. Let $f_2 \in \F(U_2)$
+agree with $f_1$ on $(a_2,b_1)$, linear from $f_1(b_1)$ to $(f_1(b_1)
++ f_4(b_4))/2$ on $[b_1,b_2-1]$ and constant on
+$[b_2-1,b_2)$. Similarly define $f_3 \in \F(U_3)$ with respect to
+$f_4$. This clearly gives us the necessary data. A picture
+illustrating the construction is to the side.
+
+\subsection*{Countability}
+
+We claim $|\F|$ is not second-countable. If it were, then there would
+be a countable set of opens $\{[U_i,f_i]\}_{i \in \N}$ such that any
+open $[U,f]$ contains some $[U_i,f_i]$. Note $[U,f] \supseteq [V,g]$
+if and only if $U \supseteq V$ and $f|_V = g$. But the functions
+$x^\epsilon$ for $\epsilon \in (0,1)$ all have different germs at
+$0$. Since $(0,1)$ is uncountable it cannot be true for all $\epsilon
+\in (0,1)$ that $[(-1,1), x^\epsilon] \supseteq [U_i,f_i]$ for some $i
+\in \N$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{5}
+
+Let $t$ be the complex coordinate on $U$. Let $p \ce \chi(t)$, so that
+$t - p \in \ker(\chi)$. We must have $p \in U$, or else $t - p$ would
+be a unit in $\O(U)$ and hence could not be in $\ker(\chi)$. For any
+$f \in \O(U)$ we can write $f = f(p) + (t-p)g$ with $g \in
+\O(U)$. (Away from $p$ we can define $g \ce (f-f(p))/(t-p)$, and $g$
+is defined on a neighbourhood of $p$ via the power series expansion of
+$f$ at $p$.) Then clearly $\chi(f) = f(p)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{6}
+
+The claim is false. Let $Y_1 \ce \P^1$ and $Y_2 \ce \C/\Lambda$ a
+torus. We have nonconstant meromorphic functions $f_i \c Y_i \to
+\P^1$, say $f_1 \ce \id_{\P^1}$ and $f_2 \ce \wp$. Then define $X_i
+\ce Y_i - f_i^{-1}(\infty)$ so that we have restrictions $f_i \c X_i
+\to \C$. Each $f_i$ is proper, whence has finite branch locus, so we
+can choose a fixed disk inclusion $f_0 \c \Delta \to \C$ and
+embeddings $j_i \c \Delta \to X_i$ such that $f_ij_i = f_0$.
+
+Suppose there is a Riemann surface $X_3$ and embeddings $k_i \c X_i
+\to X_3$ for $i \in \{1,2\}$. Let $p \in f_1^{-1}(\infty)$, choose an
+open neighbourhood $U \ni p$ such that $U \simeq \Delta$ and $U \cap
+X_1 \simeq \Delta^*$. Since $k_1$ is an embedding, we have $k_1(U)
+\simeq \Delta^*$ and hence can add a point to $X_3$ in a unique way to
+extend $k_1$ to be defined holomorphically on $U \ni p$. Doing this
+for all (finitely many) $p \in f_1^{-1}(\infty)$, we can enlarge $X_3
+\inj X_3'$ and extend $k_1$ to a holomorphic embedding $k_1' \c Y_1
+\to X_3'$.
+
+Then applying the same procedure to the embedding $X_2 \to X_3 \to
+X_3'$ we obtain a Riemann surfaces $X_3''$ and embeddings $Y_i \to
+X_3''$ for $i \in \{1,2\}$. But now each $Y_i$ is compact, so in fact
+the embeddings $Y_i \to X_3''$ must be surjective, and hence
+isomorphisms. But this is a contradiction as $Y_1$ and $Y_2$ have
+different genus.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

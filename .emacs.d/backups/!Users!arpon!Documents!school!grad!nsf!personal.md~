@@ -1,0 +1,189 @@
+---
+title: Personal Statement
+---
+
+I liked math in middle and high school, sure, but I certainly didn't
+feel that it was or ever would be my vocation. For instance, the
+American Mathematics Contest was for me simply a fun day during which
+I realized math is hard, not something I ever wanted or even thought
+to train for. But my time at Harvard has radically shifted my
+perspective on mathematics: in place of the haphazard set of
+computations and problem-solving techniques I saw before college, I
+now see a language that reveals fundamental structures through
+abstraction, and can express fascinating stories about these
+structures. This has in turn completely transformed my relationship
+with mathematics: over the past three years I have chosen to invest a
+basically absurd portion of my time in understanding and teaching
+mathematics, and I plan on sustaining this absurdity for the remainder
+of my conscious hours.
+
+In fact, I will be able to focus even more deeply on the subject
+beginning next year with my graduate studies, which will not only be a
+rewarding and stimulating experience in and of itself, but a crucial
+step towards my long-term goal of being an professor of
+mathematics. Of course, as a career, becoming a professor is really an
+instrumental goal, but one which aligns extraordinarily well with my
+end goals. Namely, I want to:
+
+1. research what truly inspires me, helping to develop my and
+   humanity's understanding of mathematics;
+2. effectively motivate and guide others in their mathematical
+   endeavors, in particular by teaching and communicating not only the
+   rigorous formalism and details, but the intuition at the heart of
+   mathematics, which unfortunately is elided all too often;
+3. actively participate in the mathematical and greater scientific
+   communities, in particular by engaging in, as well as developing
+   tools for, worldwide collaboration.
+
+Though it took longer to discover my love of mathematics, I have
+thrived in curiosity-driven and research-like settings since high
+school. From 2009--2011 I worked with Prof. Dilip Gersappe at Stony
+Brook University, developing models for and simulating various
+phenomena in materials science using a technique from computational
+fluid dynamics known as the lattice Boltzmann method. This research
+was certainly the most rewarding of my high school experiences, in
+part because I learned a great deal from Prof. Gersappe about fluid
+dynamics, modelling, and even the general process of theoretical
+research; but perhaps even more because I was also given the freedom
+to pursue and experiment with my own thoughts and ideas. This is
+representative of my later mathematical pursuits too: I have felt most
+fulfilled in more independent research-like environments, where I can
+truly understand things and find inspiration by playing with and
+exploring both my and my teachers' and peers' ideas.
+
+The very first example of this lies at perhaps the root of my interest
+in pure mathematics. At various times during my high school research I
+found myself slightly dissatisfied: the models I was developing
+produced qualitatively and quantitatively reasonable simulations, but
+why? I had a sort of cartoon understanding of the lattice Boltzmann
+method, but felt I must be missing a more precise, logical
+understanding. I followed my curiosity and learned a bit of theory
+about the Boltzmann equation from statistical mechanics and how one
+discretizes such a thing for computational models. I distinctly
+remember finally understanding something about differential equations
+on the back of a receipt during a materials science lecture, and just
+jittering deliriously in my seat. Moments like this led to further
+curiosity about pure mathematics, and after rummaging around the
+internet a bit for advice on where to start, I discovered Spivak's
+*Calculus*. I worked through the book on and off during my senior year
+as a side project, hoping to more rigorously understand the concepts
+appearing in my high school calculus class and my research. This
+independent reading led to what someone very generous might call my
+high school thesis, an exposition of the Riemann and Darboux
+definitions of the integral.
+
+The resources and opportunities at Harvard allowed me to transform
+these loose strands of curiosity into an utter zeal for
+mathematics. This began when I decided to give the infamous Math 55 a
+go at the start of my first semester and, well, I just kept going. I
+was exhilarated learning from and collaborating with an incredible set
+of classmates. And in my first exposure to abstract algebra, I found
+thinking about mathematics by understanding abstraction and structure
+beautiful and inspiring, something I didn't manage to find in high
+school classes and contests. Before I knew it, I was spending at least
+thirty hours per week thinking about math (and probably another thirty
+hours per week dreaming about it). The course inspired me to seriously
+pursue mathematics, but it has been my subsequent independent work at
+Harvard which has been most stimulating and most decisively shaped my
+mathematical trajectory.
+
+In the summer after my freshman year I stayed on campus to read about
+the representation theory of Lie groups and Lie algebras under the
+supervision of Prof. Joe Harris. This project in particular gave me
+the opportunity to learn and familiarize myself with the ubiquitous
+language of general and differential topology, allowing me to take our
+sequence of algebraic topology courses in my sophomore year. Since
+then I have been engrossed in understanding the beautiful connections
+forged by algebraic topology and homotopy theory. In my junior fall,
+one of my friends and I decided to do an indepdendent reading course
+on simplicial and abstract homotopy theory under the supervision of
+Dr. Emily Riehl. This was easily one of our best decisions: being able
+to work through the mathematics in free dialogue at a blackboard in a
+small office was immensely more fun and instructive for me than almost
+any lecture. During the course I learned that homotopy theory can be
+understood as a rather general framework, not specific to the theory
+of topological spaces, and incredibly even statements like Whithead's
+theorem (that a weak equivalence of CW-complexes is a homotopy
+equivalence) can fit into general categorical frameworks like the
+theory of model categories. Fascinated by this beautiful abstraction,
+I wrote a final paper on how the theory of model categories and
+derived functors motivates one to transport singular homology to the
+setting of commutative algebra, resulting in Andre-Quillen
+homology. In the same semester I participated in an undergraduate
+reading seminar centered on the theory of quasicategories, supervised
+by Dr. Hiro Tanaka. This gave me the chance to give my first
+somewhat-formal talk for a specifically mathematical audience, on the
+proof and some applications of the Dold-Kan correspondence.
+
+Most recently, I spent last summer learning about some amazing parts
+of stable homotopy theory under the supervision of Prof. Jacob
+Lurie. I focused on familarizing myself with spectra and the stable
+homotopy category, and understanding some homotopy theory that arises
+in the study of cobordism of manifolds, in Thom's classification of
+unoriented manifolds up to cobordism and in an analagous result of
+Quillen for the slight variant known as complex cobordism. The latter
+computation leads to a miraculous connection between cohomology
+theories and formal groups. Indeed the many miracles in this story
+connecting topology, geometry, and algebra make it my favorite bit of
+mathematics so far, and inspired me to continue working in this area
+with Prof. Lurie for my senior thesis. This miraculous connection
+allows us to associate a cohomology theory to any elliptic curve,
+which we generally call elliptic cohomology. In my thesis I look to
+make computations in equivariant versions of elliptic
+cohomology. Currently I am reading about the theoretical backdrop of
+these computations, e.g. the remarkable generalization by
+Hill-Hopkins-Kuhn of character theory from the representation theory
+of groups to certain equivariant cohomology theories, and Lurie's
+fascinating work using derived algebraic geometry to define a version
+of equivariant elliptic cohomology with nicer properties than the
+naive Borel-equivariant theory. During my graduate work I hope to
+continue researching these ideas, and learn about and discover other
+stunning ways in which homotopy theory connects diverse fields and
+objects of mathematics.
+
+In addition to shaping my mathematical interests, these experiences
+have distinctly influenced my philosophy of learning and teaching. I
+believe that the key virtue of independent work is that it provides
+the opportunity to get to grips with the core intuition of
+mathematics, rather than simply face a barrage of meaningless
+symbols. Unfortunately, it seems easy for teachers and lecturers to
+tend to overlook these crucial bits of intuition in efforts to present
+all of the rigorous details. I am committed to embodying this virtue
+of intuition whenever I communicate mathematics, especially in
+teaching. I have practiced this already as a course assistant for our
+Topology I and Algebra II courses, holding office hours and teaching
+section, and as an instructor in The Math Circle for the past three
+semesters, teaching curious and excited 6--10 year olds. The latter
+has been a particularly instructive experience, as these younger
+students tend to respond *only* to intuitive, motivated ideas; guiding
+them to intuitively discover fundamental mathematics, e.g. the
+countability of the rational numbers, has been and continues to be an
+incredibly fun challenge. Of course I hope I will continue practicing
+and improving in implementing this philosophy throughout my graduate
+studies and beyond. I believe that doing this, and motivating others
+to do this, will allow me to be the most effective teacher of
+mathematics, and more generally the most valuable member of the
+mathematical and scientific community, that I can be.
+
+As I mentioned earlier, another essential aspect of these experiences
+has been the opportunity for free dialogue. Being able to talk through
+mathematics with another person is incredibly useful, and of course in
+general collaboration is a cornerstone of scientific
+progress. Technology, specifically the internet, is already making
+this sort of dialogue and collaboration more available and flexible;
+the question-answer site MathOverflow is a great example for research
+mathematics. But I believe there are even more tools to be developed
+to aid worldwide mathematical communication. As a side project this
+summer I began designing and programming an online messaging platform
+which would support the particular needs of mathematical discussion. I
+have many more ideas for this project, and hope that in time I can
+create a tool useful for student-teacher communication (my original
+motivation), professional collaboration, and probably many other
+applications.
+
+The NSF fellowship would allow me to optimally focus my energy during
+my graduate studies, during which I hope to continue engaging in these
+mathematical experiences which have so inspired my curiosity and
+fervor, and work towards my aspiration of leading mathematics forward
+as a creative researcher, effective teacher, and productive
+collaborator.

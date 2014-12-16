@@ -1,0 +1,224 @@
+\input{preamble}
+
+\title{CS 229, Problem Set 1}
+\author{Arpon Raksit}
+\date{10 Sep 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\begin{probs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+Let $a > 0$ and denote by $X_k$ the counter value after $k \ge 0$
+updates. We assume $X_0 = 0$.
+\begin{lem}
+  \label{countexp}
+  For $k \ge 0$ we have the following:
+  \begin{itemize}
+  \item $\E((1+a)^{X_k}) = ka+1$;
+  \item $\E((1+a)^{2X_k}) = \frac12a^2(2+a)2k^2 + \frac12a(4-a^2)k +
+    1$;
+  \item $\Var((1+a)^{X_k}) = a^3k(k-1)/2$.
+  \end{itemize}
+\end{lem}
+\begin{proof}
+  Let $\alpha := 1 + a$ and $k \ge 1$. Then we have by definition of
+  the update procedure that
+  \begin{align*}
+  \E(\alpha^{X_k})
+  &= \textstyle{\sum_{j \ge 0}} \P(X_{k-1} = j) \cdot \E(\alpha^{X_k}
+    \mid X_{k-1} = j)\\
+  &= \textstyle{\sum_{j \ge 0}} \P(X_{k-1} =
+    j) \cdot \frac{1}{\alpha^j}(\alpha^{j+1} +
+    (\alpha^j-1)\alpha^j)\\
+  &= \textstyle{\sum_{j \ge 0}} \P(X_{k-1} =
+    j) \cdot (\alpha^j + \alpha - 1) = \E(\alpha^{X_{k-1}}) + a.
+  \end{align*}
+  By the same sort of expansion we get $\E(\alpha^{2X_k})=
+  \E(\alpha^{2X_{k-1}}) + a(2+a)\E(\alpha^{X_{k-1}})$. Since the claim
+  is tautological for $k = 0$, we're done by an easy induction and
+  applying $\Var(Y) = \E(Y^2) - \E(Y)^2$.
+\end{proof}
+
+By Lemma~\ref{countexp} if we define our estimate as $\hat n :=
+\frac1a((1+a)^X - 1)$, then $\E(\hat n) = n$ and $\Var(\hat n) =
+\frac12an(n+1)$. Thus, for $0 \le \delta \le 1$, if we take $a \le
+\epsilon^2\delta$, we have by Chebyshev that
+\begin{align*}
+  \P(|\hat n - n| > \epsilon n) < \frac{\Var(\hat n)}{\epsilon^2 n^2}
+  = \frac{an(n-1)}{2\epsilon^2n^2} \le
+  \frac{\epsilon^2\delta(n-1)}{2\epsilon^2n^2} \le \delta.
+\end{align*}
+For the space bound, note that by Markov's inequality we have
+\[
+\Pr(\hat n > n/\delta) < \delta\E(\hat n)/n = \delta \implies \Pr(X_n
+\le \log(\log(an/\delta + 1))/\log(1+a)) < \delta.
+\]
+(Collaborated with David Liu.)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+The problem statement is a bit imprecise, so let's define things
+carefully:
+\begin{itemize}
+\item Let $U := \bigcup_{m=0}^\infty \{1,\ldots,n\}^m$.
+\item Let $T \subseteq \{0,1\}^n$ such that $d(t,t') \ge n/3$ (where
+  $d$ denotes Hamming distance) for all $t,t' \in T$ distinct and
+  $\log(|T|) \in \Omega(n)$. We have a map $\theta : T \to U$ defined
+  by $\theta(t) := \{i \mid t_i = 1\}$.
+\item Assume we have a set $S$ with a distinguished element $s^* \in
+  S$ and randomised maps $\alpha : S \times \{1,\ldots, n\} \to S$ and
+  $\beta : S \to \N$, such that $\P(\beta(\alpha(u)) = F_0(u)) \ge
+  .99$ for any $u \in U$, where $F_0(u)$ denotes the number of
+  distinct elements in $u$. (Intuitively, $\alpha$ is the update
+  procedure of the algorithm (with initial state $s^*$) and $\beta$
+  produces the output of the algorithm.)
+\item There is then an induced map $\tilde\alpha : S \times U \to S$
+  given inductively by $\tilde\alpha(s, \emptyset) = s$ and
+  $\tilde\alpha(s, (i_1,\ldots,i_m)) := \alpha(\tilde\alpha(s,
+  (i_1,\ldots,i_{m-1})), i_m)$. (Intuitively, $\tilde\alpha$ runs the
+  update procedure for all elements in the stream $U$.)
+\item We then have randomised maps $\phi : T \to S$ and $\psi : S \to
+  \{0,1\}^n$ defined as follows. We have $\phi(t) := \tilde\alpha(s^*,
+  \theta(t))$. Then for $s_0 \in S$, let $s_i := \alpha(s_{i-1},i)$
+  for $1 \le i \le n$. We define $\psi(s)$ such that $\psi(s)_i = 1$
+  if and only if $\beta(s_i) = \beta(s_0)$.
+\item We have a (deterministic) map $\pi : \{0,1\}^n \to T$, where
+  $\pi(v)$ is chosen to minimise $d(v,\pi(v))$. (In particular,
+  $\pi(t) = t$ for $t \in T$.)
+\item Finally, let $\rho : T \to T$ the randomised map $\pi \circ \psi
+  \circ \phi$. (Intuitively, this is the recovery algorithm.)
+\end{itemize}
+
+\begin{lem}
+  $\P(\psi(\phi(t))_i = t_i) \ge .98$ for $t \in T$.
+\end{lem}
+
+\begin{proof}
+  Let $u_i := (i_1,\ldots,i_m,1,\ldots,i)$ where $(i_1,\ldots,i_m) :=
+  \theta(t)$ for $0 \le i \le n$. Then by definition of $\psi$,
+  \[
+  \P(\psi(\phi(t))_i = t_i) \ge \P(\beta(\alpha(u_{i-1})) =
+  F_0(u_{i-1}) \wedge \beta(\alpha(u_i)) = F_0(u_i)).
+  \]
+  The claim then follows from the hypothesis that
+  \[
+  \P(\beta(\alpha(u_{i-1})) = F_0(u_{i-1})), \P(\beta(\alpha(u_i)) =
+  F_0(u_i)) \ge .99. \qedhere
+  \]
+\end{proof}
+
+Now, we claim that $\P(\rho(t) = t) \ge .88$ for $t \in T$. Indeed by
+definition of $\pi$ and since $d(t,t') \ge n/3$ for any $t' \in T -
+\{t\}$,
+\[
+\rho(t) = t' \implies d(t',\psi(\phi(t)) < d(t,\psi(\phi(t))) \implies
+d(t,\psi(\phi(t)) \ge n/6.
+\]
+But by Lemma 2, $\E(d(t,\psi(\phi(t)))) \le .02n$, so by Markov's
+inequality, $\P(d(t,\psi(\phi(t)) \ge n/6) \le .12$, proving the
+stated claim. In particular, this implies $\E(|\Im(\rho)|) \ge
+.88|T|$. But then of course we have
+\[
+|\Im(\phi)| \ge |\Im(\rho)| \implies \E(|\Im(\phi)|) \ge
+\E(|\Im(\rho)|) \ge .88|T|,
+\]
+which then implies $\log(|S|) \ge \log(.88|T|) \in \Theta(\log(|T|))
+\subseteq \Omega(n)$, so $|S| \not\in o(n)$. (Collaborated with
+Aleksandar Makelov, Rahul Dalal, and Spencer Kwon.)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+\begin{probs}
+
+  \prob{a}
+  We denote $\|-\|_2$ by $\|-\|$.
+
+  \begin{lem}
+    $\E(\|\Pi x\|^2) = \|x\|^2$.
+  \end{lem}
+
+  \begin{proof}
+    We have by linearity of expectation that
+    \[
+      \E(\|\Pi x\|^2)
+      = \textstyle{\E(\sum_{i=1}^m(\sum_{j=1}^n \Pi_{ij}x_j)^2)}
+      = \textstyle{\sum_{i=1}^m\sum_{j,k=1}^n
+        \E(\Pi_{ij}\Pi_{ik})x_jx_k}.
+    \]
+    Now, by definition of $h_i$ and $\Pi_{ij}$ we clearly have
+    $\E(\Pi_{ij}) = 0$ and $\E(\Pi_{ij}^2) = 1/m$. And if $j \ne k$ then
+    clearly $\Pi_{ij},\Pi_{ik}$ are independent, so
+    $\E(\Pi_{ij}\Pi_{ik}) = \E(\Pi_{ij})\E(\Pi_{ik}) = 0$. It follows
+    that
+    \[
+    \textstyle{\sum_{i=1}^m\sum_{j,k=1}^n
+        \E(\Pi_{ij}\Pi_{ik})x_jx_k}
+    = \sum_{i=1}^m \sum_{j=1}^nx_j^2/m = \|x\|^2. \qedhere
+    \]
+  \end{proof}
+
+  \begin{lem}
+    $\Var(\|\Pi x\|^2) \le \frac2m\|x\|^4$.
+  \end{lem}
+
+  \begin{proof}
+    We have
+    \begin{align*}
+      \Var(\|\Pi x\|^2)
+      &= \textstyle{\E((\sum_i\sum_{j \ne k}
+        \Pi_{ij}\Pi_{ik}x_jx_k)^2)} \\
+      &= \textstyle{\sum_{i,i'}^m\sum_{j \ne k,j' \ne k'}
+        \E(\Pi_{ij}\Pi_{ik}\Pi_{i'j'}\Pi_{i'k'})x_jx_{j'}x_kx_{k'}}.
+    \end{align*}
+    As in Lemma 3, we use $\E(\Pi_{ij}) = 0$, $\E(\Pi_{ij}^2) = 1/m$,
+    independence of columns, as well as $\Pi_{ij}\Pi_{i'j} = 0$ for $i
+    \ne i'$, and simply expanding gives us
+    \[
+    \textstyle{\sum_{i,i'}\sum_{j \ne k,j' \ne k'}
+      \E(\Pi_{ij}\Pi_{ik}\Pi_{i'j'}\Pi_{i'k'})x_jx_{j'}x_kx_{k'}} =
+    \sum_i \sum_{j \ne k} \frac2mx_j^2x_k^2/m \le
+    \frac2m\|x\|^4. \qedhere
+    \]
+  \end{proof}
+
+  By Lemmas 3 and 4 and Chebyshev, we get that
+  \[
+  \P(|\|\Pi x\|^2 - \|x\|^2| > \epsilon\|x\|^2) <
+  \frac{2\|x\|^4}{m\epsilon^2\|x\|^4} < \frac13,
+  \]
+  assuming $m \ge 6/\epsilon^2$.
+
+  \prob{b}
+
+  We simply observe that in the proof of (a), all we needed was that
+  the columns of $\Pi$ are $4$-wise independent. This was guaranteed
+  by full independence in (a), but we can do it more efficiently as
+  follows. First note that by altering by a factor of at most $2$, we
+  can take $n = 2^k$ and $m = 2^j$ without loss of generality (adding
+  $0$ coordinates to $x$ doesn't affect its norm). We can also assume
+  $m < n$, since otherwise replacing $x$ with $\Pi x$ is
+  ridiculous. Recall from lecture that polynomials of degree $\le 4$
+  over $\F_n$ give a $4$-wise independent hash family from $[n]$ to
+  $[n]$ which can be specified in $4\log(n)$ bits. This induces a
+  $4$-wise independent hash family from $[n]$ to $[m]$ by composing
+  with the projection onto the first $j$ bits, and from $[n]$ to
+  $\{-1,1\}$ by composing with the projection onto the first bit. If
+  we take $h_i$ and $\mathrm{sign}(\Pi_{h_i,i})$ from these families
+  (which can obviously be computed in constant time since they just
+  consist of evaluating polynomials), we get the desired properties in
+  the columns of $\Pi$.
+\end{probs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{probs}
+\end{document}

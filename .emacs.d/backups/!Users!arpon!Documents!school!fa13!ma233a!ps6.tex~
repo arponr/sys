@@ -1,0 +1,23 @@
+\input{preamble}
+
+\title{Math 233A, Problem Set 6}
+\author{Arpon Raksit}
+\date{25 Oct 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+Since $Y$ is separated, the graph morphism $\Gamma_f : X \to X
+\times_S Y$ is a closed immersion. And since $X$ is proper, hence
+universally closed, the projection $\pi : X \times_S Y \to Y$ is a
+closed map on spaces. It follows that $f = \pi \circ \Gamma_f$ has
+closed image in $Y$. But by hypothesis $f$ also has open image, so $f$
+must be surjective (on spaces) by connectednes of $Y$. Of course a
+surjective open immersion is an isomorphism.
+
+\end{document}

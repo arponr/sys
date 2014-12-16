@@ -1,0 +1,33 @@
+\documentclass[12pt]{amsart}
+
+\usepackage[tmargin=1.3in, bmargin=1.3in, lmargin=1.9in, rmargin=1.9in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage[hyphens]{url}
+\usepackage{enumitem}
+
+\frenchspacing
+\setlength{\parskip}{4pt plus2pt minus2pt}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont[Scale=1]{Adobe Garamond Pro}
+
+\begin{document}
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\begin{center}
+  \textbf{\MakeUppercase{$title$}} \\[8pt]
+  {\footnotesize ARPON RAKSIT}
+\end{center}
+
+\bigskip
+
+\linespread{1.1}
+
+$body$
+
+\end{document}

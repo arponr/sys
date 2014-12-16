@@ -1,0 +1,969 @@
+\input{../preamble}
+\input{preamble}
+
+\usepackage{tikz}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Vector fields and the J-homomorphism}
+\author{Arpon Raksit}
+\date{original: May 9, 2014; last edit: \today}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The problem}
+
+To start at the very beginning, we state the basic definitions.
+
+\begin{notation}
+  \label{ints}
+  Throughout we have integers $n \ge 2$ and $0 \le k \le n$.
+\end{notation}
+
+\begin{definitions}
+  \label{vfield-dfn}
+  Let $M$ be a differentiable manifold. Let $\pi \c T \to M$ be the
+  tangent bundle on $M$.
+  \begin{enumerate}
+  \item A \emph{vector field} on $M$ is a continuous section $v \c M
+    \to T$ of $\pi$.
+  \item A set of vector fields $\{v_1,\ldots,v_k\}$ on $M$ is
+    \emph{linearly independent} if for each $p \in M$ the vectors
+    $v_1(p),\ldots,v_k(p)$ are linearly independent in the tangent
+    space $T_p$. In particular a single vector field $v$ forms a
+    linearly independent set if and only if it is nowhere vanishing.
+  \end{enumerate}
+\end{definitions}
+
+Now the actual story: we are taught to love spheres from our very
+first days in the land of topology. But perhaps it is the following
+result---or perhaps really its title---which first truly beguiles us.
+
+\begin{theorem}[Hairy ball]
+  \label{hairy-ball}
+  The sphere $S^{n-1}$ admits a nowhere vanishing vector field if and
+  only if $n$ is even.
+\end{theorem}
+
+Of course, so enticed, we cannot just leave it there. We must ask the
+following.
+
+\begin{question}
+  \label{vfield-prob}
+  Then how many vector fields does $S^{n-1}$ admit? Or more
+  precisely, what is the maximum size of a set of linearly independent
+  vector fields on $S^{n-1}$?
+\end{question}
+
+This is one of those questions that occupied people for a while. Its
+answer was one of the first applications of generalised cohomology
+theory, and involves some really nice ideas, some of which are
+hopefully conveyed in this exposition.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lower bound}
+
+We first briefly review the positive side of the problem, that is, how
+to actually construct some vector fields and achieve a lower bound. We
+do this for completeness, and because it clarifies the sort of
+numerology we see in the upper bound. One can see, e.g.,
+\cite{hopkins-256y, miller-vfields} for more details.
+
+\begin{nothing}
+  \label{gram-schmidt}
+  First of all, we have our very nice embedding $S^{n-1} \inj \R^n$,
+  which gives the tangent spaces of $S^{n-1}$ a very concrete
+  description. In particular, a vector field on $S^{n-1}$ is just a
+  map $v \c S^{n-1} \to \R^n$ such that $v(x) \perp x$ (in $\R^n$)
+  for all $x \in S^{n-1}$. Note that by Gram-Schmidt, giving $k$
+  linearly independent vector fields $v_1,\ldots,v_k \c S^{n-1} \to
+  \R^n$ is equivalent to giving $k$ pointwise orthonormal maps
+  $v_1,\ldots,v_k \c S^{n-1} \to S^{n-1}$.
+\end{nothing}
+
+\begin{notation}
+  \label{radon-hurwitz}
+  \begin{itemize}[leftmargin=*]
+  \item Write $n = 2^ab$ with $b$ odd, and write $a = 4c + d$ with $0
+    \le d \le 3$. We define $\rho(n) \ce 2^d + 8c$.\footnote{The
+      $\rho(n)$ are called the \emph{Radon-Hurwitz numbers}.} Note in
+    particular $\rho(n) = 1$ if $n$ is odd.
+  \item Define $e_k \ce |\{0 < j \le k : j \equiv 0,1,2,4 \pmod
+    8\}|$. It's easy to see that
+    \begin{equation}
+      \label{radon-max}
+      \rho(n) - 1 = \max \{l \ge 0 : 2^{e_l} \mid n\} = \max \{l
+      \ge 0 : e_l \le a\}.
+  \end{equation}
+  \end{itemize}
+\end{notation}
+
+\newcommand{\Cl}{\mathrm{Cl}}
+\newcommand{\HH}{\mathbb{H}}
+\begin{nothing}
+  \label{clifford}
+  The \emph{Clifford algebras} $\Cl_l$ for $l \ge 0$ are the free
+  associative $\R$-algebras with generators $q_1,\ldots,q_l$ subject
+  to the relations $q_i^2 = -1$ and $q_iq_j = -q_jq_i$ for $i \ne
+  j$. For small values of $l$ these are as follows\footnote{One should
+    note however that the descriptions in this table are given by
+    completely non-canonical isomorphisms.}, where $A(d)$
+  denotes the algebra of $d$-by-$d$ matrices in $A$.
+  \[
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|}
+      \hline
+      $l$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+      \hline
+      $\Cl_l$ & $\R$ & $\C$ & $\HH$ & $\HH^{\oplus 2}$ & $\HH(2)$ &
+      $\C(4)$ & $\R(8)$ & $\R(8)^{\oplus 2}$ & $\R(16)$ \\
+      \hline
+    \end{tabular}
+  \]
+  For larger values of $l$ we have a periodicity $\Cl_{l+8} \simeq
+  \Cl_l \otimes_\R \Cl_8$.
+
+  What does this have to do with vector fields? Well, suppose $V$ is
+  an $\R$-vector space of dimension $n$ with a representation $\Cl_l
+  \otimes_\R V \to V$. Let $G_l \subset \Cl_l$ be the multiplicative
+  group genereated by $\{\pm q_i\}$; it's easy to see $|G_l| =
+  2^{l+1}$. We can construct a $G_l$-invariant inner product on $V$
+  (e.g., by averaging any inner product over $G_l$), and then we see
+  that (under this inner product) we get $l$ orthonormal vector fields
+  on the unit sphere $S(V) \simeq S^{n-1}$ via $x \mapsto q_ix$ for
+  $1 \le i \le l$.
+
+  Thus we are interested in knowing the minimal dimension of a
+  representation of $\Cl_l$. By the periodicity above, one can show
+  without much difficulty that this dimension is precisely $2^{e_l}$,
+  where $e_l$ is as defined in \pref{radon-hurwitz}. Thus there is a
+  representation of $\Cl_l$ on $\R^n$ whenever $2^{e_l} \mid n$, by
+  writing $\R^n \simeq \R^{2^{e_l}} \times \cdots \times \R^{2^{e_l}}$
+  and acting diagonally via the minimal representation. This gives the
+  following lower bound on our question \pref{vfield-prob}.
+\end{nothing}
+
+\begin{theorem}
+  \label{vfield-lower-bound}
+  There is a set of $\rho(n)-1$ linearly independent vector fields on
+  $S^{n-1}$.
+\end{theorem}
+
+\begin{proof}
+  Let $l \ce \rho(n)-1$. By \pref{radon-max}, $2^{e_l} \mid n$, so the
+  discussion in \pref{clifford} gives the claim.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Upper bound: a reduction}
+
+Getting an upper bound is where the real difficulty lies. Well, we
+know one upper bound: $S^{n-1}$ certainly can't admit $n$ linearly
+independent vector fields, since $\dim S^{n-1} = n - 1$. And to say
+$S^{n-1}$ admits $n-1$ linearly independent vector fields is to say
+$S^{n-1}$ is parallelisable, which famously is true if and only if $n
+\in \{2,4,8\}$. An optimal upper bound would at least tell us this
+parallelisability result. So let's think about it for a second and
+reduce the question to one more attackable by algebra.
+
+\begin{definition}
+  \label{stiefel}
+  For $l \in \N$, the \emph{Stiefel manifold} $V_{l,n}$ is the space
+  \[
+  \{(v_1,\ldots,v_l) : v_i \in S^{n-1}, \langle v_i, v_j \rangle =
+  \delta_{i,j}\}
+  \]
+  of orthonormal $l$-frames on $\R^n$.
+\end{definition}
+
+\begin{lemma}
+  \label{section-reduction}
+  Let $\pi_k \c V_{k+1,n} \to S^{n-1}$ be the projection
+  $(v_1,\ldots,v_{k+1}) \mapsto v_1$. Then $S^{n-1}$ admits a set of
+  $k$ linearly independent vector fields if and only if there is a
+  section $S^{n-1} \to V_{k+1,n}$ of $\pi_k$.
+\end{lemma}
+
+\begin{proof}
+  This is immediate from the discussion in \pref{gram-schmidt}.
+\end{proof}
+
+So we've reduced our problem to the existence of some map. Already one
+can imagine using algebra to get at the problem now. E.g., we can ask
+for what $k$ this map can exist in singular homology or
+cohomology. This was the strategy of Steenrod and Whitehead
+\cite{steenrod-vfields}, who achieve an upper bound $k \le 2^a$, in
+the notation of \pref{radon-hurwitz}. Of course this result doesn't
+tell us that $S^{15}$ is not parallelisable, and leaves a large gap
+from the lower bound \pref{vfield-lower-bound}. This gap was finally
+closed by Adams, who ingeniously employed K-theory instead to show the
+lower bound \pref{vfield-lower-bound} is in fact optimal.
+
+\begin{theorem}[\cite{adams-vfields}]
+  \label{vfield-upper-bound}
+  There does not exist a set of $\rho(n)$ linearly independent vector
+  fields on $S^{n-1}$.
+\end{theorem}
+
+Our goal for the remainder is to explain the ideas behind a proof of
+this theorem, which of course completely answers our question
+\pref{vfield-prob}. Following \cite{miller-vfields}, the argument we
+give is not in the original form presented in \cite{adams-vfields},
+but rather one utilising Adams's later work on bounding the image of
+the J-homomorphism \cite{adams-J-II}.
+
+However, we will only work in complex K-theory. As a result we will
+achieve a very slightly worse upper bound than promised by
+\pref{vfield-upper-bound}, but this way we get to avoid a few
+subtleties that arise in studying real K-theory. At least to the
+author, it seems the argument in complex K-theory retains the main
+ideas and yet is much easier to absorb. At the end we will explain
+why, after sorting out the subtleties, translating the argument into
+real K-theory gives the full result.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Connection to the J-homomorphism}
+
+We first review our basic notation and the general setup of Adams's
+study of the J-homomorphism.
+
+\begin{notation}
+  \begin{enumerate}[leftmargin=*]
+  \item $X$ will always denote a connected finite CW-complex.
+  \item Denote\footnote{We use Adams's notation for K-theory rather
+      than the what is the standard notation these days, since it
+      seems more convenient for our purposes.} real and complex
+    K-theory by $K_\Lambda(X)$ with $\Lambda = \R$ or $\Lambda = \C$,
+    respectively, and reduced K-theory by $\wt K_\Lambda(X)$.
+  \item We have maps:
+    \begin{itemize}
+    \item $\iota \c K_\C(X) \to K_\R(X)$ by forgetting complex
+      structure;
+    \item $\kappa \c K_\R(X) \to K_\C(X)$ by complexification, i.e.,
+      tensoring with $X \times \C$.
+    \end{itemize}
+    Note that since $\C \simeq \R \oplus \R$ the map $\iota \circ
+    \kappa$ is just multiplication by $2$.
+  \item If $\xi \to X$ is a real or complex vector bundle, we
+    abusively denote its class in $K_\Lambda(X)$ by $\xi$ as well.
+  \item Let $\epsilon_\Lambda$ for $\Lambda = \R$ or $\Lambda = \C$
+    denote the trivial real or complex line bundle (over a space
+    understood from context), respectively.
+  \end{enumerate}
+\end{notation}
+
+\begin{remark}
+  \label{dimension-welldefined}
+  Since we always work over a connected base, any vector bundle $\xi
+  \to X$ has a well-defined dimension over a specified $\Lambda$, and
+  this extends to a ring morphism $\dim \c K_\Lambda(X) \to \Z$. Recall
+  $\wt K_\Lambda(X) = \ker(\dim)$.
+\end{remark}
+
+\begin{definitions}
+  \label{J-dfns}
+  \begin{enumerate}[leftmargin=*]
+  \item A \emph{spherical fibration} over $X$ is a fibre bundle $S \to
+    X$ whose fibre has the homotopy type of a sphere.
+  \item Let $S \to X$ and $S' \to X$ be two spaces over $X$. We say
+    $S$ and $S'$ are \emph{fibre homotopy equivalent} if there are
+    maps $f \c S \to S'$ and $g \c S' \to S$ over $X$ and homotopies
+    $gf \simeq \id_S$ and $fg \simeq \id_{S'}$ over $X$.\footnote{As
+      usual, ``over $X$'' just means preserving fibres.}
+  \item Denote by $SF(X)$ the Grothendieck group of the monoid of
+    fibre homotopy equivalence classes of spherical fibrations over
+    $X$ with fibre-wise smash product.
+  \item The \emph{(real) J-homomorphism} is the map $J_\R \c K_\R(X)
+    \to SF(X)$ induced by $\xi \mapsto \xi-0$ for bundles $\xi \to
+    X$, i.e., removing the zero section. Or if we equip $\xi$ with a
+    metric, then the \emph{unit sphere bundle} $S(\xi) \ce \{v \in \xi
+    : |v| = 1\}$ is evidently fibre homotopy equivalent to $\xi-0$, so
+    we have $J(\xi) = S(\xi)$.
+  \item We get a \emph{complex J-homomorphism} $J_\C \ce J_\R \circ
+    \iota \c K_\C(X) \to K_\R(X) \to SF(X)$.
+  \item The \emph{image of the J-homomorphism} is denoted
+    $J_\Lambda(X)$ with $\Lambda = \R$ or $\Lambda = \C$.
+  \end{enumerate}
+\end{definitions}
+
+We now show how to relate our problem to a question about the
+J-homomorphism.
+
+\begin{lemma}[Dold-Lashof]
+  \label{dold-fibre}
+  Let $Y \to X$ and $Y' \to X$ be fibre bundles. Assume $Y$ and $Y'$
+  have the homotopy type of CW-complexes and $X$ is connected. Then a
+  map $Y \to Y'$ over $X$ inducing a homotopy equivalence on all
+  fibres is in fact a fibre homotopy equivalence.
+\end{lemma}
+
+\begin{proof}
+  Omitted.
+\end{proof}
+
+\begin{notation}
+  \label{bundle-notation}
+  Let $\gamma$ denote the tautological real line bundle over $\RP^k$.
+\end{notation}
+
+\begin{lemma}
+  \label{RP-reduction}
+  Assume $\pi_k \c V_{k+1,n} \to S^{n-1}$ has a section. Then there
+  is a fibre homotopy equivalence $S(\epsilon_\R^{\oplus n}) \to
+  S(\gamma^{\oplus n})$ over $\RP^k$.
+\end{lemma}
+
+\begin{proof}
+  First let $Y \ce (S^k \times S^{n-1})/(\Z/2)$, with $\Z/2$ acting
+  diagonally via the antipodal maps, and observe there is a
+  homeomorphism $Y \simeq S(\gamma^{\oplus n})$ over $\RP^k$, where the
+  map $Y \to \RP^k$ is induced by projection
+  \[
+  S^k \times S^{n-1} \to S^k \to \RP^k, \quad (v,x) \mapsto \ell_v.
+  \]
+  Indeed, viewing $S(\gamma^{\oplus n}) \subset \gamma^{\oplus n}
+  \subset \RP^k \times (\R^{k+1})^n$, the homeomorphism is induced by
+  \[
+  S^k \times S^{n-1} \to \RP^k \times (\R^{k+1})^n, \quad (v,x)
+  \mapsto (\ell_v, x_1v, \ldots, x_nv),
+  \]
+  where $(x_1,\ldots,x_n) \ce x \in S^{n-1} \subset \R^n$. Then since
+  $S(\epsilon_\R^{\oplus n}) \simeq \RP^k \times S^{n-1}$, we are
+  left to give a fibre homotopy equivalence $\RP^k \times S^{n-1} \to
+  Y$.
+
+  If $s \c S^{n-1} \to V_{k+1,n}$ is a section of $\pi_k$ then we
+  get a map $f \c \RP^k \times S^{n-1} \to Y$ over $\RP^k$ induced by
+  the map
+  \[
+  S^k \times S^{n-1} \to S^k \times S^{n-1}, \quad (v,x) \mapsto
+  (v, s(x)v),
+  \]
+  where $s(x) \in V_{k+1,n}$ acts on $S^k$ by identifying an
+  orthonormal frame with an $n$-by-$(k+1)$ matrix. Note that since $s$
+  is a section, if $e_1 \in S^k$ is the first canonical basis vector,
+  then $s(x)e_1 = x$.
+
+  Since $f$ preserves fibres, over each $\ell \in \RP^k$ it induces a
+  map $f_\ell \c S^{n-1} \to S^{n-1}$. On any connected open set $U
+  \subseteq \RP^k$ over which $\gamma^{\oplus n}$ is trivial, the
+  assignment $\ell \mapsto f_\ell$ gives a continuous map $U \to
+  \map(S^{n-1},S^{n-1})$, whose image lies in a single connected
+  component. Since $\RP^k$ is connected and can be covered by such
+  $U$, it follows that $\deg(f_\ell)$ is constant. But above we noted
+  that $f$ induces the identity over $\ell_{e_1}$, so in fact $f_\ell$
+  must be a homotopy equivalence for all $\ell \in \RP^k$. We are then
+  done by \pref{dold-fibre}.
+\end{proof}
+
+\begin{notation}
+  \label{RP-notation}
+  Define $\lambda \ce \gamma - 1 \in \wt K_\R(\RP^k)$ and $\nu \ce
+  \kappa(\lambda) = \kappa(\gamma) - 1 \in \wt K_\C(\RP^k)$.
+\end{notation}
+
+\begin{lemma}
+  \label{j-reduction}
+  Suppose $n = 2m$. If $S^{n-1}$ admits a set of $k$ linearly
+  independent vector fields, then $J_\C(m\nu) = J_\R(n\lambda) = 0$.
+\end{lemma}
+
+\begin{proof}
+  Given the hypothesis, it is immediate from \pref{section-reduction}
+  and \pref{RP-reduction} that $J_\R(n\lambda) = 0$. And by
+  definition we have $J_\C(m\nu) = J_\R(\iota(\kappa(m\lambda))) =
+  J_\R(2m\lambda) = J_\R(n\lambda)$.
+\end{proof}
+
+So solving our problem now reduces to understanding
+$K_\Lambda(\RP^k)$ and $J_\Lambda(\RP^k)$, and as indicated earlier
+we will work with $\Lambda = \C$. We first address the former.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{K-theory of projective space}
+
+\begin{notation}
+  \label{kthy-order}
+  Let $f_k \ce \lfloor k/2 \rfloor$.
+\end{notation}
+
+\begin{theorem}
+  \label{RP-kthy}
+  $\wt K_\C(\RP^k)$ is generated by $\nu$, which satisfies the
+  relations $\nu^2 = -2\nu$ and $\nu^{f_k+1} = 0$. This determines a
+  group isomorphism $\wt K_\C(\RP^{k-1}) \simeq \Z/2^{f_k}$.  Finally,
+  the Adams operations are given by
+  \[
+  \psi^l(\nu) =
+  \begin{cases}
+    0 & \text{if }l\text{ even} \\
+    \nu & \text{if }l\text{ odd}.
+  \end{cases}
+  \]
+\end{theorem}
+
+\begin{proof}
+  The case $k=1$ is trivial, so assume $k > 1$. Since real line
+  bundles have structure group $\O(1) \simeq \{\pm 1\}$, we
+  automatically have $\gamma^2 = 1 \in K_\R(\RP^k)$. It follows that
+  $\kappa(\gamma)^2 = 1 \in K_\C(\RP^k)$, and hence that $\nu^2 =
+  -2\nu$.
+
+  Next we prove $\nu^{f_k+1} = 0$. Since the tautological line bundle on
+  $\RP^{k+1}$ pulls back to the tautological line bundle on $\RP^k$
+  via the inclusion $\RP^k \to \RP^{k+1}$, by naturality we may assume
+  $k = 2f_k+1$ is odd. Let $\pi \c \RP^k \to \CP^{f_k}$ be the canonical
+  projection, and let $\xi \to \CP^{f_k}$ be the tautological (complex)
+  line bundle. It is easy to see directly that $\pi^*\xi \simeq
+  \kappa(\gamma)$. Thus that $\nu^{f_k+1} = 0$ follows from the
+  fact\footnote{One can see \cite{atiyah-kthy} or \cite{adams-vfields}
+    for (two different) proofs.}  that $\wt K_\C(\CP^{f_k}) \simeq
+  \Z[t]/t^{f_k+1}$ where $t \ce \xi - 1$.
+
+  We now show $\wt K_\C(\RP^k) \simeq \Z/2^{f_k}$, using the
+  Atiyah-Hirzebruch spectral sequence
+  \[
+  E_2^{p,q} \ce H^p(\RP^k,K_\C^q(*)) \implies K_\C^{p+q}(\RP^k).
+  \]
+  Recall Bott periodicity and the cohomology of projective space:
+  \[
+  K_\C^q(*) \simeq
+  \begin{cases}
+    \Z & \text{if }q\text{ even} \\
+    0 & \text{if }q\text{ odd},
+  \end{cases}
+  \hspace{30pt}
+  H^p(\RP^k;\Z) \simeq
+  \begin{cases}
+    \Z & \text{if }p=0 \\
+    \Z/2 & \text{if }0 < p \le k,\ p\text{ even} \\
+    \Z & \text{if }p=k,\ k\text{ odd} \\
+    0 & \text{otherwise}.
+  \end{cases}
+  \]  
+  Thus the $E_2$ page looks as follows, where $A$ depends on the parity
+  of $k$ as indicated above.
+
+  \input{ahss}
+
+  We claim the spectral sequence is trivial, i.e., all the
+  differentials on every page vanish. By naturality of the spectral
+  sequence in a point inclusion $* \to \RP^k$ we know all the
+  differentials on the column $p=0$ vanish. All differentials change
+  the parity of the total degree $p+q$, so a differential from a
+  $\Z/2$ can only possibly map to $0$ or $A \simeq\Z$ (in the case $k$
+  odd) and hence must vanish. And obviously the differentials on the
+  column $p=k$ vanish. So we conclude
+  \[
+  \Gr_pK_\C(\RP^k) \simeq E_\infty^{p,-p} \simeq E_2^{p,-p} \simeq
+  \begin{cases}
+    \Z & \text{if }p = 0\\
+    \Z/2 & \text{if }1 \le p \le f_k\\
+    0 & \text{otherwise}.
+  \end{cases}
+  \]
+
+  We next claim that $\Gr_pK_\C(\RP^k) \simeq \Z/2$ is generated by
+  the class of $\nu^p$ for $1 \le p \le f_k$. It suffices to show this
+  for $p=1$, because the spectral sequence is multiplicative, and has
+  multiplication induced by the cup product in singular cohomology on
+  $E_2$, and if $x \in H^2(\RP^k;\Z)$ is a generator then we know
+  $x^p \ne 0$ for $1 \le p \le f_k$. And for $p=1$ it suffices to
+  treat the case $k=2$, since the spectral sequence is natural and the
+  inclusion $\RP^2 \to \RP^k$ both:
+  \begin{itemize}
+  \item pulls back the tautological bundle on $\RP^k$ to the
+    tautological bundle on $\RP^2$;
+  \item induces an isomorphism $H^2(\RP^k;\Z) \simeq H^2(\RP^2;\Z)
+    \simeq \Z/2$.
+  \end{itemize}
+  But in the case $k=2$, we have $ \Gr_1K_\C(\RP^2) \simeq
+  \wt K_\C(\RP^2)$, so to say that $\nu$ is a generator is just to say
+  $\nu \ne 0$, or equivalently $\kappa(\gamma) \ne 1$. One can prove
+  this with the Stiefel-Whitney class: it suffices to show $1 \ne
+  \iota(\kappa(\gamma)) = 2\gamma \in K_\R(\RP^2)$, which is
+  witnessed by $w(\gamma\oplus\gamma) = w(\gamma)^2 = 1+x^2 \ne 1$,
+  where $x \in H^1(\RP^2;\Z/2)$ is a generator.
+
+  Now we can determine the extensions needed to compute $K_\C(\RP^k)$
+  from the associated graded $\Gr_*K_\C(\RP^k)$. Let $F_p$ be the
+  $p$-th filtered piece of $K_\C(\RP^k)$, so that $F_p/F_{p+1} \simeq
+  \Gr_pK_\C(\RP^k) \simeq \Z/2$ for $1 \le p \le f_k$ and $F_1 \simeq
+  \wt K_\C(\RP^k)$. We inductively show that $F_p \simeq
+  \Z/2^{f_k-p+1}$ with generator $\nu^{f_k}$; the base case $p=f_k$ is
+  done already. To induct, we have the extension problem
+  \[
+  0 \to \Z/2^{f_k-p} \to F_p \to \Z/2 \to 0.
+  \]
+  We just need to show $\nu^p$ has order $2^{f_k-p+1}$. But we have
+  the identity $\nu^{p+1} = -2\nu^p$, and we inductively know $\nu^p$
+  has order $2^{f_k-p}$. Since we know $F_p$ is a $2$-group this
+  implies the claim.
+
+  To finish the proof we just need to verify the Adams operations, but
+  this is evident from the identity $\kappa(\gamma)^2 = 1$ shown
+  above, since $\psi^l(\nu) = \psi^l(\kappa(\gamma)) - 1 =
+  \kappa(\gamma)^l - 1$.
+\end{proof}
+
+\begin{remark}
+  \label{RP-ringhom}
+  Given the information from \pref{RP-kthy}, the multiplicative
+  structure on $\wt K_\C(\RP^k)$ can be clarified by observing that we
+  can define an injective morphism of (non-unital) rings $\alpha \c
+  \wt K_\C(\RP^{k-1}) \to \Z/2^{f_k+1}$ via $\nu \mapsto -2$.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The Thom isomorphism}
+
+Before moving on to studying $J_\C(\RP^{k-1})$ we briefly review the
+basic theory of the Thom isomorphism.
+
+\begin{definition}
+  \label{thom-space}
+  Let $\xi \to X$ be a vector bundle of real dimension $r$. The
+  \emph{Thom space} $\Th(\xi)$ of $\xi$ is obtained by fibre-wise
+  one-point compactifying $\xi$ and then identifying all the points at
+  infinity. More precisely we have $\Th(\xi) \simeq \P(\xi \oplus
+  \epsilon_\R)/\P(\xi)$, or if we equip $\xi$ with a metric then we
+  have $\Th(\xi) \simeq D(\xi)/S(\xi)$ the unit disk bundle quotiented
+  by the unit sphere bundle.
+\end{definition}
+
+\begin{remark}
+  \label{thom-fibre}
+  For any $p \in X$ the fibre $\R^r \simeq \xi_p \inj \xi$ determines
+  a ``fibre'' $S^r \simeq \Th(\xi_p) \inj \Th(\xi)$.
+\end{remark}
+
+\begin{nothing}
+  \label{thom-iso}
+  Let $\xi \to X$ be an oriented vector bundle of real dimension
+  $r$. Let $E$ be a multiplicative cohomology theory. Then we have
+  \[
+  \wt E^*(\Th(\xi)) \simeq E^*(D(\xi),S(\xi)) \simeq E^*(\xi, \xi-0),
+  \]
+  and in this way $\wt E^*(\Th(\xi))$ is a module over $E^*(X) \simeq
+  E^*(\xi)$.
+  
+  A \emph{Thom class} in $E$ of $\xi$ is an element $u \in \wt
+  E^r(\Th(\xi))$ such that for any fibre $i \c S^r \simeq \Th(\xi_p)
+  \to \Th(\xi)$, where the identification $S^r \simeq \Th(\xi_p)$ is
+  determined by the orientation of $\xi$, the restriction
+  \[
+  \begin{tikzcd}
+    \wt E^r(\Th(\xi)) \rar{i^*} & \wt E^r(S^r) \rar{\sim} & E^0(*)
+  \end{tikzcd}
+  \]
+  sends $u$ to the canonical unit $1 \in E^0(*)$.
+  
+  The \emph{Thom isomorphism theorem} states that if $\xi$ has a Thom
+  class $u$ then the map
+  \[
+  \phi \c E^*(X) \to \wt E^{*+r}(\Th(\xi)), \quad x \mapsto x \cdot u
+  \]
+  is an isomorphism of $E^*(X)$-modules.
+\end{nothing}
+
+\begin{proposition}
+  \label{thom-K}
+  There exist Thom classes $u_\xi$ in $K_\C$ for all complex vector
+  bundles $\xi \to X$. These can be chosen to satisfy the following
+  pleasant properties.
+  \begin{enumerate}
+  \item Naturality: for any pullback square
+    \[
+    \begin{tikzcd}
+      f^*\xi \rar{g} \dar & \xi \dar \\ Y \rar{f} & X
+    \end{tikzcd}
+    \]
+    of complex vector bundles, $u_{f^*\xi} = g^*(u_\xi)$.
+  \item Multiplicativity: let $\xi \to X$ and $\eta \to Y$ be complex
+    vector bundles. Consider the product bundle $\xi \times \eta \to X
+    \times Y$, and let $\pi_\xi \c \xi \times \eta \to \xi$ and
+    $\pi_\eta \c \xi \times \eta \to \eta$ be the projections. Then
+    \[
+    u_{\xi \times \eta} = \pi_\xi^*(u_\xi) \cdot \pi_\eta^*(u_\eta).
+    \]
+    By naturality this implies the same multiplicativity when $X=Y$
+    and we replace $\xi \times \eta$ with $\xi \oplus \eta$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  This is achieved by the ``difference bundle'' construction of
+  \cite{abs-clifford}, but this topic is omitted here, unfortunately.
+\end{proof}
+
+\begin{example}
+  \label{taut-thom}
+  Let $\xi \to \CP^\infty$ be the tautological line bundle. We claim
+  that in fact $\Th(\xi) \simeq \CP^\infty$. Indeed since $S(\xi)
+  \simeq S^\infty$ is contractible, we have $\Th(\xi) \simeq
+  D(\xi)/S(\xi) \simeq D(\xi) \simeq \CP^\infty$.\footnote{I learned
+    this argument from \cite{may-mu1}.} It is easy to see then that
+  the $K_\C^*(\CP^{\infty})$-module structure on $\K^*_\C(\Th(\xi))$
+  is just given by multiplication in $K_\C^*(\CP^{\infty})$, and
+  hence the Thom class $u_\xi \in \wt K_\C^2(\Th(\xi)) \simeq
+  \wt K_\C(\CP^\infty)$ must be a generator $\pm(\xi-1)$.
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Characteristic classes}
+
+We now begin our quest to understand $J_\C(\RP^k)$. This will fall
+out of Adams's more general results on the J-homomorphism, namely, the
+construction of a certain quotient $J_\Lambda(X) \surj
+J'_\Lambda(X)$, a ``lower bound'' on $J_\Lambda(X)$. We begin with a
+general discussion of characteristic classes, which are used to define
+the group $J'_\Lambda(X)$.
+
+\renewcommand{\V}{\mathcal{V}}
+\newcommand{\cl}{\mathrm{cl}}
+\begin{nothing}
+  \label{chclass-general}
+  Let $E$ and $F$ be multiplicative cohomology theories. Consider the
+  following data.
+  \begin{enumerate}
+  \item Let $\V$ be some class of vector bundles $\xi \to X$ equipped
+    with natural\footnote{Here ``natural'' is used in the same sense
+      as \pref{thom-K}.} Thom classes $u_\xi$ in $E$ and $t_\xi$ in
+    $F$.
+  \item Let $T \c E \to F$ be a natural transformation of cohomology
+    theories.
+  \end{enumerate}
+  Then for any $\xi \to X$ in $\V$ we can form a \emph{characteristic
+    class}
+  \[
+  \cl(T,\xi) \ce \psi_\xi^{-1}T\phi_\xi(1) = T(u_\xi)/t_\xi \in
+  F^*(X),
+  \]
+  where $\phi_\xi,\psi_\xi$ denote the Thom isomorphisms in $E,F$
+  respectively. Note by naturality of our Thom classes, $\cl(T,\xi)$
+  is natural in bundle maps $f^*\xi \to \xi$.
+\end{nothing}
+
+\begin{example}
+  \label{stiefel-whitney}
+  If we take $E = F = H^*(-;\Z/2)$ in \pref{chclass-general} then we
+  have natural orientations on all vector bundles. It turns out that
+  if we set $T$ to be the Steenrod square $\Sq^i$ then the resulting
+  characteristic class $\cl(\Sq^i,-)$ is just the Stiefel-Whitney
+  class $w_i$.
+\end{example}
+
+\begin{definition}
+  Take $E = F = K_\C^*$ and $T = \psi^l$ the Adams operation for $l
+  \in \N$ in \pref{chclass-general}. The resulting classes $\rho^l \ce
+  \cl(\psi^l,-)$ are called the \emph{cannibalistic
+    classes}.\footnote{Because they live in K-theory and also eat
+    things in K-theory, and because Adams was awesome.}
+\end{definition}
+
+\begin{remark}
+  By \pref{thom-K} the cannibalistic classes $\rho^l$ are defined on
+  all complex vector bundles, and moreover satisfy the exponential
+  property
+  \begin{equation}
+    \label{exponential}
+    \rho^l(\xi \oplus \eta) = \rho^l(\xi)\rho^l(\eta).
+  \end{equation}
+\end{remark}
+
+\begin{convention}
+  \label{complex-convention}
+  For the remainder, all bundles are complex vector bundles, and
+  dimension always refers to complex dimension.
+\end{convention}
+
+\begin{lemma}
+  \label{cannibal-line}
+  Let $\xi \to X$ be a line bundle. Then $\rho^l(\xi) = 1 + \xi +
+  \cdots + \xi^{l-1}$ for $l \in \N$.
+\end{lemma}
+
+\begin{proof}
+  By naturality it suffices to prove this for the universal line
+  bundle $\xi \to \CP^{\infty}$. By \pref{taut-thom}, $\Th(\xi) \simeq
+  \CP^\infty$ with Thom class $\pm(\xi - 1) \in
+  \wt K_\C(\CP^\infty)$. Then by definition of $\rho^l$ and $\psi^l$
+  we have
+  \[
+  \rho^l(\xi) = \frac{\psi^l(\pm(\xi-1))}{\pm(\xi-1)} = \frac{\xi^l -
+    1}{\xi - 1} = 1 + \xi + \cdots + \xi^{l-1}. \qedhere
+  \]
+\end{proof}
+
+\begin{remark}
+  \label{cannibal-dim}
+  By the splitting principle, \pref{exponential} and
+  \pref{cannibal-line} imply that $\dim \rho^l(\xi) = l^{\dim \xi}$
+  for any bundle $\xi \to X$.
+\end{remark}
+
+\begin{nothing}
+  \label{cannibal-extend}
+  Combining \pref{exponential} and \pref{cannibal-line} gives
+  $\rho^l(\epsilon_\C^{\oplus r}) = l^r$. This tells us that, after
+  inverting $l$, we can extend the definition of $\rho^l$ from bundles
+  to all of $K_\C(X)$. Namely, since any element of $K_\C(X)$ can be
+  written in the form $\xi - r$ for some bundle $\xi$, we can define
+  \[
+  \rho^l \c K_\C(X) \to K_\C(X)_l, \quad \xi - r \mapsto
+  \rho^l(\xi)/l^r,
+  \]
+  where $K_\C(X)_l$ denotes the localisation at $l$. Since $\xi - r =
+  \eta - s \iff \xi + s = \eta + r$, this is obviously well
+  defined. And note we have preserved the exponential property:
+  $\rho^l(x+y) = \rho^l(x)\rho^l(y)$ for $x,y \in K_\C(X)$.
+\end{nothing}
+
+We next show how the cannibalistic classes $\rho^l$ allows us to bound
+$J_\C(X)$.
+
+\begin{lemma}
+  \label{jprime-condition}
+  Suppose $J_\C(\xi) = J_\C(\eta)$ for two bundles $\xi \to X$ and
+  $\eta \to X$. Then there exists $y \in \wt K_\C(X)$ such that $1+y
+  \in K_\C(X)$ is invertible and
+  \[
+  \rho^l(\eta) = \rho^l(\xi) \cdot \frac{\psi^l(1+y)}{1+y} \quad
+  \text{for all } l \in \N.
+  \]
+\end{lemma}
+
+\begin{proof}
+  The hypothesis is that there is a fibre homotopy equivalence $f \c
+  S(\xi) \to S(\eta)$ over $X$. This extends to a homotopy equivalence
+  of Thom complexes $g \c \Th(\xi) \to \Th(\eta)$. On each fibre, $g$
+  induces a map $g_p \c \Th(\xi_p) \to \Th(\eta_p)$ which is just
+  (homotopic to) the suspension of $f_p \c S(\xi_p) \to S(\eta_p)$;
+  since $f_p$ is a homotopy equivalence so is $g_p$.
+
+  Let $v \ce \phi_\xi^{-1}g^*\phi_\eta(1) = g^*(u_\eta)/u_\xi \in
+  K_\C(X)$. Since $g_p$ is a homotopy equivalence,
+  \[
+  g_p^*(u_{\eta_p}) = \pm u_{\xi_p} \quad \text{for }p \in X.
+  \]
+  It follows that $\dim v = \pm 1$. Let $\epsilon \ce \dim v \in
+  K_\C(X)$, so that $\dim \epsilon v = 1$, and hence $\epsilon v = 1
+  + y$ for some $y \in \wt K_\C(X)$.
+
+  Let $h \c \Th(\eta) \to \Th(\xi)$ be a homotopy inverse to $g$ and
+  define $w \ce \phi_\eta^{-1}h^*\phi_\xi(1) \in K_\C(X)$. Since
+  $\phi_\xi,\phi_\eta$ are isomorphisms of $K_\C(X)$-modules and
+  pullback respects multiplication, we have
+  \[
+  vw = \phi_\xi^{-1}g^*\phi_\eta(1) \cdot
+  \phi_\eta^{-1}h^*\phi_\xi(1) =
+  \phi_\eta^{-1}h^*\phi_\xi(\phi_\xi^{-1}g^*\phi_\eta(1)) = 1,
+  \]
+  and symmetrically $wv = 1$. So $w$ is inverse to $v$, and hence
+  $\epsilon w$ is inverse to $\epsilon v$, implying $1+y$ is
+  invertible.
+
+  Finally let $l \in \N$. By naturality of the Adams operation
+  $\psi^l$ we have
+  \[
+  ((\phi_\xi^{-1}g^*\phi_\eta)(\phi_\eta^{-1}\psi^l\phi_\eta))(1) =
+  ((\phi_\xi^{-1}\psi^l\phi_\xi)(\phi_\xi^{-1}g^*\phi_\eta))(1).
+  \]
+  Then by definition of $\rho^l$, multplicativity of $\psi_l$, and the
+  fact that $\phi_\xi$ is an isomorphism of $K_\C(X)$-modules, we get
+  \[
+  v \cdot \rho^l(\eta) = \phi_\xi^{-1}(\psi^l(v \cdot u_\xi)) =
+  \phi_\xi^{-1}(\psi^l(u_\xi)) \cdot \psi^l(v) = \rho^l(\xi) \cdot
+  \psi^l(v).
+  \]
+  Now, multiplying this equation by $\epsilon = \psi^l(\epsilon)$ we
+  get
+  \[
+  (1+y) \cdot \rho^l(\eta) = \rho^l(\xi) \cdot \psi^l(1+y),
+  \]
+  and since $1+y$ is invertible we are done.
+\end{proof}
+
+\begin{definitions}
+  \label{jprime}
+  \begin{enumerate}[leftmargin=*]
+  \item Let $V_\C(X) \subseteq K_\C(X)$ be the subgroup of elements
+    $x$ for which there exists $y \in \wt K_\C(X)$ such that $1+y$ is
+    invertible and
+    \begin{equation}
+      \label{jprime-y}
+      \rho^l(x) = \frac{\psi^l(1+y)}{1+y} \in K_\C(X)_l \quad \text{for
+      } l \in \N.
+    \end{equation}
+    That $V_\C(X)$ is in fact a subgroup
+    follows from the fact that each $\rho^l$ is exponential and each
+    $\psi^l$ is multiplicative.
+  \item Define $J_\C'(X) \ce K_\C(X)/V_\C(X)$.
+  \end{enumerate}
+\end{definitions}
+
+\begin{lemma}
+  \label{jprime-dim}
+  $V_\C(X) \subseteq \wt K_\C(X)$.
+\end{lemma}
+
+\begin{proof}
+  Suppose $x \in V_\C(X)$, and let $y$ is as in \pref{jprime}. Writing
+  $x = \xi - \eta$ for bundles $\xi$ and $\eta$, we must have
+  \[
+  \rho^l(x) = \frac{\psi^l(1+y)}{1+y} \in K_\C(X)_l \implies
+  l^r(1+y)\rho^l(\xi) = l^r\psi^l(1+y)\rho^l(\eta) \in K_\C(X).
+  \]
+  The Adams operations preserve dimension (by the splitting principle
+  and their definition), so $\dim \psi^l(1+y) = \dim {(1+y)}$. It
+  follows that $\dim \rho^l(\xi) = \dim \rho^l(\eta)$, whence $\dim
+  \xi = \dim \eta$ by \pref{cannibal-dim}. Therefore $x \in
+  \wt K_\C(X)$.
+\end{proof}
+
+\begin{proposition}
+  \label{jprime-bound}
+  The quotient map $K_\C(X) \to J_\C'(X)$ factors through
+  $J_\C$. That is, $\ker(J_\C) \subseteq V_\C(X)$, so $J_\C'(X)$
+  is a quotient of $J_\C(X)$.
+\end{proposition}
+
+\begin{proof}
+  Immediate from \pref{jprime-condition}.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Finishing}
+
+We now specialise to the case $X = \RP^k$. Computing $J_\C'(\RP^k)$
+will give us enough information about $J_\C(\RP^k)$ to finally give
+an upper bound to our question \pref{vfield-prob} on vector fields.
+
+\begin{lemma}
+  \label{RP-cannibal}
+  Let $\nu$ be the generator of $\wt K_\C(\RP^k)$ as in
+  \pref{RP-kthy}. For $l \in \N$ odd we have
+  \[
+  \rho^l(t\nu) = 1 + \frac{l^t-1}{2l^t}\nu \quad\text{for }0 \le t <
+  2^{f_k}.
+  \]
+\end{lemma}
+
+\begin{proof}
+  Let $\xi \ce \kappa(\gamma)$. By \pref{cannibal-line} and the
+  identity $\xi^2 = 1$ we have
+  \[
+  \rho^l(\xi) = 1 + \xi + \cdots + \xi^{l-1} = \frac{l+1}2 +
+  \frac{l-1}2\xi = l + \frac{l-1}{2}\nu.
+  \]
+  The desired identity for $t=1$ then follows from $\nu = \xi - 1
+  \implies \rho^l(\nu) = \rho^l(\xi)/l$. Then $t > 1$ follows by
+  induction using the relation $\nu^2 = -2\nu$ (and $t=0$ is trivial).
+\end{proof}
+
+\begin{lemma}
+  \label{RP-jprime}
+  $V_\C(\RP^k) \subseteq \{0,2^{f_k-1}\nu\}$.
+\end{lemma}
+
+\begin{proof}
+  Let $x \in V_\C(\RP^k)$, and let $y \in \wt K_\C(\RP^k)$ be such
+  that \pref{jprime-y} holds. By \pref{RP-kthy} we have $\psi^l(1+y) =
+  1+y$ for $l$ odd, so we in fact have $\rho^l(x) = 1$ for $l$ odd.
+
+  Next, $x \in \wt K_\C(X)$ by \pref{jprime-dim}, so by \pref{RP-kthy}
+  we can write $x = t\nu$ for some $0 \le t < 2^{f_k}$. Then from
+  \pref{RP-cannibal} we know that
+  \[
+  \rho^l(x) = \rho^l(t\nu) = 1 + \frac{l^t-1}{2l^t}\nu.
+  \]
+  Recall the ring morphism $\alpha \c \wt K_\C(\RP^k) \to
+  \Z/2^{f_k+1}$ defined in \pref{RP-ringhom} by $\alpha(\nu) \ce
+  -2$. Observe this gives a morphism of multiplicative groups $\beta
+  \c 1 + \wt K_\C(\RP^k) \to (\Z/2^{f_k+1})^\times$ via $\beta(1+z)
+  \ce 1+\alpha(z)$.
+
+  So finally let $l$ be odd. Note $\wt K_\C(\RP^k) \simeq \Z/2^{f_k}
+  \implies \wt K_\C(\RP^k)_l \simeq \wt K_\C(\RP^k)$. Thus from the
+  above we get
+  \[
+  1 = \rho^l(x) \implies 1 = \beta\l(1 + \frac{l^t-1}{2l^t}\nu\r) =
+  1/l^t.
+  \]
+  We now use the fact that $(\Z/2^{f_k+1})^\times \simeq \Z/2 \times
+  \Z/2^{f_k-1}$ has an element of order $2^{f_k-1}$ to see that
+  choosing $l$ appropriately implies $2^{f_k-1} \mid t$, as desired.
+\end{proof}
+
+\begin{theorem}
+  \label{complex-upper}
+  There does not exist a set of $\rho(n) + 4$ linearly independent
+  vector fields on $S^{n-1}$.
+\end{theorem}
+
+\begin{proof}
+  If $n$ is odd this is trivial by the hairy ball theorem
+  \pref{hairy-ball}. So assume $n = 2m$, and suppose $S^{n-1}$ admits
+  a set of $k$ vector fields. Combining \pref{j-reduction},
+  \pref{jprime-bound}, and \pref{RP-jprime} gives that $2^{f_k-1} \mid
+  m \implies 2^{f_k} \mid n$. Then observe that $f_k \ge e_k - 1 \ge
+  e_{k-4}$. By \pref{radon-max} it follows that $k-4 \le \rho(n) - 1
+  \implies k \le \rho(n) + 3$.
+\end{proof}
+
+So ends our journey.
+
+\begin{remark}
+  Our final upper bound in \pref{complex-upper} is off by $4$ from the
+  right answer \pref{vfield-upper-bound}. If we were computer
+  scientists, that would be good enough. As remarked above, that $4$
+  goes away if one translates our work from complex K-theory into real
+  K-theory. Indeed one can define $\rho^l$ using the Adams operations
+  in $K_\R$ rather than $K_\C$, and then define analogous groups
+  $V_\R(X)$ and $J'_\R(X)$. But there is a bit of nastiness:
+  \begin{itemize}
+  \item Thom classes don't exist for all real vector bundles, so the
+    analogue of \pref{thom-K} is more subtle. However, in
+    \cite{abs-clifford} natural Thom clases are also constructed for
+    certain $\Spin$ bundles, and this is where one must begin.
+  \item This means our proof of \pref{cannibal-line} won't go through
+    in the real case, and indeed this implies that extending $\rho^l$
+    to $K_\R(X)$ is much more technical than the simple discussion of
+    \pref{cannibal-extend}.
+  \end{itemize}
+  These subtleties are handled in \cite{adams-J-II}, and the reward is
+  the correct bound. The argument is essentially the same: one uses
+  $J_\R(n\lambda) = 0$ from \pref{j-reduction}, and this time
+  computes $V_\R(\RP^k) \simeq 0$, so $K_\R(\RP^k) \simeq
+  J_\R(\RP^k) \simeq J_\R'(\RP^k)$. The crucial difference is that
+  $\wt K_\R(\RP^k) \simeq \Z/2^{e_k}$, so now we get $2^{e_k} \mid n$
+  rather than $2^{f_k} \mid n$ when proving the upper bound
+  \pref{complex-upper}. Getting precisely $e_k$ instead of the
+  approximation $f_k$ means that no pesky $4$ will show up.
+\end{remark}
+
+\begin{remark}
+  In addition to computing $J_\R'(\RP^k)$, Adams computes $J_\R'$
+  for spheres as well, by using another characteristic class coming
+  from the formalism of \pref{chclass-general}. This gives bounds on
+  the image of the J-homomorphism for spheres, where the study of the
+  J-homomorphism originated.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\nocite{mathew-J, shah-vfields}
+\bibliographystyle{amsalpha}
+\bibliography{refs}
+
+\end{document}

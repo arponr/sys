@@ -1,0 +1,89 @@
+\input{preamble}
+
+\title{Math 213A, Problem Set 1}
+\author{Arpon Raksit}
+\date{10 Sep 2013}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{1}
+
+\subprob{First argument}
+
+We proceed by induction. When $n=0$ the statement is exactly the
+Cauchy integral formula, as proved in lecture (in the course of the
+proof that complex differentiable implies analytic). Then clearly it
+suffices to show that we can commute differentiation and integration
+as follows:
+\[
+\p{}{z}\int_{\del D} \frac{f(\zeta)}{(\zeta-z)^n}\,d\zeta =
+\int_{\del D} \p{}{z}\frac{f(\zeta)}{(\zeta-z)^n}\,d\zeta =
+n\int_{\del D} \frac{f(\zeta)}{(\zeta-z)^{n+1}}\,d\zeta.
+\]
+Since $nf(\zeta)/(\zeta-z)^{n+1}$ is a continuous function of $z$ for
+$\zeta \in \del D$, the above is valid by definition of the line
+integral and the following lemma from real analysis, which follows
+from Fubini's theorem.
+
+\begin{lemma}
+  Let $g : A \to \R$ such that $\p{g(x,y)}{x}$ exists and is
+  continuous on $A$, where $A := [a,b] \times [c,d] \subset
+  \R^2$. Then on $[a,b]$,
+  \[
+  \p{}{x} \int_c^d g(x,y)\,dy = \int_c^d \p{g(x,y)}x\,dy.
+  \]
+\end{lemma}
+
+\subprob{Second argument}
+
+Let $z \in D$ and $n \ge 0$. By the analytic characterisation of
+holomorphic functions we can choose $R > 0$ such that $\oline\Delta(z,
+R) \subset D$ and
+\[
+f(z') = \sum_{k=0}^\infty \left( \frac{1}{2\pi i}\int_{|\zeta - z|=R}
+\frac{f(\zeta)}{(\zeta-z)^k}\,d\zeta \right) (z'-z)^k
+\]
+converges uniformly and absolutely for $z' \in
+\oline\Delta(z,R)$. It follows then from the lemma from lecture that
+we can differentiate $f$ term by term on $\oline\Delta(z,R)$, which
+implies clearly that
+\[
+f^{(n)}(z) = \frac{n!}{2\pi i}\int_{|\zeta - z|=R}
+\frac{f(\zeta)}{(\zeta-z)^{n+1}}.
+\]
+Then $D - \oline\Delta(z,R)$ is a Green's domain in $U - \{z\}$, where
+$f(\zeta)/(\zeta-z)^n$ is holomorphic. It follows from one of the
+characterisations of complex differentiability that
+\[
+0 = \int_{\del(D - \oline\Delta(z,R))}
+\frac{f(\zeta)}{(\zeta-z)^{n+1}}\,d\zeta = \int_{\del D}
+\frac{f(\zeta)}{(\zeta-z)^{n+1}}\,d\zeta - \int_{|\zeta - z|=R}
+\frac{f(\zeta)}{(\zeta-z)^{n+1}}\,d\zeta,
+\]
+which finishes the proof.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+Since $e^{z^n}$ is entire, by problem 1 we have
+\[
+\int_{|\zeta|=1} \frac{e^{\zeta^2}}{\zeta^5}\,d\zeta =
+\frac{2\pi i}{5!} \left.\frac{d^5}{dz^5}\right|_{z=0}e^{z^2} =
+\frac{2\pi i}{15} e^{z^2}z(4z^4 + 20z^2 + 15),
+\]
+and similarly (also using partial fractions), we have
+\begin{align*}
+\int_{|\zeta|=4} \frac{e^{\zeta}}{\zeta^2+\pi^2}\,d\zeta &=
+\int_{|\zeta|=1} \frac{e^{\zeta}}{\zeta^2+\pi^2}\,d\zeta =
+\frac{1}{2\pi i}\int_{|\zeta|=1} \frac{e^{\zeta}}{\zeta -
+  i\pi}\,d\zeta - \frac{1}{2\pi i}\int_{|\zeta|=1}
+\frac{e^{\zeta}}{\zeta + i\pi}\,d\zeta \\
+&= e^{i\pi} - e^{-i\pi} = 0.
+\end{align*}
+\end{document}

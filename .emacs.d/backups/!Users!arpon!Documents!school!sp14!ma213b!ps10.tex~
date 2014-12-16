@@ -1,0 +1,98 @@
+\input{preamble}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\titleset{10}{April 15, 2014}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\M}{\mathcal{M}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{2}
+
+Any $f \in \Aut(X)$ determines a linear automorphism $f^* \in
+\GL(\Omega(X))$, defined by $f^*(\omega) \ce \omega \circ f$. Choosing
+a basis $\{\omega_1,\ldots,\omega_g\}$ of $\Omega(X)$ determines an
+isomorphism $\Omega(X) \simeq \C^g$, which then gives an isomorphism
+$i \c \GL(\Omega(X)) \simeq \GL_g(\C)$. Let $j \c \GL_g(\C) \to
+\PGL_g(\C) \simeq \Aut(\P^{g-1})$ be the quotient map. We then have a
+map
+\[
+\rho \c \Aut(X) \to \Aut(\P^{g-1}), \quad f \mapsto j(i(f^*)).
+\]
+Since the canonical map is defined by $\phi(x) \ce [\omega_1(x) :
+\cdots : \omega_g(x)]$, we evidently have $\phi \circ f =
+\rho(f) \circ \phi$ for $f \in \Aut(X)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{3}
+
+\subprob{i}
+
+Let $f \in \Aut(\P^2) \simeq \PGL_3(\C)$ be an involution, and let $F
+\in \GL_3(\C)$ be a representative of $f$. Since $f$ has order $2$ we
+must have $F^2 = \lambda \cdot \id$ for some $\lambda \in \C^*$. This
+implies $F$ is diagonalisable with possible eigenvalues
+$\{\lambda^{1/2}, -\lambda^{1/2}\}$. Thus, one eigenspace of $F$ must
+have dimension at least $2$. Since $f$ clearly fixes the
+projectivisations of the eigenspaces of $F$, this implies $f$ fixes a
+line in $\P^2$.
+
+\subprob{ii}
+
+Let $X$ be a non-hyperelliptic Riemann surface of genus $3$. Recall
+from lecture this implies the canonical map $\phi \c X \to \P^2$ is an
+embedding. Let $f \in \Aut(X)$ be an involution. Let $\rho \c \Aut(X)
+\to \Aut(\P^2)$ be the representation constructed in Problem 2. Then
+$\rho(f)^2 = \rho(f^2) = \rho(\id_\C) = \id_{\P^2}$ so $\rho(f)$ is an
+involution on $\P^2$. By (i), this implies $\rho(f)$ fixes a line $L
+\subset \P^2$. Since $\phi \circ f = \rho(f) \circ \phi$ and $\phi$ is
+an embedding, to show $f$ has a fixed point it suffices to show
+$\phi(X) \cap L \ne \emptyset$.
+
+To do so, we use Problem 1. Note that if $\phi(X)$ were contained in a
+line, then we would in fact have an embedding $\phi \c X \to
+\P^1$. Since $\phi$ is holomorphic this would have to be an
+isomorphism, contradicting that $X$ has genus $3$. Thus $\phi(X)$ is
+an algebraic variety (of codimension $1$) in $\P^2$. It is a basic
+fact in geometry that this implies $\phi(X) \cap L \ne
+\emptyset$. (Otherwise $\phi(X)$ would be a projective subvariety of
+the affine space $\P^2 - L$, so would have to be a point,
+contradiction.)
+
+\subprob{iii}
+
+Consider the hyperelliptic Riemann surface $X$ defined by $y^2 = x^8 -
+1$. There is an involution $f \in \Aut(X)$ induced by the map $(x,y)
+\mapsto (-x,-y)$. Certainly no point on $X$ corresponding to a pair
+$(x,y)$ is fixed by $f$, so if $f$ has fixed points then it must fix
+the two points $p,q$ at infinity. Suppose this is the case. Let $G \ce
+\Z/2$ act on $X$ by the identity and $f$, and let $Y \ce X/G$. Then
+the quotient $X \to Y$ is a degree $2$ covering of Riemann surfaces
+ramified precisely at $p,q$. By constancy of degree $p,q$ have
+multiplicity $2$. So if $Y$ has genus $g$ then Riemann-Hurwitz tells
+us that
+\[
+2 - 2 \cdot 3 = 2(2 - 2g) - 2 \implies 4g = 6,
+\]
+a contradiction since $g \in \Z$. So indeed $f$ has no fixed points.
+
+\subprob{iv}
+
+We proceed similarly to (iii). Suppose $X$ is a Riemann surface of
+even genus $g$ and $f \in \Aut(X)$ is an involution without fixed
+points. Then the action of $G \ce \Z/2$ on $X$ via $f$ defines an
+\emph{unramified} degree $2$ covering of Riemann surfaces $X \to Y \ce
+X/G$. If $Y$ has genus $h$ then we have
+\[
+2 - 2g = 2(2 - 2h) \implies 4h = 2(1+g),
+\]
+a contradiction since $1+g$ is odd and $h \in \Z$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
