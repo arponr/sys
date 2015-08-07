@@ -5,13 +5,19 @@
 # Your branch is up-to-date with 'origin/source'.
 #
 # Changes to be committed:
+#	new file:   _drafts/.#finland.md
+#	modified:   _drafts/finland.md
+#	modified:   _drafts/windup.md
+#	modified:   _site/css/style.css
 #	modified:   _site/feed.xml
-#	modified:   _site/files/completion.pdf
-#	modified:   _site/files/cotangent.pdf
-#	modified:   _site/files/doldkan.pdf
-#	modified:   _site/files/vfields.pdf
-#	modified:   files/completion.pdf
-#	modified:   files/cotangent.pdf
-#	modified:   files/doldkan.pdf
-#	modified:   files/vfields.pdf
+#	new file:   _site/images/me-piano.jpg
+#	deleted:    _site/images/me.jpg
+#	modified:   _site/index.html
+#	modified:   css/_general.scss
+#	modified:   css/_layout.scss
+#	modified:   css/_vars.scss
+#	modified:   css/style.css
+#	new file:   images/me-piano.jpg
+#	deleted:    images/me.jpg
+#	modified:   index.md
 #

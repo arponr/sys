@@ -1,36 +1,37 @@
+$new-thread-header-height: $main-header-h1-size + $main-header-pad;
+$new-thread-input-pad: 10px;
+$new-thread-input-height: 2 * $new-thread-input-pad + $line-base + 4px + 1px;
+
 .new-thread {
-    .inputs {
-        top: $size-big + 3.5 * $line-base + 1px;
+    .form {
+        top: $new-thread-header-height;
+
+        .input {
+            width: 100%;
+            border-top: 1px solid $grey-light;
+            padding: $new-thread-input-pad 0;
+        }
     }
 
-    .name, .users {
-        width: 100%;
-        @include rounded($grey-light);
-        padding: 5px;
+    .message-input {
+        top: $new-thread-header-height + 2 * $new-thread-input-height;
+        bottom: 0;
+
+        /* .area, .live { */
+        /*     top: 0; */
+        /* } */
+
+        /* .live { */
+        /*     bottom: calc(50% + #{$message-options-height} / 2 + #{$line-base} / 2); */
+        /* } */
+
+        /* .area { */
+        /*     bottom: $message-options-height; */
+        /*     transition: top 0.15s; */
+
+        /*     &.half { */
+        /*         top: calc(50% - #{$message-options-height} / 2 + #{$line-base} / 2); */
+        /*     } */
+        /* } */
     }
-
-    .name {
-        margin-bottom: $line-base;
-    }
-
-    /* .message-input { */
-    /*     top: (5 * $view-vpad) + ($size-big * $line-base-unitless) + (2 * $input-height); */
-
-    /*     .area, .live { */
-    /*         top: 0; */
-    /*     } */
-
-    /*     .live { */
-    /*         bottom: calc(50% + #{$message-options-height} / 2 + #{$line-base} / 2); */
-    /*     } */
-
-    /*     .area { */
-    /*         bottom: $message-options-height; */
-    /*         transition: top 0.15s; */
-
-    /*         &.half { */
-    /*             top: calc(50% - #{$message-options-height} / 2 + #{$line-base} / 2); */
-    /*         } */
-    /*     } */
-    /* } */
 }

@@ -1,6 +1,10 @@
-;; Load elpa packages now
+;; Load packages
+(require 'package)
 (setq package-enable-at-startup nil)
 (package-initialize)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")))
 
 ;; Put autosave files and backup files in ~/.emacs.d/
 ;; -- snarfed.org/gnu_emacs_backup_files
@@ -20,23 +24,41 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 (set-path-from-shell)
 
+;; Follow symlinks
+(setq vc-follow-symlinks t)
+
 ;; Edit settings
 (set-cursor-color "#000000")
-(set-face-attribute  'default nil :family "Menlo" :height 120
-                     :foreground "#222222" :background "ffffff")
+(set-face-attribute 'fringe nil :background "#ffffff" :foreground "#ffffff")
+(set-face-attribute  'default nil :family "Input" :height 120
+                     :foreground "#333333" :background "ffffff")
 (set-face-foreground 'font-lock-type-face          "#333333")
 (set-face-foreground 'font-lock-function-name-face "#333333")
 (set-face-foreground 'font-lock-variable-name-face "#333333")
 (set-face-foreground 'font-lock-constant-face      "#333333")
-(set-face-foreground 'font-lock-comment-face       "#102090")
-(set-face-foreground 'font-lock-string-face        "#105010")
-(set-face-foreground 'font-lock-keyword-face       "#909090")
-(set-face-foreground 'font-lock-builtin-face       "#909090")
+(set-face-foreground 'font-lock-comment-face       "#3333bb")
+(set-face-foreground 'font-lock-string-face        "#337733")
+(set-face-foreground 'font-lock-keyword-face       "#999999")
+(set-face-foreground 'font-lock-builtin-face       "#999999")
 (set-face-foreground 'button                       "#900090")
 (set-face-foreground 'minibuffer-prompt            "#900090")
-(set-face-background 'region                       "#dddddd")
+(set-face-background 'region                       "#eeeeee")
 
+(global-visual-line-mode t)
 (setq-default indent-tabs-mode nil)
+
+(global-set-key "\C-xk" 'kill-this-buffer)
+(global-set-key "\C-a" 'back-to-indentation)
+(global-set-key "\C-x\C-a" 'move-beginning-of-line)
+
+;; Text edit settings hook
+(defun text-buffer-hook ()
+  (interactive)
+  (setq buffer-face-mode-face '(:height 140))
+  (buffer-face-mode)
+  (setq line-spacing 4)
+  (local-set-key "\C-a" 'move-beginning-of-line)
+  (local-set-key "\C-x\C-a" 'back-to-indentation))
 
 ;; Body centering
 (defun center-body ()
@@ -54,6 +76,8 @@
         (add-hook 'window-configuration-change-hook 'center-body nil 1))
     (uncenter-body)
     (remove-hook 'window-configuration-change-hook 'center-body 1)))
+
+(global-set-key "\C-cc" 'body-center-mode)
 
 ;; Copy/paste
 (defun pt-pbpaste ()
@@ -75,13 +99,6 @@
 
 (global-set-key "\C-x\C-y" 'pt-pbpaste)
 (global-set-key "\C-x\M-w" 'pt-pbcopy)
-
-;; Key bindings
-(global-set-key "\C-cf" 'auto-fill-mode)
-(global-set-key "\C-cc" 'body-center-mode)
-(global-set-key "\C-xk" 'kill-this-buffer)
-(global-set-key "\C-a" 'back-to-indentation)
-(global-set-key "\C-c\C-a" 'move-beginning-of-line)
 
 ;; GUI is evil
 ;; -- github.com/benskuhn/dot-emacs
@@ -115,6 +132,9 @@
 (add-hook 'before-save-hook 'gofmt-before-save)
 (add-hook 'go-mode-hook (lambda () (setq show-trailing-whitespace t)))
 
+;; haskell-mode
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+
 ;; javascript-mode
 (add-hook 'javascript-mode-hook (lambda () (setq show-trailing-whitespace t)))
 
@@ -125,10 +145,9 @@
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.td\\'" . markdown-mode))
 (setq markdown-enable-math t)
+(add-hook 'markdown-mode-hook 'text-buffer-hook)
 
 ;; scss-mode
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-(add-hook 'scss-mode-hook (lambda () (setq show-trailing-whitespace t)))

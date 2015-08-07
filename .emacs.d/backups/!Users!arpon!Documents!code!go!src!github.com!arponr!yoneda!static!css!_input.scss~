@@ -1,45 +1,50 @@
-$message-options-height: $input-height + 2 * $view-vpad;
+$message-options-height: 30px;
 
 .message-input {
-    width: 100%;
     position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0;
+    height: 160px;
 
-    .live {
-        font-family: $font-serif;
-        font-size: 14px;
-        padding: $input-pad;
-        @include rounded($grey-light);
-        overflow: auto;
+    .area, .options {
+        position: absolute;
+        left: 0;
+        right: 0;
+        border-top: 1px solid $grey-light;
     }
 
     .area {
+        top: 0;
+        bottom: 2.5 * $line-base;
+        padding: $line-base 0;
         font-family: $font-mono;
-        bottom: $message-options-height;
-        overflow: auto;
+        font-size: 12px;
+        line-height: 1.3;
 
         textarea {
             width: 100%;
             height: 100%;
-            overflow: hidden;
         }
     }
 
     .options {
-        height: $message-options-height;
         bottom: 0;
-        padding: $view-vpad 0;
+        padding-top: $line-base/2;
 
-        .input.active, .send:hover {
-            border-color: $green;
-        }
+        .input {
+            padding: $line-base/2 $line-base;
+            color: $grey-medium;
+            @include border-radius(10px);
 
-        .send {
-            margin-right: 10px;
-        }
+            &:hover {
+                background: $grey-light;
+                color: $grey-dark;
+            }
 
-        .md {
-            margin-left: 10px;
+            &.active {
+                color: $green;
+            }
         }
     }
 }

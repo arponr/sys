@@ -1,6 +1,7 @@
 export GOPATH=~/Documents/code/go/
 
-export PATH=$PATH:usr/local/go/bin
+export PATH=/usr/local/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 export NODE_PATH=/usr/local/lib/node_modules
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin

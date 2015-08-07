@@ -987,7 +987,7 @@ and `iso-latin-1'.  Use `list-coding-systems' for more choices."
   :group 'faces)
 
 (defface markdown-italic-face
-  '((t (:inherit font-lock-variable-name-face :underline t)))
+  '((t (:inherit font-lock-variable-name-face :slant italic)))
   "Face for italic text."
   :group 'markdown-faces)
 
@@ -1211,7 +1211,7 @@ fragment is not a backquote.")
   "Regular expression for matching preformatted text sections.")
 
 (defconst markdown-regex-list
-  "^\\([ \t]*\\)\\([0-9]+\\.\\|[\\*\\+-]\\{1,\\}\\)\\([ \t]+\\)"
+  "^\\([ \t]*\\)\\([0-9]+\\.\\|[\\*\\+-]\\)\\([ \t]+\\)"
   "Regular expression for matching list items.")
 
 (defconst markdown-regex-bold
@@ -1457,12 +1457,6 @@ If we are at the last line, then consider the next line to be blank."
   "Return the number of leading whitespace characters in the previous line."
   (save-excursion
     (forward-line -1)
-    (markdown-cur-line-indent)))
-
-(defun markdown-prev-prev-line-indent ()
-  "Return the number of leading whitespace characters in the previous-to-previous line."
-  (save-excursion
-    (forward-line -2)
     (markdown-cur-line-indent)))
 
 (defun markdown-next-line-indent ()
@@ -2823,10 +2817,6 @@ duplicate positions, which are handled up by calling functions."
     (setq prev-line-pos (markdown-prev-line-indent))
     (setq positions (cons prev-line-pos positions))
 
-    ;; Indentation of previous-to-previous line
-    (setq prev-prev-line-pos (markdown-prev-prev-line-indent))
-    (setq positions (cons prev-prev-line-pos positions))
-
     ;; Indentation of previous non-list-marker text
     (when (setq pos (markdown-prev-non-list-indent))
       (setq positions (cons pos positions)))
@@ -3181,6 +3171,7 @@ Assumes match data is available for `markdown-regex-italic'."
     (define-key map (kbd "C-c >") 'markdown-indent-region)
     (define-key map (kbd "C-c <") 'markdown-exdent-region)
     ;; Visibility cycling
+    (define-key map (kbd "<tab>") 'markdown-cycle)
     (define-key map (kbd "TAB") 'markdown-cycle)
     (define-key map (kbd "<S-iso-lefttab>") 'markdown-shifttab)
     (define-key map (kbd "<S-tab>")  'markdown-shifttab)

@@ -11,4 +11,9 @@
             (set-face-attribute  'font-latex-sectioning-2-face nil
                                  :foreground "#888888" :family "Menlo" :height 110 :weight 'normal)
             (set-face-attribute  'font-latex-sectioning-3-face nil
-                                 :foreground "#888888" :family "Menlo" :height 110 :weight 'normal)))
+                                 :foreground "#888888" :family "Menlo" :height 110 :weight 'normal)
+
+            (LaTeX-add-environments '("block" ["title"]))
+            
+            (local-set-key "\C-c\C-o"
+                           (lambda () (interactive) (LaTeX-environment-menu "block")))))
