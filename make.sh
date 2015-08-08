@@ -59,12 +59,12 @@ cd $dir
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 msg "Moving existing dotfiles from $HOME to $olddir..."
-for file in $dotfiles; do
-  mv $HOME/.$file $olddir
-  ln -s $dir/$file $HOME/.$file
+for file in ${dotfiles[@]}; do
+    mv $HOME/.$file $olddir
+    ln -s $dir/$file $HOME/.$file
 done
 
-for file in $nodotfiles; do
+for file in ${nodotfiles[@]}; do
     mv $HOME/$file $olddir
     ln -s $dir/$file $HOME/$file
     chflags -h hidden $HOME/$file
