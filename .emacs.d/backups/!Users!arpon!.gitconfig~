@@ -1,7 +1,0 @@
-[user]
-	email = arpon.raksit@gmail.com
-	name = Arpon Raksit
-[push]
-	default = simple
-[core]
-	excludesfile = /home/arpon/.gitignore_global

@@ -1,5 +1,0 @@
-{{define "content"}}
-<form class="login" action="/newthread" method="POST">
-  <input type="text" name="username" class="input" placeholder="username" autocomplete="off">
-</form>
-{{end}}

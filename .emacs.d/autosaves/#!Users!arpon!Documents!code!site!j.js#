@@ -1,6 +1,0 @@
-$(document).ready(function() {
-    $("#nav_notes").click(function() {
-        if 
-        $("#about, #posts").slideToggle(500);
-    });
-});

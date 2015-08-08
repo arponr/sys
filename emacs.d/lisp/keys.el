@@ -1,0 +1,6 @@
+(global-set-key "\C-xk" 'kill-this-buffer)
+(global-set-key "\C-a" 'back-to-indentation)
+(global-set-key "\C-x\C-a" 'move-beginning-of-line)
+(global-set-key "\C-cc" 'body-center-mode)
+;; (global-set-key "\C-x\C-y" 'pt-pbpaste)
+;; (global-set-key "\C-x\M-w" 'pt-pbcopy)
