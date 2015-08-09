@@ -1,9 +1,12 @@
-export GOPATH=~/Documents/code/go/
-
 export PATH=/usr/local/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin
+
+export GOPATH=$HOME/Documents/code/go
+export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
 export NODE_PATH=/usr/local/lib/node_modules
+
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 
 export PS1="\W $ "
