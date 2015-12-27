@@ -20,3 +20,5 @@ alias merge='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resou
 lmk() {
   latexmk -pvc -pdf $1; latexmk -c $1;
 }
+
+alias grain='source $HOME/Documents/grain/grain.sh'
