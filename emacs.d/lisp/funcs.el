@@ -9,9 +9,9 @@
 (defun my-text-mode-hook ()
   (interactive)
   (visual-line-mode t)
-  (setq buffer-face-mode-face '(:height 140))
-  (buffer-face-mode)
-  (setq line-spacing 4)
+  ;; (setq buffer-face-mode-face '(:height 140))
+  ;; (buffer-face-mode)
+  ;; (setq line-spacing 4)
   (local-set-key "\C-a" 'move-beginning-of-line)
   (local-set-key "\C-x\C-a" 'back-to-indentation))
 
