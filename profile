@@ -18,7 +18,13 @@ export EDITOR='emacsclient'
 alias merge='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 
 lmk() {
-  latexmk -pvc -pdf $1; latexmk -c $1;
+  latexmk -pvc -pdf $1
+  for ext in bbl fdb_latexmk fls log out; do
+      f="$1.$ext"
+      if [[ -e $f ]]; then
+         rm $f
+      fi
+  done
 }
 
 alias grain='source $HOME/Documents/grain/grain.sh'
