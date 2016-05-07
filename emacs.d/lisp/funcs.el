@@ -16,6 +16,29 @@
   (local-set-key "\C-x\C-a" 'back-to-indentation))
 
 
+;; Texdown commands
+(defun texdown-environment (title tag)
+  (interactive "sTitle: \nsTag: ")
+  (insert "---")
+  (unless (string= "" title) (insert (format " %s" title)))
+  (unless (string= "" tag) (insert (format " [%s]" tag)))
+  (execute-kbd-macro (kbd "RET RET TAB")))
+
+(defun texdown-enumerate (tag)
+  (interactive "sTag: ")
+  (insert "~~~ ")
+  (unless (string= "" tag)
+    (insert (format "[%s]" tag))
+    (execute-kbd-macro (kbd "RET TAB"))))
+
+(defun texdown-equation (tag)
+  (interactive "sTag: ")
+  (insert "$$")
+  (unless (string= "" tag) (insert (format " [%s]" tag)))
+  (insert "\n")
+  (save-excursion (insert "\n$$")))
+
+
 ;; Body centering
 (defun center-body ()
   (let ((margin (max 0 (/ (- (window-width) (+ fill-column 2)) 2))))

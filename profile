@@ -12,8 +12,8 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 export PS1="\W $ "
 export TERM=xterm-256color
 
-alias e='emacsclient'
-export EDITOR='emacsclient'
+alias e='$HOME/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+export EDITOR='$HOME/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
 
 alias merge='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 

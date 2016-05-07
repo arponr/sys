@@ -10,6 +10,8 @@
 (add-hook 'coffee-mode-hook (lambda () (coffee-cos-mode 1)))
 (add-hook 'coffee-mode-hook (lambda () (setq show-trailing-whitespace t)))
 
+;; css-mode
+(setq css-indent-offset 2)
 
 ;; go-mode
 (add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
@@ -33,12 +35,19 @@
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.td\\'" . markdown-mode))
 (setq markdown-enable-math t)
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c e") 'texdown-environment)
+            (local-set-key (kbd "C-c i") 'texdown-enumerate)
+            (local-set-key (kbd "C-c q") 'texdown-equation)))
 
 
 ;; scss-mode
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(setq scss-compile-at-save t)
 
 
 ;; text-mode
