@@ -6,7 +6,7 @@
 
 ;; coffee-mode
 (require 'coffee-mode)
-(custom-set-variables '(coffee-tab-width 4))
+(setq coffee-tab-width 4)
 (add-hook 'coffee-mode-hook (lambda () (coffee-cos-mode 1)))
 (add-hook 'coffee-mode-hook (lambda () (setq show-trailing-whitespace t)))
 

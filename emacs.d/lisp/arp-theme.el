@@ -13,7 +13,7 @@
  'arp
 
  ;; General
- `(default ((t (:family "Input" :height 120 :background ,arp-white :foreground ,arp-grey-dark))))
+ `(default ((t (:family "SF Mono" :height 120 :background ,arp-white :foreground ,arp-grey-dark))))
  `(fringe ((t (:background ,arp-white :foreground ,arp-grey-light))))
  `(font-lock-type-face ((t (:foreground ,arp-grey-dark))))
  `(font-lock-function-name-face ((t (:foreground ,arp-grey-dark))))
@@ -33,10 +33,10 @@
  `(font-latex-sedate-face ((t (:foreground ,arp-grey-light))))
  `(font-latex-math-face ((t (:foreground ,arp-green))))
  `(font-latex-warning-face ((t (:foreground ,arp-red :weight normal))))
- `(font-latex-sectioning-1-face ((t (:family "Input" :height 120 :weight bold :background ,arp-white :foreground ,arp-grey-dark))))
- `(font-latex-sectioning-2-face ((t (:family "Input" :height 120 :weight bold :background ,arp-white :foreground ,arp-grey-dark))))
- `(font-latex-sectioning-3-face ((t (:family "Input" :height 120 :weight bold :background ,arp-white :foreground ,arp-grey-dark))))
- `(font-latex-sectioning-4-face ((t (:family "Input" :height 120 :weight bold :background ,arp-white :foreground ,arp-grey-dark)))))
+ `(font-latex-sectioning-1-face ((t (:family "SF Mono" :height 120 :weight bold :background ,arp-white :foreground ,arp-grey-dark))))
+ `(font-latex-sectioning-2-face ((t (:family "SF Mono" :height 120 :weight bold :background ,arp-white :foreground ,arp-grey-dark))))
+ `(font-latex-sectioning-3-face ((t (:family "SF Mono" :height 120 :weight bold :background ,arp-white :foreground ,arp-grey-dark))))
+ `(font-latex-sectioning-4-face ((t (:family "SF Mono" :height 120 :weight bold :background ,arp-white :foreground ,arp-grey-dark)))))
 
 
 (provide-theme 'arp)
