@@ -29,6 +29,7 @@
 
 ;; latex-mode
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . latex-mode))
+(load "latex-macros.el")
 
 
 ;; markdown-mode
